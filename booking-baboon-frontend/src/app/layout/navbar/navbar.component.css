@@ -1,0 +1,41 @@
+mat-toolbar {
+  background-color: rgba(243, 243, 243, 0.6);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+button {
+  margin-right: 10px;
+}
+
+.logo {
+  height: 3em;
+  margin-right: 0.5em;
+}
+
+div {
+  width: 100%;
+  justify-content: flex-end;
+}
+
+button{
+  float: right;
+  -webkit-text-fill-color: white;
+}
+
+
+
+
+.text-link{
+  float: right;
+}
+
+.app-title{
+  font-family: Bangers;
+  font-size: 40px;
+  color: #F7A12E;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}

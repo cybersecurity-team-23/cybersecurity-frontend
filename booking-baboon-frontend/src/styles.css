@@ -2,3 +2,30 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+:root {
+  --custom-primary: #f7a12e;
+  --custom-accent: #E91E63;
+  --custom-warn: #FF5722;
+}
+
+body {
+  --primary: var(--custom-primary);
+  --accent: var(--custom-accent);
+  --warn: var(--custom-warn);
+}
+
+@font-face {
+  font-family: 'Bangers';
+  src: url("assets/Bangers-Regular.ttf");
+}
+
+.mat-button.mat-blue {
+  color: blue;
+}
+
+.mat-raised-button.mat-blue, .mat-flat-button.mat-blue{
+  background-color: blue;
+  color: white;
+}
