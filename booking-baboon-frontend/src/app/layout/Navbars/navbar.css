@@ -4,7 +4,6 @@ mat-toolbar {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
 button {
   margin-right: 10px;
 }
@@ -23,9 +22,6 @@ button{
   float: right;
   -webkit-text-fill-color: white;
 }
-
-
-
 
 .text-link{
   float: right;
