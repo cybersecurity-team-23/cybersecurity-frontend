@@ -10,6 +10,11 @@ import { NavbarGuestComponent } from './Navbars/navbar-guest/navbar-guest.compon
 import { NavbarHostComponent } from './Navbars/navbar-host/navbar-host.component';
 import { NavbarAdminComponent } from './Navbars/navbar-admin/navbar-admin.component';
 import { NavbarUnauthorizedComponent } from './Navbars/navbar-unauthorized/navbar-unauthorized.component';
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
+import { GuestComponent } from './guest/guest.component';
+import { AdminComponent } from './admin/admin.component';
+import { HostComponent } from './host/host.component';
 
 
 
@@ -22,7 +27,10 @@ import { NavbarUnauthorizedComponent } from './Navbars/navbar-unauthorized/navba
     NavbarGuestComponent,
     NavbarHostComponent,
     NavbarAdminComponent,
-    NavbarUnauthorizedComponent
+    NavbarUnauthorizedComponent,
+    GuestComponent,
+    AdminComponent,
+    HostComponent
   ],
   exports: [
     NavbarComponent,
@@ -30,11 +38,13 @@ import { NavbarUnauthorizedComponent } from './Navbars/navbar-unauthorized/navba
     LoginComponent,
     RegisterComponent
   ],
-    imports: [
-        CommonModule,
-        MaterialModule,
-        RouterLink,
-        RouterModule
-    ]
+  imports: [
+    CommonModule,
+    MaterialModule,
+    RouterLink,
+    RouterModule,
+    MatInputModule,
+    ReactiveFormsModule
+  ]
 })
 export class LayoutModule { }

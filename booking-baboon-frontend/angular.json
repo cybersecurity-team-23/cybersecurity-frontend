@@ -88,7 +88,8 @@
               "src/assets",
               "src/assets/logo.png",
               "src/assets/jungle-background.png",
-              "src/assets/Bangers-Regular.ttf"
+              "src/assets/Bangers-Regular.ttf",
+              "src/assets/white-background.png"
             ],
             "styles": [
               "src/styles.css"
