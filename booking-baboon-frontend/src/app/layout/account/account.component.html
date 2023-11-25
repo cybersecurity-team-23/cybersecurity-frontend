@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<div class="background-img">
+  <div class="wrapper">
+    <app-navbar [userType]="userType"> </app-navbar>
+  </div>
+  <div class="content">
+    <div class="white-box">
+      <!-- Add content inside the white box as needed -->
+      <div class="profile">
+        <div class="center-title">
+          <h2>Profile</h2>
+        </div>
+        <hr>
+        <div class="profile-content">
+          <div class="element">
+            <span class="data-label">Email:</span>
+            <div class="container-no-space">
+              <input [readonly]="isReadOnly('email')" class="data" type="email" value="john@example.com">
+              <button class="edit-button" (click)="toggleEditMode('email')"><mat-icon fontIcon="edit"></mat-icon></button>
+            </div>
+          </div>
+
+          <div class="element">
+            <span class="data-label">First name:</span>
+            <div class="container-no-space">
+              <input [readonly]="isReadOnly('firstName')" class="data" type="text" value="John">
+              <button class="edit-button" (click)="toggleEditMode('firstName')"><mat-icon fontIcon="edit"></mat-icon></button>
+            </div>
+          </div>
+
+          <div class="element">
+            <span class="data-label">Last name:</span>
+            <div class="container-no-space">
+              <input [readonly]="isReadOnly('lastName')" class="data" type="text" value="Lenon">
+              <button class="edit-button" (click)="toggleEditMode('lastName')"><mat-icon fontIcon="edit"></mat-icon></button>
+            </div>
+          </div>
+
+          <div class="element">
+            <span class="data-label">Phone:</span>
+            <div class="container-no-space">
+              <input [readonly]="isReadOnly('phone')" class="data" type="number" value="441458238">
+              <button class="edit-button" (click)="toggleEditMode('phone')"><mat-icon fontIcon="edit"></mat-icon></button>
+            </div>
+          </div>
+
+          <div class="element">
+            <span class="data-label">Address:</span>
+            <div class="container-no-space">
+              <input [readonly]="isReadOnly('address')" type="text" class="data" value="Penny Lane 1, London, United Kingdom">
+              <button class="edit-button" (click)="toggleEditMode('address')"><mat-icon fontIcon="edit"></mat-icon></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="password">
+        <div class="center-title">
+          <h2>Password</h2>
+        </div>
+        <hr>
+        <div class="element">
+          <span class="data-label">Current password:</span>
+          <div class="container-no-space">
+            <input [readonly]="isReadOnly('currentPassword')" type="password" class="data" value="password">
+            <button class="edit-button" (click)="toggleEditMode('currentPassword')"><mat-icon fontIcon="edit"></mat-icon></button>
+          </div>
+        </div>
+
+        <div class="element">
+          <span class="data-label">New password:</span>
+          <div class="container-no-space">
+            <input [readonly]="isReadOnly('newPassword')" type="password" class="data" value="password123">
+            <button class="edit-button" (click)="toggleEditMode('newPassword')"><mat-icon fontIcon="edit"></mat-icon></button>
+          </div>
+        </div>
+
+        <div class="element">
+          <span class="data-label">Confirm password:</span>
+          <div class="container-no-space">
+            <input [readonly]="isReadOnly('confirmPassword')" type="password" class="data" value="password123">
+            <button class="edit-button" (click)="toggleEditMode('confirmPassword')"><mat-icon fontIcon="edit"></mat-icon></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button id="saveChanges" mat-raised-button color="primary">Save changes</button>
+        <button mat-raised-button color="warn">Delete profile</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
