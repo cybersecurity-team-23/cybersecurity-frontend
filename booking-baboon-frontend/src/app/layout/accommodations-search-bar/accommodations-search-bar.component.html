@@ -1,0 +1,33 @@
+<div class="overlay">
+  <form class="accommodation-search-form">
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>
+        <mat-icon>location_on</mat-icon> Location
+      </mat-label>
+      <input matInput type="search" placeholder="Ex. Belgrade">
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>
+        Enter a date range
+      </mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate placeholder="Start date" readonly>
+        <input matEndDate placeholder="End date" readonly>
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+
+    <mat-form-field subscriptSizing="dynamic">
+      <mat-label>
+        <mat-icon>person</mat-icon> Number of guests
+      </mat-label>
+      <input matInput type="number">
+    </mat-form-field>
+
+
+    <button mat-raised-button type="submit" color="warn">Search</button>
+  </form>
+
+</div>

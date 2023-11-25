@@ -1,0 +1,25 @@
+.accommodation-search-form{
+  display:flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  height:auto;
+}
+
+.accommodation-search-form button{
+  margin-left: 5px;
+}
+
+mat-form-field {
+  border-radius: 20px; /* Adjust the border-radius as needed */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adjust the shadow as needed */
+}
+
+.overlay{
+  display: inline-block;
+  padding: 10px;
+  background-color: rgba(243, 243, 243, 0.6);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px 0 10px 0;
+}

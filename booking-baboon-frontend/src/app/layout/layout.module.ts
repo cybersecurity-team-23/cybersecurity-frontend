@@ -10,6 +10,8 @@ import { NavbarGuestComponent } from './Navbars/navbar-guest/navbar-guest.compon
 import { NavbarHostComponent } from './Navbars/navbar-host/navbar-host.component';
 import { NavbarAdminComponent } from './Navbars/navbar-admin/navbar-admin.component';
 import { NavbarUnauthorizedComponent } from './Navbars/navbar-unauthorized/navbar-unauthorized.component';
+import { AccommodationsSearchBarComponent } from './accommodations-search-bar/accommodations-search-bar.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -22,7 +24,8 @@ import { NavbarUnauthorizedComponent } from './Navbars/navbar-unauthorized/navba
     NavbarGuestComponent,
     NavbarHostComponent,
     NavbarAdminComponent,
-    NavbarUnauthorizedComponent
+    NavbarUnauthorizedComponent,
+    AccommodationsSearchBarComponent
   ],
   exports: [
     NavbarComponent,
@@ -30,11 +33,12 @@ import { NavbarUnauthorizedComponent } from './Navbars/navbar-unauthorized/navba
     LoginComponent,
     RegisterComponent
   ],
-    imports: [
-        CommonModule,
-        MaterialModule,
-        RouterLink,
-        RouterModule
-    ]
+  imports: [
+    CommonModule,
+    MaterialModule,
+    RouterLink,
+    RouterModule,
+    ReactiveFormsModule
+  ]
 })
 export class LayoutModule { }
