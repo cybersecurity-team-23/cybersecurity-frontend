@@ -1,0 +1,4 @@
+<app-navbar-unauthorized *ngIf="userType === 'unauthorized'"></app-navbar-unauthorized>
+<app-navbar-guest *ngIf="userType === 'guest'"></app-navbar-guest>
+<app-navbar-host *ngIf="userType === 'host'"></app-navbar-host>
+<app-navbar-admin *ngIf="userType === 'admin'"></app-navbar-admin>
