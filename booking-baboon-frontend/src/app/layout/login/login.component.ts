@@ -26,11 +26,14 @@ export class LoginComponent {
 
   logIn(): void {
     if(this.loginForm.value.username === "guest"){
-      this.router.navigate(['/guest']);
+      this.authService.login("guest");
+      this.router.navigate(['/home']);
     }else if(this.loginForm.value.username === "host"){
-      this.router.navigate(['/host']);
+      this.authService.login("host");
+      this.router.navigate(['/home']);
     }else if(this.loginForm.value.username === "admin"){
-      this.router.navigate(['/admin']);
+      this.authService.login("admin");
+      this.router.navigate(['/home']);
     }else{
       this.loginFailed = true;
     }
