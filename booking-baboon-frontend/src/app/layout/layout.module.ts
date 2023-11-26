@@ -10,6 +10,7 @@ import { NavbarGuestComponent } from './Navbars/navbar-guest/navbar-guest.compon
 import { NavbarHostComponent } from './Navbars/navbar-host/navbar-host.component';
 import { NavbarAdminComponent } from './Navbars/navbar-admin/navbar-admin.component';
 import { NavbarUnauthorizedComponent } from './Navbars/navbar-unauthorized/navbar-unauthorized.component';
+import { AccountComponent } from './account/account.component';
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 
@@ -24,7 +25,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     NavbarGuestComponent,
     NavbarHostComponent,
     NavbarAdminComponent,
-    NavbarUnauthorizedComponent
+    NavbarUnauthorizedComponent,
+    AccountComponent
   ],
   exports: [
     NavbarComponent,
