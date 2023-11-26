@@ -21,7 +21,7 @@ import {MatCardModule} from '@angular/material/card';
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
-    MatCardModule
+    MatCardModule,
   ],
   exports: [
     MatToolbarModule,
@@ -31,7 +31,7 @@ import {MatCardModule} from '@angular/material/card';
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
-    MatCardModule
+    MatCardModule,
   ]
 })
 export class MaterialModule { }

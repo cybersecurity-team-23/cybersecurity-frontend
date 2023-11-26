@@ -26,6 +26,10 @@ export class AccommodationService {
   getAll(): Accommodation[] {
     return this.accommodationList;
   }
+
+  get(id: number): Accommodation | undefined {
+    return this.accommodationList.find(accommodation => accommodation.id === id);
+  }
   // getAll(): Observable<Accommodation[]> {
   //   return this.httpClient.get<Accommodation[]>(environment.apiHost + 'accommodations')
   // }

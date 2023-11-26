@@ -15,6 +15,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { AccommodationCardsComponent } from './accommodations/accommodation-cards/accommodation-cards.component';
 import { AccommodationCardComponent } from './accommodations/accommodation-card/accommodation-card.component';
 import { AccommodationDetailsComponent } from './accommodations/accommodation-details/accommodation-details.component';
+import { ImageCarouselComponent } from './accommodations/image-carousel/image-carousel.component';
 
 
 
@@ -31,7 +32,8 @@ import { AccommodationDetailsComponent } from './accommodations/accommodation-de
     AccommodationsSearchBarComponent,
     AccommodationCardsComponent,
     AccommodationCardComponent,
-    AccommodationDetailsComponent
+    AccommodationDetailsComponent,
+    ImageCarouselComponent,
   ],
   exports: [
     NavbarComponent,
