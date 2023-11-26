@@ -5,9 +5,11 @@
 }
 
 .background-img{
-  background-image: url('../../../assets/jungle-background.png');
+  background-image: url('../../../../../assets/jungle-background.png');
   background-size: cover;
   background-position: center;
   color: #fff;
   height: 100vh;
 }
+
+

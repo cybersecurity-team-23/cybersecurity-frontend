@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {Accommodation} from "../model/accommodation.model";
-import {AccommodationService} from "../../../services/accommodation/accommodation.service";
+import {Accommodation} from "../../model/accommodation.model";
+import {AccommodationService} from "../../../../services/accommodation/accommodation.service";
 
 @Component({
   selector: 'app-accommodation-cards',

@@ -4,11 +4,11 @@ import {LoginComponent} from "./layout/login/login.component";
 import {RegisterComponent} from "./layout/register/register.component";
 import {
   AccommodationDetailsComponent
-} from "./layout/accommodations/accommodation-details/accommodation-details.component";
+} from "./layout/accommodations/components/accommodation-details/accommodation-details.component";
 import {
   AccommodationDetailsPageComponent
-} from "./layout/accommodation-details-page/accommodation-details-page.component";
-import {AccommodationsPageComponent} from "./layout/accommodations-page/accommodations-page.component";
+} from "./layout/accommodations/pages/accommodation-details-page/accommodation-details-page.component";
+import {AccommodationsPageComponent} from "./layout/accommodations/pages/accommodations-page/accommodations-page.component";
 
 const routes: Routes = [
   {component: AccommodationsPageComponent, path:"accommodations"},

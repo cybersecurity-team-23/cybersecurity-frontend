@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Accommodation} from "../model/accommodation.model";
+import {Accommodation} from "../../model/accommodation.model";
 
 @Component({
   selector: 'app-accommodation-card',
