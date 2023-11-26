@@ -4,6 +4,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -13,13 +16,19 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatStepperModule,
+    MatDividerModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatStepperModule,
+    MatDividerModule,
+    MatSlideToggleModule
   ]
 })
 export class MaterialModule { }
