@@ -6,7 +6,7 @@ body { margin: 0; font-family: Poppins, "Helvetica Neue", sans-serif; }
 
 :root {
   --custom-primary: #f7a12e;
-  --custom-accent: #E91E63;
+  --custom-accent: #e9251e;
   --custom-warn: #FF5722;
 }
 
@@ -25,11 +25,4 @@ button{
   src: url("assets/Bangers-Regular.ttf");
 }
 
-.mat-button.mat-blue {
-  color: blue;
-}
 
-.mat-raised-button.mat-blue, .mat-flat-button.mat-blue{
-  background-color: blue;
-  color: white;
-}

@@ -10,13 +10,15 @@ import { NavbarHostComponent } from './Navbars/navbar-host/navbar-host.component
 import { NavbarAdminComponent } from './Navbars/navbar-admin/navbar-admin.component';
 import { NavbarUnauthorizedComponent } from './Navbars/navbar-unauthorized/navbar-unauthorized.component';
 import { AccommodationsSearchBarComponent } from './accommodations/components/accommodations-search-bar/accommodations-search-bar.component';
-import {ReactiveFormsModule} from "@angular/forms";
 import { AccommodationCardsComponent } from './accommodations/components/accommodation-cards/accommodation-cards.component';
 import { AccommodationCardComponent } from './accommodations/components/accommodation-card/accommodation-card.component';
 import { AccommodationDetailsComponent } from './accommodations/components/accommodation-details/accommodation-details.component';
 import { ImageCarouselComponent } from './accommodations/components/image-carousel/image-carousel.component';
 import { AccommodationDetailsPageComponent } from './accommodations/pages/accommodation-details-page/accommodation-details-page.component';
 import { AccommodationsPageComponent } from './accommodations/pages/accommodations-page/accommodations-page.component';
+import { AccountComponent } from './account/account.component';
+import {MatInputModule} from "@angular/material/input";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
@@ -36,6 +38,7 @@ import { AccommodationsPageComponent } from './accommodations/pages/accommodatio
     ImageCarouselComponent,
     AccommodationDetailsPageComponent,
     AccommodationsPageComponent,
+    AccountComponent
   ],
   exports: [
     NavbarComponent,
@@ -47,7 +50,8 @@ import { AccommodationsPageComponent } from './accommodations/pages/accommodatio
     MaterialModule,
     RouterLink,
     RouterModule,
-    ReactiveFormsModule,
+    MatInputModule,
+    ReactiveFormsModule
   ]
 })
 export class LayoutModule { }

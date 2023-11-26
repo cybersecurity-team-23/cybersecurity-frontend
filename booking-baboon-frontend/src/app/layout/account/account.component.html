@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<div class="background-img">
+  <div class="wrapper">
+    <app-navbar [userType]="userType"> </app-navbar>
+  </div>
+  <div class="content">
+    <div class="white-box">
+      <!-- Add content inside the white box as needed -->
+      <div class="profile">
+        <div class="center-title">
+          <h2>Profile</h2>
+        </div>
+        <hr>
+        <div class="profile-content">
+          <div class="element">
+            <span class="data-label">Email:</span>
+            <div class="container-no-space">
+              <input [readonly]="isReadOnly('email')"
+                     [style.background]="isReadOnly('email') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
+                     class="data" type="email" value="john@example.com">
+              <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('email')"
+                      (click)="toggleEditMode('email')"><mat-icon fontIcon="edit"></mat-icon></button>
+            </div>
+          </div>
+
+          <div class="element">
+            <span class="data-label">First name:</span>
+            <div class="container-no-space">
+              <input [readonly]="isReadOnly('firstName')"
+                     [style.background]="isReadOnly('firstName') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
+                     class="data" type="text" value="John">
+              <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('firstName')"
+                      (click)="toggleEditMode('firstName')"><mat-icon fontIcon="edit"></mat-icon></button>
+            </div>
+          </div>
+
+          <div class="element">
+            <span class="data-label">Last name:</span>
+            <div class="container-no-space">
+              <input [readonly]="isReadOnly('lastName')" class="data"
+                     [style.background]="isReadOnly('lastName') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
+                     type="text" value="Lenon">
+              <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('lastName')"
+                      (click)="toggleEditMode('lastName')"><mat-icon fontIcon="edit"></mat-icon></button>
+            </div>
+          </div>
+
+          <div class="element">
+            <span class="data-label">Phone:</span>
+            <div class="container-no-space">
+              <input [readonly]="isReadOnly('phone')" class="data"
+                     [style.background]="isReadOnly('phone') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
+                     type="number" value="441458238">
+              <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('phone')"
+                      (click)="toggleEditMode('phone')"><mat-icon fontIcon="edit"></mat-icon></button>
+            </div>
+          </div>
+
+          <div class="element">
+            <span class="data-label">Address:</span>
+            <div class="container-no-space">
+              <input [readonly]="isReadOnly('address')"
+                     [style.background]="isReadOnly('address') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
+                     type="text" class="data" value="Penny Lane 1, London, United Kingdom">
+              <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('address')"
+                      (click)="toggleEditMode('address')"><mat-icon fontIcon="edit"></mat-icon></button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="password">
+        <div class="center-title">
+          <h2>Password</h2>
+        </div>
+        <hr>
+        <div class="element">
+          <span class="data-label">Current password:</span>
+          <div class="container-no-space">
+            <input [readonly]="isReadOnly('currentPassword')"
+                   [style.background]="isReadOnly('currentPassword') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
+                   type="password" class="data" value="password">
+            <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('currentPassword')"
+                    (click)="toggleEditMode('currentPassword')"><mat-icon fontIcon="edit"></mat-icon></button>
+          </div>
+        </div>
+
+        <div class="element">
+          <span class="data-label">New password:</span>
+          <div class="container-no-space">
+            <input [readonly]="isReadOnly('newPassword')"
+                   [style.background]="isReadOnly('newPassword') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
+                   type="password" class="data" value="password123">
+            <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('newPassword')"
+                    (click)="toggleEditMode('newPassword')"><mat-icon fontIcon="edit"></mat-icon></button>
+          </div>
+        </div>
+
+        <div class="element">
+          <span class="data-label">Confirm password:</span>
+          <div class="container-no-space">
+            <input [readonly]="isReadOnly('confirmPassword')"
+                   [style.background]="isReadOnly('confirmPassword') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
+                   type="password" class="data" value="password123">
+            <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('confirmPassword')"
+                    (click)="toggleEditMode('confirmPassword')"><mat-icon fontIcon="edit"></mat-icon></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button id="saveChanges" mat-raised-button color="primary">Save changes</button>
+        <button mat-raised-button color="warn">Delete profile</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

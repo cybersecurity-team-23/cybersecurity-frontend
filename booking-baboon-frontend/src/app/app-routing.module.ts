@@ -9,12 +9,14 @@ import {
   AccommodationDetailsPageComponent
 } from "./layout/accommodations/pages/accommodation-details-page/accommodation-details-page.component";
 import {AccommodationsPageComponent} from "./layout/accommodations/pages/accommodations-page/accommodations-page.component";
+import {AccountComponent} from "./layout/account/account.component";
 
 const routes: Routes = [
   {component: AccommodationsPageComponent, path:"accommodations"},
   {component: LoginComponent, path:"login"},
   {component: RegisterComponent, path:"register"},
   {component: AccommodationDetailsPageComponent, path:"accommodations/:accommodationId"},
+  {component: AccountComponent, path:"account"},
   { path: '', redirectTo: '/accommodations', pathMatch: 'full' }
 ];
 

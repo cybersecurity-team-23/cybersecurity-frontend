@@ -8,6 +8,10 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
@@ -22,6 +26,10 @@ import {MatCardModule} from '@angular/material/card';
     MatFormFieldModule,
     MatNativeDateModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatStepperModule,
+    MatDividerModule,
+    MatSlideToggleModule
   ],
   exports: [
     MatToolbarModule,
@@ -32,6 +40,10 @@ import {MatCardModule} from '@angular/material/card';
     MatFormFieldModule,
     MatNativeDateModule,
     MatCardModule,
+    MatFormFieldModule,
+    MatStepperModule,
+    MatDividerModule,
+    MatSlideToggleModule
   ]
 })
 export class MaterialModule { }
