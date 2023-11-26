@@ -79,7 +79,11 @@
 }
 
 .edit-button:hover {
-  background-color: #F7A12E; /* Darker green */
+  background-color: rgba(254,163,26, 0.5); /* Darker green */
+}
+
+.edit-mode {
+  background-color: rgba(254,163,26, 0.5) /* Your desired color when in edit mode */;
 }
 
 #saveChanges {
