@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-accommodation-details-page',
+  templateUrl: './accommodation-details-page.component.html',
+  styleUrls: ['./accommodation-details-page.component.css']
 })
-export class HomeComponent {
+export class AccommodationDetailsPageComponent {
   userType: string = 'unauthorized';
 
   constructor(private authService: AuthenticationService) {}

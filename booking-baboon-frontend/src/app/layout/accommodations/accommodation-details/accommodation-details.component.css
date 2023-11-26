@@ -6,7 +6,9 @@
   background-color: rgba(243, 243, 243, 0.6);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: 100vh;
+  max-height: calc(100vh - 250px);
+  margin: 20px 0 10px 0;
+  color: black;
 }
 
 .left-part{
@@ -22,7 +24,7 @@
 }
 
 h1{
-  margin-bottom: 0;
+  margin: 0 0 0 20px;
 }
 
 .center-icon{
@@ -34,6 +36,7 @@ h1{
 /*Location section*/
 
 .location-section{
+  margin-left: 30px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -59,6 +62,7 @@ h1{
 .images-section{
   width: 100%;
   min-height: 500px;
+  overflow: hidden;
   /*background-color: #3771a8;*/
   display: flex;
   flex-direction: row;
@@ -87,6 +91,7 @@ h1{
 
 .border{
   border: 2px solid rgba(232, 232, 232, 0.5);
+  background-color: white;
   border-radius: 20px;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
@@ -163,7 +168,7 @@ h1{
 #bottom-section{
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 20px;
   align-items: center;
   margin-top: 15px;
 }
@@ -174,7 +179,7 @@ h1{
 }
 
 #fav-border-icon{
-  color: #a4a3a3;
+  color: #4b4b4b;
   font-size: 25px;
   cursor: pointer;
 }

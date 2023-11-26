@@ -21,7 +21,7 @@
       </div>
       <button mat-button class="border">See reviews</button>
     </div>
-    <p id="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae mi sed tellus sodales dignissim ut at mi. Vivamus ut arcu tellus. Vivamus pulvinar congue turpis ac feugiat. Cras at porta tellus, in fermentum nulla. Donec condimentum, dui eget tristique aliquam, dui orci venenatis nunc, mollis finibus lacus nulla non quam. Pellentesque vulputate, ex ut bibendum mattis, leo dui sodales libero, ut euismod dolor lectus a risus. Duis sodales, lectus a convallis tristique, neque risus posuere ipsum, ut porttitor magna erat ac magna. Quisque ut condimentum velit. Sed gravida lobortis lorem, at egestas sapien mollis eget. Vivamus pharetra tellus purus, nec ultrices magna iaculis a. Praesent a urna felis.
+    <p id="description">{{accommodation?.description}}</p>
     <div id="amenity-list">
       <div *ngFor="let amenity of amenities">
         <p class="border amenity-item">{{amenity}}</p>
@@ -43,8 +43,6 @@
         <mat-icon id="fav-border-icon" *ngIf="!isFavorite">favorite_border</mat-icon>
         <mat-icon id="fav-icon" *ngIf="isFavorite">favorite</mat-icon>
       </div>
-<!--      <mat-icon id="fav-border-icon"  onclick="favorite()">favorite_border</mat-icon>-->
-<!--      <mat-icon id="fav-icon"  onclick="unfavorite()">favorite</mat-icon>-->
     </div>
   </div>
 

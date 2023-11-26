@@ -9,11 +9,11 @@ import {animate, style, transition, trigger} from "@angular/animations";
     trigger('imageSlide', [
       transition(':increment', [
         style({ transform: 'translateX(100%)' }),
-        animate('300ms ease-out', style({ transform: 'translateX(0)' })),
+        animate('450ms ease-out', style({ transform: 'translateX(0)' })),
       ]),
       transition(':decrement', [
         style({ transform: 'translateX(-100%)' }),
-        animate('300ms ease-out', style({ transform: 'translateX(0)' })),
+        animate('450ms ease-out', style({ transform: 'translateX(0)' })),
       ]),
     ]),
   ],

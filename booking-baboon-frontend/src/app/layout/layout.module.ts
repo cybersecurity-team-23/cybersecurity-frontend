@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './Navbars/navbar/navbar.component';
 import {MaterialModule} from "../infrastructure/material/material.module";
 import {RouterLink, RouterModule} from "@angular/router";
-import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NavbarGuestComponent } from './Navbars/navbar-guest/navbar-guest.component';
@@ -16,13 +15,14 @@ import { AccommodationCardsComponent } from './accommodations/accommodation-card
 import { AccommodationCardComponent } from './accommodations/accommodation-card/accommodation-card.component';
 import { AccommodationDetailsComponent } from './accommodations/accommodation-details/accommodation-details.component';
 import { ImageCarouselComponent } from './accommodations/image-carousel/image-carousel.component';
+import { AccommodationDetailsPageComponent } from './accommodation-details-page/accommodation-details-page.component';
+import { AccommodationsPageComponent } from './accommodations-page/accommodations-page.component';
 
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    HomeComponent,
     LoginComponent,
     RegisterComponent,
     NavbarGuestComponent,
@@ -34,10 +34,11 @@ import { ImageCarouselComponent } from './accommodations/image-carousel/image-ca
     AccommodationCardComponent,
     AccommodationDetailsComponent,
     ImageCarouselComponent,
+    AccommodationDetailsPageComponent,
+    AccommodationsPageComponent,
   ],
   exports: [
     NavbarComponent,
-    HomeComponent,
     LoginComponent,
     RegisterComponent
   ],
