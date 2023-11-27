@@ -1,0 +1,50 @@
+<div class="overlay">
+  <div class="left-part">
+    <h1>{{accommodation?.name}}</h1>
+    <div class="location-section">
+      <div class="address">
+        <mat-icon>location_on</mat-icon>
+        <p>Fuhren, 3822 Lauterbrunnen, Switzerland</p>
+      </div>
+      <button mat-button>Show map</button>
+    </div>
+    <div class="images-section border">
+      <app-image-carousel></app-image-carousel>
+    </div>
+  </div>
+
+  <div class="right-part">
+    <div class="reviews-section">
+      <div class="rating border">
+        <mat-icon>star</mat-icon>
+        4.8
+      </div>
+      <button mat-button class="border">See reviews</button>
+    </div>
+    <p id="description">{{accommodation?.description}}</p>
+    <div id="amenity-list">
+      <div *ngFor="let amenity of amenities">
+        <p class="border amenity-item">{{amenity}}</p>
+      </div>
+    </div>
+    <div id="middle-section">
+      <div class="prices">
+        <span class="total-price center-icon">1000<mat-icon>euro</mat-icon></span>
+        <span class="price-per-night center-icon">100<mat-icon>euro</mat-icon>/night</span>
+      </div>
+      <div class="host-info">
+        <span class="center-icon"><mat-icon>person</mat-icon>John Smith</span>
+        <button mat-raised-button color="primary">View profile</button>
+      </div>
+    </div>
+    <div id="bottom-section">
+      <button mat-raised-button color="primary">Send request</button>
+      <div class="toggle-icons" (click)="toggleFavorite()">
+        <mat-icon id="fav-border-icon" *ngIf="!isFavorite">favorite_border</mat-icon>
+        <mat-icon id="fav-icon" *ngIf="isFavorite">favorite</mat-icon>
+      </div>
+    </div>
+  </div>
+
+</div>
+

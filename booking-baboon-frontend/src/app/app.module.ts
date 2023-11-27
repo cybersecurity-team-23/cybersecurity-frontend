@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {LayoutModule} from "./layout/layout.module";
 import {ServicesModule} from "./services/services.module";
+import {AccommodationService} from "./services/accommodation/accommodation.service";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import {ServicesModule} from "./services/services.module";
     LayoutModule,
     ServicesModule
   ],
-  providers: [],
+  providers: [AccommodationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

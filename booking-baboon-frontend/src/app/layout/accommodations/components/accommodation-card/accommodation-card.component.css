@@ -1,0 +1,97 @@
+mat-card{
+  color: black;
+  width: 15em;
+  height: 22em;
+}
+
+mat-card-content{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin-bottom: 4px;
+}
+
+#see-more-button{
+  width: 10em;
+  margin: 10px auto auto;
+  color: white;
+
+}
+
+.card-image {
+  background-color: #000000;
+  height: 12em;
+  border-radius: 5px;
+  background-image: url("../../../../../assets/test.jpg");
+  background-size: cover;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+
+}
+
+p.location {
+  margin: 10px auto;
+  flex-shrink: 3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#location-pin {
+  color: #F7A12E;
+}
+
+.price-and-rating {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price{
+  display: flex;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+}
+
+p.rating {
+  margin: 0;
+}
+
+p.final-price{
+  margin-right: 5px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+p.price-per-night {
+  margin: 0px;
+  font-size: 11px;
+}
+
+#star {
+  color: #F7A12E;
+}
+
+.description {
+  display: -webkit-box;
+  height: 6em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  white-space: pre-line;
+  overflow: hidden;
+
+}
+
+#accommodation-card {
+  height: 100%;
+}
