@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './Navbars/navbar/navbar.component';
 import {MaterialModule} from "../infrastructure/material/material.module";
 import {RouterLink, RouterModule} from "@angular/router";
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './authentication/pages/login/login.component';
+import { RegisterComponent } from './authentication/pages/register/register.component';
 import { NavbarGuestComponent } from './Navbars/navbar-guest/navbar-guest.component';
 import { NavbarHostComponent } from './Navbars/navbar-host/navbar-host.component';
 import { NavbarAdminComponent } from './Navbars/navbar-admin/navbar-admin.component';
@@ -16,7 +16,7 @@ import { AccommodationDetailsComponent } from './accommodations/components/accom
 import { ImageCarouselComponent } from './accommodations/components/image-carousel/image-carousel.component';
 import { AccommodationDetailsPageComponent } from './accommodations/pages/accommodation-details-page/accommodation-details-page.component';
 import { AccommodationsPageComponent } from './accommodations/pages/accommodations-page/accommodations-page.component';
-import { AccountComponent } from './account/account.component';
+import { AccountComponent } from './authentication/pages/account/account.component';
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 
