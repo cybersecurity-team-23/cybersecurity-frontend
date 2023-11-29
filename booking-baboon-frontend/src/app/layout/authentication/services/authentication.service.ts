@@ -1,5 +1,5 @@
 import {Host, Injectable} from '@angular/core';
-import {Observable} from "rxjs";
+import {map, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../models/user.model";
 import {environment} from "../../../env/env";
@@ -17,8 +17,10 @@ export class AuthenticationService {
     this.userType = userType;
   }
 
-  validateUser(username: string, password: string):Observable<User>{
-    return this.httpClient.get<User>(environment.apiHost+'users/login')
+  validateUser(email: string, password: string):Observable<User>{
+    const body = {email: email, password: password};
+    // @ts-ignore
+    return this.httpClient.post<ArrayBuffer>(`${environment.apiHost}users/login`, body);
   }
 
   getAdmin(id: number):Observable<Admin>{
@@ -29,15 +31,33 @@ export class AuthenticationService {
     return this.httpClient.get<Host>(environment.apiHost+'hosts/'+id.toString())
   }
 
-  checkUserType(id: number):string{
-    if(this.getAdmin(id).subscribe()!==null){
-      return 'admin';
-    }
-    if(this.getHost(id).subscribe()!==null){
-      return 'host';
-    }
-    return 'guest';
+  checkUserType(id: number): Observable<string> {
+    return new Observable<string>(observer => {
+      // Check if the user is an admin
+      this.getAdmin(id).subscribe({
+        next: (_) => {
+          observer.next('admin');
+          observer.complete();
+        },
+        error: (_) => {
+          // Admin check failed, proceed to the next check
+          this.getHost(id).subscribe({
+            next: (_) => {
+              observer.next('host');
+              observer.complete();
+            },
+            error: (_) => {
+              // Both admin and host checks failed, user is a guest
+              observer.next('guest');
+              observer.complete();
+            }
+          });
+        }
+      });
+    });
   }
+
+
 
   logout() {
     this.userType = 'unauthorized';

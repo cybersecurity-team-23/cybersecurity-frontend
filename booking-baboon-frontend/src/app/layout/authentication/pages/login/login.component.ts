@@ -28,16 +28,24 @@ export class LoginComponent {
   }
 
   logIn(): void {
-    if(this.authService.validateUser(this.loginForm.value.username,this.loginForm.value.password).subscribe({
-      next: (data: User) => { this.user = data },
-      error: (_) => {console.log("Error!")}
-    })!==null){
-      if (this.user.id != null) {
-        this.authService.login(this.authService.checkUserType(this.user.id))
-      }
-    }else{
-      this.loginFailed = true;
-    }
+    this.authService.validateUser(this.loginForm.value.username, this.loginForm.value.password)
+      .subscribe({
+        next: (data: User) => {
+          this.user = data;
+          if (this.user !== null && this.user.id != null) {
+            this.authService.checkUserType(this.user.id).subscribe(userType => {
+              this.userType = userType;
+              console.log('UserType: ' + userType);
+            });
+          } else {
+            this.loginFailed = true;
+          }
+        },
+        error: (_) => {
+          console.log("Error!");
+          this.loginFailed = true;
+        }
+      });
   }
 
 }
