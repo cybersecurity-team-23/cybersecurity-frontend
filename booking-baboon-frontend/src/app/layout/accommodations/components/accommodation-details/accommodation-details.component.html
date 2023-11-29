@@ -4,7 +4,7 @@
     <div class="location-section">
       <div class="address">
         <mat-icon>location_on</mat-icon>
-        <p>Fuhren, 3822 Lauterbrunnen, Switzerland</p>
+        <p>{{accommodation?.location?.address}}, {{accommodation?.location?.city}}, {{accommodation?.location?.country}}</p>
       </div>
       <button mat-button>Show map</button>
     </div>
@@ -23,7 +23,7 @@
     </div>
     <p id="description">{{accommodation?.description}}</p>
     <div id="amenity-list">
-      <div *ngFor="let amenity of amenities">
+      <div *ngFor="let amenity of accommodation?.amenities">
         <p class="border amenity-item">{{amenity}}</p>
       </div>
     </div>
