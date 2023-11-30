@@ -24,7 +24,7 @@
     <p id="description">{{accommodation?.description}}</p>
     <div id="amenity-list">
       <div *ngFor="let amenity of accommodation?.amenities">
-        <p class="border amenity-item">{{amenity}}</p>
+        <p class="border amenity-item">{{amenity.name}}</p>
       </div>
     </div>
     <div id="middle-section">
