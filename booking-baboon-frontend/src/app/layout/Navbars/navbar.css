@@ -35,3 +35,12 @@ button{
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: black;
 }
+
+#notification-icon{
+  color: #F7A12E;
+}
+
+.mat-icon{
+  float: right;
+  color: #F7A12E;
+}

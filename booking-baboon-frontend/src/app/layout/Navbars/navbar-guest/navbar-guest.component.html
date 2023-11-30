@@ -2,11 +2,18 @@
   <img class="logo" src="../../../../assets/logo.png" alt=" ">
   <span class="app-title">Booking Baboon</span>
   <div>
-    <button mat-raised-button color="primary" [routerLink]="['login']">
-      Log In
+    <button mat-raised-button color="warn" [routerLink]="['accommodations']">
+      Log Out
     </button>
+    <mat-icon id="account-icon">account_circle</mat-icon>
+
+    <mat-icon  id="notification-ico">notifications</mat-icon>
+    <mat-icon id="favorite-icon">favorite</mat-icon>
     <button mat-raised-button color="primary">
       Reservations
+    </button>
+    <button mat-raised-button color="primary" [routerLink]="['accommodations']">
+      Accommodations
     </button>
   </div>
 </mat-toolbar>
