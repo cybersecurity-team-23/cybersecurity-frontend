@@ -8,7 +8,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
