@@ -16,7 +16,7 @@ const routes: Routes = [
   {component: LoginComponent, path:"login"},
   {component: RegisterComponent, path:"register"},
   {component: AccommodationDetailsPageComponent, path:"accommodations/:accommodationId"},
-  {component: AccountComponent, path:"account"},
+  {component: AccountComponent, path:"account/:userId"},
   { path: '', redirectTo: '/accommodations', pathMatch: 'full' }
 ];
 

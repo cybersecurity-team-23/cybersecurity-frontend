@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
+import {UserService} from "../../../../services/user/user.service";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-account',
@@ -24,5 +27,23 @@ export class AccountComponent {
 
   toggleEditMode(key : string) {
     this.editModes[key] = !this.editModes[key];
+  }
+
+  user?: User;
+
+  constructor(private route: ActivatedRoute, private userService: UserService) {
+  }
+
+  ngOnInit(): void {
+    console.log(this.user)
+    this.route.params.subscribe((params) => {
+      const id = +params['userId']
+
+      this.userService.getUser(id).subscribe({
+        next: (data: User) => { this.user = data
+        console.log(this.user)},
+        error: (_) => {console.log("Error!")}
+      })
+    })
   }
 }
