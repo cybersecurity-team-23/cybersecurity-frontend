@@ -13,12 +13,12 @@ export class AccommodationCardsComponent {
   }
 
   ngOnInit(): void {
-    this.accommodations = this.service.getAll();
-    // this.service.getAll().subscribe({
-    //   next: (data: Accommodation[]) => {
-    //     this.accommodations = data
-    //   },
-    //   error: (_) => {console.log("Greska!")}
-    // })
+    // this.accommodations = this.service.getAll();
+    this.service.getAll().subscribe({
+      next: (data: Accommodation[]) => {
+        this.accommodations = data
+      },
+      error: (_) => {console.log("Error!")}
+    })
   }
 }

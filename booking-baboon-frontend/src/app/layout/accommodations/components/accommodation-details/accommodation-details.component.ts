@@ -19,11 +19,11 @@ export class AccommodationDetailsComponent {
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const id = +params['accommodationId']
-      this.accommodation = this.accommodationService.get(id);
 
-      // this.accommodationService.get(id).subscribe({
-      //   next: (data: Accommodation) => { this.accommodation = data }
-      // })
+      this.accommodationService.getAccommodation(id).subscribe({
+        next: (data: Accommodation) => { this.accommodation = data },
+        error: (_) => {console.log("Error!")}
+      })
     })
   }
   toggleFavorite() {

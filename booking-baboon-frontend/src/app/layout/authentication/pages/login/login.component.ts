@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../../services/authentication.service";
 import {Router} from "@angular/router";
+import {Accommodation} from "../../../accommodations/model/accommodation.model";
+import {User} from "../../models/user.model";
 
 @Component({
   selector: 'app-login',
@@ -17,6 +19,7 @@ export class LoginComponent {
   })
   hide: boolean = true;
   loginFailed: boolean = false;
+  user!: User;
 
   constructor(private authService: AuthenticationService, private router: Router) {}
 
@@ -25,18 +28,25 @@ export class LoginComponent {
   }
 
   logIn(): void {
-    if(this.loginForm.value.username === "guest"){
-      this.authService.login("guest");
-      this.router.navigate(['/home']);
-    }else if(this.loginForm.value.username === "host"){
-      this.authService.login("host");
-      this.router.navigate(['/home']);
-    }else if(this.loginForm.value.username === "admin"){
-      this.authService.login("admin");
-      this.router.navigate(['/home']);
-    }else{
-      this.loginFailed = true;
-    }
+    this.authService.validateUser(this.loginForm.value.username, this.loginForm.value.password)
+      .subscribe({
+        next: (data: User) => {
+          this.user = data;
+          if (this.user !== null && this.user.id != null) {
+            this.authService.checkUserType(this.user.id).subscribe(userType => {
+              this.userType = userType;
+              console.log('UserType: ' + userType);
+              this.router.navigate([`/accommodations`])
+            });
+          } else {
+            this.loginFailed = true;
+          }
+        },
+        error: (_) => {
+          console.log("Error!");
+          this.loginFailed = true;
+        }
+      });
   }
 
 }
