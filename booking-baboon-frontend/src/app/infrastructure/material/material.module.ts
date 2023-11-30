@@ -11,6 +11,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatFormFieldModule} from "@angular/material/form-field";
 
 
 @NgModule({
@@ -25,7 +26,6 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatFormFieldModule,
     MatNativeDateModule,
     MatCardModule,
-    MatFormFieldModule,
     MatStepperModule,
     MatDividerModule,
     MatSlideToggleModule,
@@ -40,7 +40,6 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatFormFieldModule,
     MatNativeDateModule,
     MatCardModule,
-    MatFormFieldModule,
     MatStepperModule,
     MatDividerModule,
     MatSlideToggleModule,
