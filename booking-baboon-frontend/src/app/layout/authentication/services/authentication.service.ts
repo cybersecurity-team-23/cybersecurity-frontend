@@ -1,9 +1,11 @@
-import {Host, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {map, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../models/user.model";
 import {environment} from "../../../env/env";
 import {Admin} from "../models/admin.model";
+import {Host} from "../models/host.model";
+import {Guest} from "../models/guest.model";
 
 @Injectable({
   providedIn: 'root'
@@ -67,9 +69,12 @@ export class AuthenticationService {
   }
 
 
+  registerHost(user: Host): Observable<Host> {
+    return this.httpClient.post<Host>(environment.apiHost+'hosts/',user)
+  }
 
-  // getUserType(): Observable<string> {
-  //   return this.http.get<string>('/api/user-type');
-  // }
+  registerGuest(user: Guest): Observable<Guest> {
+    return this.httpClient.post<Guest>(environment.apiHost+'guests/',user)
+  }
 }
 

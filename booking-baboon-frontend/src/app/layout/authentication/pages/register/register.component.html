@@ -5,7 +5,7 @@
       <mat-stepper [linear]="true" orientation="vertical" #stepper>
         <mat-step [stepControl]="registerPersonalForm" errorMessage="Personal information is required." [editable]="isEditable">
           <form [formGroup]="registerPersonalForm">
-            <mat-slide-toggle color="warn">Host</mat-slide-toggle>
+            <mat-slide-toggle formControlName="toggleHost" color="warn">Host</mat-slide-toggle>
             <ng-template matStepLabel>Name</ng-template>
             <mat-form-field>
               <mat-label>First Name</mat-label>

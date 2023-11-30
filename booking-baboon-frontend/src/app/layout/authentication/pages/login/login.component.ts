@@ -36,6 +36,7 @@ export class LoginComponent {
             this.authService.checkUserType(this.user.id).subscribe(userType => {
               this.userType = userType;
               console.log('UserType: ' + userType);
+              this.router.navigate([`/accommodations`])
             });
           } else {
             this.loginFailed = true;
