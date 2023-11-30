@@ -4,7 +4,7 @@
     <div class="card-image"></div>
     <div class="location">
       <mat-icon id="location-pin" fontIcon="room"></mat-icon>
-      <p class="location">Lauterbrunnen, Switzerland</p>
+      <p class="location">{{accommodationLocation}}</p>
     </div>
 
     <div class="description">
@@ -19,7 +19,7 @@
 
       <div class="rating">
         <mat-icon id="star" fontIcon="star"></mat-icon>
-        <p class="rating">4.2</p>
+        <p class="rating">{{ratingDisplay}}</p>
       </div>
     </div>
     <button id="see-more-button" mat-raised-button color="primary" [routerLink]="['/accommodations', accommodation.id]">See more</button>
