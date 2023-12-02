@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {AuthenticationService} from "../../authentication/services/authentication.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -8,8 +7,5 @@ import {Router} from "@angular/router";
   styleUrls: ['./navbar-unauthorized.component.css']
 })
 export class NavbarUnauthorizedComponent {
-
-  constructor(private authService: AuthenticationService) {
-  }
 
 }
