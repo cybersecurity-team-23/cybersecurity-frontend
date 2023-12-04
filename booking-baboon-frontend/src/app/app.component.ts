@@ -1,5 +1,4 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {AuthenticationService} from "./layout/authentication/services/authentication.service";
 
 @Component({
   selector: 'app-root',

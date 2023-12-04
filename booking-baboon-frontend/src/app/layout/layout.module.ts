@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './Navbars/navbar/navbar.component';
 import {MaterialModule} from "../infrastructure/material/material.module";
 import {RouterLink, RouterModule} from "@angular/router";
-import { LoginComponent } from './authentication/pages/login/login.component';
+import { LoginComponent } from '../infrastructure/auth/login/login.component';
 import { RegisterComponent } from './authentication/pages/register/register.component';
 import { NavbarGuestComponent } from './Navbars/navbar-guest/navbar-guest.component';
 import { NavbarHostComponent } from './Navbars/navbar-host/navbar-host.component';
