@@ -18,7 +18,8 @@ import { AccommodationDetailsPageComponent } from './accommodations/pages/accomm
 import { AccommodationsPageComponent } from './accommodations/pages/accommodations-page/accommodations-page.component';
 import { AccountComponent } from './authentication/pages/account/account.component';
 import {MatInputModule} from "@angular/material/input";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { AccommodationFilterComponent } from './accommodations/components/accommodation-filter/accommodation-filter.component';
 
 
 
@@ -38,20 +39,22 @@ import {ReactiveFormsModule} from "@angular/forms";
     ImageCarouselComponent,
     AccommodationDetailsPageComponent,
     AccommodationsPageComponent,
-    AccountComponent
+    AccountComponent,
+    AccommodationFilterComponent
   ],
   exports: [
     NavbarComponent,
     LoginComponent,
     RegisterComponent
   ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    RouterLink,
-    RouterModule,
-    MatInputModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        MaterialModule,
+        RouterLink,
+        RouterModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        FormsModule
+    ]
 })
 export class LayoutModule { }

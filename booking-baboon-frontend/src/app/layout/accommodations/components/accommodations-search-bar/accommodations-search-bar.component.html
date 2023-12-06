@@ -1,10 +1,10 @@
 <div class="overlay">
-  <form class="accommodation-search-form">
+  <form class="accommodation-search-form" (submit)="onSubmitClick()">
     <mat-form-field subscriptSizing="dynamic">
       <mat-label>
         <mat-icon>location_on</mat-icon> Location
       </mat-label>
-      <input matInput type="search" placeholder="Ex. Belgrade">
+      <input [(ngModel)]="cityInput" name="city" matInput type="search" placeholder="Ex. Belgrade">
     </mat-form-field>
 
     <mat-form-field subscriptSizing="dynamic">
@@ -12,8 +12,8 @@
         Enter a date range
       </mat-label>
       <mat-date-range-input [rangePicker]="picker">
-        <input matStartDate placeholder="Start date" readonly>
-        <input matEndDate placeholder="End date" readonly>
+        <input [(ngModel)]="startDateInput" name="checkin" matStartDate placeholder="Start date" readonly>
+        <input [(ngModel)]="endDateInput" name="checkout" matEndDate placeholder="End date" readonly>
       </mat-date-range-input>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-date-range-picker #picker></mat-date-range-picker>
@@ -23,11 +23,17 @@
       <mat-label>
         <mat-icon>person</mat-icon> Number of guests
       </mat-label>
-      <input matInput type="number">
+      <input [(ngModel)]="guestNumInput" name="guestNum" matInput type="number">
     </mat-form-field>
 
 
     <button mat-raised-button type="submit" color="warn">Search</button>
   </form>
 
+  <div id="filter-button" matBadge="1" matBadgeColor="primary" (click)="onFilterButtonClick()">
+    <mat-icon  >tune</mat-icon>
+    <span>Filters</span>
+  </div>
+
+  <app-accommodation-filter *ngIf="isFilterShowing"></app-accommodation-filter>
 </div>

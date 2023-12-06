@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {AuthenticationService} from "../../../authentication/services/authentication.service";
+import {AccommodationFilter} from "../../model/accommodationFilter.model";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-accommodations-page',
@@ -8,6 +10,8 @@ import {AuthenticationService} from "../../../authentication/services/authentica
 })
 export class AccommodationsPageComponent {
   userType: string = 'unauthorized';
+
+
 
   constructor(private authService: AuthenticationService) {}
 
