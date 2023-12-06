@@ -9,7 +9,7 @@ import {
   AccommodationDetailsPageComponent
 } from "./layout/accommodations/pages/accommodation-details-page/accommodation-details-page.component";
 import {AccommodationsPageComponent} from "./layout/accommodations/pages/accommodations-page/accommodations-page.component";
-import {AccountComponent} from "./layout/authentication/pages/account/account.component";
+import {ProfileComponent} from "./layout/authentication/pages/profile/profile.component";
 import {AuthGuard} from "./infrastructure/auth/guard/auth.guard";
 import {ActivationComponent} from "./layout/authentication/pages/activation/activation.component";
 
@@ -18,7 +18,7 @@ const routes: Routes = [
   {component: LoginComponent, path:"login"},
   {component: RegisterComponent, path:"register"},
   {component: AccommodationDetailsPageComponent, path:"accommodations/:accommodationId"},
-  {component: AccountComponent, path:"account/:userId", canActivate: [AuthGuard],
+  {component: ProfileComponent, path:"profile/:userEmail", canActivate: [AuthGuard],
     data: {role: ['ADMIN', 'GUEST', 'HOST']}},
   { path: '', redirectTo: '/accommodations', pathMatch: 'full' },
   {component: ActivationComponent, path:"users/activate"}

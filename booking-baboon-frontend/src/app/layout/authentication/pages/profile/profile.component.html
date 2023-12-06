@@ -12,56 +12,56 @@
         </div>
         <hr>
         <div class="profile-content">
-          <div class="element">
+          <div *ngIf="user" class="element">
             <span class="data-label">Email:</span>
             <div class="container-no-space">
               <input [readonly]="isReadOnly('email')"
                      [style.background]="isReadOnly('email') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
-                     class="data" type="email" [value]="user?.email">
+                     class="data" type="email" [(ngModel)]="user.email">
               <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('email')"
                       (click)="toggleEditMode('email')"><mat-icon fontIcon="edit"></mat-icon></button>
             </div>
           </div>
 
-          <div class="element">
+          <div *ngIf="user" class="element">
             <span class="data-label">First name:</span>
             <div class="container-no-space">
               <input [readonly]="isReadOnly('firstName')"
                      [style.background]="isReadOnly('firstName') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
-                     class="data" type="text" [value]="user?.firstName">
+                     class="data" type="text" [(ngModel)]="user.firstName">
               <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('firstName')"
                       (click)="toggleEditMode('firstName')"><mat-icon fontIcon="edit"></mat-icon></button>
             </div>
           </div>
 
-          <div class="element">
+          <div *ngIf="user" class="element">
             <span class="data-label">Last name:</span>
             <div class="container-no-space">
               <input [readonly]="isReadOnly('lastName')" class="data"
                      [style.background]="isReadOnly('lastName') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
-                     type="text" [value]="user?.lastName">
+                     type="text" [(ngModel)]="user.lastName">
               <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('lastName')"
                       (click)="toggleEditMode('lastName')"><mat-icon fontIcon="edit"></mat-icon></button>
             </div>
           </div>
 
-          <div class="element">
+          <div *ngIf="user" class="element">
             <span class="data-label">Phone:</span>
             <div class="container-no-space">
               <input [readonly]="isReadOnly('phone')" class="data"
                      [style.background]="isReadOnly('phone') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
-                     type="text" [value]="user?.phoneNumber">
+                     type="text" [(ngModel)]="user.phoneNumber">
               <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('phone')"
                       (click)="toggleEditMode('phone')"><mat-icon fontIcon="edit"></mat-icon></button>
             </div>
           </div>
 
-          <div class="element">
+          <div *ngIf="user" class="element">
             <span class="data-label">Address:</span>
             <div class="container-no-space">
               <input [readonly]="isReadOnly('address')"
                      [style.background]="isReadOnly('address') ? 'rgba(217, 217, 217, 0.5)' : 'rgba(254,163,26, 0.5)'"
-                     type="text" class="data" [value]="user?.address">
+                     type="text" [(ngModel)]="user.address" class="data">
               <button [class.edit-button]="true" [class.edit-mode]="!isReadOnly('address')"
                       (click)="toggleEditMode('address')"><mat-icon fontIcon="edit"></mat-icon></button>
             </div>
@@ -77,7 +77,7 @@
         <div class="element">
           <span class="data-label">Current password:</span>
           <div class="container-no-space">
-            <input type="password" class="data">
+            <input type="password" class="data" [(ngModel)]="currentPassword">
             <mat-icon fontIcon="edit"></mat-icon>
           </div>
         </div>
@@ -85,7 +85,7 @@
         <div class="element">
           <span class="data-label">New password:</span>
           <div class="container-no-space">
-            <input type="password" class="data">
+            <input type="password" class="data" [(ngModel)]="newPassword">
             <mat-icon fontIcon="edit"></mat-icon>
           </div>
         </div>
@@ -93,14 +93,17 @@
         <div class="element">
           <span class="data-label">Confirm password:</span>
           <div class="container-no-space">
-            <input type="password" class="data">
+            <input type="password" class="data" [(ngModel)]="confirmPassword">
             <mat-icon fontIcon="edit"></mat-icon>
           </div>
+        </div>
+        <div class="error-label" >
+          <p>{{errorLabel}}</p>
         </div>
       </div>
 
       <div class="buttons">
-        <button id="saveChanges" mat-raised-button color="primary">Save changes</button>
+        <button (click)="saveChanges()" id="saveChanges" mat-raised-button color="primary">Save changes</button>
         <button mat-raised-button color="warn">Delete profile</button>
       </div>
     </div>

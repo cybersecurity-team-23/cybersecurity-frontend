@@ -35,6 +35,8 @@ export class LoginComponent {
           localStorage.setItem('user', response.jwt);
           this.authService.setUser()
           this.router.navigate(['accommodations'])
+        },error:() => {
+          this.loginFailed = true;
         }
       })
     }

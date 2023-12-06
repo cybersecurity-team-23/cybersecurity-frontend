@@ -16,10 +16,13 @@ import { AccommodationDetailsComponent } from './accommodations/components/accom
 import { ImageCarouselComponent } from './accommodations/components/image-carousel/image-carousel.component';
 import { AccommodationDetailsPageComponent } from './accommodations/pages/accommodation-details-page/accommodation-details-page.component';
 import { AccommodationsPageComponent } from './accommodations/pages/accommodations-page/accommodations-page.component';
-import { AccountComponent } from './authentication/pages/account/account.component';
+import { ProfileComponent } from './authentication/pages/profile/profile.component';
 import {MatInputModule} from "@angular/material/input";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {Interceptor} from "../infrastructure/auth/interceptor";
 import { ActivationComponent } from './authentication/pages/activation/activation.component';
+
 
 
 
@@ -39,6 +42,7 @@ import { ActivationComponent } from './authentication/pages/activation/activatio
     ImageCarouselComponent,
     AccommodationDetailsPageComponent,
     AccommodationsPageComponent,
+    ProfileComponent,
     AccountComponent,
     ActivationComponent
   ],
@@ -54,7 +58,8 @@ import { ActivationComponent } from './authentication/pages/activation/activatio
     RouterLink,
     RouterModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class LayoutModule { }

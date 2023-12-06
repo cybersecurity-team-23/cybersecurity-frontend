@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../env/env";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../../layout/authentication/models/user.model";
+import {UserEditRequest} from "../../layout/authentication/models/userEditRequest";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,27 @@ export class UserService {
 
   getUser(id: number): Observable<User> {
     return this.httpClient.get<User>(environment.apiHost + 'users/profile/' + id)
+  }
+
+  getByEmail(email: string): Observable<User> {
+    return this.httpClient.get<User>(environment.apiHost + 'users/email/' + email)
+  }
+
+  getProfile(email: string): Observable<User> {
+    return this.httpClient.get<User>(environment.apiHost + 'users/profile/' + email)
+  }
+
+  update(user: UserEditRequest) {
+    return this.httpClient.put<User>(environment.apiHost + 'users/update', user)
+      .subscribe();
+  }
+
+  changePassword(id: number | undefined, currentPassword: string | undefined, newPassword: string | undefined) {
+    const requestBody = {
+      currentPassword: currentPassword,
+      newPassword: newPassword
+    };
+    return this.httpClient.put<User>(environment.apiHost + 'users/' + id + '/change-password',requestBody)
   }
 
 
