@@ -11,6 +11,7 @@ import {
 import {AccommodationsPageComponent} from "./layout/accommodations/pages/accommodations-page/accommodations-page.component";
 import {AccountComponent} from "./layout/authentication/pages/account/account.component";
 import {AuthGuard} from "./infrastructure/auth/guard/auth.guard";
+import {ActivationComponent} from "./layout/authentication/pages/activation/activation.component";
 
 const routes: Routes = [
   {component: AccommodationsPageComponent, path:"accommodations"},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {component: AccommodationDetailsPageComponent, path:"accommodations/:accommodationId"},
   {component: AccountComponent, path:"account/:userId", canActivate: [AuthGuard],
     data: {role: ['ADMIN', 'GUEST', 'HOST']}},
-  { path: '', redirectTo: '/accommodations', pathMatch: 'full' }
+  { path: '', redirectTo: '/accommodations', pathMatch: 'full' },
+  {component: ActivationComponent, path:"users/activate"}
 ];
 
 @NgModule({

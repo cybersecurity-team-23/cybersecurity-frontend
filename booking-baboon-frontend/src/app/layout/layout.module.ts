@@ -19,6 +19,7 @@ import { AccommodationsPageComponent } from './accommodations/pages/accommodatio
 import { AccountComponent } from './authentication/pages/account/account.component';
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
+import { ActivationComponent } from './authentication/pages/activation/activation.component';
 
 
 
@@ -38,12 +39,14 @@ import {ReactiveFormsModule} from "@angular/forms";
     ImageCarouselComponent,
     AccommodationDetailsPageComponent,
     AccommodationsPageComponent,
-    AccountComponent
+    AccountComponent,
+    ActivationComponent
   ],
   exports: [
     NavbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ActivationComponent
   ],
   imports: [
     CommonModule,

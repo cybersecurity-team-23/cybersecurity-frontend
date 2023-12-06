@@ -78,7 +78,7 @@ export class RegisterComponent {
         firstName: this.registerPersonalForm.value.firstName,
         lastName: this.registerPersonalForm.value.lastName,
         password: this.registerPasswordForm.value.password,
-        phoneNumber: this.registerContactForm.value.password
+        phoneNumber: this.registerContactForm.value.phone
       };
 
       this.authService.registerHost(user).subscribe();
@@ -89,7 +89,7 @@ export class RegisterComponent {
         firstName: this.registerPersonalForm.value.firstName,
         lastName: this.registerPersonalForm.value.lastName,
         password: this.registerPasswordForm.value.password,
-        phoneNumber: this.registerContactForm.value.password
+        phoneNumber: this.registerContactForm.value.phone
       };
 
       console.log(user)
