@@ -43,7 +43,6 @@ import { ActivationComponent } from './authentication/pages/activation/activatio
     AccommodationDetailsPageComponent,
     AccommodationsPageComponent,
     ProfileComponent,
-    AccountComponent,
     ActivationComponent
   ],
   exports: [
