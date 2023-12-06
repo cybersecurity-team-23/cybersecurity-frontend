@@ -21,6 +21,8 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {Interceptor} from "../infrastructure/auth/interceptor";
+import { ActivationComponent } from './authentication/pages/activation/activation.component';
+
 
 
 
@@ -40,12 +42,15 @@ import {Interceptor} from "../infrastructure/auth/interceptor";
     ImageCarouselComponent,
     AccommodationDetailsPageComponent,
     AccommodationsPageComponent,
-    ProfileComponent
+    ProfileComponent,
+    AccountComponent,
+    ActivationComponent
   ],
   exports: [
     NavbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ActivationComponent
   ],
   imports: [
     CommonModule,
