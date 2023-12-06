@@ -34,6 +34,14 @@ export class UserService {
       .subscribe();
   }
 
+  changePassword(id: number | undefined, currentPassword: string | undefined, newPassword: string | undefined) {
+    const requestBody = {
+      currentPassword: currentPassword,
+      newPassword: newPassword
+    };
+    return this.httpClient.put<User>(environment.apiHost + 'users/' + id + '/change-password',requestBody)
+  }
+
 
   // add(user: User): Observable<User> {
 //     headers: {

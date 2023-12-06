@@ -14,6 +14,10 @@
   background-position: center;
 }
 
+.error-label {
+  color: red;
+}
+
 .white-box {
   width: 750px;
   height: 550px;

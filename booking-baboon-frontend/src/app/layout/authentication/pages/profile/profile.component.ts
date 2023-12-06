@@ -44,27 +44,20 @@ export class ProfileComponent {
   newPassword?: string;
   confirmPassword?: string;
 
+  wrongPassword?: boolean = false;
+  errorLabel?: string = ""
+
   constructor(private route: ActivatedRoute, private userService: UserService, private hostService: HostService, private guestService: GuestService) {
   }
-
-  // ngOnInit(): void {
-  //   console.log(this.user)
-  //   this.route.params.subscribe((params) => {
-  //     const id = +params['userId']
-  //
-  //     this.userService.getUser(id).subscribe({
-  //       next: (data: User) => { this.user = data
-  //       console.log(this.user)},
-  //       error: (_) => {console.log("Error!")}
-  //     })
-  //   })
-  // }
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const userEmail = params['userEmail'];
       const accessToken: any = localStorage.getItem('user');
       const helper = new JwtHelperService();
       const decodedToken = helper.decodeToken(accessToken);
+      this.currentPassword = "";
+      this.newPassword = "";
+      this.confirmPassword = "";
 
       // Now you can use the userEmail to fetch the user details
       this.userService.getProfile(userEmail)
@@ -131,7 +124,24 @@ export class ProfileComponent {
           this.guestService.update(this.guest);
       }
 
-
+      if (this.currentPassword !== "") {
+        if (this.newPassword === this.confirmPassword && this.user !== undefined) {
+          this.errorLabel = "";
+          this.userService.changePassword(this.user.id, this.currentPassword, this.newPassword)
+            .subscribe(
+              (response) => {
+                // Handle success case here
+                this.errorLabel = "";
+              },
+              (error) => {
+                // Handle error case here
+                this.errorLabel = "Wrong current password";
+              }
+            );
+        } else {
+          this.errorLabel = "Passwords don't match!";
+        }
+      }
 
     }
   }
