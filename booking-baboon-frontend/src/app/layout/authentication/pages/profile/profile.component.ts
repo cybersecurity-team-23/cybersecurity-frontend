@@ -4,7 +4,6 @@ import {UserService} from "../../../../services/user/user.service";
 import {User} from "../../models/user.model";
 import {Observable, tap} from "rxjs";
 import {JwtHelperService} from "@auth0/angular-jwt";
-import {UserEditRequest} from "../../models/userEditRequest";
 import {Guest} from "../../models/guest.model";
 import {Host} from "../../models/host.model";
 import {HostService} from "../../../../services/user/host.service";
@@ -59,12 +58,10 @@ export class ProfileComponent {
       this.newPassword = "";
       this.confirmPassword = "";
 
-      // Now you can use the userEmail to fetch the user details
       this.userService.getProfile(userEmail)
         .pipe(
           tap((user: User) => {
             this.user = user;
-            // Additional logic if needed
           })
         )
         .subscribe();
@@ -74,7 +71,6 @@ export class ProfileComponent {
           .pipe(
             tap((host: Host) => {
               this.host = host;
-              // Additional logic if needed
             })
           )
           .subscribe();
@@ -86,7 +82,6 @@ export class ProfileComponent {
             tap((guest: Guest) => {
               this.guest = guest;
               console.log(guest);
-              // Additional logic if needed
             })
           )
           .subscribe();
@@ -110,7 +105,6 @@ export class ProfileComponent {
           this.host.phoneNumber = this.user.phoneNumber;
           this.host.address = this.user.address;
           this.host.email = this.user.email;
-          // this.host.jwt = accessToken;
           this.hostService.update(this.host);
       }
       else if (decodedToken.role[0].authority === "GUEST" && this.guest != undefined) {
