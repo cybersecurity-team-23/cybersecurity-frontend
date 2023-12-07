@@ -1,13 +1,13 @@
 import {AccommodationType} from "./accommodation-type.model";
 
 export interface AccommodationFilter{
-  city?: String;
-  checkin?: String;
-  checkout?: String;
+  city?: string;
+  checkin?: string | null;
+  checkout?: string | null;
   guestNum?: number;
   minPrice?: number;
   maxPrice?: number;
-  amenities?: String[];
-  type?: AccommodationType;
+  amenities?: string[];
+  types?: AccommodationType[];
   minRating?: number;
 }

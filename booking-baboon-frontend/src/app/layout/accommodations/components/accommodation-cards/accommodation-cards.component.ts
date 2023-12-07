@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Accommodation} from "../../model/accommodation.model";
 import {AccommodationService} from "../../../../services/accommodation/accommodation.service";
 
@@ -8,21 +8,11 @@ import {AccommodationService} from "../../../../services/accommodation/accommoda
   styleUrls: ['./accommodation-cards.component.css']
 })
 export class AccommodationCardsComponent {
-  accommodations!: Accommodation[];
+  @Input() accommodations!: Accommodation[];
   constructor(private service: AccommodationService) {
   }
 
   ngOnInit(): void {
-    this.service.filterState.subscribe(() => {
-      this.service.search().subscribe({
-        next: (data: Accommodation[]) => {
-          this.accommodations = data;
-        },
-        error: (_) => {
-          console.log("Error!");
-        }
-      });
-    });
   }
 
 }
