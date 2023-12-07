@@ -50,10 +50,10 @@ export class AccommodationService {
       queryParams.push("guestNum=" + filter.guestNum);
     }
     if (filter.minPrice !== undefined && filter.minPrice !== null) {
-      queryParams.push("minPrice=" + filter.minPrice);
+      queryParams.push("min-price=" + filter.minPrice);
     }
     if (filter.maxPrice !== undefined && filter.maxPrice !== null) {
-      queryParams.push("maxPrice=" + filter.maxPrice);
+      queryParams.push("max-price=" + filter.maxPrice);
     }
     if (filter.amenities !== undefined && filter.amenities.length > 0) {
       const encodedAmenities = filter.amenities.map(amenity => encodeURIComponent(amenity)).join(",");
@@ -61,10 +61,10 @@ export class AccommodationService {
     }
     if (filter.types !== undefined && filter.types.length > 0) {
       const encodedTypes = filter.types.map(type => encodeURIComponent(type)).join(",");
-      queryParams.push("type=" + encodedTypes);
+      queryParams.push("property-type=" + encodedTypes);
     }
     if (filter.minRating !== undefined && filter.minRating !== null) {
-      queryParams.push("minRating=" + filter.minRating);
+      queryParams.push("min-rating=" + filter.minRating);
     }
 
     return queryParams.length > 0 ? "?" + queryParams.join("&") : "";

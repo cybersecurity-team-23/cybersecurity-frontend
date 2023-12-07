@@ -102,9 +102,21 @@ export class AccommodationFilterComponent implements OnInit {
   }
 
   private updateSelectedFilterCount() {
-    this.selectedFilterCount = Object.values(this.amenitiesForm.controls)
+    const amenitiesCount = Object.values(this.amenitiesForm.controls)
       .filter(control => control.value === true)
       .length;
+
+    const accommodationTypeCount = Object.values(this.accommodationTypeForm.controls)
+      .filter(control => control.value === true)
+      .length;
+
+    const priceCount = Object.values(this.priceForm.controls)
+      .filter(control => control.value !== null && control.value !== undefined)
+      .length;
+
+    const ratingCount = this.ratingForm.get('selectedRating')?.value !== null ? 1 : 0;
+
+    this.selectedFilterCount = amenitiesCount + accommodationTypeCount + priceCount + ratingCount;
 
     this.selectedFilterCountChanged.emit(this.selectedFilterCount);
   }
