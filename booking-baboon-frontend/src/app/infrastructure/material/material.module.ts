@@ -12,6 +12,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatChipsModule} from '@angular/material/chips';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatStepperModule,
     MatDividerModule,
     MatSlideToggleModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatChipsModule,
+    MatCheckboxModule
   ],
   exports: [
     MatToolbarModule,
@@ -43,7 +47,9 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     MatStepperModule,
     MatDividerModule,
     MatSlideToggleModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatChipsModule,
+    MatCheckboxModule
   ]
 })
 export class MaterialModule { }

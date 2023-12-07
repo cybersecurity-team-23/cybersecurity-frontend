@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import {AuthService} from "../../../../infrastructure/auth/auth.service";
+
+import {AccommodationFilter} from "../../model/accommodationFilter.model";
+import {BehaviorSubject} from "rxjs";
+import {Accommodation} from "../../model/accommodation.model";
+import {AccommodationService} from "../../../../services/accommodation/accommodation.service";
 
 
 @Component({
@@ -8,5 +12,21 @@ import {AuthService} from "../../../../infrastructure/auth/auth.service";
   styleUrls: ['./accommodations-page.component.css']
 })
 export class AccommodationsPageComponent {
+  accommodations!: Accommodation[];
 
+
+
+  constructor(private accommodationService:AccommodationService) {}
+
+
+  onSearchClicked(accommodationFilter: AccommodationFilter): void {
+    this.accommodationService.search(accommodationFilter).subscribe({
+      next: (data: Accommodation[]) => {
+        this.accommodations = data;
+      },
+      error: (_) => {
+        console.log("Error!");
+      }
+    });
+  }
 }

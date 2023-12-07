@@ -19,10 +19,10 @@ import { AccommodationsPageComponent } from './accommodations/pages/accommodatio
 import { ProfileComponent } from './authentication/pages/profile/profile.component';
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { AccommodationFilterComponent } from './accommodations/components/accommodation-filter/accommodation-filter.component';
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {Interceptor} from "../infrastructure/auth/interceptor";
 import { ActivationComponent } from './authentication/pages/activation/activation.component';
-
 
 
 
@@ -42,6 +42,8 @@ import { ActivationComponent } from './authentication/pages/activation/activatio
     ImageCarouselComponent,
     AccommodationDetailsPageComponent,
     AccommodationsPageComponent,
+    AccountComponent,
+    AccommodationFilterComponent
     ProfileComponent,
     ActivationComponent
   ],
@@ -51,14 +53,14 @@ import { ActivationComponent } from './authentication/pages/activation/activatio
     RegisterComponent,
     ActivationComponent
   ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    RouterLink,
-    RouterModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    FormsModule
+    imports: [
+        CommonModule,
+        MaterialModule,
+        RouterLink,
+        RouterModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        FormsModule
   ]
 })
 export class LayoutModule { }
