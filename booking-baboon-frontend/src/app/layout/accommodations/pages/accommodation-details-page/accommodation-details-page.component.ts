@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {AuthenticationService} from "../../../authentication/services/authentication.service";
 
 @Component({
   selector: 'app-accommodation-details-page',
@@ -7,11 +6,4 @@ import {AuthenticationService} from "../../../authentication/services/authentica
   styleUrls: ['./accommodation-details-page.component.css']
 })
 export class AccommodationDetailsPageComponent {
-  userType: string = 'unauthorized';
-
-  constructor(private authService: AuthenticationService) {}
-
-  ngOnInit(): void {
-    this.userType = this.authService.getUserType();
-  }
 }

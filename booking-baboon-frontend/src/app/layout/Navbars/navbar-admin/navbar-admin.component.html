@@ -13,10 +13,10 @@
     <button mat-raised-button color="primary">
       Accommodation Changes
     </button>
-    <button mat-raised-button color="primary" [routerLink]="['accommodations']">
+    <button mat-raised-button color="primary" [routerLink]="['/accommodations']">
       Accommodations
     </button>
-    <button mat-raised-button color="warn" [routerLink]="['accommodations']">
+    <button mat-raised-button color="warn" (click)="logout()">
       Log Out
     </button>
   </div>

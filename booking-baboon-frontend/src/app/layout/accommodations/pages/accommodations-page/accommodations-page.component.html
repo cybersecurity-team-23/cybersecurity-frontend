@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <div class="background-img">
   <div class="wrapper">
-    <app-navbar [userType]="userType"> </app-navbar>
+    <app-navbar> </app-navbar>
     <app-accommodations-search-bar (searchClicked)="onSearchClicked($event)"></app-accommodations-search-bar>
     <app-accommodation-cards [accommodations] = "accommodations" ></app-accommodation-cards>
   </div>

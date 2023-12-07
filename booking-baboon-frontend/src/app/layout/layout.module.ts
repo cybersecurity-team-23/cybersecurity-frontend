@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './Navbars/navbar/navbar.component';
 import {MaterialModule} from "../infrastructure/material/material.module";
 import {RouterLink, RouterModule} from "@angular/router";
-import { LoginComponent } from './authentication/pages/login/login.component';
+import { LoginComponent } from '../infrastructure/auth/login/login.component';
 import { RegisterComponent } from './authentication/pages/register/register.component';
 import { NavbarGuestComponent } from './Navbars/navbar-guest/navbar-guest.component';
 import { NavbarHostComponent } from './Navbars/navbar-host/navbar-host.component';
@@ -16,10 +16,13 @@ import { AccommodationDetailsComponent } from './accommodations/components/accom
 import { ImageCarouselComponent } from './accommodations/components/image-carousel/image-carousel.component';
 import { AccommodationDetailsPageComponent } from './accommodations/pages/accommodation-details-page/accommodation-details-page.component';
 import { AccommodationsPageComponent } from './accommodations/pages/accommodations-page/accommodations-page.component';
-import { AccountComponent } from './authentication/pages/account/account.component';
+import { ProfileComponent } from './authentication/pages/profile/profile.component';
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AccommodationFilterComponent } from './accommodations/components/accommodation-filter/accommodation-filter.component';
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {Interceptor} from "../infrastructure/auth/interceptor";
+import { ActivationComponent } from './authentication/pages/activation/activation.component';
 
 
 
@@ -41,11 +44,14 @@ import { AccommodationFilterComponent } from './accommodations/components/accomm
     AccommodationsPageComponent,
     AccountComponent,
     AccommodationFilterComponent
+    ProfileComponent,
+    ActivationComponent
   ],
   exports: [
     NavbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ActivationComponent
   ],
     imports: [
         CommonModule,
@@ -55,6 +61,6 @@ import { AccommodationFilterComponent } from './accommodations/components/accomm
         MatInputModule,
         ReactiveFormsModule,
         FormsModule
-    ]
+  ]
 })
 export class LayoutModule { }

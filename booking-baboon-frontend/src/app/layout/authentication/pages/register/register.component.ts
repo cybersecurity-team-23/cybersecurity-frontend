@@ -7,7 +7,6 @@ import {
   ValidatorFn,
   Validators
 } from "@angular/forms";
-import {AuthenticationService} from "../../services/authentication.service";
 import {Router} from "@angular/router";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {User} from "../../models/user.model";
@@ -15,6 +14,7 @@ import {Host} from "../../models/host.model";
 import {Guest} from "../../models/guest.model";
 import {Component} from "@angular/core";
 import {NotificationType} from "../../models/NotificationType.module";
+import {AuthService} from "../../../../infrastructure/auth/auth.service";
 
 
 
@@ -25,8 +25,6 @@ import {NotificationType} from "../../models/NotificationType.module";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-
-  userType: string = 'unauthorized';
 
   registerPersonalForm: FormGroup = this.formBuilder.group({
     toggleHost: new FormControl('',),
@@ -47,11 +45,7 @@ export class RegisterComponent {
   passwordMatch: boolean = false;
   isEditable: boolean = true;
 
-  constructor(private authService: AuthenticationService, private formBuilder: FormBuilder) {}
-
-  ngOnInit(): void {
-    this.userType = this.authService.getUserType();
-  }
+  constructor(private authService: AuthService, private formBuilder: FormBuilder) {}
 
   matchValidator(controlName: string, matchingControlName: string): ValidatorFn {
     return (abstractControl: AbstractControl) => {
@@ -84,7 +78,7 @@ export class RegisterComponent {
         firstName: this.registerPersonalForm.value.firstName,
         lastName: this.registerPersonalForm.value.lastName,
         password: this.registerPasswordForm.value.password,
-        phoneNumber: this.registerContactForm.value.password
+        phoneNumber: this.registerContactForm.value.phone
       };
 
       this.authService.registerHost(user).subscribe();
@@ -95,7 +89,7 @@ export class RegisterComponent {
         firstName: this.registerPersonalForm.value.firstName,
         lastName: this.registerPersonalForm.value.lastName,
         password: this.registerPasswordForm.value.password,
-        phoneNumber: this.registerContactForm.value.password
+        phoneNumber: this.registerContactForm.value.phone
       };
 
       console.log(user)
