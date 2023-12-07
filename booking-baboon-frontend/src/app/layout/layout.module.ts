@@ -42,8 +42,7 @@ import { ActivationComponent } from './authentication/pages/activation/activatio
     ImageCarouselComponent,
     AccommodationDetailsPageComponent,
     AccommodationsPageComponent,
-    AccountComponent,
-    AccommodationFilterComponent
+    AccommodationFilterComponent,
     ProfileComponent,
     ActivationComponent
   ],
