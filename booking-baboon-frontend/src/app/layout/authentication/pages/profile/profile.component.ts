@@ -8,6 +8,7 @@ import {Guest} from "../../models/guest.model";
 import {Host} from "../../models/host.model";
 import {HostService} from "../../../../services/user/host.service";
 import {GuestService} from "../../../../services/user/guest.service";
+import {DialogService} from "../../../../services/dialogs/dialog.service";
 
 @Component({
   selector: 'app-profile',
@@ -46,7 +47,11 @@ export class ProfileComponent {
   wrongPassword?: boolean = false;
   errorLabel?: string = ""
 
-  constructor(private route: ActivatedRoute, private userService: UserService, private hostService: HostService, private guestService: GuestService) {
+  constructor(private route: ActivatedRoute,
+              private userService: UserService,
+              private hostService: HostService,
+              private guestService: GuestService,
+              private dialogService: DialogService) {
   }
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -89,6 +94,47 @@ export class ProfileComponent {
 
     });
 
+  }
+
+  deleteProfile(): void {
+
+    this.dialogService.confirmDialog().subscribe(result => {
+      if (result) {
+        const accessToken: any = localStorage.getItem('user');
+        const helper = new JwtHelperService();
+        const decodedToken = helper.decodeToken(accessToken);
+        if (decodedToken.role[0].authority === "HOST") {
+          this.hostService.delete(this.user?.id).subscribe(
+            (response) => {
+              // Handle success case here
+              console.log("SUCCESS");
+              localStorage.clear();
+            },
+            (error) => {
+              // Handle error case here
+              alert("You cannot delete your profile while you have active reservations.")
+            }
+          );
+        }
+        else if (decodedToken.role[0].authority === "GUEST") {
+          this.guestService.delete(this.user?.id).subscribe(
+            (response) => {
+              // Handle success case here
+              console.log("SUCCESS");
+              localStorage.clear();
+            },
+            (error) => {
+              // Handle error case here
+              alert("You cannot delete your profile while you have active reservations.")
+            }
+          );
+        }
+      } else {
+        // User clicked on "Cancel" or closed the dialog
+        console.log('Profile deletion canceled');
+        // Add your logic for canceling the deletion here
+      }
+    });
   }
 
   saveChanges(): void {

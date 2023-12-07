@@ -27,6 +27,9 @@ export class HostService {
     return this.httpClient.get<Host>(environment.apiHost + 'hosts/profile/' + email)
   }
 
+  delete(id: number | undefined): Observable<Host> {
+    return this.httpClient.delete(environment.apiHost + 'hosts/' + id)
+  }
 
   update(host: Host) {
     return this.httpClient.put<Host>(environment.apiHost + 'hosts/', host)

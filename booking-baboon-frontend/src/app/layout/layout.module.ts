@@ -22,6 +22,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {Interceptor} from "../infrastructure/auth/interceptor";
 import { ActivationComponent } from './authentication/pages/activation/activation.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { ConfirmComponent } from './dialogs/confirm/confirm.component';
 
 
 
@@ -43,8 +45,8 @@ import { ActivationComponent } from './authentication/pages/activation/activatio
     AccommodationDetailsPageComponent,
     AccommodationsPageComponent,
     ProfileComponent,
-    AccountComponent,
-    ActivationComponent
+    ActivationComponent,
+    ConfirmComponent
   ],
   exports: [
     NavbarComponent,
@@ -59,7 +61,8 @@ import { ActivationComponent } from './authentication/pages/activation/activatio
     RouterModule,
     MatInputModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ]
 })
 export class LayoutModule { }
