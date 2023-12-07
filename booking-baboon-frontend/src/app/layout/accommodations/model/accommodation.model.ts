@@ -1,18 +1,8 @@
 import {Location} from "./location.model";
 import {Amenity} from "./amenity.model";
 import {AvailablePeriod} from "./available-period.model";
+import {AccommodationType} from "./accommodation-type.model";
 
-enum AccommodationType {
-  Hotel,
-  Hostel,
-  BedAndBreakfast,
-  Resort,
-  Motel,
-  Apartment,
-  House,
-  Room,
-  Tent
-}
 
 export interface Accommodation {
   id?: number;
