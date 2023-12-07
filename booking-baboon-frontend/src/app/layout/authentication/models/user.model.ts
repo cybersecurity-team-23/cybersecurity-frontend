@@ -3,6 +3,13 @@ enum UserStatus{
   Active,
   Blocked
 }
+
+enum Role{
+  UNAUTHORIZED,
+  GUEST,
+  HOST,
+  ADMIN
+}
 export interface User{
   id?: number;
   email?: string;
@@ -12,4 +19,5 @@ export interface User{
   address?: string;
   phoneNumber?: string;
   status?: UserStatus;
+  role?: Role;
 }
