@@ -33,9 +33,8 @@ export class GuestService {
   }
 
 
-  update(guest: Guest) {
+  update(guest: Guest): Observable<Guest> {
     return this.httpClient.put<Guest>(environment.apiHost + 'guests/', guest)
-      .subscribe();
   }
 
 

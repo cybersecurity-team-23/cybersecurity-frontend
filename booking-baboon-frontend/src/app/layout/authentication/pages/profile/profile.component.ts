@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../../../services/user/user.service";
 import {User} from "../../models/user.model";
 import {Observable, tap} from "rxjs";
@@ -9,6 +9,8 @@ import {Host} from "../../models/host.model";
 import {HostService} from "../../../../services/user/host.service";
 import {GuestService} from "../../../../services/user/guest.service";
 import {DialogService} from "../../../../services/dialogs/dialog.service";
+import {SharedService} from "../../../../shared/shared.service";
+
 
 @Component({
   selector: 'app-profile',
@@ -51,7 +53,9 @@ export class ProfileComponent {
               private userService: UserService,
               private hostService: HostService,
               private guestService: GuestService,
-              private dialogService: DialogService) {
+              private dialogService: DialogService,
+              private sharedService: SharedService,
+              private router: Router) {
   }
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -86,55 +90,69 @@ export class ProfileComponent {
           .pipe(
             tap((guest: Guest) => {
               this.guest = guest;
-              console.log(guest);
             })
           )
           .subscribe();
       }
 
     });
-
   }
 
   deleteProfile(): void {
 
     this.dialogService.confirmDialog().subscribe(result => {
       if (result) {
+
         const accessToken: any = localStorage.getItem('user');
         const helper = new JwtHelperService();
         const decodedToken = helper.decodeToken(accessToken);
+
         if (decodedToken.role[0].authority === "HOST") {
           this.hostService.delete(this.user?.id).subscribe(
             (response) => {
-              // Handle success case here
-              console.log("SUCCESS");
-              localStorage.clear();
+              this.logoutUser("Profile succesfully deleted!")
             },
             (error) => {
-              // Handle error case here
-              alert("You cannot delete your profile while you have active reservations.")
+              this.sharedService.openSnack("You cannot delete your profile while your accommodations have active reservations!")
             }
           );
         }
+
         else if (decodedToken.role[0].authority === "GUEST") {
           this.guestService.delete(this.user?.id).subscribe(
             (response) => {
-              // Handle success case here
-              console.log("SUCCESS");
-              localStorage.clear();
+              this.logoutUser("Profile succesfully deleted!")
             },
             (error) => {
-              // Handle error case here
-              alert("You cannot delete your profile while you have active reservations.")
+              this.sharedService.openSnack("You cannot delete your profile while you have active reservations.")
             }
           );
         }
-      } else {
-        // User clicked on "Cancel" or closed the dialog
-        console.log('Profile deletion canceled');
-        // Add your logic for canceling the deletion here
       }
     });
+  }
+
+  logoutUser(message: string) {
+    this.sharedService.openSnack(message);
+    this.router.navigate(['login'])
+    localStorage.clear();
+    window.location.reload();
+  }
+
+  isFormValid() {
+    if (this.host?.firstName == "") {
+      return false;
+    }
+    if (this.host?.lastName == "") {
+      return false;
+    }
+    if (this.host?.address == "") {
+      return false;
+    }
+    if (this.host?.phoneNumber == "") {
+      return false;
+    }
+    return true;
   }
 
   saveChanges(): void {
@@ -145,13 +163,31 @@ export class ProfileComponent {
       const decodedToken = helper.decodeToken(accessToken);
       if (decodedToken.role[0].authority === "HOST" && this.host != undefined) {
 
-          this.host.id = this.user.id;
-          this.host.firstName = this.user.firstName;
-          this.host.lastName = this.user.lastName;
-          this.host.phoneNumber = this.user.phoneNumber;
-          this.host.address = this.user.address;
-          this.host.email = this.user.email;
-          this.hostService.update(this.host);
+        this.host.id = this.user.id;
+        this.host.firstName = this.user.firstName;
+        this.host.lastName = this.user.lastName;
+        this.host.phoneNumber = this.user.phoneNumber;
+        this.host.address = this.user.address;
+        const oldEmail = this.host.email;
+        this.host.email = this.user.email;
+
+          if (this.isFormValid()) {
+            this.hostService.update(this.host).subscribe(
+              (response) => {
+                // Handle success case here
+                if (this.user?.email != oldEmail) {
+                  this.logoutUser("Profile updated! Please log in again to confirm your email")
+                } else this.sharedService.openSnack("Profile updated!");
+              },
+              (error) => {
+                this.sharedService.openSnack("Email already in use!");
+              }
+            );
+          }
+          else {
+            this.sharedService.openSnack("Fields cannot be empty!");
+          }
+
       }
       else if (decodedToken.role[0].authority === "GUEST" && this.guest != undefined) {
 
@@ -161,7 +197,19 @@ export class ProfileComponent {
           this.guest.phoneNumber = this.user.phoneNumber;
           this.guest.address = this.user.address;
           this.guest.email = this.user.email;
-          this.guestService.update(this.guest);
+
+          if (this.isFormValid()) {
+            this.guestService.update(this.guest).subscribe(
+              (response) => {
+                // Handle success case here
+                this.sharedService.openSnack("Profile updated!");
+              },
+              (error) => {
+                this.sharedService.openSnack("Email already in use!");
+              }
+            );
+          }
+          else this.sharedService.openSnack("Fields cannot be empty!");
       }
 
       if (this.currentPassword !== "") {

@@ -31,9 +31,8 @@ export class HostService {
     return this.httpClient.delete(environment.apiHost + 'hosts/' + id)
   }
 
-  update(host: Host) {
+  update(host: Host): Observable<Host> {
     return this.httpClient.put<Host>(environment.apiHost + 'hosts/', host)
-      .subscribe();
   }
 
 

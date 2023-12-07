@@ -24,6 +24,7 @@ import {Interceptor} from "../infrastructure/auth/interceptor";
 import { ActivationComponent } from './authentication/pages/activation/activation.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { ConfirmComponent } from './dialogs/confirm/confirm.component';
+import {SharedModule} from "../shared/shared.module";
 
 
 
@@ -62,7 +63,8 @@ import { ConfirmComponent } from './dialogs/confirm/confirm.component';
     MatInputModule,
     ReactiveFormsModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    SharedModule
   ]
 })
 export class LayoutModule { }
