@@ -19,13 +19,13 @@ import { AccommodationsPageComponent } from './accommodations/pages/accommodatio
 import { ProfileComponent } from './authentication/pages/profile/profile.component';
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { AccommodationFilterComponent } from './accommodations/components/accommodation-filter/accommodation-filter.component';
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {Interceptor} from "../infrastructure/auth/interceptor";
 import { ActivationComponent } from './authentication/pages/activation/activation.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { ConfirmComponent } from './dialogs/confirm/confirm.component';
 import {SharedModule} from "../shared/shared.module";
-
 
 
 
@@ -45,6 +45,7 @@ import {SharedModule} from "../shared/shared.module";
     ImageCarouselComponent,
     AccommodationDetailsPageComponent,
     AccommodationsPageComponent,
+    AccommodationFilterComponent,
     ProfileComponent,
     ActivationComponent,
     ConfirmComponent

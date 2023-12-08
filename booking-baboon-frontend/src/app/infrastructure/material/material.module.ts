@@ -13,6 +13,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatChipsModule} from '@angular/material/chips';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -32,6 +34,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatSlideToggleModule,
     MatBadgeModule,
     MatSnackBarModule
+    MatChipsModule,
+    MatCheckboxModule
   ],
   exports: [
     MatToolbarModule,
@@ -47,6 +51,8 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     MatSlideToggleModule,
     MatBadgeModule,
     MatSnackBarModule
+    MatChipsModule,
+    MatCheckboxModule
   ]
 })
 export class MaterialModule { }
