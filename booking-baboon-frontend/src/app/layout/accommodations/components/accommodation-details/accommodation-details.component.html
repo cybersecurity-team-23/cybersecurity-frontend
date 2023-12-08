@@ -6,7 +6,7 @@
         <mat-icon>location_on</mat-icon>
         <p>{{accommodation?.location?.address}}, {{accommodation?.location?.city}}, {{accommodation?.location?.country}}</p>
       </div>
-      <button mat-button>Show map</button>
+      <button mat-button (click)="onShowLocationClick()">Show map</button>
     </div>
     <div class="images-section border">
       <app-image-carousel></app-image-carousel>
@@ -45,6 +45,7 @@
       </div>
     </div>
   </div>
-
+  <app-map-dialog *ngIf="isLocationShowing" (closeLocation)="onCloseLocation()" [address]="getAddress()"></app-map-dialog>
 </div>
+
 

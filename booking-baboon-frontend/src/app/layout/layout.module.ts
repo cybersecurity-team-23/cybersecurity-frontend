@@ -23,6 +23,8 @@ import { AccommodationFilterComponent } from './accommodations/components/accomm
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {Interceptor} from "../infrastructure/auth/interceptor";
 import { ActivationComponent } from './authentication/pages/activation/activation.component';
+import { MapComponent } from './map/map/map.component';
+import { MapDialogComponent } from './map/map-dialog/map-dialog.component';
 
 
 
@@ -42,10 +44,11 @@ import { ActivationComponent } from './authentication/pages/activation/activatio
     ImageCarouselComponent,
     AccommodationDetailsPageComponent,
     AccommodationsPageComponent,
-    AccountComponent,
-    AccommodationFilterComponent
+    AccommodationFilterComponent,
     ProfileComponent,
-    ActivationComponent
+    ActivationComponent,
+    MapComponent,
+    MapDialogComponent
   ],
   exports: [
     NavbarComponent,
