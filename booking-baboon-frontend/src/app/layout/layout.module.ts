@@ -23,6 +23,9 @@ import { AccommodationFilterComponent } from './accommodations/components/accomm
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {Interceptor} from "../infrastructure/auth/interceptor";
 import { ActivationComponent } from './authentication/pages/activation/activation.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { ConfirmComponent } from './dialogs/confirm/confirm.component';
+import {SharedModule} from "../shared/shared.module";
 
 
 
@@ -44,7 +47,8 @@ import { ActivationComponent } from './authentication/pages/activation/activatio
     AccommodationsPageComponent,
     AccommodationFilterComponent,
     ProfileComponent,
-    ActivationComponent
+    ActivationComponent,
+    ConfirmComponent
   ],
   exports: [
     NavbarComponent,
@@ -52,14 +56,16 @@ import { ActivationComponent } from './authentication/pages/activation/activatio
     RegisterComponent,
     ActivationComponent
   ],
-    imports: [
-        CommonModule,
-        MaterialModule,
-        RouterLink,
-        RouterModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        FormsModule
+  imports: [
+    CommonModule,
+    MaterialModule,
+    RouterLink,
+    RouterModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatDialogModule,
+    SharedModule
   ]
 })
 export class LayoutModule { }
