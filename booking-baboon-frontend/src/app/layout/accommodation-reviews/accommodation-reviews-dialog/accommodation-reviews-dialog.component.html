@@ -1,13 +1,13 @@
 <div id="overlay">
-  <div id="location-box">
+  <div id="reviews-box">
     <div id="title-section">
-      <h2>Location</h2>
+      <h2>Reviews</h2>
       <div class="expand"></div>
       <div id="close-icon" (click)="onCloseClick()">
         <mat-icon>close</mat-icon>
       </div>
     </div>
     <hr>
-    <app-map [address]="address"></app-map>
+    <app-accommodation-review-cards [reviews]="reviews"></app-accommodation-review-cards>
   </div>
 </div>

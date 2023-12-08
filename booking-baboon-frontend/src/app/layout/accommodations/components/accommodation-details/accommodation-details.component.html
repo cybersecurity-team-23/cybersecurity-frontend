@@ -1,10 +1,10 @@
 <div class="overlay">
   <div class="left-part">
-    <h1>{{accommodation?.name}}</h1>
+    <h1>{{accommodation.name}}</h1>
     <div class="location-section">
       <div class="address">
         <mat-icon>location_on</mat-icon>
-        <p>{{accommodation?.location?.address}}, {{accommodation?.location?.city}}, {{accommodation?.location?.country}}</p>
+        <p>{{accommodation.location?.address}}, {{accommodation.location?.city}}, {{accommodation.location?.country}}</p>
       </div>
       <button mat-button (click)="onShowLocationClick()">Show map</button>
     </div>
@@ -19,11 +19,11 @@
         <mat-icon>star</mat-icon>
         4.8
       </div>
-      <button mat-button class="border">See reviews</button>
+      <button mat-button class="border" (click)="onShowReviewsClick()">See reviews</button>
     </div>
-    <p id="description">{{accommodation?.description}}</p>
+    <p id="description">{{accommodation.description}}</p>
     <div id="amenity-list">
-      <div *ngFor="let amenity of accommodation?.amenities">
+      <div *ngFor="let amenity of accommodation.amenities">
         <p class="border amenity-item">{{amenity.name}}</p>
       </div>
     </div>
@@ -46,6 +46,7 @@
     </div>
   </div>
   <app-map-dialog *ngIf="isLocationShowing" (closeLocation)="onCloseLocation()" [address]="getAddress()"></app-map-dialog>
+  <app-accommodation-reviews-dialog *ngIf="isReviewsShowing"  (closeReviews)="onCloseReviews()" [accommodation]="accommodation"></app-accommodation-reviews-dialog>
 </div>
 
 

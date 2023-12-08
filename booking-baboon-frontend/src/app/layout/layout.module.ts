@@ -25,6 +25,9 @@ import {Interceptor} from "../infrastructure/auth/interceptor";
 import { ActivationComponent } from './authentication/pages/activation/activation.component';
 import { MapComponent } from './map/map/map.component';
 import { MapDialogComponent } from './map/map-dialog/map-dialog.component';
+import { AccommodationReviewCardComponent } from './accommodation-reviews/accommodation-review-card/accommodation-review-card.component';
+import { AccommodationReviewCardsComponent } from './accommodation-reviews/accommodation-review-cards/accommodation-review-cards.component';
+import { AccommodationReviewsDialogComponent } from './accommodation-reviews/accommodation-reviews-dialog/accommodation-reviews-dialog.component';
 
 
 
@@ -48,7 +51,10 @@ import { MapDialogComponent } from './map/map-dialog/map-dialog.component';
     ProfileComponent,
     ActivationComponent,
     MapComponent,
-    MapDialogComponent
+    MapDialogComponent,
+    AccommodationReviewCardComponent,
+    AccommodationReviewCardsComponent,
+    AccommodationReviewsDialogComponent
   ],
   exports: [
     NavbarComponent,

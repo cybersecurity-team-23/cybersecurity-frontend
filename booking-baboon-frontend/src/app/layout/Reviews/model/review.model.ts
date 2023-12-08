@@ -7,5 +7,4 @@ export interface Review {
   createdOn?: Date;
   rating?: number;
   comment?: string;
-
 }
