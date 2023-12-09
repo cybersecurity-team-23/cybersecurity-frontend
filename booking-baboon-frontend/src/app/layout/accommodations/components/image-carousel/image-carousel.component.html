@@ -2,7 +2,8 @@
   <button mat-icon-button (click)="prevImage()">
     <mat-icon>keyboard_arrow_left</mat-icon>
   </button>
-  <img  [src]="currentImage" alt="Slide">
+  <img *ngIf="currentImage" [src]="currentImage" alt="Slide">
+  <mat-progress-spinner *ngIf="isLoading"></mat-progress-spinner>
   <button mat-icon-button (click)="nextImage()">
     <mat-icon>keyboard_arrow_right</mat-icon>
   </button>
