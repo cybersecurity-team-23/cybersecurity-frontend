@@ -17,9 +17,9 @@
     <div class="reviews-section">
       <div class="rating border">
         <mat-icon>star</mat-icon>
-        4.8
+        {{ratingDisplay}}
       </div>
-      <button mat-button class="border" (click)="onShowReviewsClick()">See reviews</button>
+      <button *ngIf="!isNaN(averageRating)" mat-button class="border" (click)="onShowReviewsClick()">See reviews</button>
     </div>
     <p id="description">{{accommodation.description}}</p>
     <div id="amenity-list">

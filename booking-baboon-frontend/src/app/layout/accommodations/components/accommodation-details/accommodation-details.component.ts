@@ -9,6 +9,7 @@ import {UserService} from "../../../../services/user/user.service";
 import {User} from "../../../authentication/models/user.model";
 import {Host} from "../../../authentication/models/host.model";
 import {HostService} from "../../../../services/user/host.service";
+import {AccommodationReviewService} from "../../../../services/review/accommodation-review.service";
 
 @Component({
   selector: 'app-accommodation-details',
@@ -22,8 +23,10 @@ export class AccommodationDetailsComponent {
   isLocationShowing: boolean = false;
   isReviewsShowing: boolean = false;
   loadedImages: string[] = [];
+  averageRating!: number;
+  ratingDisplay!: string;
 
-  constructor(private route: ActivatedRoute, private accommodationService: AccommodationService, private imageService: ImageService, private hostService: HostService) {
+  constructor(private route: ActivatedRoute, private accommodationService: AccommodationService, private imageService: ImageService, private hostService: HostService, private accommodationReviewService: AccommodationReviewService) {
   }
 
   ngOnInit(): void {
@@ -31,7 +34,12 @@ export class AccommodationDetailsComponent {
       const id = +params['accommodationId'];
 
       this.accommodationService.getAccommodation(id).subscribe({
-        next: (data: Accommodation) => { this.accommodation = data; this.loadImages(); this.loadHost();},
+        next: (data: Accommodation) => {
+          this.accommodation = data;
+          this.loadImages();
+          this.loadHost();
+          this.loadAverageRating();
+          },
         error: (_) => { console.log("Error!"); }
       });
     });
@@ -49,7 +57,6 @@ export class AccommodationDetailsComponent {
   }
 
   loadHost(): void {
-    console.log(this.accommodation.host);
     if(this.accommodation.host){
       this.hostService.getProfile(this.accommodation.host.id).subscribe({
         next: (host: Host) => { this.accommodation.host = host; console.log(this.accommodation.host)},
@@ -57,6 +64,22 @@ export class AccommodationDetailsComponent {
       });
     }
   }
+
+  loadAverageRating(): void{
+    if(this.accommodation){
+      this.accommodationReviewService.getAverageRatingFromAccommodation(this.accommodation.id).subscribe({
+        next: (rating: number) => { this.averageRating = rating;
+          if (isNaN(this.averageRating ?? NaN)) {
+            this.ratingDisplay = "no reviews";
+          }
+          else {
+            this.ratingDisplay = String(rating);
+          }},
+        error: (_) => { console.log("Error!"); }
+      })
+    }
+  }
+
   toggleFavorite() {
     this.isFavorite = !this.isFavorite;
   }
@@ -87,4 +110,6 @@ export class AccommodationDetailsComponent {
     return "Bulevar oslobodjenja 5, Novi Sad";
   }
 
+  protected readonly NaN = NaN;
+  protected readonly isNaN = isNaN;
 }

@@ -6,7 +6,7 @@
   background-color: rgba(243, 243, 243, 0.9);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: calc(100vh - 350px);
+  height: calc(100vh - 250px);
   margin: 20px 0 10px 0;
   color: black;
   overflow: auto;
@@ -83,12 +83,12 @@ h1{
 }
 
 .rating{
-  width: 65px;
+  /*width: 65px;*/
   display: flex;
   flex-direction: row;
   align-items: center;
   vertical-align: middle;
-  gap: 15px;
+  gap: 10px;
 }
 
 .border{

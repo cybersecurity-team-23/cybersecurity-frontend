@@ -20,7 +20,7 @@ export class AccommodationReviewService {
     return this.httpClient.get<AccommodationReview>(environment.apiHost + 'accommodation-reviews/' + id)
   }
 
-  getAverageRatingFromAccommodation(accommodationId: number): Observable<number> {
+  getAverageRatingFromAccommodation(accommodationId: number | undefined): Observable<number> {
     return this.httpClient.get<number>(environment.apiHost + 'accommodation-reviews/average-rating/' + accommodationId)
   }
 
