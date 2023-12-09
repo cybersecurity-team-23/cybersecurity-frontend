@@ -1,14 +1,13 @@
-
-<div id="container">
+<div *ngIf="review" id="container">
   <div id="top-section">
-    <h3>{{review.reviewer?.email}} Reviewer</h3>
+    <h3>{{reviewer?.email}}</h3>
     <div class="expand"></div>
     <div id="rating">
-      <span>{{review.rating}}4</span>
+      <span>{{review.rating}}</span>
       <mat-icon>star</mat-icon>
     </div>
   </div>
-  <p>This is no ordinary place, it's a sanctuary for the soul, a haven where you can truly unwind and rediscover the simple pleasures in life. Whether you seek adventure, relaxation, or simply a respite from the hustle and bustle of daily life, this place promises to exceed your expectations and leave you yearning for your next visit.</p>
+  <p>{{review.comment}}</p>
   <div class="expand"></div>
-  <p id="posted-on">posted on {{review.createdOn}} 2022.05.26.</p>
+  <p id="posted-on">posted on {{getDateISOString()}}</p>
 </div>

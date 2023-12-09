@@ -18,11 +18,11 @@ export class AccommodationReviewsDialogComponent implements OnInit{
   constructor(private accommodationReviewService: AccommodationReviewService) {
   }
   ngOnInit(): void {
-    // this.accommodationReviewService.getAccommodationReviews(this.accommodation.id).subscribe({
-    //   next: (data: AccommodationReview[]) => { this.reviews = data },
-    //   error: (_) => {console.log("Error!")}
-    // })
-    this.reviews = [{id: 1},{id: 2},{id: 3}];
+    this.accommodationReviewService.getAccommodationReviews(this.accommodation.id).subscribe({
+      next: (data: AccommodationReview[]) => { this.reviews = data },
+      error: (_) => {console.log("Error!")}
+    })
+    console.log(this.accommodation.id);
   }
   onCloseClick() {
     this.closeReviews.emit();

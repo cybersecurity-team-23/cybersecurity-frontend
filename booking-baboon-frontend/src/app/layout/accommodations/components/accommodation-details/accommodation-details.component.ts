@@ -9,7 +9,7 @@ import {AccommodationService} from "../../../../services/accommodation/accommoda
   styleUrls: ['./accommodation-details.component.css']
 })
 export class AccommodationDetailsComponent {
-  accommodation!: Accommodation;
+  accommodation: Accommodation = {};
   amenities: string[] = ["Kitchen", "AC", "Free parking", "Wifi", "Balcony"];
   isFavorite = false;
   isLocationShowing: boolean = false;
