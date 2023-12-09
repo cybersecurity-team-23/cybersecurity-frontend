@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, ElementRef, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, Input, ElementRef, ViewChild, OnInit} from '@angular/core';
 import { animate, style, transition, trigger } from "@angular/animations";
 import {delay} from "rxjs";
 
@@ -19,14 +19,14 @@ import {delay} from "rxjs";
     ]),
   ],
 })
-export class ImageCarouselComponent implements AfterViewInit {
+export class ImageCarouselComponent implements OnInit {
   @Input() images!: string[];
 
   currentImage!: string | undefined;
   currentIndex = 0;
   isLoading = false;
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this.loadImage(this.currentIndex);
   }
 
@@ -49,12 +49,10 @@ export class ImageCarouselComponent implements AfterViewInit {
     img.src = this.images[index];
 
     img.addEventListener('load', () => {
-      // Once the image is loaded, set it as the current image and stop loading
       this.currentImage = this.images[index];
       this.isLoading = false;
     });
 
-    // Add an event listener for the 'error' event (in case the image fails to load)
     img.addEventListener('error', () => {
       console.error(`Failed to load image: ${this.images[index]}`);
       this.isLoading = false;
