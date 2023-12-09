@@ -2,6 +2,7 @@ import {Location} from "./location.model";
 import {Amenity} from "./amenity.model";
 import {AvailablePeriod} from "./available-period.model";
 import {AccommodationType} from "./accommodation-type.model";
+import {ImageResponse} from "../../images/imageResponse.model";
 
 
 export interface Accommodation {
@@ -17,5 +18,6 @@ export interface Accommodation {
   isPricingPerPerson?: boolean;
   type?: AccommodationType;
   isAutomaticallyAccepted?: boolean;
+  images?: ImageResponse[];
 
 }

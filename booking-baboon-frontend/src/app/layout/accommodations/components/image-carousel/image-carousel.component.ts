@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import {animate, style, transition, trigger} from "@angular/animations";
+import {AfterViewInit, Component, Input} from '@angular/core';
+import { animate, style, transition, trigger } from "@angular/animations";
+import { Image } from "../../../images/image.model";
 
 @Component({
   selector: 'app-image-carousel',
@@ -18,15 +19,15 @@ import {animate, style, transition, trigger} from "@angular/animations";
     ]),
   ],
 })
-export class ImageCarouselComponent {
-  images = [
-    '../../../assets/accommodation-image-example-1.jpg',
-    '../../../assets/accommodation-image-example-2.jpg',
-    '../../../assets/accommodation-image-example-3.jpg',
-  ];
+export class ImageCarouselComponent implements AfterViewInit{
+  @Input() images!: string[];
 
-  currentImage = this.images[0];
+  currentImage!: string | undefined;
   currentIndex = 0;
+
+  ngAfterViewInit() {
+    this.currentImage = this.images.length > 0 ? this.images[0] : undefined;
+  }
 
   nextImage() {
     this.currentIndex = (this.currentIndex + 1) % this.images.length;
