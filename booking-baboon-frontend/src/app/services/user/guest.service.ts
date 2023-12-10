@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../env/env";
 import {HttpClient} from "@angular/common/http";
 import {Guest} from "../../layout/authentication/models/guest.model";
+import {Host} from "../../layout/authentication/models/host.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class GuestService {
   get(id: number): Observable<Guest> {
     return this.httpClient.get<Guest>(environment.apiHost + 'guests/' + id)
   }
+
+  delete(id: number | undefined): Observable<Guest> {
+    return this.httpClient.delete(environment.apiHost + 'guests/' + id)
+  }
   getByEmail(email: string): Observable<Guest> {
     return this.httpClient.get<Guest>(environment.apiHost + 'guests/email/' + email)
   }
@@ -28,9 +33,8 @@ export class GuestService {
   }
 
 
-  update(guest: Guest) {
+  update(guest: Guest): Observable<Guest> {
     return this.httpClient.put<Guest>(environment.apiHost + 'guests/', guest)
-      .subscribe();
   }
 
 

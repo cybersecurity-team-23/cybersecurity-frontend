@@ -30,6 +30,12 @@ import { HostProfilePageComponent } from './host/host-profile-page/host-profile-
 import { ReviewCardComponent } from './Reviews/review-card/review-card.component';
 import { ReviewCardsComponent } from './Reviews/review-cards/review-cards.component';
 import { ReviewsDialogComponent } from './Reviews/reviews-dialog/reviews-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import { ConfirmComponent } from './dialogs/confirm/confirm.component';
+import {SharedModule} from "../shared/shared.module";
+import { HostAccommodationsListComponent } from './accommodations/pages/host-accommodations-list/host-accommodations-list.component';
+import { HostAccommodationCardComponent } from './accommodations/components/host-accommodation-card/host-accommodation-card.component';
+import { HostAccommodationCardsComponent } from './accommodations/components/host-accommodation-cards/host-accommodation-cards.component';
 
 
 
@@ -59,6 +65,10 @@ import { ReviewsDialogComponent } from './Reviews/reviews-dialog/reviews-dialog.
     ReviewCardComponent,
     ReviewCardsComponent,
     ReviewsDialogComponent
+    ConfirmComponent,
+    HostAccommodationsListComponent,
+    HostAccommodationCardComponent,
+    HostAccommodationCardsComponent
   ],
   exports: [
     NavbarComponent,
@@ -66,14 +76,16 @@ import { ReviewsDialogComponent } from './Reviews/reviews-dialog/reviews-dialog.
     RegisterComponent,
     ActivationComponent
   ],
-    imports: [
-        CommonModule,
-        MaterialModule,
-        RouterLink,
-        RouterModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        FormsModule
+  imports: [
+    CommonModule,
+    MaterialModule,
+    RouterLink,
+    RouterModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatDialogModule,
+    SharedModule
   ]
 })
 export class LayoutModule { }

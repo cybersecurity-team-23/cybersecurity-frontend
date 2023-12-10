@@ -70,4 +70,7 @@ export class AccommodationService {
     return queryParams.length > 0 ? "?" + queryParams.join("&") : "";
   }
 
+  getAccommodationsByHost(id: number): Observable<Accommodation[]> {
+    return this.httpClient.get<Accommodation[]>(environment.apiHost + 'accommodations/host/' + id)
+  }
 }

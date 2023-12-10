@@ -13,6 +13,9 @@ import {ProfileComponent} from "./layout/authentication/pages/profile/profile.co
 import {AuthGuard} from "./infrastructure/auth/guard/auth.guard";
 import {ActivationComponent} from "./layout/authentication/pages/activation/activation.component";
 import {HostProfilePageComponent} from "./layout/host/host-profile-page/host-profile-page.component";
+import {
+  HostAccommodationsListComponent
+} from "./layout/accommodations/pages/host-accommodations-list/host-accommodations-list.component";
 
 const routes: Routes = [
   {component: AccommodationsPageComponent, path:"accommodations"},
@@ -24,6 +27,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/accommodations', pathMatch: 'full' },
   {component: ActivationComponent, path:"users/activate"},
   {component: HostProfilePageComponent, path:"host/:hostId"},
+  {component: HostAccommodationsListComponent, path:"host/accommodations"}
 ];
 
 @NgModule({

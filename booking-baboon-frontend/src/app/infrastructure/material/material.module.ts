@@ -12,6 +12,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatChipsModule} from '@angular/material/chips';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -33,6 +34,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatDividerModule,
     MatSlideToggleModule,
     MatBadgeModule,
+    MatSnackBarModule,
     MatChipsModule,
     MatCheckboxModule,
     MatProgressSpinnerModule
@@ -50,6 +52,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatDividerModule,
     MatSlideToggleModule,
     MatBadgeModule,
+    MatSnackBarModule,
     MatChipsModule,
     MatCheckboxModule,
     MatProgressSpinnerModule

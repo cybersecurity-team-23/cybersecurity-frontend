@@ -1,0 +1,39 @@
+<mat-card id="mat-card">
+    <img mat-card-image class="card-image"  src="../../../../../assets/test.jpg" alt="accommodation image">
+
+
+  <div id="content">
+    <mat-card-title>
+      <div  class="title">
+        <b [routerLink]="['/accommodations', accommodation.id]">{{accommodation.name}}</b>
+      </div>
+      <div id="rating">
+        <mat-icon id="star" fontIcon="star"></mat-icon>
+        <p class="rating">{{ratingDisplay}}</p>
+
+      </div>
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div class="location">
+        <mat-icon id="location-pin" fontIcon="room"></mat-icon>
+        <p class="location">{{accommodationLocation}}</p>
+      </div>
+      <div>
+        <mat-slide-toggle color="primary">Auto accept reservations</mat-slide-toggle>
+      </div>
+      <div id="buttons">
+        <button mat-raised-button  id="generate-report">Generate report <mat-icon> article</mat-icon></button>
+        <div id="right-buttons">
+          <button mat-raised-button id="edit">Edit</button>
+          <button mat-raised-button id="delete">Delete</button>
+        </div>
+      </div>
+    </mat-card-content>
+  </div>
+
+
+
+
+</mat-card>
+

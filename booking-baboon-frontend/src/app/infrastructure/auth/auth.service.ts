@@ -62,4 +62,8 @@ export class AuthService {
   registerGuest(user: Guest): Observable<Guest> {
     return this.http.post<Guest>(environment.apiHost+'guests/',user)
   }
+
+  getUser() {
+    return this.user$;
+  }
 }
