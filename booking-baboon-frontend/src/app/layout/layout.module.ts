@@ -25,9 +25,11 @@ import {Interceptor} from "../infrastructure/auth/interceptor";
 import { ActivationComponent } from './authentication/pages/activation/activation.component';
 import { MapComponent } from './map/map/map.component';
 import { MapDialogComponent } from './map/map-dialog/map-dialog.component';
-import { AccommodationReviewCardComponent } from './accommodation-reviews/accommodation-review-card/accommodation-review-card.component';
-import { AccommodationReviewCardsComponent } from './accommodation-reviews/accommodation-review-cards/accommodation-review-cards.component';
-import { AccommodationReviewsDialogComponent } from './accommodation-reviews/accommodation-reviews-dialog/accommodation-reviews-dialog.component';
+import { HostProfileComponent } from './host/host-profile/host-profile.component';
+import { HostProfilePageComponent } from './host/host-profile-page/host-profile-page.component';
+import { ReviewCardComponent } from './Reviews/review-card/review-card.component';
+import { ReviewCardsComponent } from './Reviews/review-cards/review-cards.component';
+import { ReviewsDialogComponent } from './Reviews/reviews-dialog/reviews-dialog.component';
 
 
 
@@ -52,9 +54,11 @@ import { AccommodationReviewsDialogComponent } from './accommodation-reviews/acc
     ActivationComponent,
     MapComponent,
     MapDialogComponent,
-    AccommodationReviewCardComponent,
-    AccommodationReviewCardsComponent,
-    AccommodationReviewsDialogComponent
+    HostProfileComponent,
+    HostProfilePageComponent,
+    ReviewCardComponent,
+    ReviewCardsComponent,
+    ReviewsDialogComponent
   ],
   exports: [
     NavbarComponent,

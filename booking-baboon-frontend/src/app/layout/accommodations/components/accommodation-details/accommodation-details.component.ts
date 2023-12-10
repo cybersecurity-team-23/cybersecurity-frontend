@@ -10,6 +10,8 @@ import {User} from "../../../authentication/models/user.model";
 import {Host} from "../../../authentication/models/host.model";
 import {HostService} from "../../../../services/user/host.service";
 import {AccommodationReviewService} from "../../../../services/review/accommodation-review.service";
+import {Review} from "../../../Reviews/model/review.model";
+import {AccommodationReview} from "../../../Reviews/model/accommodation-review.model";
 
 @Component({
   selector: 'app-accommodation-details',
@@ -25,6 +27,7 @@ export class AccommodationDetailsComponent {
   loadedImages: string[] = [];
   averageRating!: number;
   ratingDisplay!: string;
+  reviews!: Review[];
 
   constructor(private route: ActivatedRoute, private accommodationService: AccommodationService, private imageService: ImageService, private hostService: HostService, private accommodationReviewService: AccommodationReviewService) {
   }
@@ -38,6 +41,7 @@ export class AccommodationDetailsComponent {
           this.accommodation = data;
           this.loadImages();
           this.loadHost();
+          this.loadReviews();
           this.loadAverageRating();
           },
         error: (_) => { console.log("Error!"); }
@@ -78,6 +82,13 @@ export class AccommodationDetailsComponent {
         error: (_) => { console.log("Error!"); }
       })
     }
+  }
+
+  loadReviews(): void{
+    this.accommodationReviewService.getAccommodationReviews(this.accommodation.id).subscribe({
+      next: (data: AccommodationReview[]) => { this.reviews = data },
+      error: (_) => {console.log("Error!")}
+    })
   }
 
   toggleFavorite() {

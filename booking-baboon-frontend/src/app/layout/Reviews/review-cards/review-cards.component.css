@@ -1,4 +1,4 @@
-#accommodationReviewsList{
+#ReviewsList{
   display: flex;
   flex-direction: column;
   gap: 1.5em;

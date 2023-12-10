@@ -203,7 +203,7 @@ app-map-dialog{
 }
 
 /*REVIEWS*/
-app-accommodation-reviews-dialog{
+app-reviews-dialog{
   z-index: 3;
   position: absolute;
   top: 50%;
