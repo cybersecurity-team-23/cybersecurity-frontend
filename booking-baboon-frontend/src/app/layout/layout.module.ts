@@ -36,6 +36,8 @@ import {SharedModule} from "../shared/shared.module";
 import { HostAccommodationsListComponent } from './accommodations/pages/host-accommodations-list/host-accommodations-list.component';
 import { HostAccommodationCardComponent } from './accommodations/components/host-accommodation-card/host-accommodation-card.component';
 import { HostAccommodationCardsComponent } from './accommodations/components/host-accommodation-cards/host-accommodation-cards.component';
+import { ReservationRequestPageComponent } from './Reservations/reservation-request-page/reservation-request-page.component';
+import { ReservationRequestComponent } from './Reservations/reservation-request/reservation-request.component';
 
 
 
@@ -68,7 +70,9 @@ import { HostAccommodationCardsComponent } from './accommodations/components/hos
     ConfirmComponent,
     HostAccommodationsListComponent,
     HostAccommodationCardComponent,
-    HostAccommodationCardsComponent
+    HostAccommodationCardsComponent,
+    ReservationRequestPageComponent,
+    ReservationRequestComponent
   ],
   exports: [
     NavbarComponent,

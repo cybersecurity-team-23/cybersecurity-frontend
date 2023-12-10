@@ -38,7 +38,7 @@
       </div>
     </div>
     <div id="bottom-section">
-      <button mat-raised-button color="primary">Send request</button>
+      <button mat-raised-button color="primary" [routerLink]="['/accommodations', accommodation.id, 'reserve']">Send request</button>
       <div class="toggle-icons" (click)="toggleFavorite()">
         <mat-icon id="fav-border-icon" *ngIf="!isFavorite">favorite_border</mat-icon>
         <mat-icon id="fav-icon" *ngIf="isFavorite">favorite</mat-icon>
