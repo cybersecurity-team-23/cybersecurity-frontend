@@ -76,7 +76,7 @@ export class ProfileComponent {
         .subscribe();
 
       if (decodedToken.role[0].authority === "HOST") {
-        this.hostService.getProfile(userEmail)
+        this.hostService.getProfileByEmail(userEmail)
           .pipe(
             tap((host: Host) => {
               this.host = host;

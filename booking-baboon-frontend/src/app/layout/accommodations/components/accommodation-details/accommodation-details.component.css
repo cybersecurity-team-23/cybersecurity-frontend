@@ -3,10 +3,10 @@
   flex-direction: row;
   gap: 5%;
   padding: 30px;
-  background-color: rgba(243, 243, 243, 0.6);
+  background-color: rgba(243, 243, 243, 0.9);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  height: calc(100vh - 350px);
+  height: calc(100vh - 250px);
   margin: 20px 0 10px 0;
   color: black;
   overflow: auto;
@@ -65,10 +65,10 @@ h1{
   width: 100%;
   min-height: 60%;
   overflow: hidden;
-  /*background-color: #3771a8;*/
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 }
 
 /*Reviews section*/
@@ -83,12 +83,12 @@ h1{
 }
 
 .rating{
-  width: 65px;
+  /*width: 65px;*/
   display: flex;
   flex-direction: row;
   align-items: center;
   vertical-align: middle;
-  gap: 15px;
+  gap: 10px;
 }
 
 .border{
@@ -192,4 +192,22 @@ h1{
   cursor: pointer;
 }
 
+/*MAP*/
+app-map-dialog{
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
 
+/*REVIEWS*/
+app-reviews-dialog{
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}

@@ -23,6 +23,13 @@ import { AccommodationFilterComponent } from './accommodations/components/accomm
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {Interceptor} from "../infrastructure/auth/interceptor";
 import { ActivationComponent } from './authentication/pages/activation/activation.component';
+import { MapComponent } from './map/map/map.component';
+import { MapDialogComponent } from './map/map-dialog/map-dialog.component';
+import { HostProfileComponent } from './host/host-profile/host-profile.component';
+import { HostProfilePageComponent } from './host/host-profile-page/host-profile-page.component';
+import { ReviewCardComponent } from './Reviews/review-card/review-card.component';
+import { ReviewCardsComponent } from './Reviews/review-cards/review-cards.component';
+import { ReviewsDialogComponent } from './Reviews/reviews-dialog/reviews-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { ConfirmComponent } from './dialogs/confirm/confirm.component';
 import {SharedModule} from "../shared/shared.module";
@@ -51,6 +58,13 @@ import { HostAccommodationCardsComponent } from './accommodations/components/hos
     AccommodationFilterComponent,
     ProfileComponent,
     ActivationComponent,
+    MapComponent,
+    MapDialogComponent,
+    HostProfileComponent,
+    HostProfilePageComponent,
+    ReviewCardComponent,
+    ReviewCardsComponent,
+    ReviewsDialogComponent
     ConfirmComponent,
     HostAccommodationsListComponent,
     HostAccommodationCardComponent,

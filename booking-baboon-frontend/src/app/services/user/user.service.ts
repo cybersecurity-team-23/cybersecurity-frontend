@@ -17,8 +17,8 @@ export class UserService {
     return this.httpClient.get<User[]>(environment.apiHost + 'users')
   }
 
-  getUser(id: number): Observable<User> {
-    return this.httpClient.get<User>(environment.apiHost + 'users/profile/' + id)
+  getUser(id: number | undefined): Observable<User> {
+    return this.httpClient.get<User>(environment.apiHost + 'users/' + id)
   }
 
   getByEmail(email: string): Observable<User> {

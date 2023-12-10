@@ -2,13 +2,15 @@ import {Location} from "./location.model";
 import {Amenity} from "./amenity.model";
 import {AvailablePeriod} from "./available-period.model";
 import {AccommodationType} from "./accommodation-type.model";
+import {ImageResponse} from "../../images/imageResponse.model";
+import {Host} from "../../authentication/models/host.model";
 
 
 export interface Accommodation {
   id?: number;
   name?: string;
   description?: string;
-  // host:  Host;
+  host?:  Host;
   location?: Location;
   amenities?: Amenity[];
   availablePeriods?: AvailablePeriod[];
@@ -17,5 +19,6 @@ export interface Accommodation {
   isPricingPerPerson?: boolean;
   type?: AccommodationType;
   isAutomaticallyAccepted?: boolean;
+  images?: ImageResponse[];
 
 }

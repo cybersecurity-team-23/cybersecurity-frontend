@@ -12,6 +12,7 @@ import {AccommodationsPageComponent} from "./layout/accommodations/pages/accommo
 import {ProfileComponent} from "./layout/authentication/pages/profile/profile.component";
 import {AuthGuard} from "./infrastructure/auth/guard/auth.guard";
 import {ActivationComponent} from "./layout/authentication/pages/activation/activation.component";
+import {HostProfilePageComponent} from "./layout/host/host-profile-page/host-profile-page.component";
 import {
   HostAccommodationsListComponent
 } from "./layout/accommodations/pages/host-accommodations-list/host-accommodations-list.component";
@@ -25,6 +26,7 @@ const routes: Routes = [
     data: {role: ['ADMIN', 'GUEST', 'HOST']}},
   { path: '', redirectTo: '/accommodations', pathMatch: 'full' },
   {component: ActivationComponent, path:"users/activate"},
+  {component: HostProfilePageComponent, path:"host/:hostId"},
   {component: HostAccommodationsListComponent, path:"host/accommodations"}
 ];
 
