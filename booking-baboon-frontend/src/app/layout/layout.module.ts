@@ -64,7 +64,7 @@ import { HostAccommodationCardsComponent } from './accommodations/components/hos
     HostProfilePageComponent,
     ReviewCardComponent,
     ReviewCardsComponent,
-    ReviewsDialogComponent
+    ReviewsDialogComponent,
     ConfirmComponent,
     HostAccommodationsListComponent,
     HostAccommodationCardComponent,
