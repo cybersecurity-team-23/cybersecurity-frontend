@@ -26,6 +26,9 @@ import { ActivationComponent } from './authentication/pages/activation/activatio
 import {MatDialogModule} from "@angular/material/dialog";
 import { ConfirmComponent } from './dialogs/confirm/confirm.component';
 import {SharedModule} from "../shared/shared.module";
+import { HostAccommodationsListComponent } from './accommodations/pages/host-accommodations-list/host-accommodations-list.component';
+import { HostAccommodationCardComponent } from './accommodations/components/host-accommodation-card/host-accommodation-card.component';
+import { HostAccommodationCardsComponent } from './accommodations/components/host-accommodation-cards/host-accommodation-cards.component';
 
 
 
@@ -48,7 +51,10 @@ import {SharedModule} from "../shared/shared.module";
     AccommodationFilterComponent,
     ProfileComponent,
     ActivationComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    HostAccommodationsListComponent,
+    HostAccommodationCardComponent,
+    HostAccommodationCardsComponent
   ],
   exports: [
     NavbarComponent,
