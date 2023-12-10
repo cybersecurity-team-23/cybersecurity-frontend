@@ -33,7 +33,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatDividerModule,
     MatSlideToggleModule,
     MatBadgeModule,
-    MatSnackBarModule
+    MatSnackBarModule,
     MatChipsModule,
     MatCheckboxModule
   ],
@@ -50,7 +50,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatDividerModule,
     MatSlideToggleModule,
     MatBadgeModule,
-    MatSnackBarModule
+    MatSnackBarModule,
     MatChipsModule,
     MatCheckboxModule
   ]

@@ -12,6 +12,9 @@ import {AccommodationsPageComponent} from "./layout/accommodations/pages/accommo
 import {ProfileComponent} from "./layout/authentication/pages/profile/profile.component";
 import {AuthGuard} from "./infrastructure/auth/guard/auth.guard";
 import {ActivationComponent} from "./layout/authentication/pages/activation/activation.component";
+import {
+  HostAccommodationsListComponent
+} from "./layout/accommodations/pages/host-accommodations-list/host-accommodations-list.component";
 
 const routes: Routes = [
   {component: AccommodationsPageComponent, path:"accommodations"},
@@ -21,7 +24,8 @@ const routes: Routes = [
   {component: ProfileComponent, path:"profile/:userEmail", canActivate: [AuthGuard],
     data: {role: ['ADMIN', 'GUEST', 'HOST']}},
   { path: '', redirectTo: '/accommodations', pathMatch: 'full' },
-  {component: ActivationComponent, path:"users/activate"}
+  {component: ActivationComponent, path:"users/activate"},
+  {component: HostAccommodationsListComponent, path:"host/accommodations"}
 ];
 
 @NgModule({
