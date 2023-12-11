@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import { AccommodationService } from "../../../services/accommodation/accommodation.service";
 import { Accommodation } from "../../accommodations/model/accommodation.model";
 import {AvailablePeriod} from "../../accommodations/model/available-period.model";
@@ -47,10 +47,11 @@ export class ReservationRequestComponent implements OnInit {
   ngOnInit(): void {
     this.requestForm = this.fb.group({
       accommodation: [{ value: this.accommodation.name, disabled: true }, Validators.required],
-      checkin: [''],
-      checkout: [''],
-      guestNum: ['']
-    });
+      checkin: ['', Validators.required],
+      checkout: ['', Validators.required],
+      guestNum: ['', Validators.required]
+    }
+    );
 
     this.requestForm.valueChanges.subscribe(() => {
       this.calculatePrice();
@@ -75,7 +76,7 @@ export class ReservationRequestComponent implements OnInit {
         return startTime && endTime && currentDate >= startTime && currentDate <= endTime;
       });
 
-      return isDateInAvailablePeriod ? 'example-custom-date-class' : '';
+      return isDateInAvailablePeriod ? '' : 'disabled-date-class';
     }
 
     return '';

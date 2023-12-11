@@ -15,9 +15,9 @@
       <mat-label>
         Enter a date range
       </mat-label>
-      <mat-date-range-input [rangePicker]="picker">
-        <input formControlName="checkin" matStartDate placeholder="Start date" readonly>
-        <input formControlName="checkout" matEndDate placeholder="End date" readonly>
+      <mat-date-range-input  [rangePicker]="picker">
+        <input formControlName="checkin"  matStartDate placeholder="Start date" readonly>
+        <input formControlName="checkout"  matEndDate placeholder="End date" readonly>
       </mat-date-range-input>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-date-range-picker [dateClass]="dateClass" #picker></mat-date-range-picker>
