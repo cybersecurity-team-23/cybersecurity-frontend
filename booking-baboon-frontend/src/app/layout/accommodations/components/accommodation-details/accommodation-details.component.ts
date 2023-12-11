@@ -63,7 +63,7 @@ export class AccommodationDetailsComponent {
   loadHost(): void {
     if(this.accommodation.host){
       this.hostService.getProfile(this.accommodation.host.id).subscribe({
-        next: (host: Host) => { this.accommodation.host = host; console.log(this.accommodation.host)},
+        next: (host: Host) => { this.accommodation.host = host;},
         error: (_) => { console.log("Error!"); }
       });
     }

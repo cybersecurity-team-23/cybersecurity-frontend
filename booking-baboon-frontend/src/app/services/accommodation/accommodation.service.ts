@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
 import {Accommodation} from "../../layout/accommodations/model/accommodation.model";
 import {environment} from "../../env/env";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {AccommodationFilter} from "../../layout/accommodations/model/accommodationFilter.model";
 
 @Injectable({
@@ -19,15 +19,6 @@ export class AccommodationService {
   getAccommodation(id: number): Observable<Accommodation> {
     return this.httpClient.get<Accommodation>(environment.apiHost + 'accommodations/' + id)
   }
-
-  // add(accommodation: Accommodation): Observable<Accommodation> {
-//     headers: {
-//       'Content-Type': 'application/json',
-//       // Add any other headers if needed
-//     }
-  //   return this.httpClient.post<Accommodation>(environment.apiHost + 'accommodations', accommodation)
-  // }
-
 
   search(filter : AccommodationFilter): Observable<Accommodation[]> {
     console.log(this.convertFilterToQueryString(filter));
@@ -72,5 +63,13 @@ export class AccommodationService {
 
   getAccommodationsByHost(id: number): Observable<Accommodation[]> {
     return this.httpClient.get<Accommodation[]>(environment.apiHost + 'accommodations/host/' + id)
+  }
+
+  calculateTotalPrice(accommodationId: number, checkin: string, checkout: string): Observable<number> {
+    const params = new HttpParams()
+      .set('checkin', checkin)
+      .set('checkout', checkout);
+
+    return this.httpClient.get<number>(`${environment.apiHost}accommodations/${accommodationId}/total-price`, { params });
   }
 }

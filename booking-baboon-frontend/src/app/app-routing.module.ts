@@ -16,6 +16,9 @@ import {HostProfilePageComponent} from "./layout/host/host-profile-page/host-pro
 import {
   HostAccommodationsListComponent
 } from "./layout/accommodations/pages/host-accommodations-list/host-accommodations-list.component";
+import {
+  ReservationRequestPageComponent
+} from "./layout/Reservations/reservation-request-page/reservation-request-page.component";
 
 const routes: Routes = [
   {component: AccommodationsPageComponent, path:"accommodations"},
@@ -27,7 +30,8 @@ const routes: Routes = [
   { path: '', redirectTo: '/accommodations', pathMatch: 'full' },
   {component: ActivationComponent, path:"users/activate"},
   {component: HostProfilePageComponent, path:"host/:hostId"},
-  {component: HostAccommodationsListComponent, path:"host/accommodations"}
+  {component: HostAccommodationsListComponent, path:"host/accommodations"},
+  {component: ReservationRequestPageComponent, path:"accommodations/:accommodationId/reserve"},
 ];
 
 @NgModule({
