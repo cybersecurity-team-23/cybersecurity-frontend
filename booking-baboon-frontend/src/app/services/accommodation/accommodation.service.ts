@@ -70,12 +70,6 @@ export class AccommodationService {
       .set('checkin', checkin)
       .set('checkout', checkout);
 
-    let price = this.httpClient.get<number>(`${environment.apiHost}accommodations/${accommodationId}/total-price`, { params });
-    // price.subscribe({
-    //   next: (data: number) => {
-    //     console.log(data);
-    //   }
-    // })
-    return price;
+    return this.httpClient.get<number>(`${environment.apiHost}accommodations/${accommodationId}/total-price`, { params });
   }
 }
