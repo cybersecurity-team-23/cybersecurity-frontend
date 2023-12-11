@@ -20,8 +20,9 @@
         <input formControlName="checkout" matEndDate placeholder="End date" readonly>
       </mat-date-range-input>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-date-range-picker #picker></mat-date-range-picker>
+      <mat-date-range-picker [dateClass]="dateClass" #picker></mat-date-range-picker>
     </mat-form-field>
+
 
     <div id="bottom-section">
       <mat-form-field subscriptSizing="dynamic" id="guest-input">

@@ -69,3 +69,8 @@ hr{
 #send-request-button{
   color: white;
 }
+
+.mat-calendar-table .example-custom-date-class {
+  background: orange;
+  border-radius: 100%;
+}
