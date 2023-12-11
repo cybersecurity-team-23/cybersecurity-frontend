@@ -70,7 +70,7 @@ hr{
   color: white;
 }
 
-.mat-calendar-table .example-custom-date-class {
-  background: orange;
+::ng-deep .mat-calendar-table .example-custom-date-class {
+  background: #f6e0ce;
   border-radius: 100%;
 }
