@@ -14,9 +14,30 @@ export class ReservationRequestComponent implements OnInit {
   constructor(private fb: FormBuilder, private accommodationService: AccommodationService) {}
 
   requestForm!: FormGroup;
-  price: string = '145';
+  price: string = '0';
 
   onSubmitClick() {
+
+  }
+
+  calculatePrice() {
+    const accommodationId = this.accommodation.id;
+    const checkin = this.getDateISOString(this.requestForm.get('checkin')?.value);
+    const checkout = this.getDateISOString(this.requestForm.get('checkout')?.value);
+    const guestNum = this.requestForm.get('guestNum')?.value || 0;
+
+    if (accommodationId && checkin && checkout) {
+      this.accommodationService.calculateTotalPrice(accommodationId, checkin, checkout).subscribe({
+        next: (totalPrice: number) => {
+          if(totalPrice !== 0 && guestNum !== 0){
+            this.price = (guestNum * totalPrice).toString();
+          } else {
+            this.price = "0"
+          }
+        },
+        error: (_) => { console.log("Error!"); }
+      });
+    }
   }
 
   ngOnInit(): void {
@@ -26,5 +47,13 @@ export class ReservationRequestComponent implements OnInit {
       checkout: [''],
       guestNum: ['']
     });
+
+    this.requestForm.valueChanges.subscribe(() => {
+      this.calculatePrice();
+    });
+  }
+
+  private getDateISOString(date: Date | null | undefined): string | null {
+    return date ? date.toISOString().split('T')[0] : null;
   }
 }
