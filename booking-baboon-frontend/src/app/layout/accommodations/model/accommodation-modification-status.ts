@@ -1,5 +1,5 @@
 export enum AccommodationModificationStatus {
-  Pending,
-  Denied,
-  Approved
+  Approved = 'Approved',
+  Pending = 'Pending',
+  Denied = 'Denied',
 }

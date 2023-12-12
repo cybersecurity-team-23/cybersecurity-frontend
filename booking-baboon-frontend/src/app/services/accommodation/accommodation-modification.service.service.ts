@@ -17,5 +17,15 @@ export class AccommodationModificationService {
   getAll(): Observable<AccommodationModification[]> {
     return this.httpClient.get<AccommodationModification[]>(environment.apiHost + 'accommodation-modifications')
   }
+  get(id: number): Observable<AccommodationModification> {
+    return this.httpClient.get<AccommodationModification>(environment.apiHost + 'accommodation-modifications/' + id)
+  }
+
+  approve(id: number): Observable<AccommodationModification> {
+    return this.httpClient.put<AccommodationModification>(environment.apiHost + 'accommodation-modifications/approve/' + id, id);
+  }
+  deny(id: number): Observable<AccommodationModification> {
+    return this.httpClient.put<AccommodationModification>(environment.apiHost + 'accommodation-modifications/deny/' + id, id);
+  }
 
 }

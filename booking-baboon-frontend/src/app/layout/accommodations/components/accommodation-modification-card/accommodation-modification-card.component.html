@@ -12,7 +12,7 @@
 
 
       <div class="title">
-        <b [routerLink]="['/accommodations', accommodationModification.id]">{{accommodationModification.name}}</b>
+        <b [routerLink]="['/accommodation-modifications', accommodationModification.id]">{{accommodationModification.name}}</b>
 
       </div>
       <div id="rating">
@@ -31,19 +31,23 @@
     <mat-card-content>
       <div class="host">
         <p class="label">Host:</p>
-        <p class="input">{{accommodation.host?.email}}</p>
+        <p class="input">{{accommodationModification.host?.email}}</p>
       </div>
       <div class="data">
         <p class="label">Status:</p>
-        <p class="input">{{accommodationModification.status?.toString()}}</p>
+        <p class="input">{{accommodationModification.status}}</p>
       </div>
       <div class="location">
         <mat-icon id="location-pin" fontIcon="room"></mat-icon>
-        <p class="location">{{accommodationModificationLocation}}</p>
+        <p class="location">{{this.accommodationModification.location?.address + ", " + this.accommodationModification.location?.city + ", " + this.accommodationModification.location?.country}}</p>
       </div>
-        <div id="right-buttons">
-          <button mat-raised-button id="approve">Approve</button>
-          <button mat-raised-button id="deny">Deny</button>
+        <div class="right-buttons" *ngIf="accommodationModification.status === AccommodationModificationStatus.Pending">
+          <button mat-raised-button id="approve" (click)="onClickButtonApprove()">Approve</button>
+          <button mat-raised-button id="deny" (click)="denyRequest()" >Deny</button>
+        </div>
+        <div class="right-buttons" *ngIf="accommodationModification.status !== AccommodationModificationStatus.Pending">
+          <button mat-raised-button disabled>Approve</button>
+          <button mat-raised-button disabled>Deny</button>
         </div>
     </mat-card-content>
   </div>

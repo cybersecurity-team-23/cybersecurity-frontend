@@ -1,4 +1,4 @@
 export enum AccommodationModificationType {
-  Edited,
-  New
+  Edited = 'Edited',
+  New = 'New'
 }

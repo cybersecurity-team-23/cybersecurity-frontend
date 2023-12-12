@@ -181,7 +181,7 @@ mat-divider{
   width: 170px;
 }
 
-#right-buttons{
+.right-buttons{
   justify-content: flex-end;
   width: 100%;
   display: flex;
