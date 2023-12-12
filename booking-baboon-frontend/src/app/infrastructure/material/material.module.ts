@@ -38,7 +38,7 @@ import {MatSelect, MatSelectModule} from '@angular/material/select';
     MatSnackBarModule,
     MatChipsModule,
     MatCheckboxModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
     MatSelectModule
   ],
   exports: [
@@ -57,7 +57,7 @@ import {MatSelect, MatSelectModule} from '@angular/material/select';
     MatSnackBarModule,
     MatChipsModule,
     MatCheckboxModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
     MatSelectModule
   ]
 })

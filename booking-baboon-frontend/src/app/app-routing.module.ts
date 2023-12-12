@@ -17,8 +17,12 @@ import {
   HostAccommodationsListComponent
 } from "./layout/accommodations/pages/host-accommodations-list/host-accommodations-list.component";
 import {
+  ReservationRequestPageComponent
 } from "./layout/Reservations/reservation-request-page/reservation-request-page.component";
+import {
+  AccommodationCreationPageComponent
 } from "./layout/accommodations/pages/accommodation-creation-page/accommodation-creation-page.component";
+
 
 const routes: Routes = [
   {component: AccommodationsPageComponent, path:"accommodations"},

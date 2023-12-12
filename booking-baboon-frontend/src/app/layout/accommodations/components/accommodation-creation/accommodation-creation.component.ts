@@ -204,9 +204,9 @@ export class AccommodationCreationComponent implements OnInit {
   addAvailablePeriod(): void {
     if (this.periodForm.valid) {
       const newPeriod = {
-        timeslot: {
-          startDate: this.periodForm.value.startDate,
-          endDate: this.periodForm.value.endDate
+        timeSlot: {
+          startDate: this.periodForm.value.startDate.toString(),
+          endDate: this.periodForm.value.endDate.toString()
         },
         pricePerNight: this.periodForm.value.price
       };

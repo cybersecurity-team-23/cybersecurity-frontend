@@ -89,13 +89,13 @@
 
       <mat-chip-grid>
         <mat-chip-row  *ngFor="let period of availablePeriods; let i = index" (removed)="removeAvailablePeriod(i)">
-          {{ period.timeslot?.startDate | date }} - {{ period.timeslot?.endDate | date }} | Price: {{ period.pricePerNight | currency :'EUR'}}
+          {{ period.timeSlot?.startDate}} - {{ period.timeSlot?.endDate}} | Price: {{ period.pricePerNight | currency :'EUR'}}
           <button matChipRemove>
             <mat-icon>cancel</mat-icon>
           </button>
         </mat-chip-row>
       </mat-chip-grid>
     <mat-slide-toggle color="primary">Price per person</mat-slide-toggle>
-  <button type="submit" (click)="createAccommodation()"></button>
+  <button type="submit" (click)="createAccommodation()">Submit request</button>
 </form>
 </div>
