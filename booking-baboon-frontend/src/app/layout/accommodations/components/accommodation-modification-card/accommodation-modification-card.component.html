@@ -1,0 +1,55 @@
+<mat-card id="mat-card">
+  <div class="left-side">
+    <div class="status-type">
+      <p class="status-type">{{accommodationModification.requestType}}</p>
+    </div>
+    <img mat-card-image class="card-image"  src="../../../../../assets/test.jpg" alt="accommodation image">
+  </div>
+
+
+  <div id="content">
+    <mat-card-title>
+
+
+      <div class="title">
+        <b [routerLink]="['/accommodations', accommodationModification.id]">{{accommodationModification.name}}</b>
+
+      </div>
+      <div id="rating">
+        <mat-icon id="star" fontIcon="star"></mat-icon>
+        <p class="rating">{{ratingDisplay}}</p>
+      </div>
+
+
+      <div class="createdOn">
+        <p id="createdOnLabel">sent: </p>
+        <p id="createdOn">{{date}}</p>
+      </div>
+
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div class="host">
+        <p class="label">Host:</p>
+        <p class="input">{{accommodation.host?.email}}</p>
+      </div>
+      <div class="data">
+        <p class="label">Status:</p>
+        <p class="input">{{accommodationModification.status?.toString()}}</p>
+      </div>
+      <div class="location">
+        <mat-icon id="location-pin" fontIcon="room"></mat-icon>
+        <p class="location">{{accommodationModificationLocation}}</p>
+      </div>
+        <div id="right-buttons">
+          <button mat-raised-button id="approve">Approve</button>
+          <button mat-raised-button id="deny">Deny</button>
+        </div>
+    </mat-card-content>
+  </div>
+
+
+
+
+</mat-card>
+
