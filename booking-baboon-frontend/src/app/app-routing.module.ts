@@ -15,6 +15,9 @@ import {ActivationComponent} from "./layout/authentication/pages/activation/acti
 import {
   HostAccommodationsListComponent
 } from "./layout/accommodations/pages/host-accommodations-list/host-accommodations-list.component";
+import {
+  AccommodationCreationPageComponent
+} from "./layout/accommodations/pages/accommodation-creation-page/accommodation-creation-page.component";
 
 const routes: Routes = [
   {component: AccommodationsPageComponent, path:"accommodations"},
@@ -25,7 +28,8 @@ const routes: Routes = [
     data: {role: ['ADMIN', 'GUEST', 'HOST']}},
   { path: '', redirectTo: '/accommodations', pathMatch: 'full' },
   {component: ActivationComponent, path:"users/activate"},
-  {component: HostAccommodationsListComponent, path:"host/accommodations"}
+  {component: HostAccommodationsListComponent, path:"host/accommodations"},
+  {component: AccommodationCreationPageComponent, path: "host/accommodations/create"}
 ];
 
 @NgModule({
