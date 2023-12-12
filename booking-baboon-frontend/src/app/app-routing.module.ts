@@ -19,6 +19,9 @@ import {
 import {
   AccommodationModificationPageComponent
 } from "./layout/accommodations/pages/accommodation-modification-page/accommodation-modification-page.component";
+import {
+  AccommodationModificationDetailsPageComponent
+} from "./layout/accommodations/pages/accommodation-modification-details-page/accommodation-modification-details-page.component";
 
 const routes: Routes = [
   {component: AccommodationsPageComponent, path:"accommodations"},
@@ -31,7 +34,9 @@ const routes: Routes = [
   {component: ActivationComponent, path:"users/activate"},
   {component: HostProfilePageComponent, path:"host/:hostId"},
   {component: HostAccommodationsListComponent, path:"host/accommodations"},
-  {component: AccommodationModificationPageComponent, path:"admin/accommodation-changes"}
+  {component: AccommodationModificationPageComponent, path:"accommodation-modifications"},
+  {component: AccommodationModificationDetailsPageComponent, path:"accommodation-modifications/:accommodationModificationId"},
+
 ];
 
 @NgModule({

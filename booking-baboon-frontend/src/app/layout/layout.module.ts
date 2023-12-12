@@ -39,6 +39,8 @@ import { HostAccommodationCardsComponent } from './accommodations/components/hos
 import { AccommodationModificationPageComponent } from './accommodations/pages/accommodation-modification-page/accommodation-modification-page.component';
 import { AccommodationModificationCardComponent } from './accommodations/components/accommodation-modification-card/accommodation-modification-card.component';
 import { AccommodationModificationCardsComponent } from './accommodations/components/accommodation-modification-cards/accommodation-modification-cards.component';
+import { AccommodationModificationDetailsComponent } from './accommodations/components/accommodation-modification-details/accommodation-modification-details.component';
+import { AccommodationModificationDetailsPageComponent } from './accommodations/pages/accommodation-modification-details-page/accommodation-modification-details-page.component';
 
 
 
@@ -75,6 +77,8 @@ import { AccommodationModificationCardsComponent } from './accommodations/compon
     AccommodationModificationPageComponent,
     AccommodationModificationCardComponent,
     AccommodationModificationCardsComponent,
+    AccommodationModificationDetailsComponent,
+    AccommodationModificationDetailsPageComponent,
   ],
   exports: [
     NavbarComponent,
