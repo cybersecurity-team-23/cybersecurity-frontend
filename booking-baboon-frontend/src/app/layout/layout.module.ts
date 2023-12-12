@@ -36,6 +36,9 @@ import {SharedModule} from "../shared/shared.module";
 import { HostAccommodationsListComponent } from './accommodations/pages/host-accommodations-list/host-accommodations-list.component';
 import { HostAccommodationCardComponent } from './accommodations/components/host-accommodation-card/host-accommodation-card.component';
 import { HostAccommodationCardsComponent } from './accommodations/components/host-accommodation-cards/host-accommodation-cards.component';
+import { AccommodationModificationPageComponent } from './accommodations/pages/accommodation-modification-page/accommodation-modification-page.component';
+import { AccommodationModificationCardComponent } from './accommodations/components/accommodation-modification-card/accommodation-modification-card.component';
+import { AccommodationModificationCardsComponent } from './accommodations/components/accommodation-modification-cards/accommodation-modification-cards.component';
 
 
 
@@ -64,11 +67,14 @@ import { HostAccommodationCardsComponent } from './accommodations/components/hos
     HostProfilePageComponent,
     ReviewCardComponent,
     ReviewCardsComponent,
-    ReviewsDialogComponent
+    ReviewsDialogComponent,
     ConfirmComponent,
     HostAccommodationsListComponent,
     HostAccommodationCardComponent,
-    HostAccommodationCardsComponent
+    HostAccommodationCardsComponent,
+    AccommodationModificationPageComponent,
+    AccommodationModificationCardComponent,
+    AccommodationModificationCardsComponent,
   ],
   exports: [
     NavbarComponent,
