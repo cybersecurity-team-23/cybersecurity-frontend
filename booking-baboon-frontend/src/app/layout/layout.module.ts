@@ -38,6 +38,10 @@ import { HostAccommodationCardComponent } from './accommodations/components/host
 import { HostAccommodationCardsComponent } from './accommodations/components/host-accommodation-cards/host-accommodation-cards.component';
 import { ReservationRequestPageComponent } from './Reservations/reservation-request-page/reservation-request-page.component';
 import { ReservationRequestComponent } from './Reservations/reservation-request/reservation-request.component';
+import { AccommodationCreationPageComponent } from './accommodations/pages/accommodation-creation-page/accommodation-creation-page.component';
+import { AccommodationCreationComponent } from './accommodations/components/accommodation-creation/accommodation-creation.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+
 
 
 
@@ -72,7 +76,9 @@ import { ReservationRequestComponent } from './Reservations/reservation-request/
     HostAccommodationCardComponent,
     HostAccommodationCardsComponent,
     ReservationRequestPageComponent,
-    ReservationRequestComponent
+    ReservationRequestComponent,
+    AccommodationCreationPageComponent,
+    AccommodationCreationComponent
   ],
   exports: [
     NavbarComponent,
@@ -80,16 +86,17 @@ import { ReservationRequestComponent } from './Reservations/reservation-request/
     RegisterComponent,
     ActivationComponent
   ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    RouterLink,
-    RouterModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatDialogModule,
-    SharedModule
-  ]
+    imports: [
+        CommonModule,
+        MaterialModule,
+        RouterLink,
+        RouterModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatDialogModule,
+        SharedModule,
+        MatAutocompleteModule
+    ]
 })
 export class LayoutModule { }
