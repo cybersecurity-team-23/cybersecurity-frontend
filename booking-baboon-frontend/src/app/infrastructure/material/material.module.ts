@@ -15,6 +15,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {MatChipsModule} from '@angular/material/chips';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelect, MatSelectModule} from '@angular/material/select';
 
 
@@ -37,6 +38,7 @@ import {MatSelect, MatSelectModule} from '@angular/material/select';
     MatSnackBarModule,
     MatChipsModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule
     MatSelectModule
   ],
   exports: [
@@ -55,6 +57,7 @@ import {MatSelect, MatSelectModule} from '@angular/material/select';
     MatSnackBarModule,
     MatChipsModule,
     MatCheckboxModule,
+    MatProgressSpinnerModule
     MatSelectModule
   ]
 })

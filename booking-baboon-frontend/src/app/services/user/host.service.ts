@@ -19,12 +19,12 @@ export class HostService {
   get(id: number): Observable<Host> {
     return this.httpClient.get<Host>(environment.apiHost + 'hosts/' + id)
   }
-  getByEmail(email: string): Observable<Host> {
-    return this.httpClient.get<Host>(environment.apiHost + 'hosts/email/' + email)
+  getProfileByEmail(email: string): Observable<Host> {
+    return this.httpClient.get<Host>(environment.apiHost + 'hosts/profile/email/' + email)
   }
 
-  getProfile(email: string): Observable<Host> {
-    return this.httpClient.get<Host>(environment.apiHost + 'hosts/profile/' + email)
+  getProfile(id: number | undefined): Observable<Host> {
+    return this.httpClient.get<Host>(environment.apiHost + 'hosts/profile/' + id)
   }
 
   delete(id: number | undefined): Observable<Host> {

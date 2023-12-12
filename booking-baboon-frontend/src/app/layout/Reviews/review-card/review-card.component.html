@@ -1,0 +1,13 @@
+<div *ngIf="review" id="container">
+  <div id="top-section">
+    <h3>{{reviewer?.email}}</h3>
+    <div class="expand"></div>
+    <div id="rating">
+      <span>{{review.rating}}</span>
+      <mat-icon>star</mat-icon>
+    </div>
+  </div>
+  <p>{{review.comment}}</p>
+  <div class="expand"></div>
+  <p id="posted-on">posted on {{getDateISOString()}}</p>
+</div>
