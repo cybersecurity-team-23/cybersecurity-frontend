@@ -111,21 +111,19 @@ export class AccommodationModificationCardComponent {
   private createAccommodation(newAccommodation: Accommodation) {
     this.accommodationService.create(newAccommodation).subscribe({
       next: (accommodationResponse : Accommodation) => {
+        this.accommodationModification = accommodationResponse;
         if (this.accommodationModification.id != undefined) {
           this.accommodationModification.status = AccommodationModificationStatus.Approved;
           this.accommodationModificationService.approve(this.accommodationModification?.id).subscribe({
             next: (accommodationModification: AccommodationModification) => {
               this.sharedService.openSnack("Modification approved!");
-
             }
           })
-
         }
       },
       error: (_) => {this.sharedService.openSnack("An error occured!")}
     })
   }
-
   private approveRequest() {
     if (this.accommodationModification.id != undefined) {
       this.accommodationModificationService.approve(this.accommodationModification?.id).subscribe({
