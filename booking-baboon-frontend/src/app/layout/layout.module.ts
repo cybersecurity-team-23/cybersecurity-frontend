@@ -41,6 +41,11 @@ import { AccommodationModificationCardComponent } from './accommodations/compone
 import { AccommodationModificationCardsComponent } from './accommodations/components/accommodation-modification-cards/accommodation-modification-cards.component';
 import { AccommodationModificationDetailsComponent } from './accommodations/components/accommodation-modification-details/accommodation-modification-details.component';
 import { AccommodationModificationDetailsPageComponent } from './accommodations/pages/accommodation-modification-details-page/accommodation-modification-details-page.component';
+import { ReservationRequestPageComponent } from './Reservations/reservation-request-page/reservation-request-page.component';
+import { ReservationRequestComponent } from './Reservations/reservation-request/reservation-request.component';
+import { AccommodationCreationPageComponent } from './accommodations/pages/accommodation-creation-page/accommodation-creation-page.component';
+import { AccommodationCreationComponent } from './accommodations/components/accommodation-creation/accommodation-creation.component';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 
 
@@ -79,6 +84,10 @@ import { AccommodationModificationDetailsPageComponent } from './accommodations/
     AccommodationModificationCardsComponent,
     AccommodationModificationDetailsComponent,
     AccommodationModificationDetailsPageComponent,
+    ReservationRequestPageComponent,
+    ReservationRequestComponent,
+    AccommodationCreationPageComponent,
+    AccommodationCreationComponent
   ],
   exports: [
     NavbarComponent,
@@ -86,16 +95,17 @@ import { AccommodationModificationDetailsPageComponent } from './accommodations/
     RegisterComponent,
     ActivationComponent
   ],
-  imports: [
-    CommonModule,
-    MaterialModule,
-    RouterLink,
-    RouterModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatDialogModule,
-    SharedModule
-  ]
+    imports: [
+        CommonModule,
+        MaterialModule,
+        RouterLink,
+        RouterModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatDialogModule,
+        SharedModule,
+        MatAutocompleteModule
+    ]
 })
 export class LayoutModule { }
