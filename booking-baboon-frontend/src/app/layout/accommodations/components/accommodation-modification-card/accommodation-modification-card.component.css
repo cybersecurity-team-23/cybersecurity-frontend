@@ -95,6 +95,10 @@ mat-card-content{
   flex-direction: row;
 }
 
+b:hover {
+  cursor: pointer;
+}
+
 mat-card-title{
   display: flex;
   flex-direction: row;
