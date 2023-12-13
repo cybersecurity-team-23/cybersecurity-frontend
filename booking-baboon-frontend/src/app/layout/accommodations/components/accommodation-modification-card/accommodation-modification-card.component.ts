@@ -112,14 +112,7 @@ export class AccommodationModificationCardComponent {
     this.accommodationService.create(newAccommodation).subscribe({
       next: (accommodationResponse : Accommodation) => {
         this.accommodationModification = accommodationResponse;
-        if (this.accommodationModification.id != undefined) {
-          this.accommodationModification.status = AccommodationModificationStatus.Approved;
-          this.accommodationModificationService.approve(this.accommodationModification?.id).subscribe({
-            next: (accommodationModification: AccommodationModification) => {
-              this.sharedService.openSnack("Modification approved!");
-            }
-          })
-        }
+        this.approveRequest();
       },
       error: (_) => {this.sharedService.openSnack("An error occured!")}
     })
