@@ -33,7 +33,7 @@ const routes: Routes = [
     data: {role: ['ADMIN', 'GUEST', 'HOST']}},
   { path: '', redirectTo: '/accommodations', pathMatch: 'full' },
   {component: ActivationComponent, path:"users/activate"},
-  {component: HostProfilePageComponent, path:"host/:hostId"},
+  {component: HostProfilePageComponent, path:"host/profile/:hostId"},
   {component: HostAccommodationsListComponent, path:"host/accommodations"},
   {component: ReservationRequestPageComponent, path:"accommodations/:accommodationId/reserve"},
   {component: AccommodationCreationPageComponent, path: "host/accommodations/create"}

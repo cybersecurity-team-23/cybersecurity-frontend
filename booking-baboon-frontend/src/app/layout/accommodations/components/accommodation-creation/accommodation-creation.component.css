@@ -6,7 +6,7 @@
 }
 
 #right-form{
-  width:20%;
+  width:22%;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -33,17 +33,24 @@
 }
 
 #name{
-  width: 40%;
+  width: 20%;
 }
 
-#location{
-  width: 55%;
-  float: right;
+#country{
+  width: 20%;
+}
+
+#city{
+  width: 20%;
+}
+
+#address{
+  width: 30%;
 }
 
 mat-form-field {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #chip-list {
@@ -73,10 +80,38 @@ mat-form-field {
 }
 
 #datepicker{
-  width: 100%;
+  width: 80%;
 }
 
 #add{
   color: #FFFFFF;
   background-color: #F7A12E;
+}
+
+#submit{
+  color: #FFFFFF;
+  background-color: #F7A12E;
+  float: right;
+}
+
+#price{
+  width: 80%;
+}
+
+#periods{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 15em;
+}
+
+
+button{
+  width: 50%;
+}
+
+#removeImg{
+  position: absolute;
+  color: #F7A12E;
 }
