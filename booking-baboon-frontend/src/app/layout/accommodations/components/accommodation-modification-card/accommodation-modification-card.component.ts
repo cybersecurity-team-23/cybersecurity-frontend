@@ -95,10 +95,7 @@ export class AccommodationModificationCardComponent {
     else {
       this.createAccommodation(newAccommodation);
     }
-
-
   }
-
   private updateAccommodation(newAccommodation: Accommodation) {
     this.accommodationService.update(newAccommodation).subscribe({
       next: (accommodationResponse : Accommodation) => {
