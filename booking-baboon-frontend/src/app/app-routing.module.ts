@@ -17,6 +17,11 @@ import {
   HostAccommodationsListComponent
 } from "./layout/accommodations/pages/host-accommodations-list/host-accommodations-list.component";
 import {
+  AccommodationModificationPageComponent
+} from "./layout/accommodations/pages/accommodation-modification-page/accommodation-modification-page.component";
+import {
+  AccommodationModificationDetailsPageComponent
+} from "./layout/accommodations/pages/accommodation-modification-details-page/accommodation-modification-details-page.component";
 } from "./layout/Reservations/reservation-request-page/reservation-request-page.component";
 } from "./layout/accommodations/pages/accommodation-creation-page/accommodation-creation-page.component";
 
@@ -31,6 +36,8 @@ const routes: Routes = [
   {component: ActivationComponent, path:"users/activate"},
   {component: HostProfilePageComponent, path:"host/:hostId"},
   {component: HostAccommodationsListComponent, path:"host/accommodations"},
+  {component: AccommodationModificationPageComponent, path:"accommodation-modifications"},
+  {component: AccommodationModificationDetailsPageComponent, path:"accommodation-modifications/:accommodationModificationId"},
   {component: ReservationRequestPageComponent, path:"accommodations/:accommodationId/reserve"},
   {component: AccommodationCreationPageComponent, path: "host/accommodations/create"}
 ];

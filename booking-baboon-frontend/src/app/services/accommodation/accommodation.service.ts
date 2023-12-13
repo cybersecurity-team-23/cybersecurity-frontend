@@ -19,7 +19,12 @@ export class AccommodationService {
   getAccommodation(id: number): Observable<Accommodation> {
     return this.httpClient.get<Accommodation>(environment.apiHost + 'accommodations/' + id)
   }
-
+  create(accommodation: Accommodation) : Observable<Accommodation> {
+    return this.httpClient.post<Accommodation>(environment.apiHost + 'accommodations', accommodation);
+  }
+  update(accommodation: Accommodation) : Observable<Accommodation> {
+    return this.httpClient.put<Accommodation>(environment.apiHost + 'accommodations', accommodation);
+  }
   search(filter : AccommodationFilter): Observable<Accommodation[]> {
     console.log(this.convertFilterToQueryString(filter));
     return this.httpClient.get<Accommodation[]>(environment.apiHost + 'accommodations/filter' + this.convertFilterToQueryString(filter))

@@ -36,12 +36,16 @@ import {SharedModule} from "../shared/shared.module";
 import { HostAccommodationsListComponent } from './accommodations/pages/host-accommodations-list/host-accommodations-list.component';
 import { HostAccommodationCardComponent } from './accommodations/components/host-accommodation-card/host-accommodation-card.component';
 import { HostAccommodationCardsComponent } from './accommodations/components/host-accommodation-cards/host-accommodation-cards.component';
+import { AccommodationModificationPageComponent } from './accommodations/pages/accommodation-modification-page/accommodation-modification-page.component';
+import { AccommodationModificationCardComponent } from './accommodations/components/accommodation-modification-card/accommodation-modification-card.component';
+import { AccommodationModificationCardsComponent } from './accommodations/components/accommodation-modification-cards/accommodation-modification-cards.component';
+import { AccommodationModificationDetailsComponent } from './accommodations/components/accommodation-modification-details/accommodation-modification-details.component';
+import { AccommodationModificationDetailsPageComponent } from './accommodations/pages/accommodation-modification-details-page/accommodation-modification-details-page.component';
 import { ReservationRequestPageComponent } from './Reservations/reservation-request-page/reservation-request-page.component';
 import { ReservationRequestComponent } from './Reservations/reservation-request/reservation-request.component';
 import { AccommodationCreationPageComponent } from './accommodations/pages/accommodation-creation-page/accommodation-creation-page.component';
 import { AccommodationCreationComponent } from './accommodations/components/accommodation-creation/accommodation-creation.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
-
 
 
 
@@ -75,6 +79,11 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     HostAccommodationsListComponent,
     HostAccommodationCardComponent,
     HostAccommodationCardsComponent,
+    AccommodationModificationPageComponent,
+    AccommodationModificationCardComponent,
+    AccommodationModificationCardsComponent,
+    AccommodationModificationDetailsComponent,
+    AccommodationModificationDetailsPageComponent,
     ReservationRequestPageComponent,
     ReservationRequestComponent,
     AccommodationCreationPageComponent,
