@@ -1,11 +1,11 @@
 export enum AccommodationType {
-  Hotel,
-    Hostel,
-    BedAndBreakfast,
-    Resort,
-    Motel,
-    Apartment,
-    House,
-    Room,
-    Tent
+  Hotel = "Hotel",
+    Hostel = "Hostel",
+    BedAndBreakfast = "BedAndBreakfast",
+    Resort = "Resort",
+    Motel = "Motel",
+    Apartment = "Apartment",
+    House = "House",
+    Room = "Room",
+    Tent = "Tent"
 }

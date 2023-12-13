@@ -15,16 +15,15 @@ import {Host} from "../../../authentication/models/host.model";
 export class HostAccommodationsListComponent implements OnInit{
   accommodations!: Accommodation[];
 
-  constructor(private accommodationService:AccommodationService, private hostService:HostService) {}
+  constructor(private accommodationService:AccommodationService, private hostService:HostService, private authService:AuthService) {
+
+  }
 
   ngOnInit(): void {
-    const accessToken: any = localStorage.getItem('user');
-    const helper = new JwtHelperService();
-    const decodedToken = helper.decodeToken(accessToken);
-    this.hostService.getProfileByEmail(decodedToken.sub).subscribe({
-      next: (data: Host) => {
-        if(data.id==undefined) return
-        this.accommodationService.getAccommodationsByHost(data.id).subscribe({
+
+    let id = this.authService.getId();
+    if (id == undefined) return;
+        this.accommodationService.getAccommodationsByHost(id).subscribe({
           next: (data: Accommodation[]) => {
             this.accommodations = data;
           },
@@ -33,9 +32,4 @@ export class HostAccommodationsListComponent implements OnInit{
           }
         });
       }
-
-    })
-
-
-  }
 }

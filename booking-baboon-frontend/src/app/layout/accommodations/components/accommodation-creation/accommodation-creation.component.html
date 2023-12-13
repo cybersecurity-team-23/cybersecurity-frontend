@@ -5,9 +5,18 @@
         <mat-label>Name</mat-label>
         <input matInput type="text" formControlName="name">
       </mat-form-field>
-      <mat-form-field id="location">
-        <mat-label>Location</mat-label>
-        <input matInput type="text" formControlName="location">
+      <mat-form-field id="country">
+        <mat-label>Country</mat-label>
+        <input matInput type="text" formControlName="country">
+
+      </mat-form-field>
+      <mat-form-field id="city">
+        <mat-label>City</mat-label>
+        <input matInput type="text" formControlName="city">
+      </mat-form-field>
+      <mat-form-field id="address">
+        <mat-label>Address</mat-label>
+        <input matInput type="text" formControlName="address">
       </mat-form-field>
     </div>
     <mat-form-field>
@@ -62,14 +71,18 @@
     </div>
 
     <div id="images">
-      <img class="preview-image" *ngFor="let url of urls" [src]="url">
+      <div *ngFor="let url of urls">
+        <img class="preview-image"  [src]="url">
+          <mat-icon (click) = removeImage(url) id="removeImg">cancel</mat-icon>
+      </div>
+
     </div>
 
-    <input type="file" (change)="onselect($event)">
+    <input type="file" multiple (change)="onselect($event)">
 
 </form>
 <form id="right-form" [formGroup]="periodForm">
-        <mat-form-field subscriptSizing="dynamic">
+        <mat-form-field subscriptSizing="dynamic" id="datepicker">
           <mat-label>
             Add available period
           </mat-label>
@@ -81,21 +94,26 @@
           <mat-date-range-picker #picker></mat-date-range-picker>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field id="price">
           <input matInput type="number" placeholder="Price per night" formControlName="price">
         </mat-form-field>
 
         <button mat-raised-button color="primary" id="add" (click)="addAvailablePeriod()">Add</button>
 
-      <mat-chip-grid>
-        <mat-chip-row  *ngFor="let period of availablePeriods; let i = index" (removed)="removeAvailablePeriod(i)">
-          {{ period.timeslot?.startDate | date }} - {{ period.timeslot?.endDate | date }} | Price: {{ period.pricePerNight | currency :'EUR'}}
-          <button matChipRemove>
-            <mat-icon>cancel</mat-icon>
-          </button>
-        </mat-chip-row>
-      </mat-chip-grid>
-    <mat-slide-toggle color="primary">Price per person</mat-slide-toggle>
-  <button type="submit" (click)="createAccommodation()"></button>
+  <div  id="periods">
+    <mat-chip-grid>
+      <mat-chip-row  *ngFor="let period of availablePeriods; let i = index" (removed)="removeAvailablePeriod(i)">
+        {{ period.timeSlot?.startDate | date}} - {{ period.timeSlot?.endDate | date}} | Price: {{ period.pricePerNight | currency :'EUR'}}
+        <button matChipRemove>
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </mat-chip-row>
+    </mat-chip-grid>
+  </div>
+
+    <mat-slide-toggle color="primary" formControlName="isPricingPerPerson">Price per person</mat-slide-toggle>
+  <div id="fill">
+  </div>
+  <button mat-raised-button id="submit" type="submit" (click)="createAccommodation()">Submit request</button>
 </form>
 </div>

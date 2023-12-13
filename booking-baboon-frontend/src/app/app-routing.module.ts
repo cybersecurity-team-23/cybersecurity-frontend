@@ -22,8 +22,13 @@ import {
 import {
   AccommodationModificationDetailsPageComponent
 } from "./layout/accommodations/pages/accommodation-modification-details-page/accommodation-modification-details-page.component";
+import {
+  ReservationRequestPageComponent
 } from "./layout/Reservations/reservation-request-page/reservation-request-page.component";
+import {
+  AccommodationCreationPageComponent
 } from "./layout/accommodations/pages/accommodation-creation-page/accommodation-creation-page.component";
+
 
 const routes: Routes = [
   {component: AccommodationsPageComponent, path:"accommodations"},
@@ -34,7 +39,7 @@ const routes: Routes = [
     data: {role: ['ADMIN', 'GUEST', 'HOST']}},
   { path: '', redirectTo: '/accommodations', pathMatch: 'full' },
   {component: ActivationComponent, path:"users/activate"},
-  {component: HostProfilePageComponent, path:"host/:hostId"},
+  {component: HostProfilePageComponent, path:"host/profile/:hostId"},
   {component: HostAccommodationsListComponent, path:"host/accommodations"},
   {component: AccommodationModificationPageComponent, path:"accommodation-modifications"},
   {component: AccommodationModificationDetailsPageComponent, path:"accommodation-modifications/:accommodationModificationId"},

@@ -9,7 +9,13 @@ import {MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
 import {Observable} from "rxjs";
 import {AccommodationType} from "../../model/accommodation-type.model";
 import {AvailablePeriod} from "../../model/available-period.model";
-import {TimeSlot} from "../../model/timeslot.model";
+import {Accommodation} from "../../model/accommodation.model";
+import {AuthService} from "../../../../infrastructure/auth/auth.service";
+import {AccommodationService} from "../../../../services/accommodation/accommodation.service";
+import {Image} from "../../../images/image.model";
+import {ImageService} from "../../../images/image.service";
+import {ImageResponse} from "../../../images/imageResponse.model";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-accommodation-creation',
   templateUrl: './accommodation-creation.component.html',
@@ -26,6 +32,7 @@ export class AccommodationCreationComponent implements OnInit {
 
 
   urls: string[] = [];
+  imageList: File[] = [];
 
   availablePeriods: AvailablePeriod[] = [];
 
@@ -34,22 +41,25 @@ export class AccommodationCreationComponent implements OnInit {
 
   public accommodationForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
-    location: new FormControl('', [Validators.required]),
+    country: new FormControl('', [Validators.required]),
+    city: new FormControl('', [Validators.required]),
+    address: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
     minGuests: new FormControl(1,[Validators.min(1),Validators.required]),
     maxGuests: new FormControl(1,[Validators.min(1),Validators.required]),
-    type: new FormControl(),
+    type: new FormControl(AccommodationType.Hotel,Validators.required),
 
   });
 
   public periodForm: FormGroup = new FormGroup({
     startDate: new FormControl(),
     endDate: new FormControl(),
-    price: new FormControl(1,[Validators.min(1),Validators.required])
+    price: new FormControl('',[Validators.min(1),Validators.required]),
+    isPricingPerPerson: new FormControl(false)
   },{validators: [this.validateDateRange('startDate', 'endDate'), this.futureDateValidator('startDate'), this.overlappingDatesValidator('startDate','endDate')]})
 
 
-  constructor(private amenityService: AmenityService) {
+  constructor(private amenityService: AmenityService, private authService:AuthService, private accommodationService:AccommodationService, private imageService:ImageService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -128,14 +138,25 @@ export class AccommodationCreationComponent implements OnInit {
   }
 
   onselect(event: any){
-    if(event.target.files){
-      for(let i=0; i< event.target.files.length; i++){
+    const files: FileList | null = event.target.files;
+    if(files){
+      for(let i=0; i< files.length; i++){
+        this.imageList.push(files[i]);
         let reader: FileReader = new FileReader();
-        reader.readAsDataURL(event.target.files[i]);
+        reader.readAsDataURL(files[i]);
         reader.onload=(events:any)=>{
           this.urls.push(events.target.result as string);
         }
       }
+    }
+  }
+
+  removeImage(url: string) {
+    const index = this.urls.indexOf(url);
+
+    if (index >= 0) {
+      this.urls.splice(index, 1);
+      this.imageList.splice(index, 1);
     }
   }
 
@@ -177,7 +198,6 @@ export class AccommodationCreationComponent implements OnInit {
 
       if (startDate && endDate) {
         const overlap = this.availablePeriods.some(period => this.isDateRangeOverlapping(startDate.value, endDate.value, period));
-        console.log(overlap)
         if (overlap){
           const error = {confirmedValidator: 'Dates are not valid.'};
           startDate.setErrors(error)
@@ -191,8 +211,8 @@ export class AccommodationCreationComponent implements OnInit {
   }
 
   isDateRangeOverlapping(newStartDate: Date, newEndDate: Date, existingPeriod: any): boolean {
-    const existingStartDate = existingPeriod.timeslot.startDate;
-    const existingEndDate = existingPeriod.timeslot.endDate;
+    const existingStartDate =  new Date(existingPeriod.timeSlot.startDate) ;
+    const existingEndDate = new Date(existingPeriod.timeSlot.endDate);
 
     return (
       (newStartDate >= existingStartDate && newStartDate <= existingEndDate) ||
@@ -204,9 +224,9 @@ export class AccommodationCreationComponent implements OnInit {
   addAvailablePeriod(): void {
     if (this.periodForm.valid) {
       const newPeriod = {
-        timeslot: {
-          startDate: this.periodForm.value.startDate,
-          endDate: this.periodForm.value.endDate
+        timeSlot: {
+          startDate: this.periodForm.value.startDate.toString(),
+          endDate: this.periodForm.value.endDate.toString()
         },
         pricePerNight: this.periodForm.value.price
       };
@@ -220,8 +240,63 @@ export class AccommodationCreationComponent implements OnInit {
     this.availablePeriods.splice(index, 1);
   }
 
+ addPeriods(accommodationId: number){
+
+
+ }
+
 
   createAccommodation() {
-    //TODO
+    if(!this.accommodationForm.valid) return;
+    const accommodation: Accommodation = {
+      name: this.accommodationForm.value.name,
+      description: this.accommodationForm.value.description,
+      host: {id: this.authService.getId()},
+      location: {
+        country: this.accommodationForm.value.country,
+        city: this.accommodationForm.value.city,
+        address: this.accommodationForm.value.address
+      },
+      availablePeriods: [],
+      amenities: this.selectedAmenities.map(amenity => ({ id: amenity.id })),
+      minGuests: this.accommodationForm.value.minGuests,
+      maxGuests: this.accommodationForm.value.maxGuests,
+      isPricingPerPerson: this.periodForm.value.isPricingPerPerson,
+      type: this.accommodationForm.value.type,
+      isAutomaticallyAccepted: false
+      }
+    const images = this.imageList;
+    const accommodationService :AccommodationService = this.accommodationService;
+    const service = this.imageService;
+    const periods =this.availablePeriods;
+    const router = this.router;
+    this.accommodationService.create(accommodation).subscribe({
+      next(data: Accommodation){
+        const id = data.id;
+        if(!id) return;
+        for (const period of periods) {
+          accommodationService.createPeriod(period).subscribe({
+            next(data: AvailablePeriod){
+              accommodationService.addPeriod(id,data.id).subscribe()
+            }
+          })
+        }
+        for (const image of images) {
+          const formData: FormData = new FormData();
+          formData.append('path', "accommodations/" + id.toString());
+          formData.append('fileName', image.name);
+          formData.append('content', image);
+          service.create(formData).subscribe({
+            next(data: ImageResponse){
+              if(!data.id)return
+              service.addToAccommodation(id,data.id).subscribe()
+            }
+
+          })
+        }
+        router.navigate(['/host/accommodations'])
+      }
+    })
+
   }
 }

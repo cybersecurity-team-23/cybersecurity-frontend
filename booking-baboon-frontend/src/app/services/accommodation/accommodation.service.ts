@@ -4,6 +4,7 @@ import {Accommodation} from "../../layout/accommodations/model/accommodation.mod
 import {environment} from "../../env/env";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {AccommodationFilter} from "../../layout/accommodations/model/accommodationFilter.model";
+import {AvailablePeriod} from "../../layout/accommodations/model/available-period.model";
 
 @Injectable({
   providedIn: 'root'
@@ -76,5 +77,27 @@ export class AccommodationService {
       .set('checkout', checkout);
 
     return this.httpClient.get<number>(`${environment.apiHost}accommodations/${accommodationId}/total-price`, { params });
+  }
+
+  create(accommodation: Accommodation) {
+    return this.httpClient.post<Accommodation>(environment.apiHost + 'accommodations',accommodation)
+  }
+
+  createPeriod(period: AvailablePeriod): Observable<AvailablePeriod>{
+    if (!period.timeSlot?.startDate || !period.timeSlot?.endDate) throw new Error()
+      const body= {
+        timeSlot: {
+          startDate: new Date(period.timeSlot.startDate),
+          endDate: new Date(period.timeSlot.endDate)
+        },
+        pricePerNight: period.pricePerNight
+      }
+
+
+    return this.httpClient.post<AvailablePeriod>(environment.apiHost + 'available-periods',body)
+  }
+
+  addPeriod(accommodationId: number, periodId: number | undefined): Observable<Accommodation> {
+    return this.httpClient.put<Accommodation>(environment.apiHost + 'accommodations/' + accommodationId + "/addPeriod/" + periodId,{});
   }
 }
