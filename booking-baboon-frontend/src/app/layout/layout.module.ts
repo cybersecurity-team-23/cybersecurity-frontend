@@ -35,25 +35,6 @@ import {ReviewCardComponent} from "./Reviews/review-card/review-card.component";
 import {ReviewCardsComponent} from "./Reviews/review-cards/review-cards.component";
 import {ReviewsDialogComponent} from "./Reviews/reviews-dialog/reviews-dialog.component";
 import {ConfirmComponent} from "./dialogs/confirm/confirm.component";
-import {
-  HostAccommodationsListComponent
-} from "./accommodations/pages/host-accommodations-list/host-accommodations-list.component";
-import {
-  HostAccommodationCardComponent
-} from "./accommodations/components/host-accommodation-card/host-accommodation-card.component";
-import {
-  HostAccommodationCardsComponent
-} from "./accommodations/components/host-accommodation-cards/host-accommodation-cards.component";
-import {
-  ReservationRequestPageComponent
-} from "./Reservations/reservation-request-page/reservation-request-page.component";
-import {ReservationRequestComponent} from "./Reservations/reservation-request/reservation-request.component";
-import {
-  AccommodationCreationPageComponent
-} from "./accommodations/pages/accommodation-creation-page/accommodation-creation-page.component";
-import {
-  AccommodationCreationComponent
-} from "./accommodations/components/accommodation-creation/accommodation-creation.component";
 import {MaterialModule} from "../infrastructure/material/material.module";
 import {RouterLink, RouterModule} from "@angular/router";
 import {MatInputModule} from "@angular/material/input";

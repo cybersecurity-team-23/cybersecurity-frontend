@@ -23,6 +23,7 @@ export class AccommodationService {
   create(accommodation: Accommodation) : Observable<Accommodation> {
     return this.httpClient.post<Accommodation>(environment.apiHost + 'accommodations', accommodation);
   }
+
   update(accommodation: Accommodation) : Observable<Accommodation> {
     return this.httpClient.put<Accommodation>(environment.apiHost + 'accommodations', accommodation);
   }
@@ -79,9 +80,7 @@ export class AccommodationService {
     return this.httpClient.get<number>(`${environment.apiHost}accommodations/${accommodationId}/total-price`, { params });
   }
 
-  create(accommodation: Accommodation) {
-    return this.httpClient.post<Accommodation>(environment.apiHost + 'accommodations',accommodation)
-  }
+
 
   createPeriod(period: AvailablePeriod): Observable<AvailablePeriod>{
     if (!period.timeSlot?.startDate || !period.timeSlot?.endDate) throw new Error()
