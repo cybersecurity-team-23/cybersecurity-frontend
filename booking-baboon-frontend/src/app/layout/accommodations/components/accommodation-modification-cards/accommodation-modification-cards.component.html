@@ -1,6 +1,8 @@
 <div id="accommodationList">
-  <div *ngFor="let accommodationModification of accommodationModifications" id="cards">
-    <app-accommodation-modification-card [accommodationModification]="accommodationModification"></app-accommodation-modification-card>
-  </div>
+  <ng-container *ngFor="let accommodationModification of accommodationModifications">
+    <div id="cards" *ngIf="showAllRequests || accommodationModification.status === AccommodationModificationStatus.Pending">
+      <app-accommodation-modification-card [accommodationModification]="accommodationModification"></app-accommodation-modification-card>
+    </div>
+  </ng-container>
 </div>
 

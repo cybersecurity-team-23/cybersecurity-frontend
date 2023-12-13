@@ -4,7 +4,9 @@ import {AccommodationService} from "../../../../services/accommodation/accommoda
 import {AccommodationModification} from "../../model/accommodation-modification.model";
 import {
   AccommodationModificationService
-} from "../../../../services/accommodation/accommodation-modification.service.service";
+} from "../../../../services/accommodation/accommodation-modification.service";
+import {SharedService} from "../../../../shared/shared.service";
+import {AccommodationModificationStatus} from "../../model/accommodation-modification-status";
 
 @Component({
   selector: 'app-accommodation-modification-cards',
@@ -13,6 +15,12 @@ import {
 })
 export class AccommodationModificationCardsComponent {
   @Input() accommodationModifications!: AccommodationModification[];
-  constructor(private service: AccommodationModificationService) {
+  showAllRequests: boolean = true;
+  constructor(private service: AccommodationModificationService, private sharedService: SharedService) {
+    this.sharedService.showAllRequests$.subscribe((value) => {
+      this.showAllRequests = value;
+    });
   }
+
+  protected readonly AccommodationModificationStatus = AccommodationModificationStatus;
 }

@@ -12,7 +12,7 @@ import {AccommodationReview} from "../../../Reviews/model/accommodation-review.m
 import {AccommodationModification} from "../../model/accommodation-modification.model";
 import {
   AccommodationModificationService
-} from "../../../../services/accommodation/accommodation-modification.service.service";
+} from "../../../../services/accommodation/accommodation-modification.service";
 
 @Component({
   selector: 'app-accommodation-modification-details',

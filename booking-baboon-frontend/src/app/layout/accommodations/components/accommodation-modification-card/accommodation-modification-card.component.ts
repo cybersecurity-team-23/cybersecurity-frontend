@@ -7,7 +7,7 @@ import {AccommodationService} from "../../../../services/accommodation/accommoda
 import {SharedService} from "../../../../shared/shared.service";
 import {
   AccommodationModificationService
-} from "../../../../services/accommodation/accommodation-modification.service.service";
+} from "../../../../services/accommodation/accommodation-modification.service";
 import {AccommodationModificationStatus} from "../../model/accommodation-modification-status";
 import {Host} from "../../../authentication/models/host.model";
 import {HostService} from "../../../../services/user/host.service";
