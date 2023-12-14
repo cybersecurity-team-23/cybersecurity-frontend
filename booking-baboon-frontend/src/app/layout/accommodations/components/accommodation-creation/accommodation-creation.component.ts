@@ -16,6 +16,7 @@ import {Image} from "../../../images/image.model";
 import {ImageService} from "../../../images/image.service";
 import {ImageResponse} from "../../../images/imageResponse.model";
 import {Router} from "@angular/router";
+import {DateValidators} from "../../validators/date-validators";
 @Component({
   selector: 'app-accommodation-creation',
   templateUrl: './accommodation-creation.component.html',
@@ -51,16 +52,18 @@ export class AccommodationCreationComponent implements OnInit {
 
   });
 
+  constructor(private amenityService: AmenityService, private authService:AuthService, private accommodationService:AccommodationService, private imageService:ImageService, private router: Router, private validators: DateValidators) {
+  }
+
   public periodForm: FormGroup = new FormGroup({
     startDate: new FormControl(),
     endDate: new FormControl(),
     price: new FormControl('',[Validators.min(1),Validators.required]),
     isPricingPerPerson: new FormControl(false)
-  },{validators: [this.validateDateRange('startDate', 'endDate'), this.futureDateValidator('startDate'), this.overlappingDatesValidator('startDate','endDate')]})
+  },{validators: [this.validators.validateDateRange('startDate', 'endDate'), this.validators.futureDateValidator('startDate'), this.validators.overlappingDatesValidator('startDate','endDate', this.availablePeriods)]})
 
 
-  constructor(private amenityService: AmenityService, private authService:AuthService, private accommodationService:AccommodationService, private imageService:ImageService, private router: Router) {
-  }
+
 
   ngOnInit(): void {
     this.amenityService.getAll().subscribe({
@@ -160,66 +163,7 @@ export class AccommodationCreationComponent implements OnInit {
     }
   }
 
-  validateDateRange(startControlName: string, endControlName: string) :ValidatorFn {
-    return (abstractControl: AbstractControl) => {
-      const startDate = abstractControl.get(startControlName);
-      const endDate = abstractControl.get(endControlName);
-      if(!startDate||!endDate) return null;
-      if (startDate.value && endDate.value && startDate.value > endDate.value) {
-        const error = {confirmedValidator: 'Dates are not valid.'};
-        endDate.setErrors({ dateRange: true });
-        return error;
-      } else {
-        endDate.setErrors(null);
-        return null;
-      }
-    };
-  }
 
-  futureDateValidator(startControlName: string):ValidatorFn {
-    return (control: AbstractControl) => {
-      const currentDate = new Date();
-      const startDate = control.get(startControlName);
-      if(!startDate) return null;
-      if (startDate?.value <= currentDate) {
-        const error = {confirmedValidator: 'Dates are not valid.'};
-        startDate.setErrors(error)
-        return { error};
-      }
-
-      return null;
-    };
-  }
-
-  overlappingDatesValidator(startControlName: string, endControlName: string): ValidatorFn {
-    return (abstractControl: AbstractControl): ValidationErrors | null => {
-      const startDate = abstractControl.get(startControlName);
-      const endDate = abstractControl.get(endControlName);
-
-      if (startDate && endDate) {
-        const overlap = this.availablePeriods.some(period => this.isDateRangeOverlapping(startDate.value, endDate.value, period));
-        if (overlap){
-          const error = {confirmedValidator: 'Dates are not valid.'};
-          startDate.setErrors(error)
-          return error;
-        }
-        return null;
-      }
-
-      return null;
-    };
-  }
-
-  isDateRangeOverlapping(newStartDate: Date, newEndDate: Date, existingPeriod: any): boolean {
-    const existingStartDate =  new Date(existingPeriod.timeSlot.startDate) ;
-    const existingEndDate = new Date(existingPeriod.timeSlot.endDate);
-
-    return (
-      (newStartDate >= existingStartDate && newStartDate <= existingEndDate) ||
-      (newEndDate >= existingStartDate && newEndDate <= existingEndDate) ||
-      (newStartDate <= existingStartDate && newEndDate >= existingEndDate)
-    );
-  }
 
   addAvailablePeriod(): void {
     if (this.periodForm.valid) {
@@ -239,12 +183,6 @@ export class AccommodationCreationComponent implements OnInit {
   removeAvailablePeriod(index: number): void {
     this.availablePeriods.splice(index, 1);
   }
-
- addPeriods(accommodationId: number){
-
-
- }
-
 
   createAccommodation() {
     if(!this.accommodationForm.valid) return;

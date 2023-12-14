@@ -54,6 +54,8 @@ import { ReservationRequestComponent } from './Reservations/reservation-request/
 import { AccommodationCreationPageComponent } from './accommodations/pages/accommodation-creation-page/accommodation-creation-page.component';
 import { AccommodationCreationComponent } from './accommodations/components/accommodation-creation/accommodation-creation.component';
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { AccommodationAvailablePeriodComponent } from './accommodations/components/accommodation-available-period/accommodation-available-period.component';
+import { AccommodationAvailablePeriodPageComponent } from './accommodations/pages/accommodation-available-period-page/accommodation-available-period-page.component';
 
 
 
@@ -95,7 +97,9 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     ReservationRequestPageComponent,
     ReservationRequestComponent,
     AccommodationCreationPageComponent,
-    AccommodationCreationComponent
+    AccommodationCreationComponent,
+    AccommodationAvailablePeriodComponent,
+    AccommodationAvailablePeriodPageComponent
   ],
   exports: [
     NavbarComponent,

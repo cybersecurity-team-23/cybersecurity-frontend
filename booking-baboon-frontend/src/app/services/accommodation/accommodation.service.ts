@@ -99,4 +99,21 @@ export class AccommodationService {
   addPeriod(accommodationId: number, periodId: number | undefined): Observable<Accommodation> {
     return this.httpClient.put<Accommodation>(environment.apiHost + 'accommodations/' + accommodationId + "/addPeriod/" + periodId,{});
   }
+
+  editAvailablePeriod(availablePeriod: AvailablePeriod){
+    return this.httpClient.put<AvailablePeriod>(environment.apiHost+'available-periods',availablePeriod)
+  }
+
+  createAvailablePeriod(availablePeriod: AvailablePeriod){
+    return this.httpClient.post<AvailablePeriod>(environment.apiHost+'available-periods',availablePeriod)
+  }
+
+  getAvailablePeriod(periodId: number){
+    return this.httpClient.get<AvailablePeriod>(environment.apiHost+'available-periods/'+periodId)
+  }
+
+  removePeriod(accommodationId: number,periodId: number){
+    return this.httpClient.delete(environment.apiHost+'accommodations/'+ accommodationId+'/available-periods/' + periodId)
+  }
+
 }
