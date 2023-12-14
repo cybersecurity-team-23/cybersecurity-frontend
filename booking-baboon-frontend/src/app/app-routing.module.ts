@@ -28,6 +28,12 @@ import {
 import {
   AccommodationCreationPageComponent
 } from "./layout/accommodations/pages/accommodation-creation-page/accommodation-creation-page.component";
+import {
+  AccommodationAvailablePeriodComponent
+} from "./layout/accommodations/components/accommodation-available-period/accommodation-available-period.component";
+import {
+  AccommodationAvailablePeriodPageComponent
+} from "./layout/accommodations/pages/accommodation-available-period-page/accommodation-available-period-page.component";
 
 
 const routes: Routes = [
@@ -44,7 +50,8 @@ const routes: Routes = [
   {component: AccommodationModificationPageComponent, path:"accommodation-modifications"},
   {component: AccommodationModificationDetailsPageComponent, path:"accommodation-modifications/:accommodationModificationId"},
   {component: ReservationRequestPageComponent, path:"accommodations/:accommodationId/reserve"},
-  {component: AccommodationCreationPageComponent, path: "host/accommodations/create"}
+  {component: AccommodationCreationPageComponent, path: "host/accommodations/create"},
+  {component: AccommodationAvailablePeriodPageComponent,path: 'accommodations/periods/:id',},
 ];
 
 @NgModule({

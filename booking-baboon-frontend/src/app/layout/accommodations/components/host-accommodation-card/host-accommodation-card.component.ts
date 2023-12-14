@@ -16,8 +16,6 @@ export class HostAccommodationCardComponent {
   rating: number | undefined;
   ratingDisplay: string | undefined;
   constructor(private route: ActivatedRoute, private accommodationReviewService: AccommodationReviewService) {
-  }
-  ngOnInit(): void {
     if (this.accommodation !== undefined) {
       this.route.params.subscribe((params) => {
 

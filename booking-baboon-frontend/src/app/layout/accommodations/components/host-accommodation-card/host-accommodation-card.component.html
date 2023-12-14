@@ -1,4 +1,4 @@
-<mat-card id="mat-card">
+<mat-card id="mat-card" *ngIf="accommodation!==undefined">
     <img mat-card-image class="card-image"  src="../../../../../assets/test.jpg" alt="accommodation image">
 
 
@@ -25,6 +25,7 @@
       <div id="buttons">
         <button mat-raised-button  id="generate-report">Generate report <mat-icon> article</mat-icon></button>
         <div id="right-buttons">
+          <button mat-raised-button [routerLink]="['/accommodations/periods/', accommodation.id]">Change availability</button>
           <button mat-raised-button id="edit">Edit</button>
           <button mat-raised-button id="delete">Delete</button>
         </div>
