@@ -20,7 +20,9 @@ export class AccommodationModificationService {
   get(id: number): Observable<AccommodationModification> {
     return this.httpClient.get<AccommodationModification>(environment.apiHost + 'accommodation-modifications/' + id)
   }
-
+  create(accommodationModification: AccommodationModification): Observable<AccommodationModification> {
+    return this.httpClient.post<AccommodationModification>(environment.apiHost + 'accommodation-modifications/', accommodationModification)
+  }
   approve(id: number): Observable<AccommodationModification> {
     return this.httpClient.put<AccommodationModification>(environment.apiHost + 'accommodation-modifications/approve/' + id, id);
   }
