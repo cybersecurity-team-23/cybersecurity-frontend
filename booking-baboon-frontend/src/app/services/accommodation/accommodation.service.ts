@@ -116,4 +116,12 @@ export class AccommodationService {
     return this.httpClient.delete(environment.apiHost+'accommodations/'+ accommodationId+'/available-periods/' + periodId)
   }
 
+  updateEditingStatus(accommodationId: number, isBeingEdited: Boolean) : Observable<Accommodation> {
+/*    const body = {
+      accommodationId: accommodationId,
+      isBeingEdited: isBeingEdited
+    }*/
+    return this.httpClient.put<Accommodation>(environment.apiHost + 'accommodations/' + accommodationId + '/updateEditingStatus/' + isBeingEdited, {});
+  }
+
 }

@@ -20,5 +20,6 @@ export interface Accommodation {
   type?: AccommodationType;
   isAutomaticallyAccepted?: boolean;
   images?: ImageResponse[];
+  isBeingEdited?: Boolean;
 
 }
