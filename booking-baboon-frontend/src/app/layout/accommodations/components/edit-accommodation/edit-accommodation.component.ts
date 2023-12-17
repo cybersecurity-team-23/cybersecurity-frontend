@@ -252,6 +252,16 @@ export class EditAccommodationComponent {
   }
   editAccommodation() {
     if(!this.accommodationForm.valid) return;
+    this.accommodation.isBeingEdited = true;
+    if (this.accommodation.id) {
+      this.accommodationService.updateEditingStatus(this.accommodation.id, true).subscribe({
+        next(accommodation: Accommodation) {
+          console.log("isBeingEdited = true");
+        }, error(error) {
+          console.log("an error occured");
+        }
+      });
+    }
     const accommodationModification: AccommodationModification = {
       accommodation: this.accommodation,
       name: this.accommodationForm.value.name,
@@ -269,29 +279,32 @@ export class EditAccommodationComponent {
       isPricingPerPerson: this.periodForm.value.isPricingPerPerson,
       type: this.accommodationForm.value.type,
       isAutomaticallyAccepted: false,
-      requestDate: new Date(),
+/*      requestDate: new Date(),*/
       requestType: AccommodationModificationType.Edited,
     }
     const images = this.imageList;
     console.log(this.imageList);
     console.log(this.urls);
     const accommodationService :AccommodationService = this.accommodationService;
+    const accommodationModificationService :AccommodationModificationService = this.accommodationModificationService;
     const imageService = this.imageService;
     const periods =this.availablePeriods;
     const router = this.router;
     let id: number
+/*
     this.imageList = images.filter(image => !this.oldImages.includes(image));
+*/
     this.accommodationModificationService.create(accommodationModification).subscribe({
       next(data: Accommodation){
         if(data.id) id = data.id;
         if(!id) return;
-/*        for (const period of periods) {
+        for (const period of periods) {
           accommodationService.createPeriod(period).subscribe({
             next(data: AvailablePeriod){
-              accommodationService.addPeriod(id,data.id).subscribe()
+              accommodationModificationService.addPeriod(id,data.id).subscribe()
             }
           })
-        }*/
+        }
 
         for (const image of images) {
           const formData: FormData = new FormData();
@@ -301,7 +314,7 @@ export class EditAccommodationComponent {
           imageService.create(formData).subscribe({
             next(data: ImageResponse){
               if(!data.id)return
-              imageService.addToAccommodation(id,data.id).subscribe()
+              imageService.addToAccommodationModification(id,data.id).subscribe()
             }
 
           })
