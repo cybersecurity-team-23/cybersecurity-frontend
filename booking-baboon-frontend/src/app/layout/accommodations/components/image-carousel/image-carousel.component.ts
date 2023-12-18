@@ -1,6 +1,5 @@
-import {AfterViewInit, Component, Input, ElementRef, ViewChild, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, ElementRef, ViewChild, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import { animate, style, transition, trigger } from "@angular/animations";
-import {delay} from "rxjs";
 
 @Component({
   selector: 'app-image-carousel',
@@ -19,7 +18,7 @@ import {delay} from "rxjs";
     ]),
   ],
 })
-export class ImageCarouselComponent implements OnInit {
+export class ImageCarouselComponent implements OnInit, OnChanges {
   @Input() images!: string[];
 
   currentImage!: string | undefined;
@@ -29,7 +28,11 @@ export class ImageCarouselComponent implements OnInit {
   ngOnInit() {
     this.loadImage(this.currentIndex);
   }
-
+  ngOnChanges(changes: SimpleChanges) {
+    // if (changes['images'] && changes['images'].currentValue) {
+    //   this.loadImage(this.currentIndex);
+    // }
+  }
   nextImage() {
     this.currentIndex = (this.currentIndex + 1) % this.images.length;
     this.loadImage(this.currentIndex);
@@ -53,9 +56,6 @@ export class ImageCarouselComponent implements OnInit {
       this.isLoading = false;
     });
 
-    img.addEventListener('error', () => {
-      console.error(`Failed to load image: ${this.images[index]}`);
-      this.isLoading = false;
-    });
   }
+
 }

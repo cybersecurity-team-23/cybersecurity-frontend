@@ -25,7 +25,7 @@ mat-card-content{
   background-color: #000000;
   height: 12em;
   border-radius: 5px;
-  background-image: url("../../../../../assets/test.jpg");
+  /*background-image: url("../../../../../assets/test.jpg");*/
   background-size: cover;
 }
 
