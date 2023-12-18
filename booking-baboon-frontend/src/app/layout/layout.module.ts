@@ -60,6 +60,7 @@ import {EditAccommodationComponent} from "./accommodations/components/edit-accom
 import {
   EditAccommodationPageComponent
 } from "./accommodations/pages/edit-accommodation-page/edit-accommodation-page.component";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 
@@ -123,7 +124,8 @@ import {
         FormsModule,
         MatDialogModule,
         SharedModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatTooltipModule
     ]
 })
 export class LayoutModule { }
