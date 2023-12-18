@@ -19,6 +19,7 @@ import {ImageResponse} from "../../../images/imageResponse.model";
 import {AccommodationModification} from "../../model/accommodation-modification.model";
 import {AccommodationModificationService} from "../../../../services/accommodation/accommodation-modification.service";
 import {AccommodationModificationType} from "../../model/accommodation-modification-type";
+import {AccommodationModificationRequest} from "../../model/accommodation-modification-request.model";
 
 @Component({
   selector: 'app-edit-accommodation',
@@ -140,7 +141,7 @@ export class EditAccommodationComponent {
               this.urls.push(dataUrl);
 
               if (imageResponse.id != undefined) {
-                const file = new File([imageData], imageResponse.id.toString());
+                const file = new File([imageData], imageResponse.id.toString() + ".jpg");
                 this.imageList.push(file);
                 this.oldImages.push(file);
               }
@@ -262,8 +263,8 @@ export class EditAccommodationComponent {
         }
       });
     }
-    const accommodationModification: AccommodationModification = {
-      accommodation: this.accommodation,
+    const accommodationModification: AccommodationModificationRequest = {
+      accommodation: {id: this.accommodation.id},
       name: this.accommodationForm.value.name,
       description: this.accommodationForm.value.description,
       host: {id: this.authService.getId()},
