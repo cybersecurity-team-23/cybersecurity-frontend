@@ -22,7 +22,10 @@
         <p class="rating">{{ratingDisplay}}</p>
       </div>
     </div>
-    <button id="see-more-button" mat-raised-button color="primary" [routerLink]="['/accommodations', accommodation.id]">See more</button>
+    <button id="see-more-button" mat-raised-button color="primary" *ngIf="!accommodation.isBeingEdited" [routerLink]="['/accommodations', accommodation.id]">See more</button>
+    <div class="disabled-see-more" [matTooltip]="'This accommodation is waiting modification approval. Please check later.'">
+      <button mat-raised-button *ngIf="accommodation.isBeingEdited" id="disabled-see-more-button" [disabled]="true">See more</button>
+    </div>
   </mat-card-content>
 </mat-card>
 
