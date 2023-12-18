@@ -55,7 +55,6 @@ export class EditAccommodationComponent {
     minGuests: new FormControl(1,[Validators.min(1),Validators.required]),
     maxGuests: new FormControl(1,[Validators.min(1),Validators.required]),
     type: new FormControl(AccommodationType.Hotel,Validators.required),
-
   });
 
   constructor(private accommodationModificationService: AccommodationModificationService, private route: ActivatedRoute, private amenityService: AmenityService, private authService:AuthService, private accommodationService:AccommodationService, private imageService:ImageService, private router: Router, private validators: DateValidators) {
@@ -112,8 +111,7 @@ export class EditAccommodationComponent {
       this.accommodationForm.get('minGuests')?.setValue(this.accommodation.minGuests);
       this.accommodationForm.get('maxGuests')?.setValue(this.accommodation.maxGuests);
       this.accommodationForm.get('type')?.setValue(this.accommodation.type);
-      this.accommodationForm.get('isPricingPerPerson')?.setValue(this.accommodation.isPricingPerPerson);
-      //images
+      this.periodForm.get('isPricingPerPerson')?.setValue(this.accommodation.isPricingPerPerson);
     }
   }
   loadAvailablePeriods(): void {
@@ -303,6 +301,9 @@ export class EditAccommodationComponent {
           accommodationService.createPeriod(period).subscribe({
             next(data: AvailablePeriod){
               accommodationModificationService.addPeriod(id,data.id).subscribe()
+            },
+            error(error) {
+              accommodationModificationService.addPeriod(id,period.id).subscribe()
             }
           })
         }
