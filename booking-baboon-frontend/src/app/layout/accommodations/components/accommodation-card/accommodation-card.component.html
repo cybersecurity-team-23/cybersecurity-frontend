@@ -1,7 +1,7 @@
 <mat-card id="accommodation-card">
   <mat-card-content>
     <b class="title" [routerLink]="['/accommodation', accommodation.id]">{{accommodation.name}}</b>
-    <div class="card-image"></div>
+    <img src="{{loadedImages[0]}}" alt="accommodation image" class="card-image" *ngIf="loadedImages">
     <div class="location">
       <mat-icon id="location-pin" fontIcon="room"></mat-icon>
       <p class="location">{{accommodationLocation}}</p>

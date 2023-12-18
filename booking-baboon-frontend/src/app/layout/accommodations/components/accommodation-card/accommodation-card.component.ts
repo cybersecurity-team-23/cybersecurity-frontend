@@ -3,6 +3,8 @@ import {Accommodation} from "../../model/accommodation.model";
 import {ActivatedRoute} from "@angular/router";
 import {AccommodationService} from "../../../../services/accommodation/accommodation.service";
 import {AccommodationReviewService} from "../../../../services/review/accommodation-review.service";
+import {ImageResponse} from "../../../images/imageResponse.model";
+import {ImageService} from "../../../images/image.service";
 
 @Component({
   selector: 'app-accommodation-card',
@@ -16,11 +18,13 @@ export class AccommodationCardComponent {
   accommodationLocation: string | undefined;
   rating: number | undefined;
   ratingDisplay: string | undefined;
-  constructor(private route: ActivatedRoute, private accommodationReviewService: AccommodationReviewService) {
+  loadedImages: string[] = [];
+  constructor(private route: ActivatedRoute, private accommodationReviewService: AccommodationReviewService, private imageService: ImageService) {
   }
   ngOnInit(): void {
     if (this.accommodation !== undefined) {
       this.route.params.subscribe((params) => {
+        this.loadImages();
 
         this.accommodationLocation = this.accommodation.location?.address + ", " + this.accommodation.location?.city + ", " + this.accommodation.location?.country;
 
@@ -36,6 +40,17 @@ export class AccommodationCardComponent {
         });
       });
 
+    }
+  }
+
+  loadImages(): void {
+    if (this.accommodation.images) {
+      this.accommodation.images.forEach((imageResponse: ImageResponse) => {
+        this.imageService.getImage(imageResponse.id).subscribe({
+          next: (imageContent: Blob) => { this.loadedImages.push(URL.createObjectURL(imageContent)); },
+          error: (_) => { console.log(`Error loading image with ID ${imageResponse.id}`); }
+        });
+      });
     }
   }
 

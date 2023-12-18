@@ -1,6 +1,7 @@
 .carousel {
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
   position: relative;
   max-width: 100%;
@@ -10,7 +11,7 @@
 img {
   max-height: 100%;
   max-width: calc(100% - 100px);
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .indicator {
