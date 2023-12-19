@@ -4,10 +4,14 @@ import {AvailablePeriod} from "./available-period.model";
 import {AccommodationType} from "./accommodation-type.model";
 import {ImageResponse} from "../../images/imageResponse.model";
 import {Host} from "../../authentication/models/host.model";
+import {Accommodation} from "./accommodation.model";
+import {AccommodationModificationStatus} from "./accommodation-modification-status";
+import {AccommodationModificationType} from "./accommodation-modification-type";
+import {AccommodationReference} from "./accommodationReference.model";
 
 
-export interface Accommodation {
-  id?: number;
+export interface AccommodationModificationRequest {
+  accommodation?: AccommodationReference;
   name?: string;
   description?: string;
   host?:  Host;
@@ -20,6 +24,5 @@ export interface Accommodation {
   type?: AccommodationType;
   isAutomaticallyAccepted?: boolean;
   images?: ImageResponse[];
-  isBeingEdited?: Boolean;
-
+  requestType?: AccommodationModificationType;
 }

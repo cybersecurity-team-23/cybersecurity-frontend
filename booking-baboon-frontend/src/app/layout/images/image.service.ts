@@ -24,4 +24,8 @@ export class ImageService {
     return this.http.put(`${environment.apiHost}accommodations/${accommodationId}/add/${imageId}`, {});
   }
 
+  addToAccommodationModification(accommodationModificationId: number, imageId: number ): Observable<Accommodation>{
+    return this.http.put(`${environment.apiHost}accommodation-modifications/${accommodationModificationId}/add/${imageId}`, {});
+  }
+
 }

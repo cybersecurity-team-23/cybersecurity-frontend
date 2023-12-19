@@ -26,7 +26,10 @@
         <button mat-raised-button  id="generate-report">Generate report <mat-icon> article</mat-icon></button>
         <div id="right-buttons">
           <button mat-raised-button [routerLink]="['/accommodations/periods/', accommodation.id]">Change availability</button>
-          <button mat-raised-button id="edit">Edit</button>
+          <button mat-raised-button *ngIf="!accommodation.isBeingEdited" id="edit" [routerLink]="['/accommodations', accommodation.id, 'edit']">Edit</button>
+          <div [matTooltip]="'There is already an edit request waiting approval'">
+            <button mat-raised-button *ngIf="accommodation.isBeingEdited" id="disabled-edit" [disabled]="true" [matTooltip]="'Editing is disabled'">Edit</button>
+          </div>
           <button mat-raised-button id="delete">Delete</button>
         </div>
       </div>

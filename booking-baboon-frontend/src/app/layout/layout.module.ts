@@ -56,6 +56,11 @@ import { AccommodationCreationComponent } from './accommodations/components/acco
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import { AccommodationAvailablePeriodComponent } from './accommodations/components/accommodation-available-period/accommodation-available-period.component';
 import { AccommodationAvailablePeriodPageComponent } from './accommodations/pages/accommodation-available-period-page/accommodation-available-period-page.component';
+import {EditAccommodationComponent} from "./accommodations/components/edit-accommodation/edit-accommodation.component";
+import {
+  EditAccommodationPageComponent
+} from "./accommodations/pages/edit-accommodation-page/edit-accommodation-page.component";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 
@@ -99,7 +104,9 @@ import { AccommodationAvailablePeriodPageComponent } from './accommodations/page
     AccommodationCreationPageComponent,
     AccommodationCreationComponent,
     AccommodationAvailablePeriodComponent,
-    AccommodationAvailablePeriodPageComponent
+    AccommodationAvailablePeriodPageComponent,
+    EditAccommodationComponent,
+    EditAccommodationPageComponent
   ],
   exports: [
     NavbarComponent,
@@ -117,7 +124,8 @@ import { AccommodationAvailablePeriodPageComponent } from './accommodations/page
         FormsModule,
         MatDialogModule,
         SharedModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatTooltipModule
     ]
 })
 export class LayoutModule { }

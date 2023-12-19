@@ -34,6 +34,9 @@ import {
 import {
   AccommodationAvailablePeriodPageComponent
 } from "./layout/accommodations/pages/accommodation-available-period-page/accommodation-available-period-page.component";
+import {
+  EditAccommodationPageComponent
+} from "./layout/accommodations/pages/edit-accommodation-page/edit-accommodation-page.component";
 
 
 const routes: Routes = [
@@ -52,6 +55,7 @@ const routes: Routes = [
   {component: ReservationRequestPageComponent, path:"accommodations/:accommodationId/reserve"},
   {component: AccommodationCreationPageComponent, path: "host/accommodations/create"},
   {component: AccommodationAvailablePeriodPageComponent,path: 'accommodations/periods/:id',},
+  {component: EditAccommodationPageComponent,path: 'accommodations/:accommodationId/edit'},
 ];
 
 @NgModule({
