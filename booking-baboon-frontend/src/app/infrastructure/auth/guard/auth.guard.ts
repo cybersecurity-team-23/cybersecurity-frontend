@@ -39,7 +39,3 @@ export class AuthGuard {
   }
 }
 
-const route: Route = {
-  path: 'admin',
-  canActivate: mapToCanActivate([AuthGuard]),
-};
