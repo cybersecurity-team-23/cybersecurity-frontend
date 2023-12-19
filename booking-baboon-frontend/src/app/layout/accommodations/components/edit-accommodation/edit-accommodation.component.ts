@@ -294,7 +294,7 @@ export class EditAccommodationComponent {
     this.imageList = images.filter(image => !this.oldImages.includes(image));
 */
     this.accommodationModificationService.create(accommodationModification).subscribe({
-      next(data: Accommodation){
+      next(data: AccommodationModification){
         if(data.id) id = data.id;
         if(!id) return;
         for (const period of periods) {
@@ -303,7 +303,7 @@ export class EditAccommodationComponent {
               accommodationModificationService.addPeriod(id,data.id).subscribe()
             },
             error(error) {
-              accommodationModificationService.addPeriod(id,period.id).subscribe()
+              console.log("Period error occured");
             }
           })
         }

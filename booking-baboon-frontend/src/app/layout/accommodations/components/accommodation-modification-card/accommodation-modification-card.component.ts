@@ -86,6 +86,7 @@ export class AccommodationModificationCardComponent {
       type: this.accommodationModification.type,
       isAutomaticallyAccepted: this.accommodationModification.isAutomaticallyAccepted,
       images: this.accommodationModification.images,
+      isBeingEdited: false,
     };
 
     if (this.accommodationModification.requestType == AccommodationModificationType.Edited) {
@@ -99,6 +100,7 @@ export class AccommodationModificationCardComponent {
   private updateAccommodation(newAccommodation: Accommodation) {
     this.accommodationService.update(newAccommodation).subscribe({
       next: (accommodationResponse : Accommodation) => {
+        //TODO: UPDATE IMAGES AND AVAILABLE PERIODS
         this.approveRequest();
       },
       error: (_) => {this.sharedService.openSnack("An error occured!")}
@@ -106,9 +108,9 @@ export class AccommodationModificationCardComponent {
   }
 
   private createAccommodation(newAccommodation: Accommodation) {
-    this.accommodationService.create(newAccommodation).subscribe({
-      next: (accommodationResponse : Accommodation) => {
-        this.accommodationModification = accommodationResponse;
+    if (this.accommodationModification.accommodation?.id)
+    this.accommodationService.updateEditingStatus(this.accommodationModification.accommodation.id, false).subscribe({
+      next: () => {
         this.approveRequest();
       },
       error: (_) => {this.sharedService.openSnack("An error occured!")}
