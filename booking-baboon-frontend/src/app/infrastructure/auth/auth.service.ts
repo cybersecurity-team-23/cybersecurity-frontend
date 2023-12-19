@@ -33,6 +33,8 @@ export class AuthService {
   }
 
   logout(): Observable<string> {
+    localStorage.removeItem('user');
+    this.setUser();
     return this.http.get(environment.apiHost + 'users/logout', {
       responseType: 'text',
     });
@@ -74,5 +76,14 @@ export class AuthService {
 
   getUser() {
     return this.user$;
+  }
+
+  getExpiration() : number | undefined{
+    if(this.isLoggedIn()){
+      const accessToken: any = localStorage.getItem('user');
+      const helper = new JwtHelperService();
+      return +helper.decodeToken(accessToken)["exp"];
+    }
+    return undefined;
   }
 }

@@ -37,25 +37,88 @@ import {
 import {
   EditAccommodationPageComponent
 } from "./layout/accommodations/pages/edit-accommodation-page/edit-accommodation-page.component";
+import {LoginGuard} from "./infrastructure/auth/guard/login.guard";
 
 
 const routes: Routes = [
-  {component: AccommodationsPageComponent, path:"accommodations"},
-  {component: LoginComponent, path:"login"},
-  {component: RegisterComponent, path:"register"},
-  {component: AccommodationDetailsPageComponent, path:"accommodations/:accommodationId"},
-  {component: ProfileComponent, path:"profile/:userEmail", canActivate: [AuthGuard],
-    data: {role: ['ADMIN', 'GUEST', 'HOST']}},
-  { path: '', redirectTo: '/accommodations', pathMatch: 'full' },
-  {component: ActivationComponent, path:"users/activate"},
-  {component: HostProfilePageComponent, path:"host/profile/:hostId"},
-  {component: HostAccommodationsListComponent, path:"host/accommodations"},
-  {component: AccommodationModificationPageComponent, path:"accommodation-modifications"},
-  {component: AccommodationModificationDetailsPageComponent, path:"accommodation-modifications/:accommodationModificationId"},
-  {component: ReservationRequestPageComponent, path:"accommodations/:accommodationId/reserve"},
-  {component: AccommodationCreationPageComponent, path: "host/accommodations/create"},
-  {component: AccommodationAvailablePeriodPageComponent,path: 'accommodations/periods/:id',},
-  {component: EditAccommodationPageComponent,path: 'accommodations/:accommodationId/edit'},
+  {
+    path: '',
+    redirectTo: '/accommodations',
+    pathMatch: 'full'
+  },
+  {
+    component: LoginComponent,
+    path:"login",
+    canActivate: [LoginGuard]
+  },
+  {
+    component: RegisterComponent,
+    path:"register",
+    canActivate: [LoginGuard]
+  },
+  {
+    component: AccommodationsPageComponent,
+    path:"accommodations"
+  },
+  {
+    component: AccommodationDetailsPageComponent,
+    path:"accommodations/:accommodationId"},
+  {
+    component: ProfileComponent,
+    path:"profile/:userEmail",
+    canActivate: [AuthGuard],
+    data: {role: ['ADMIN', 'GUEST', 'HOST']}
+  },
+  {
+    component: ActivationComponent,
+    path:"users/activate"
+  },
+  {
+    component: HostProfilePageComponent,
+    path:"host/profile/:hostId"
+  },
+  {
+    component: HostAccommodationsListComponent,
+    path:"host/accommodations",
+    canActivate: [AuthGuard],
+    data: {role: ['HOST']}
+  },
+  {
+    component: AccommodationModificationPageComponent,
+    path:"accommodation-modifications",
+    canActivate: [AuthGuard],
+    data: {role: ['ADMIN']}
+  },
+  {
+    component: AccommodationModificationDetailsPageComponent,
+    path:"accommodation-modifications/:accommodationModificationId",
+    canActivate: [AuthGuard],
+    data: {role: ['ADMIN']}
+  },
+  {
+    component: ReservationRequestPageComponent,
+    path:"accommodations/:accommodationId/reserve",
+    canActivate: [AuthGuard],
+    data: {role: ['GUEST']}
+  },
+  {
+    component: AccommodationCreationPageComponent,
+    path: "host/accommodations/create",
+    canActivate: [AuthGuard],
+    data: {role: ['HOST']}
+  },
+  {
+    component: AccommodationAvailablePeriodPageComponent,
+    path: 'accommodations/periods/:id',
+    canActivate: [AuthGuard],
+    data: {role: ['HOST']}
+  },
+  {
+    component: EditAccommodationPageComponent,
+    path: 'accommodations/:accommodationId/edit',
+    canActivate: [AuthGuard],
+    data: {role: ['HOST']}
+  },
 ];
 
 @NgModule({
