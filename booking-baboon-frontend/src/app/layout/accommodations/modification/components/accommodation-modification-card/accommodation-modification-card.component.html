@@ -3,7 +3,7 @@
     <div class="status-type">
       <p class="status-type">{{accommodationModification.requestType}}</p>
     </div>
-    <img mat-card-image class="card-image" src="../../../../../../assets/test.jpg" alt="accommodation image">
+    <img src="{{loadedImages[0]}}" alt="accommodation image" class="card-image" *ngIf="loadedImages">
   </div>
 
 

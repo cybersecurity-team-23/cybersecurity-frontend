@@ -5,13 +5,13 @@ import {AccommodationModification} from "../../model/accommodation-modification.
 import {Accommodation} from "../../../shared/models/accommodation.model";
 import {AccommodationService} from "../../../shared/services/accommodation.service";
 import {SharedService} from "../../../../../shared/shared.service";
-import {
-  AccommodationModificationService
-} from "../../accommodation-modification.service";
+import {AccommodationModificationService} from "../../accommodation-modification.service";
 import {AccommodationModificationStatus} from "../../model/accommodation-modification-status";
 import {Host} from "../../../../users/models/host.model";
 import {HostService} from "../../../../users/services/host.service";
 import {AccommodationModificationType} from "../../model/accommodation-modification-type";
+import {ImageResponse} from "../../../../../shared/images/imageResponse.model";
+import {ImageService} from "../../../../../shared/images/image.service";
 
 @Component({
   selector: 'app-accommodation-modification-card',
@@ -25,25 +25,39 @@ export class AccommodationModificationCardComponent {
   rating!: number;
   date: string= "";
   ratingDisplay!: string;
+  loadedImages: string[] = [];
+  accommodation!: Accommodation;
   constructor(private route: ActivatedRoute, private accommodationReviewService: AccommodationReviewService,
               private accommodationService : AccommodationService,
               private hostService : HostService,
               private sharedService : SharedService,
-              private accommodationModificationService: AccommodationModificationService) {
+              private accommodationModificationService: AccommodationModificationService,
+              private imageService: ImageService) {
   }
   ngOnInit(): void {
     if (this.accommodationModification !== undefined) {
       this.route.params.subscribe((params) => {
+        const accommodationId = this.accommodationModification.accommodation?.id;
 
-        this.parseDate();
-        this.loadHost();
-        this.getAverageRating();
+        if (accommodationId) {
+          this.accommodationService.getAccommodation(accommodationId).subscribe({
+            next: (data: Accommodation) => {
+              if (this.accommodationModification.accommodation != undefined) {
+                this.accommodation = data;
+                this.parseDate();
+                this.loadHost();
+                this.getAverageRating();
+                this.loadImages(); // Move loadImages inside this block
+              }
+            },
+            error: (_) => {
+              console.log("Error!");
+            }
+          });
+        }
       });
-
     }
   }
-
-
   private parseDate() {
     let new_Date: Date = new Date();
     let result: string = new_Date.toLocaleString();
@@ -58,6 +72,29 @@ export class AccommodationModificationCardComponent {
         }},
         error: (_) => { console.log("Error!"); }
       });
+    }
+  }
+
+  loadImages(): void {
+    if (this.accommodationModification.requestType == AccommodationModificationType.New) {
+      if (this.accommodation.images) {
+        this.accommodation.images.forEach((imageResponse: ImageResponse) => {
+          this.imageService.getImage(imageResponse.id).subscribe({
+            next: (imageContent: Blob) => { this.loadedImages.push(URL.createObjectURL(imageContent)); },
+            error: (_) => { console.log(`Error loading image with ID ${imageResponse.id}`); }
+          });
+        });
+      }
+    } else {
+      console.log(this.accommodationModification)
+      if (this.accommodationModification.images) {
+        this.accommodationModification.images.forEach((imageResponse: ImageResponse) => {
+          this.imageService.getImage(imageResponse.id).subscribe({
+            next: (imageContent: Blob) => { this.loadedImages.push(URL.createObjectURL(imageContent)); },
+            error: (_) => { console.log(`Error loading image with ID ${imageResponse.id}`); }
+          });
+        });
+      }
     }
   }
   getAverageRating(): void {
@@ -85,7 +122,7 @@ export class AccommodationModificationCardComponent {
       isPricingPerPerson: this.accommodationModification.isPricingPerPerson,
       type: this.accommodationModification.type,
       isAutomaticallyAccepted: this.accommodationModification.isAutomaticallyAccepted,
-      images: this.accommodationModification.images,
+      images: this.accommodation.images,
       isBeingEdited: false,
     };
 
@@ -98,6 +135,7 @@ export class AccommodationModificationCardComponent {
     }
   }
   private updateAccommodation(newAccommodation: Accommodation) {
+    newAccommodation.id = this.accommodation.id;
     this.accommodationService.update(newAccommodation).subscribe({
       next: (accommodationResponse : Accommodation) => {
         //TODO: UPDATE IMAGES AND AVAILABLE PERIODS
@@ -127,11 +165,32 @@ export class AccommodationModificationCardComponent {
     }
   }
   denyRequest(): void {
+    const accommodationService = this.accommodationService;
+    const accommodationModification = this.accommodationModification;
     if (this.accommodationModification.id != undefined) {
       this.accommodationModificationService.deny(this.accommodationModification?.id).subscribe({
         next: (accommodationModification: AccommodationModification) => {
+          if (this.accommodationModification.accommodation?.id) {
+            this.denyNewRequest(accommodationService, accommodationModification);
+            this.accommodationService.updateEditingStatus(this.accommodationModification.accommodation.id, false).subscribe();
+          }
           this.accommodationModification.status = AccommodationModificationStatus.Denied;
           this.sharedService.openSnack("Modification denied!");
+        }
+      })
+    }
+  }
+
+  private denyNewRequest(accommodationService: AccommodationService, accommodationModification: AccommodationModification) {
+    if (this.accommodationModification.requestType == AccommodationModificationType.New && this.accommodationModification?.id) {
+      this.accommodationModificationService.delete(this.accommodationModification.id).subscribe({
+        next(data: AccommodationModification) {
+          if (accommodationModification.accommodation?.id)
+            accommodationService.delete(accommodationModification.accommodation.id).subscribe({
+              next(data: Accommodation) {
+
+              }
+            })
         }
       })
     }
