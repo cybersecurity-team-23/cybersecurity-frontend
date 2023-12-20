@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Accommodation} from "../../model/accommodation.model";
 import {Review} from "../../../Reviews/model/review.model";
 import {ActivatedRoute} from "@angular/router";
@@ -10,9 +10,8 @@ import {ImageResponse} from "../../../images/imageResponse.model";
 import {Host} from "../../../authentication/models/host.model";
 import {AccommodationReview} from "../../../Reviews/model/accommodation-review.model";
 import {AccommodationModification} from "../../model/accommodation-modification.model";
-import {
-  AccommodationModificationService
-} from "../../../../services/accommodation/accommodation-modification.service";
+import {AccommodationModificationService} from "../../../../services/accommodation/accommodation-modification.service";
+import {AccommodationModificationType} from "../../model/accommodation-modification-type";
 
 @Component({
   selector: 'app-accommodation-modification-details',
@@ -29,14 +28,16 @@ export class AccommodationModificationDetailsComponent {
   averageRating!: number;
   ratingDisplay!: string;
   reviews!: Review[];
+  accommodation!: Accommodation;
 
-  constructor(private route: ActivatedRoute, private accommodationModificationService: AccommodationModificationService, private imageService: ImageService, private hostService: HostService, private accommodationReviewService: AccommodationReviewService) {
+  constructor(private route: ActivatedRoute, private accommodationModificationService: AccommodationModificationService, private imageService: ImageService, private hostService: HostService, private accommodationReviewService: AccommodationReviewService, private accommodationService: AccommodationService) {
   }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       const id = +params['accommodationModificationId'];
-
+      const imageService: ImageService = this.imageService;
+      let loadedImages: string[] = this.loadedImages;
       this.accommodationModificationService.get(id).subscribe({
         next: (data: AccommodationModification) => {
           this.accommodationModification = data;
@@ -44,6 +45,19 @@ export class AccommodationModificationDetailsComponent {
           this.loadHost();
           this.loadReviews();
           this.loadAverageRating();
+          if (this.accommodationModification.accommodation?.id && this.accommodationModification.requestType == AccommodationModificationType.New)
+          this.accommodationService.getAccommodation(this.accommodationModification.accommodation.id).subscribe({
+            next(data: Accommodation) {
+              if (data.images) {
+                data.images.forEach((imageResponse: ImageResponse) => {
+                  imageService.getImage(imageResponse.id).subscribe({
+                    next: (imageContent: Blob) => { loadedImages.push(URL.createObjectURL(imageContent)); },
+                    error: (_) => { console.log(`Error loading image with ID ${imageResponse.id}`); }
+                  });
+                });
+              }
+            }
+          })
         },
         error: (_) => { console.log("Error!"); }
       });
@@ -51,8 +65,8 @@ export class AccommodationModificationDetailsComponent {
   }
 
   loadImages(): void {
-    if (this.accommodationModification.images) {
-      this.accommodationModification.images.forEach((imageResponse: ImageResponse) => {
+    if (this.accommodationModification.accommodation?.images) {
+      this.accommodationModification.accommodation.images.forEach((imageResponse: ImageResponse) => {
         this.imageService.getImage(imageResponse.id).subscribe({
           next: (imageContent: Blob) => { this.loadedImages.push(URL.createObjectURL(imageContent)); },
           error: (_) => { console.log(`Error loading image with ID ${imageResponse.id}`); }
