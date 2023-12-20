@@ -5,8 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {LayoutModule} from "./layout/layout.module";
-import {ServicesModule} from "./services/services.module";
-import {AccommodationService} from "./services/accommodation/accommodation.service";
+import {AccommodationService} from "./layout/accommodations/shared/services/accommodation.service";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {Interceptor} from "./infrastructure/auth/interceptor";
 import {AuthModule} from "./infrastructure/auth/auth.module";
@@ -20,7 +19,6 @@ import {AuthModule} from "./infrastructure/auth/auth.module";
     AppRoutingModule,
     BrowserAnimationsModule,
     LayoutModule,
-    ServicesModule,
     AuthModule
   ],
   providers: [AccommodationService, {

@@ -5,9 +5,9 @@ import {AuthResponse} from "./model/auth-response.model";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {environment} from "../../env/env";
 import {Login} from "./model/login.model";
-import {User} from "../../layout/authentication/models/user.model";
-import {Host} from "../../layout/authentication/models/host.model";
-import {Guest} from "../../layout/authentication/models/guest.model";
+import {User} from "../../layout/users/models/user.model";
+import {Host} from "../../layout/users/models/host.model";
+import {Guest} from "../../layout/users/models/guest.model";
 
 @Injectable({
   providedIn: 'root'

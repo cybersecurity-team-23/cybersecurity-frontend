@@ -1,0 +1,136 @@
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
+import {AccommodationCreationComponent} from "../accommodation-creation/accommodation-creation.component";
+import {AvailablePeriod} from "../../../shared/models/available-period.model";
+import {AccommodationService} from "../../../shared/services/accommodation.service";
+import {Accommodation} from "../../../shared/models/accommodation.model";
+import {DateValidators} from "../../validators/date-validators";
+import {Router} from "@angular/router";
+
+@Component({
+  selector: 'app-accommodation-available-period',
+  templateUrl: './accommodation-available-period.component.html',
+  styleUrls: ['./accommodation-available-period.component.css']
+})
+export class AccommodationAvailablePeriodComponent implements OnInit{
+
+  @Input() public accommodationId!: number;
+
+  availablePeriods: AvailablePeriod[] = [];
+
+  selectedPeriod!: AvailablePeriod;
+
+  removedPeriods: number[] = [];
+
+  constructor(private validators:DateValidators, private accommodationService: AccommodationService, private router: Router) {
+
+  }
+
+  ngOnInit(){
+    if(!this.accommodationId) return
+    this.accommodationService.getAccommodation(this.accommodationId).subscribe({
+      next:(data: Accommodation) =>{
+        if(data.availablePeriods)
+        this.availablePeriods = data.availablePeriods;
+      }
+    });
+  }
+
+
+
+  public periodForm: FormGroup = new FormGroup({
+    startDate: new FormControl(),
+    endDate: new FormControl(),
+    price: new FormControl('',[Validators.min(1),Validators.required]),
+  },{validators: [this.validators.validateDateRange('startDate', 'endDate'), this.validators.futureDateValidator('startDate'), this.validators.overlappingDatesValidator('startDate','endDate',this.availablePeriods)]})
+  public editPeriodForm: FormGroup = new FormGroup({
+    startDate: new FormControl(),
+    endDate: new FormControl(),
+    price: new FormControl('',[Validators.min(1),Validators.required]),
+  },{validators: [this.validators.validateDateRange('startDate', 'endDate'), this.validators.futureDateValidator('startDate'), this.overlappingDatesValidator('startDate','endDate')]})
+
+
+  public overlappingDatesValidator(startControlName: string, endControlName: string): ValidatorFn {
+    return (abstractControl: AbstractControl): ValidationErrors | null => {
+      const startDate = abstractControl.get(startControlName);
+      const endDate = abstractControl.get(endControlName);
+
+      if (startDate && endDate) {
+        const overlap = this.availablePeriods.some(period => period.id != this.selectedPeriod.id && this.validators.isDateRangeOverlapping(startDate.value, endDate.value, period));
+        if (overlap){
+          const error = {confirmedValidator: 'Dates are not valid.'};
+          startDate.setErrors(error)
+          return error;
+        }
+        return null;
+      }
+
+      return null;
+    };
+  }
+  addAvailablePeriod(): void {
+    if (this.periodForm.valid) {
+      const newPeriod = {
+        timeSlot: {
+          startDate: this.periodForm.value.startDate.toString(),
+          endDate: this.periodForm.value.endDate.toString()
+        },
+        pricePerNight: this.periodForm.value.price
+      };
+      this.availablePeriods.push({...newPeriod});
+      this.periodForm.get('startDate')?.reset()
+      this.periodForm.get('endDate')?.reset()
+    }
+  }
+
+  removeAvailablePeriod(index: number): void {
+    console.log(index)
+    if(this.availablePeriods[index].id!=undefined) {
+      console.log(this.availablePeriods[index])
+      this.removedPeriods.push(<number>this.availablePeriods[index].id)
+    this.availablePeriods.splice(index, 1);
+    }
+  }
+
+
+  updatePeriods() {
+    for (const removedPeriod of this.removedPeriods) {
+      this.accommodationService.removePeriod(this.accommodationId,removedPeriod).subscribe();
+    }
+    for (const period of this.availablePeriods) {
+      if(period.id){
+        this.accommodationService.editAvailablePeriod(period).subscribe();
+      }else{
+          this.accommodationService.createPeriod(period).subscribe({
+            next: (data: AvailablePeriod) => {
+              this.accommodationService.addPeriod(this.accommodationId, data.id).subscribe()
+            }
+
+          });
+
+      }
+    }
+    this.router.navigate(['/host/accommodations'])
+  }
+
+  edit(period: AvailablePeriod) {
+    this.selectedPeriod = period
+    if (period.timeSlot?.startDate && period.timeSlot?.endDate){
+      this.editPeriodForm.setValue({startDate: new Date(period.timeSlot.startDate), endDate: new Date(period.timeSlot.endDate), price: period.pricePerNight})
+    }
+
+  }
+
+  editAvailablePeriod() {
+    if(this.editPeriodForm.valid) {
+      const period = this.availablePeriods.find(obj => obj.id === this.selectedPeriod.id);
+      if(period && period.timeSlot && period.timeSlot.startDate && period.timeSlot.endDate){
+        period.timeSlot.startDate = this.editPeriodForm.get('startDate')?.value
+        period.timeSlot.endDate = this.editPeriodForm.get('endDate')?.value
+        period.pricePerNight = this.editPeriodForm.get('price')?.value
+      }
+    }
+
+
+  }
+}
