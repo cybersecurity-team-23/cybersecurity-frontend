@@ -65,13 +65,24 @@ export class AccommodationModificationDetailsComponent {
   }
 
   loadImages(): void {
-    if (this.accommodationModification.accommodation?.images) {
-      this.accommodationModification.accommodation.images.forEach((imageResponse: ImageResponse) => {
-        this.imageService.getImage(imageResponse.id).subscribe({
-          next: (imageContent: Blob) => { this.loadedImages.push(URL.createObjectURL(imageContent)); },
-          error: (_) => { console.log(`Error loading image with ID ${imageResponse.id}`); }
+    if (this.accommodationModification.requestType == AccommodationModificationType.New) {
+      if (this.accommodationModification.accommodation?.images) {
+        this.accommodationModification.accommodation?.images.forEach((imageResponse: ImageResponse) => {
+          this.imageService.getImage(imageResponse.id).subscribe({
+            next: (imageContent: Blob) => { this.loadedImages.push(URL.createObjectURL(imageContent)); },
+            error: (_) => { console.log(`Error loading image with ID ${imageResponse.id}`); }
+          });
         });
-      });
+      }
+    } else {
+      if (this.accommodationModification.images) {
+        this.accommodationModification.images.forEach((imageResponse: ImageResponse) => {
+          this.imageService.getImage(imageResponse.id).subscribe({
+            next: (imageContent: Blob) => { this.loadedImages.push(URL.createObjectURL(imageContent)); },
+            error: (_) => { console.log(`Error loading image with ID ${imageResponse.id}`); }
+          });
+        });
+      }
     }
   }
 

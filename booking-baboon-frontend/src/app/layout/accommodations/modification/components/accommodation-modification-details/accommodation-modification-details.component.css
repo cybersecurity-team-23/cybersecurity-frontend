@@ -199,3 +199,9 @@ app-reviews-dialog{
   transform: translate(-50%, -50%);
   padding: 10px;
 }
+
+.edited-data {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
