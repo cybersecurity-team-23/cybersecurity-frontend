@@ -23,6 +23,9 @@ export class AccommodationModificationService {
   create(accommodationModification: AccommodationModification): Observable<AccommodationModification> {
     return this.httpClient.post<AccommodationModification>(environment.apiHost + 'accommodation-modifications', accommodationModification)
   }
+  delete(accommodationModificationId: number): Observable<AccommodationModification> {
+    return this.httpClient.delete<AccommodationModification>(environment.apiHost + 'accommodation-modifications/' + accommodationModificationId)
+  }
   approve(id: number): Observable<AccommodationModification> {
     return this.httpClient.put<AccommodationModification>(environment.apiHost + 'accommodation-modifications/approve/' + id, id);
   }

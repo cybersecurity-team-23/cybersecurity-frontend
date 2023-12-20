@@ -11,6 +11,16 @@
     <div class="images-section border">
       <app-image-carousel [images]="loadedImages"></app-image-carousel>
     </div>
+    <div class="edited-data">
+      <div class="edited-data">
+        <h3>Min guests: </h3>
+        <h3>{{accommodationModification.minGuests}}</h3>
+      </div>
+      <div class="edited-data">
+        <h3>Max guests: </h3>
+        <h3>{{accommodationModification.maxGuests}}</h3>
+      </div>
+    </div>
   </div>
 
   <div class="right-part">
@@ -20,6 +30,9 @@
         {{ratingDisplay}}
       </div>
       <button *ngIf="!isNaN(averageRating)" mat-button class="border" (click)="onShowReviewsClick()">See reviews</button>
+      <div class="rating border">
+        {{accommodationModification.type}}
+      </div>
     </div>
     <p id="description">{{accommodationModification.description}}</p>
     <div id="amenity-list">

@@ -27,6 +27,10 @@ export class AccommodationService {
   update(accommodation: Accommodation) : Observable<Accommodation> {
     return this.httpClient.put<Accommodation>(environment.apiHost + 'accommodations', accommodation);
   }
+
+  delete(accommodationId: number) : Observable<Accommodation> {
+    return this.httpClient.delete<Accommodation>(environment.apiHost + 'accommodations/' + accommodationId);
+  }
   search(filter : AccommodationFilter): Observable<Accommodation[]> {
     console.log(this.convertFilterToQueryString(filter));
     return this.httpClient.get<Accommodation[]>(environment.apiHost + 'accommodations/filter' + this.convertFilterToQueryString(filter))
