@@ -1,5 +1,5 @@
 <mat-card id="mat-card" *ngIf="accommodation!==undefined">
-    <img mat-card-image class="card-image" src="../../../../../../assets/test.jpg" alt="accommodation image">
+  <img mat-card-image src="{{loadedImages[0]}}" alt="accommodation image" class="card-image"  *ngIf="loadedImages">
 
 
   <div id="content">
