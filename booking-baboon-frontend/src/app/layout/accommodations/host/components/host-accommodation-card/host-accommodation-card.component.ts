@@ -28,7 +28,7 @@ export class HostAccommodationCardComponent implements OnInit{
         this.accommodationLocation = this.accommodation.location?.address + ", " + this.accommodation.location?.city + ", " + this.accommodation.location?.country;
         this.accommodationReviewService.getAverageRatingFromAccommodation(this.accommodation.id!).subscribe({
           next: (rating: number) => { this.rating = rating;
-            if (isNaN(this.rating ?? NaN)) {
+            if (this.rating == -1) {
               this.ratingDisplay = "no reviews";
             }
             else {

@@ -73,7 +73,7 @@ export class AccommodationDetailsComponent {
     if(this.accommodation){
       this.accommodationReviewService.getAverageRatingFromAccommodation(this.accommodation.id).subscribe({
         next: (rating: number) => { this.averageRating = rating;
-          if (isNaN(this.averageRating ?? NaN)) {
+          if (this.averageRating == -1) {
             this.ratingDisplay = "no reviews";
           }
           else {
