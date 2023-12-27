@@ -1,0 +1,70 @@
+#wrapper{
+  background: #f1f1f1;
+  color: black;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20vh;
+  margin-left: 30vw;
+  align-items: center;
+  position: absolute;
+  width:40vw;
+  height: 58vh;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  gap: 20px;
+
+}
+
+#desc{
+  width: 80%;
+  height: 30vh;
+  resize: none;
+}
+
+#divider{
+  color: #4b4b4b;
+  width: 100%;
+}
+
+mat-form-field{
+  width: 100%;
+  border-radius: 20px;
+}
+
+#submit-review{
+  width: 20%;
+  background-color: #F7A12E;
+  color: #FFFFFF;
+}
+
+
+#row{
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+#close-icon{
+  cursor: pointer;
+  position: relative;
+  float: right;
+  z-index: 10;
+  width: 100%;
+
+}
+
+mat-icon{
+  float: right;
+}
+
+
+h1{
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}

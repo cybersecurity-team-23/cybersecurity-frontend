@@ -59,6 +59,8 @@ import {
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {RegisterComponent} from "./authentication/register/register.component";
 import {HttpClientModule} from "@angular/common/http";
+import { HostReviewFormComponent } from './reviews/host-review-form/host-review-form.component';
+import { StarRatingInputComponent } from './reviews/star-rating-input/star-rating-input.component';
 
 
 
@@ -101,7 +103,9 @@ import {HttpClientModule} from "@angular/common/http";
     AccommodationAvailablePeriodComponent,
     AccommodationAvailablePeriodPageComponent,
     EditAccommodationComponent,
-    EditAccommodationPageComponent
+    EditAccommodationPageComponent,
+    HostReviewFormComponent,
+    StarRatingInputComponent
   ],
   exports: [
     NavbarComponent,
