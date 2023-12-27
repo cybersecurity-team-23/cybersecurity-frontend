@@ -20,7 +20,7 @@
         <p class="location">{{accommodationLocation}}</p>
       </div>
       <div>
-        <mat-slide-toggle color="primary">Auto accept reservations</mat-slide-toggle>
+        <mat-slide-toggle *ngIf="autoAccept !== undefined" [checked]="autoAccept" color="primary" (click)="toggleAutoAccept()">Auto accept reservations</mat-slide-toggle>
       </div>
       <div id="buttons">
         <button mat-raised-button  id="generate-report">Generate report <mat-icon> article</mat-icon></button>

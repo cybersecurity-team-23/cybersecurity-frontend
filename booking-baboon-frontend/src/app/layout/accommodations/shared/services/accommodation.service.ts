@@ -128,4 +128,8 @@ export class AccommodationService {
     return this.httpClient.put<Accommodation>(environment.apiHost + 'accommodations/' + accommodationId + '/updateEditingStatus/' + isBeingEdited, {});
   }
 
+
+  setAutoAccepts(id: number | undefined, autoAccept: boolean) {
+    return this.httpClient.put<Accommodation>(environment.apiHost + 'accommodations/' + id + '/update-auto-accept/' + autoAccept, {});
+  }
 }

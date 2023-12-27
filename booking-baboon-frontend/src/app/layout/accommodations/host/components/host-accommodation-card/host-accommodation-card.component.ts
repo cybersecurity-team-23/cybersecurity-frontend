@@ -1,9 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Accommodation} from "../../../shared/models/accommodation.model";
 import {ActivatedRoute} from "@angular/router";
 import {AccommodationReviewService} from "../../../../reviews/services/accommodation-review.service";
 import {ImageResponse} from "../../../../../shared/images/imageResponse.model";
 import {ImageService} from "../../../../../shared/images/image.service";
+import {AccommodationService} from "../../../shared/services/accommodation.service";
+import {AccommodationFilter} from "../../../search/models/accommodationFilter.model";
 
 @Component({
   selector: 'app-host-accommodation-card',
@@ -18,11 +20,23 @@ export class HostAccommodationCardComponent implements OnInit{
   rating: number | undefined;
   ratingDisplay: string | undefined;
   loadedImages: string[] = [];
-  constructor(private route: ActivatedRoute, private accommodationReviewService: AccommodationReviewService, private imageService: ImageService) {
+  autoAccept: undefined | boolean;
+
+  constructor(
+    private route: ActivatedRoute,
+    private accommodationReviewService: AccommodationReviewService,
+    private imageService: ImageService,
+    private accommodationService: AccommodationService
+    ) {
   }
 
   ngOnInit(): void {
     if (this.accommodation) {
+      console.log(this.accommodation);
+      this.autoAccept = this.accommodation.isAutomaticallyAccepted;
+      console.log(this.autoAccept)
+
+
       this.route.params.subscribe((params) => {
         this.loadImages();
         this.accommodationLocation = this.accommodation.location?.address + ", " + this.accommodation.location?.city + ", " + this.accommodation.location?.country;
@@ -50,5 +64,15 @@ export class HostAccommodationCardComponent implements OnInit{
         });
       });
     }
+  }
+
+  toggleAutoAccept() {
+    this.autoAccept = !this.autoAccept;
+    this.accommodation.isAutomaticallyAccepted = this.autoAccept;
+    this.accommodationService.setAutoAccepts(this.accommodation.id, this.autoAccept).subscribe({
+      next: (data: Accommodation) => {
+      },
+      error: (_) => { console.log("Error!"); }
+    });
   }
 }

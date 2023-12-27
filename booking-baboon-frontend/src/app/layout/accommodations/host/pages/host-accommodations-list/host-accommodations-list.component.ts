@@ -12,24 +12,12 @@ import {Host} from "../../../../users/models/host.model";
   templateUrl: './host-accommodations-list.component.html',
   styleUrls: ['./host-accommodations-list.component.css']
 })
-export class HostAccommodationsListComponent implements OnInit{
-  accommodations!: Accommodation[];
+export class HostAccommodationsListComponent{
+
 
   constructor(private accommodationService:AccommodationService, private hostService:HostService, private authService:AuthService) {
 
   }
 
-  ngOnInit(): void {
 
-    let id = this.authService.getId();
-    if (id == undefined) return;
-        this.accommodationService.getAccommodationsByHost(id).subscribe({
-          next: (data: Accommodation[]) => {
-            this.accommodations = data;
-          },
-          error: (_) => {
-            console.log("Error!");
-          }
-        });
-      }
 }

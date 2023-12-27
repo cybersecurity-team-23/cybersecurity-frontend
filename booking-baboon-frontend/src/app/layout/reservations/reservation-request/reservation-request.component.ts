@@ -106,6 +106,12 @@ export class ReservationRequestComponent implements OnInit {
         const startTime = period.timeSlot?.startDate ? new Date(period.timeSlot.startDate) : null;
         const endTime = period.timeSlot?.endDate ? new Date(period.timeSlot.endDate) : null;
 
+        if(startTime && endTime){
+          startTime.setHours(0, 0, 0, 0);
+          endTime.setHours(0, 0, 0, 0);
+        }
+
+
         return startTime && endTime && currentDate >= startTime && currentDate <= endTime;
       });
 
