@@ -4,6 +4,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {ReservationService} from "../../reservation.service";
+import {AuthService} from "../../../../infrastructure/auth/auth.service";
 
 @Component({
   selector: 'app-guest-reservations',
@@ -19,12 +20,12 @@ export class GuestReservationsComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private reservationService: ReservationService) {
+  constructor(private reservationService: ReservationService, private authService: AuthService) {
 
   }
 
   ngOnInit(): void {
-    this.reservationService.getAll().subscribe({
+    this.reservationService.getAllForGuest(this.authService.getId()).subscribe({
       next: (data: Reservation[]) => {
         this.reservations = data
         this.dataSource = new MatTableDataSource<Reservation>(this.reservations);

@@ -33,4 +33,8 @@ export class ReservationService {
 
     return this.httpClient.post<Reservation>(environment.apiHost + 'reservations', requestBody);
   }
+
+  getAllForGuest(id: number | undefined): Observable<Reservation[]> {
+    return this.httpClient.get<Reservation[]>(environment.apiHost + 'reservations/guest/' + id)
+  }
 }
