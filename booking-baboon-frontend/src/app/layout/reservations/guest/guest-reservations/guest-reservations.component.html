@@ -2,28 +2,45 @@
   <table mat-table [dataSource]="dataSource" matSort>
 
     <ng-container matColumnDef="host">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Host </th>
-      <td mat-cell *matCellDef="let reservation"> {{reservation.id}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Host </th>
+      <td mat-cell *matCellDef="let reservation">
+        <div class="data-buttons">
+          <span class="host-email">{{reservation.accommodation.host.email}}</span>
+          <span class="expand"></span>
+          <button mat-raised-button color="primary" id="host-review-button" [disabled]="isStatusFinished(reservation.status)">Review</button>
+          <button mat-raised-button color="warn" id="host-report-button" [disabled]="isStatusFinished(reservation.status)">Report</button>
+        </div>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="dates">
-      <th mat-header-cell *matHeaderCellDef> Dates </th>
-      <td mat-cell *matCellDef="let reservation"> {{reservation.id}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Dates </th>
+      <td mat-cell *matCellDef="let reservation"> {{reservation.timeSlot.startDate}} - {{reservation.timeSlot.endDate}} </td>
     </ng-container>
 
     <ng-container matColumnDef="accommodation">
-      <th mat-header-cell *matHeaderCellDef> Accommodations </th>
-      <td mat-cell *matCellDef="let reservation"> {{reservation.id}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Accommodations </th>
+      <td mat-cell *matCellDef="let reservation">
+        <div class="data-buttons">
+          {{reservation.accommodation.name}}
+          <span class="expand"></span>
+          <button mat-raised-button color="primary" id="accommodation-review-button" [disabled]="isStatusFinished(reservation.status)">Review</button>
+        </div>
+         </td>
     </ng-container>
 
     <ng-container matColumnDef="status">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-      <td mat-cell *matCellDef="let reservation"> {{reservation.id}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Status </th>
+      <td mat-cell *matCellDef="let reservation" [ngStyle]="getStatusColor(reservation.status)"> {{reservation.status}} </td>
     </ng-container>
 
     <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef> Action </th>
-      <td mat-cell *matCellDef="let reservation"> {{reservation.id}} </td>
+      <th mat-header-cell *matHeaderCellDef > Action </th>
+      <td mat-cell *matCellDef="let reservation">
+        <div class="data-buttons">
+          <button mat-raised-button color="warn" id="cancel-reservation-button" [disabled]="!isStatusFinished(reservation.status)">Cancel</button>
+        </div>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

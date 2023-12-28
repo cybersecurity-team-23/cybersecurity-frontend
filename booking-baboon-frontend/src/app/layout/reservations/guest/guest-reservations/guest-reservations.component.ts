@@ -34,4 +34,21 @@ export class GuestReservationsComponent {
       error: (_) => {console.log("Greska!")}
     })
   }
+
+  getStatusColor(status: string): { [key: string]: string } {
+    switch (status.toLowerCase()) {
+      case 'approved':
+        return { color: 'green' };
+      case 'denied':
+        return { color: 'red' };
+      case 'finished':
+        return { 'font-weight': 'bold'};
+      default:
+        return {};
+    }
+  }
+
+  isStatusFinished(status: string): boolean {
+    return status.toLowerCase() !== 'finished';
+  }
 }
