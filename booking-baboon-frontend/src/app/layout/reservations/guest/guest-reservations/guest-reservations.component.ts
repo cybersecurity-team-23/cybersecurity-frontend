@@ -16,6 +16,8 @@ export class GuestReservationsComponent {
   reservations!: Reservation[]
   dataSource!: MatTableDataSource<Reservation>;
   displayedColumns: string[] = ['host', 'dates', 'accommodation', 'status', 'action'];
+  isReviewShowing: boolean = false;
+  current_host_id!: number;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -52,4 +54,14 @@ export class GuestReservationsComponent {
   isStatusFinished(status: string): boolean {
     return status.toLowerCase() !== 'finished';
   }
+
+  onReviewClick(hostId: number) {
+    this.current_host_id = hostId;
+    this.isReviewShowing = true;
+  }
+
+  onCloseReview() {
+    this.isReviewShowing = false;
+  }
+
 }

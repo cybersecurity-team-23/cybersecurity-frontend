@@ -4,6 +4,7 @@ import {AccommodationType} from "../../accommodations/shared/models/accommodatio
 import {HostReview} from "../model/host-review.model";
 import {User} from "../../users/models/user.model";
 import {AuthService} from "../../../infrastructure/auth/auth.service";
+import {HostReviewService} from "../services/host-review.service";
 
 @Component({
   selector: 'app-host-review-form',
@@ -12,21 +13,23 @@ import {AuthService} from "../../../infrastructure/auth/auth.service";
 })
 export class HostReviewFormComponent implements OnInit{
 
-  @Input() hostId: number = 1;
+  @Input() hostId!: number;
   public rating:number = 3;
   public starCount:number = 5;
-  public isOpened: boolean = true;
   public reviewForm: FormGroup = new FormGroup({
     comment: new FormControl('', [Validators.required]),
   });
+  @Output() closeReview: EventEmitter<void> = new EventEmitter<void>();
 
-  onCloseClick(){
-    this.isOpened= false;
+  onCloseClick() {
+    this.closeReview.emit();
+    console.log(this.hostId)
   }
 
 
 
-  constructor(private authService: AuthService) { }
+
+  constructor(private authService: AuthService, private reviewService: HostReviewService) { }
 
   ngOnInit() {
   }
@@ -41,14 +44,18 @@ export class HostReviewFormComponent implements OnInit{
       reviewer: {
         id: this.authService.getId()
       },
-      createdOn: new Date().toString(),
+      createdOn: new Date().getDate().toString(),
       rating: this.rating,
       comment: this.reviewForm.get("comment")?.value,
       reviewedHost: {
         id: this.hostId
       }
     }
-    console.log(review);
+    this.reviewService.create(review).subscribe({
+      next: data => {
+        console.log(data);
+      }
+    })
   }
 
 }
