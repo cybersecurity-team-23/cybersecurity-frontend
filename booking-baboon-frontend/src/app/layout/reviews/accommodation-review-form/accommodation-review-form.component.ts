@@ -1,19 +1,18 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AccommodationType} from "../../accommodations/shared/models/accommodation-type.model";
-import {HostReview} from "../model/host-review.model";
-import {User} from "../../users/models/user.model";
 import {AuthService} from "../../../infrastructure/auth/auth.service";
 import {HostReviewService} from "../services/host-review.service";
+import {HostReview} from "../model/host-review.model";
+import {AccommodationReviewService} from "../services/accommodation-review.service";
+import {AccommodationReview} from "../model/accommodation-review.model";
 
 @Component({
-  selector: 'app-host-review-form',
-  templateUrl: './host-review-form.component.html',
-  styleUrls: ['./host-review-form.component.css']
+  selector: 'app-accommodation-review-form',
+  templateUrl: './accommodation-review-form.component.html',
+  styleUrls: ['./accommodation-review-form.component.css']
 })
-export class HostReviewFormComponent implements OnInit{
-
-  @Input() hostId!: number;
+export class AccommodationReviewFormComponent {
+  @Input() accommodationId!: number;
   public rating:number = 3;
   public starCount:number = 5;
   public reviewForm: FormGroup = new FormGroup({
@@ -28,7 +27,7 @@ export class HostReviewFormComponent implements OnInit{
 
 
 
-  constructor(private authService: AuthService, private reviewService: HostReviewService) { }
+  constructor(private authService: AuthService, private reviewService: AccommodationReviewService) { }
 
   ngOnInit() {
   }
@@ -43,15 +42,15 @@ export class HostReviewFormComponent implements OnInit{
 
   submit() {
     if (!this.reviewForm.valid) return
-    let review : HostReview = {
+    let review : AccommodationReview = {
       reviewer: {
         id: this.authService.getId()
       },
       createdOn: this.getDateISOString(new Date()),
       rating: this.rating,
       comment: this.reviewForm.get("comment")?.value,
-      reviewedHost: {
-        id: this.hostId
+      reviewedAccommodation: {
+        id: this.accommodationId
       }
     }
     this.reviewService.create(review).subscribe({
@@ -61,5 +60,4 @@ export class HostReviewFormComponent implements OnInit{
       }
     })
   }
-
 }

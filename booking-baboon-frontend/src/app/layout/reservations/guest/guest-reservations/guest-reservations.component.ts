@@ -16,11 +16,14 @@ export class GuestReservationsComponent {
   reservations!: Reservation[]
   dataSource!: MatTableDataSource<Reservation>;
   displayedColumns: string[] = ['host', 'dates', 'accommodation', 'status', 'action'];
-  isReviewShowing: boolean = false;
+  isHostReviewShowing: boolean = false;
+  isAccommodationReviewShowing: boolean = false;
   current_host_id!: number;
+  current_accommodation_id!: number;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
 
   constructor(private reservationService: ReservationService, private authService: AuthService) {
 
@@ -55,13 +58,22 @@ export class GuestReservationsComponent {
     return status.toLowerCase() !== 'finished';
   }
 
-  onReviewClick(hostId: number) {
+  onHostReviewClick(hostId: number) {
     this.current_host_id = hostId;
-    this.isReviewShowing = true;
+    this.isHostReviewShowing = true;
   }
 
-  onCloseReview() {
-    this.isReviewShowing = false;
+  onCloseHostReview() {
+    this.isHostReviewShowing = false;
+  }
+
+  onAccommodationReviewClick(accommodationId: number) {
+    this.current_accommodation_id = accommodationId;
+    this.isAccommodationReviewShowing = true;
+  }
+
+  onCloseAccommodationReview() {
+    this.isAccommodationReviewShowing = false;
   }
 
 }

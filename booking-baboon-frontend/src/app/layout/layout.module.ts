@@ -65,6 +65,7 @@ import { GuestReservationsPageComponent } from './reservations/guest/guest-reser
 import { GuestReservationsComponent } from './reservations/guest/guest-reservations/guest-reservations.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
+import { AccommodationReviewFormComponent } from './reviews/accommodation-review-form/accommodation-review-form.component';
 
 
 
@@ -111,7 +112,8 @@ import {MatSortModule} from "@angular/material/sort";
     HostReviewFormComponent,
     StarRatingInputComponent,
     GuestReservationsPageComponent,
-    GuestReservationsComponent
+    GuestReservationsComponent,
+    AccommodationReviewFormComponent
   ],
   exports: [
     NavbarComponent,

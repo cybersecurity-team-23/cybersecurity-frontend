@@ -27,13 +27,9 @@ export class AccommodationReviewService {
   getAccommodationReviews(accommodationId: number | undefined): Observable<AccommodationReview[]>{
     return this.httpClient.get<AccommodationReview[]>(environment.apiHost + 'accommodation-reviews/accommodation/' + accommodationId)
   }
-  // add(accommodation-review: AccommodationReview): Observable<AccommodationReview> {
-//     headers: {
-//       'Content-Type': 'application/json',
-//       // Add any other headers if needed
-//     }
-  //   return this.httpClient.post<AccommodationReview>(environment.apiHost + 'accommodation-reviews', accommodation-review)
-  // }
 
 
+  create(review: AccommodationReview): Observable<AccommodationReview> {
+    return this.httpClient.post<AccommodationReview>(environment.apiHost + 'accommodation-reviews/' , review)
+  }
 }
