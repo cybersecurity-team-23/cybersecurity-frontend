@@ -61,6 +61,10 @@ import {RegisterComponent} from "./authentication/register/register.component";
 import {HttpClientModule} from "@angular/common/http";
 import { HostReviewFormComponent } from './reviews/host-review-form/host-review-form.component';
 import { StarRatingInputComponent } from './reviews/star-rating-input/star-rating-input.component';
+import { GuestReservationsPageComponent } from './reservations/guest/guest-reservations-page/guest-reservations-page.component';
+import { GuestReservationsComponent } from './reservations/guest/guest-reservations/guest-reservations.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatSortModule} from "@angular/material/sort";
 
 
 
@@ -105,26 +109,30 @@ import { StarRatingInputComponent } from './reviews/star-rating-input/star-ratin
     EditAccommodationComponent,
     EditAccommodationPageComponent,
     HostReviewFormComponent,
-    StarRatingInputComponent
+    StarRatingInputComponent,
+    GuestReservationsPageComponent,
+    GuestReservationsComponent
   ],
   exports: [
     NavbarComponent,
     LoginComponent,
     ActivationComponent
   ],
-    imports: [
-        CommonModule,
-        MaterialModule,
-        RouterLink,
-        RouterModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        FormsModule,
-        MatDialogModule,
-        SharedModule,
-        MatAutocompleteModule,
-        MatTooltipModule,
-        HttpClientModule
-    ]
+  imports: [
+    CommonModule,
+    MaterialModule,
+    RouterLink,
+    RouterModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatDialogModule,
+    SharedModule,
+    MatAutocompleteModule,
+    MatTooltipModule,
+    HttpClientModule,
+    MatTableModule,
+    MatSortModule
+  ]
 })
 export class LayoutModule { }

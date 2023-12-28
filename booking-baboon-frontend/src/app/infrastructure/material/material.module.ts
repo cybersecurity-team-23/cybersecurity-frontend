@@ -17,6 +17,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelect, MatSelectModule} from '@angular/material/select';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {MatSelect, MatSelectModule} from '@angular/material/select';
     MatChipsModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatPaginatorModule
   ],
   exports: [
     MatToolbarModule,
@@ -58,7 +60,8 @@ import {MatSelect, MatSelectModule} from '@angular/material/select';
     MatChipsModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatPaginatorModule
   ]
 })
 export class MaterialModule { }
