@@ -8,7 +8,7 @@
           <span class="host-email">{{reservation.accommodation.host.email}}</span>
           <span class="expand"></span>
           <button mat-raised-button color="primary" id="host-review-button" [disabled]="isStatusFinished(reservation.status)" (click)="onHostReviewClick(reservation.accommodation.host.id)">Review</button>
-          <button mat-raised-button color="warn" id="host-report-button" [disabled]="isStatusFinished(reservation.status)">Report</button>
+          <button mat-raised-button color="warn" id="host-report-button" [disabled]="isStatusFinished(reservation.status)" (click)="onHostReportClick(reservation.accommodation.host.id)">Report</button>
         </div>
       </td>
     </ng-container>
@@ -53,4 +53,5 @@
   </mat-paginator>
   <app-host-review-form *ngIf="isHostReviewShowing" (closeReview)="onCloseHostReview()" [hostId]="current_host_id"></app-host-review-form>
   <app-accommodation-review-form *ngIf="isAccommodationReviewShowing" (closeReview)="onCloseAccommodationReview()" [accommodationId]="current_accommodation_id"> </app-accommodation-review-form>
+  <app-host-report-form *ngIf="isHostReportShowing" (closeReport)="onCloseHostReport()" [hostId]="current_host_id"></app-host-report-form>
 </div>

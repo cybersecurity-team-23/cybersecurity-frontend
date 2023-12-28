@@ -23,6 +23,7 @@ export class GuestReservationsComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+  isHostReportShowing: boolean = false;
 
 
   constructor(private reservationService: ReservationService, private authService: AuthService) {
@@ -76,4 +77,12 @@ export class GuestReservationsComponent {
     this.isAccommodationReviewShowing = false;
   }
 
+  onCloseHostReport() {
+    this.isHostReportShowing = false;
+  }
+
+  onHostReportClick(hostId: number) {
+    this.current_host_id = hostId;
+    this.isHostReportShowing = true;
+  }
 }
