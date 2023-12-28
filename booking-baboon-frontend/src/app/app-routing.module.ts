@@ -38,6 +38,9 @@ import {
   EditAccommodationPageComponent
 } from "./layout/accommodations/host/pages/edit-accommodation-page/edit-accommodation-page.component";
 import {LoginGuard} from "./infrastructure/auth/guard/login.guard";
+import {
+  GuestReservationsPageComponent
+} from "./layout/reservations/guest/guest-reservations-page/guest-reservations-page.component";
 
 
 const routes: Routes = [
@@ -118,6 +121,12 @@ const routes: Routes = [
     path: 'accommodations/:accommodationId/edit',
     canActivate: [AuthGuard],
     data: {role: ['HOST']}
+  },
+  {
+    component: GuestReservationsPageComponent,
+    path: 'guest/:guestId/reservations',
+    canActivate: [AuthGuard],
+    data: {role: ['GUEST']}
   },
 ];
 

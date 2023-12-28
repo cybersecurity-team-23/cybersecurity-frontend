@@ -1,15 +1,22 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../infrastructure/auth/auth.service";
 import {Router} from "@angular/router";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {Guest} from "../../users/models/guest.model";
+import {User} from "../../users/models/user.model";
 
 @Component({
   selector: 'app-navbar-guest',
   templateUrl: './navbar-guest.component.html',
   styleUrls: ['./navbar-guest.component.css']
 })
-export class NavbarGuestComponent {
+export class NavbarGuestComponent implements OnInit{
+  loggedUserId!: number | undefined;
   constructor(private authService: AuthService, private router: Router) {
+  }
+
+  public ngOnInit() {
+    this.loggedUserId = this.authService.getId();
   }
 
   openAccountPage(): void {
