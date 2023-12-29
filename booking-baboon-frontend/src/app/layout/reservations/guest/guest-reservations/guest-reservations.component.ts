@@ -5,6 +5,7 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
 import {ReservationService} from "../../reservation.service";
 import {AuthService} from "../../../../infrastructure/auth/auth.service";
+import {ReservationStatus} from "../../models/reservation-status.enum";
 
 @Component({
   selector: 'app-guest-reservations',
@@ -53,6 +54,14 @@ export class GuestReservationsComponent {
       default:
         return {};
     }
+  }
+
+  isReviewable(reservation: Reservation):boolean{
+    const sevenDaysAgo = new Date(Date());
+    sevenDaysAgo.setMilliseconds(sevenDaysAgo.getMilliseconds() - 7* 86400000);
+    if (!reservation.timeSlot.endDate || !reservation.status) return false;
+    return  new Date(reservation.timeSlot.endDate) >= sevenDaysAgo && !this.isStatusFinished(reservation.status.toString());
+
   }
 
   isStatusFinished(status: string): boolean {
