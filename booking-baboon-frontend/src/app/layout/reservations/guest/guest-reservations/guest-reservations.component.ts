@@ -59,6 +59,10 @@ export class GuestReservationsComponent {
     return status.toLowerCase() !== 'finished';
   }
 
+  isCancellable(status: string): boolean {
+    return (status.toLowerCase() == 'pending' || status.toLowerCase() == 'approved') ;
+  }
+
   onHostReviewClick(hostId: number) {
     this.current_host_id = hostId;
     this.isHostReviewShowing = true;
@@ -75,6 +79,14 @@ export class GuestReservationsComponent {
 
   onCloseAccommodationReview() {
     this.isAccommodationReviewShowing = false;
+  }
+
+  onCancelReservationClick(reservationId: number) {
+    this.reservationService.cancel(reservationId).subscribe({
+      next: (canceledReservation) => {
+      },
+      error: (_) => {console.log("Greska!")}
+    })
   }
 
   onCloseHostReport() {
