@@ -7,7 +7,7 @@
         <div class="data-buttons">
           <span class="host-email">{{reservation.guest.email}}</span>
           <span class="expand"></span>
-          <button mat-raised-button color="warn" id="guest-report-button" (click)="onGuestReportClick(reservation.guest.id)">Report</button>
+          <button mat-raised-button color="warn" id="guest-report-button" (click)="onGuestReportClick(reservation.guest.id)" [disabled]="!isGuestReportable(reservation.status)">Report</button>
         </div>
       </td>
     </ng-container>
@@ -54,4 +54,5 @@
                  [showFirstLastButtons] = true
                  aria-label="Select page of periodic elements">
   </mat-paginator>
+  <app-guest-report-form *ngIf="isGuestReportShowing" (closeReport)="onGuestReportClose()"  [guestId]="currentGuestId"></app-guest-report-form>
 </div>

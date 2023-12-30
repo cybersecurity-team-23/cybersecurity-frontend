@@ -6,9 +6,6 @@ import {MatSort} from "@angular/material/sort";
 import {ReservationService} from "../../reservation.service";
 import {AuthService} from "../../../../infrastructure/auth/auth.service";
 import {HostReservation} from "../../models/host-reservation.model";
-import {Accommodation} from "../../../accommodations/shared/models/accommodation.model";
-import {TimeSlot} from "../../../accommodations/shared/models/timeslot.model";
-import {Guest} from "../../../users/models/guest.model";
 import {ReservationStatus} from "../../models/reservation-status.enum";
 
 @Component({
@@ -23,6 +20,9 @@ export class HostReservationsComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
+  currentGuestId!: number;
+  isGuestReportShowing!: boolean;
 
   constructor(private reservationService: ReservationService, private authService: AuthService) {
 
@@ -94,7 +94,15 @@ export class HostReservationsComponent {
   }
 
   onGuestReportClick(guestId: number) {
-    // this.current_guest_id = guestId;
-    // this.isGuestReportShowing = true;
+    this.currentGuestId = guestId;
+    this.isGuestReportShowing = true;
+  }
+
+  onGuestReportClose(){
+    this.isGuestReportShowing = false;
+  }
+
+  isGuestReportable(status: ReservationStatus) {
+    return status==ReservationStatus.Finished;
   }
 }

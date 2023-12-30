@@ -69,6 +69,7 @@ import { AccommodationReviewFormComponent } from './reviews/accommodation-review
 import { HostReportFormComponent } from './reports/host-report-form/host-report-form.component';
 import { HostReservationsComponent } from './reservations/host/host-reservations/host-reservations.component';
 import { HostReservationsPageComponent } from './reservations/host/host-reservations-page/host-reservations-page.component';
+import { GuestReportFormComponent } from './reports/guest-report-form/guest-report-form.component';
 
 
 
@@ -119,7 +120,8 @@ import { HostReservationsPageComponent } from './reservations/host/host-reservat
     AccommodationReviewFormComponent,
     HostReportFormComponent,
     HostReservationsComponent,
-    HostReservationsPageComponent
+    HostReservationsPageComponent,
+    GuestReportFormComponent
   ],
   exports: [
     NavbarComponent,
