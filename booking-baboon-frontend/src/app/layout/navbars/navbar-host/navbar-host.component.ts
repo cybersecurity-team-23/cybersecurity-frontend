@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../infrastructure/auth/auth.service";
 import {Router} from "@angular/router";
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -10,12 +10,16 @@ import {Observable} from "rxjs";
   templateUrl: './navbar-host.component.html',
   styleUrls: ['./navbar-host.component.css']
 })
-export class NavbarHostComponent {
+export class NavbarHostComponent implements OnInit{
+  loggedUserId!: number | undefined;
+  user: User | undefined;
 
   constructor(private authService: AuthService, private router: Router, private userService: UserService) {
   }
 
-  user: User | undefined;
+  public ngOnInit() {
+    this.loggedUserId = this.authService.getId();
+  }
 
   openAccountPage(): void {
     const helper = new JwtHelperService();
