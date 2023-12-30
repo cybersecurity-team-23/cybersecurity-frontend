@@ -32,4 +32,12 @@ export class HostReviewService {
   create(review: HostReview): Observable<HostReview[]>{
     return this.httpClient.post<HostReview[]>(environment.apiHost + 'host-reviews/', review)
   }
+
+  getReviewsByGuest(guestId: number | undefined): Observable<HostReview[]>{
+    return this.httpClient.get<HostReview[]>(environment.apiHost + 'host-reviews/guest/' + guestId)
+  }
+
+  remove(id: number | undefined): Observable<HostReview> {
+    return this.httpClient.delete<HostReview>(environment.apiHost + 'host-reviews/' + id)
+  }
 }
