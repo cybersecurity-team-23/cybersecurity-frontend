@@ -1,4 +1,5 @@
 import {User} from "../../users/models/user.model";
+import {ReviewStatus} from "./review-status";
 
 
 export interface Review {
@@ -7,4 +8,5 @@ export interface Review {
   createdOn?: string;
   rating?: number;
   comment?: string;
+  status?: ReviewStatus;
 }
