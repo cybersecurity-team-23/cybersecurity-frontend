@@ -35,3 +35,16 @@
   color: #a2a2a2;
   font-style: italic;
 }
+
+#bottom-section{
+  display: flex;
+  flex-direction: row;
+  gap: 65%;
+}
+
+
+#report-button{
+  float: right;
+  color: #FFFFFF;
+  background-color: #cc3300;
+}

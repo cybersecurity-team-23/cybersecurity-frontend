@@ -70,6 +70,7 @@ import { HostReportFormComponent } from './reports/host-report-form/host-report-
 import { HostReservationsComponent } from './reservations/host/host-reservations/host-reservations.component';
 import { HostReservationsPageComponent } from './reservations/host/host-reservations-page/host-reservations-page.component';
 import { GuestReportFormComponent } from './reports/guest-report-form/guest-report-form.component';
+import { ReviewReportFormComponent } from './reports/review-report-form/review-report-form.component';
 
 
 
@@ -121,7 +122,8 @@ import { GuestReportFormComponent } from './reports/guest-report-form/guest-repo
     HostReportFormComponent,
     HostReservationsComponent,
     HostReservationsPageComponent,
-    GuestReportFormComponent
+    GuestReportFormComponent,
+    ReviewReportFormComponent
   ],
   exports: [
     NavbarComponent,
