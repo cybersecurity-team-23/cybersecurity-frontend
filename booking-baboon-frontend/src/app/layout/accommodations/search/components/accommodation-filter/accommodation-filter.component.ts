@@ -72,7 +72,13 @@ export class AccommodationFilterComponent implements OnInit {
   }
 
   getEnumValues(enumType: any): string[] {
-    return Object.keys(enumType).filter((key) => !isNaN(Number(enumType[key])));
+    const enumValues: string[] = [];
+    for (const key in enumType) {
+      if (typeof enumType[key] === 'string') {
+        enumValues.push(enumType[key]);
+      }
+    }
+    return enumValues;
   }
 
   onCloseClick() {
