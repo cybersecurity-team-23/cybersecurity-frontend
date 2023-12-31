@@ -3,6 +3,7 @@ import {Accommodation} from "../../accommodations/shared/models/accommodation.mo
 import {AccommodationReview} from "../model/accommodation-review.model";
 import {AccommodationReviewService} from "../services/accommodation-review.service";
 import {Review} from "../model/review.model";
+import {HostReview} from "../model/host-review.model";
 
 @Component({
   selector: 'app-reviews-dialog',
