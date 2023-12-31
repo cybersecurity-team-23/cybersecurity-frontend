@@ -158,6 +158,18 @@ export class AccommodationDetailsComponent {
   protected readonly isNaN = isNaN;
 
   private loadFavorite() {
-    // this.guestService.
+    if(this.isGuestLogged()){
+      this.guestService.getFavorites(this.authService.getId()).subscribe({
+        next:(data: Accommodation[]) => {
+          data.forEach((value, index, array) => {
+            if(this.accommodation.id == value.id){
+              this.isFavorite = true;
+              return;
+            }
+          });
+        },
+        error: () => {}
+      })
+    }
   }
 }

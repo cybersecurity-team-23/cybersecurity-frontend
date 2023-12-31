@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../../env/env";
 import {HttpClient} from "@angular/common/http";
 import {Guest} from "../models/guest.model";
+import {Accommodation} from "../../accommodations/shared/models/accommodation.model";
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,12 @@ export class GuestService {
     const url = `${environment.apiHost}guests/${guestId}/favorite-accommodations/remove/${accommodationId}`;
 
     return this.httpClient.put<Guest>(url, null);
+  }
+
+  getFavorites(guestId: number | undefined): Observable<Accommodation[]>{
+    const url = `${environment.apiHost}guests/${guestId}/favorite-accommodations`;
+
+    return this.httpClient.get<Accommodation[]>(url);
   }
 
   // add(guest.model: Guest): Observable<Guest> {
