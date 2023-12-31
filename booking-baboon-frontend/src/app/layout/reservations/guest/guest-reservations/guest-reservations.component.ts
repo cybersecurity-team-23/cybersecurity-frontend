@@ -80,7 +80,7 @@ export class GuestReservationsComponent {
       const deadlineDays: number = reservation.accommodation.cancellationDeadline;
       if (reservation.timeSlot.startDate) {
         const startDateEpochDay: number = new Date(reservation.timeSlot.startDate).getTime() / 86400000;
-        if (startDateEpochDay - new Date().getTime() / 86400000 <= deadlineDays) {
+        if (startDateEpochDay - new Date().getTime() / 86400000 <= deadlineDays && status.toString() == "Approved") {
           //if deadline date has passed the guest cannot cancel
           result = false;
           this.tooltipMessage = 'Cancellation deadline has passed.';
@@ -109,7 +109,7 @@ export class GuestReservationsComponent {
       const deadlineDays: number = reservation.accommodation.cancellationDeadline;
       if (reservation.timeSlot.startDate) {
         const startDateEpochDay: number = new Date(reservation.timeSlot.startDate).getTime() / 86400000;
-        if (startDateEpochDay - new Date().getTime() / 86400000 <= deadlineDays) {
+        if (startDateEpochDay - new Date().getTime() / 86400000 <= deadlineDays && status.toString() == "Approved") {
           return 'Cancellation deadline has passed.';
         } else {
           return '';
