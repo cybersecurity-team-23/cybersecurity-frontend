@@ -49,7 +49,6 @@ export class AccommodationsSearchBarComponent implements OnInit {
     if (this.searchForm.valid) {
       const searchFilter = this.collectSearchFormData();
       this.searchClicked.emit(searchFilter);
-      console.log(searchFilter);
     }
   }
 
