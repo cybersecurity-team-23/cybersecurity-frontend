@@ -36,6 +36,17 @@ export class GuestService {
     return this.httpClient.put<Guest>(environment.apiHost + 'guests/', guest)
   }
 
+  addFavorite(guestId: number | undefined, accommodationId: number | undefined){
+    const url = `${environment.apiHost}guests/${guestId}/favorite-accommodations/add/${accommodationId}`;
+
+    return this.httpClient.put<Guest>(url, null);
+  }
+
+  removeFavorite(guestId: number | undefined, accommodationId: number | undefined){
+    const url = `${environment.apiHost}guests/${guestId}/favorite-accommodations/remove/${accommodationId}`;
+
+    return this.httpClient.put<Guest>(url, null);
+  }
 
   // add(guest.model: Guest): Observable<Guest> {
 //     headers: {
