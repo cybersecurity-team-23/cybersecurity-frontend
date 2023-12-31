@@ -41,6 +41,9 @@ import {LoginGuard} from "./infrastructure/auth/guard/login.guard";
 import {
   GuestReservationsPageComponent
 } from "./layout/reservations/guest/guest-reservations-page/guest-reservations-page.component";
+import {
+  FavoriteAccommodationsPageComponent
+} from "./layout/accommodations/favorites/favorite-accommodations-page/favorite-accommodations-page.component";
 
 
 const routes: Routes = [
@@ -125,6 +128,12 @@ const routes: Routes = [
   {
     component: GuestReservationsPageComponent,
     path: 'guest/:guestId/reservations',
+    canActivate: [AuthGuard],
+    data: {role: ['GUEST']}
+  },
+  {
+    component: FavoriteAccommodationsPageComponent,
+    path: 'guest/:guestId/favorites',
     canActivate: [AuthGuard],
     data: {role: ['GUEST']}
   },
