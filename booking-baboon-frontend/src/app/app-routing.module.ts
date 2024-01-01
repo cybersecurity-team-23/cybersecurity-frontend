@@ -41,6 +41,7 @@ import {LoginGuard} from "./infrastructure/auth/guard/login.guard";
 import {
   GuestReservationsPageComponent
 } from "./layout/reservations/guest/guest-reservations-page/guest-reservations-page.component";
+import {ChartComponent} from "./layout/summaries/chart/chart.component";
 
 
 const routes: Routes = [
@@ -127,6 +128,10 @@ const routes: Routes = [
     path: 'guest/:guestId/reservations',
     canActivate: [AuthGuard],
     data: {role: ['GUEST']}
+  },
+  {
+    component: ChartComponent,
+    path: 'chart'
   },
 ];
 
