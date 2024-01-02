@@ -74,6 +74,8 @@ export class HostReservationsComponent {
         return { color: 'red' };
       case 'finished':
         return { 'font-weight': 'bold'};
+      case 'canceled':
+        return { color: 'red' };
       default:
         return {};
     }
