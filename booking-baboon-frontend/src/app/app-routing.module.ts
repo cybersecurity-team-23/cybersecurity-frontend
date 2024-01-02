@@ -3,9 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from "./layout/authentication/login/login.component";
 import {RegisterComponent} from "./layout/authentication/register/register.component";
 import {
-  AccommodationDetailsComponent
-} from "./layout/accommodations/search/components/accommodation-details/accommodation-details.component";
-import {
   AccommodationDetailsPageComponent
 } from "./layout/accommodations/search/pages/accommodation-details-page/accommodation-details-page.component";
 import {AccommodationsPageComponent} from "./layout/accommodations/search/pages/accommodations-page/accommodations-page.component";
@@ -29,9 +26,6 @@ import {
   AccommodationCreationPageComponent
 } from "./layout/accommodations/host/pages/accommodation-creation-page/accommodation-creation-page.component";
 import {
-  AccommodationAvailablePeriodComponent
-} from "./layout/accommodations/host/components/accommodation-available-period/accommodation-available-period.component";
-import {
   AccommodationAvailablePeriodPageComponent
 } from "./layout/accommodations/host/pages/accommodation-available-period-page/accommodation-available-period-page.component";
 import {
@@ -41,7 +35,9 @@ import {LoginGuard} from "./infrastructure/auth/guard/login.guard";
 import {
   GuestReservationsPageComponent
 } from "./layout/reservations/guest/guest-reservations-page/guest-reservations-page.component";
-import {ChartComponent} from "./layout/summaries/chart/chart.component";
+import {
+  MonthlySummaryDialogComponent
+} from "./layout/summaries/monthly-summary-dialog/monthly-summary-dialog.component";
 
 
 const routes: Routes = [
@@ -130,7 +126,7 @@ const routes: Routes = [
     data: {role: ['GUEST']}
   },
   {
-    component: ChartComponent,
+    component: MonthlySummaryDialogComponent,
     path: 'chart'
   },
 ];

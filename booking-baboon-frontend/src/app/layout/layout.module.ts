@@ -65,7 +65,9 @@ import { GuestReservationsPageComponent } from './reservations/guest/guest-reser
 import { GuestReservationsComponent } from './reservations/guest/guest-reservations/guest-reservations.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
-import { ChartComponent } from './summaries/chart/chart.component';
+import { MonthlySummaryDialogComponent } from './summaries/monthly-summary-dialog/monthly-summary-dialog.component';
+import { ReservationsChartComponent } from './summaries/reservations-chart/reservations-chart.component';
+import { ProfitChartComponent } from './summaries/profit-chart/profit-chart.component';
 
 
 
@@ -113,7 +115,9 @@ import { ChartComponent } from './summaries/chart/chart.component';
     StarRatingInputComponent,
     GuestReservationsPageComponent,
     GuestReservationsComponent,
-    ChartComponent
+    MonthlySummaryDialogComponent,
+    ReservationsChartComponent,
+    ProfitChartComponent
   ],
   exports: [
     NavbarComponent,
