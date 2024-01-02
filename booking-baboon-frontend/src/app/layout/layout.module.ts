@@ -65,9 +65,12 @@ import { GuestReservationsPageComponent } from './reservations/guest/guest-reser
 import { GuestReservationsComponent } from './reservations/guest/guest-reservations/guest-reservations.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
-import { MonthlySummaryDialogComponent } from './summaries/monthly-summary-dialog/monthly-summary-dialog.component';
-import { ReservationsChartComponent } from './summaries/reservations-chart/reservations-chart.component';
-import { ProfitChartComponent } from './summaries/profit-chart/profit-chart.component';
+import { MonthlySummaryDialogComponent } from './summaries/monthlySummary/monthly-summary-dialog/monthly-summary-dialog.component';
+import { ReservationsChartComponent } from './summaries/monthlySummary/reservations-chart/reservations-chart.component';
+import { ProfitChartComponent } from './summaries/monthlySummary/profit-chart/profit-chart.component';
+import { SummaryGeneratorPageComponent } from './summaries/periodSummary/summary-generator-page/summary-generator-page.component';
+import { SummaryGeneratorComponent } from './summaries/periodSummary/summary-generator/summary-generator.component';
+import { PeriodSummaryDialogComponent } from './summaries/periodSummary/period-summary-dialog/period-summary-dialog.component';
 
 
 
@@ -117,7 +120,10 @@ import { ProfitChartComponent } from './summaries/profit-chart/profit-chart.comp
     GuestReservationsComponent,
     MonthlySummaryDialogComponent,
     ReservationsChartComponent,
-    ProfitChartComponent
+    ProfitChartComponent,
+    SummaryGeneratorPageComponent,
+    SummaryGeneratorComponent,
+    PeriodSummaryDialogComponent
   ],
   exports: [
     NavbarComponent,

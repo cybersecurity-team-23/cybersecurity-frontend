@@ -37,7 +37,10 @@ import {
 } from "./layout/reservations/guest/guest-reservations-page/guest-reservations-page.component";
 import {
   MonthlySummaryDialogComponent
-} from "./layout/summaries/monthly-summary-dialog/monthly-summary-dialog.component";
+} from "./layout/summaries/monthlySummary/monthly-summary-dialog/monthly-summary-dialog.component";
+import {
+  SummaryGeneratorPageComponent
+} from "./layout/summaries/periodSummary/summary-generator-page/summary-generator-page.component";
 
 
 const routes: Routes = [
@@ -126,8 +129,10 @@ const routes: Routes = [
     data: {role: ['GUEST']}
   },
   {
-    component: MonthlySummaryDialogComponent,
-    path: 'chart'
+    component: SummaryGeneratorPageComponent,
+    path: 'host/accommodations/summary-generator',
+    canActivate: [AuthGuard],
+    data: {role: ['HOST']}
   },
 ];
 

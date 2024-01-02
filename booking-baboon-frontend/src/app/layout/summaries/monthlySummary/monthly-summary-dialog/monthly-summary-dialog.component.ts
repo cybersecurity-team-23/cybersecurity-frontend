@@ -1,6 +1,6 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {AccommodationMonthlySummary} from "../models/AccommodationMonthlySummary";
-import {SummaryService} from "../summary.service";
+import {AccommodationMonthlySummary} from "../../models/AccommodationMonthlySummary";
+import {SummaryService} from "../../summary.service";
 import * as html2pdf from "html2pdf.js";
 
 @Component({
