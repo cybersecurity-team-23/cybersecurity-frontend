@@ -65,6 +65,12 @@ import { GuestReservationsPageComponent } from './reservations/guest/guest-reser
 import { GuestReservationsComponent } from './reservations/guest/guest-reservations/guest-reservations.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
+import { MonthlySummaryDialogComponent } from './summaries/monthlySummary/monthly-summary-dialog/monthly-summary-dialog.component';
+import { ReservationsChartComponent } from './summaries/monthlySummary/reservations-chart/reservations-chart.component';
+import { ProfitChartComponent } from './summaries/monthlySummary/profit-chart/profit-chart.component';
+import { SummaryGeneratorPageComponent } from './summaries/periodSummary/summary-generator-page/summary-generator-page.component';
+import { SummaryGeneratorComponent } from './summaries/periodSummary/summary-generator/summary-generator.component';
+import { PeriodSummaryDialogComponent } from './summaries/periodSummary/period-summary-dialog/period-summary-dialog.component';
 import { FavoriteAccommodationsPageComponent } from './accommodations/favorites/favorite-accommodations-page/favorite-accommodations-page.component';
 
 
@@ -113,6 +119,12 @@ import { FavoriteAccommodationsPageComponent } from './accommodations/favorites/
     StarRatingInputComponent,
     GuestReservationsPageComponent,
     GuestReservationsComponent,
+    MonthlySummaryDialogComponent,
+    ReservationsChartComponent,
+    ProfitChartComponent,
+    SummaryGeneratorPageComponent,
+    SummaryGeneratorComponent,
+    PeriodSummaryDialogComponent,
     FavoriteAccommodationsPageComponent
   ],
   exports: [

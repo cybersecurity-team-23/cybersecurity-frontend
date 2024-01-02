@@ -21,6 +21,7 @@ export class HostAccommodationCardComponent implements OnInit{
   ratingDisplay: string | undefined;
   loadedImages: string[] = [];
   autoAccept: undefined | boolean;
+  isSummaryShowing: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -75,4 +76,13 @@ export class HostAccommodationCardComponent implements OnInit{
       error: (_) => { console.log("Error!"); }
     });
   }
+
+  showSummaryDialog() {
+    this.isSummaryShowing = true;
+  }
+
+  onCloseSummary() {
+    this.isSummaryShowing = false;
+  }
+
 }

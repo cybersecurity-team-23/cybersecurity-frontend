@@ -114,7 +114,7 @@ mat-divider{
   background-color: #652a12;
   color: #FFFFFF;
   border-radius: 10px;
-  width: 170px;
+  width: 200px;
 }
 
 #right-buttons{
@@ -132,4 +132,13 @@ mat-divider{
 #delete{
   background-color: #ff4a4a;
   color: #FFFFFF;
+}
+
+app-monthly-summary-dialog{
+  z-index: 3;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
 }
