@@ -35,7 +35,7 @@
         <ng-container matColumnDef="profit">
           <th mat-header-cell *matHeaderCellDef mat-sort-header > Profit </th>
           <td mat-cell *matCellDef="let accommodationPeriodData">
-            {{accommodationPeriodData.totalProfit}}
+            {{accommodationPeriodData.totalProfit | currency :'EUR'}}
           </td>
         </ng-container>
 

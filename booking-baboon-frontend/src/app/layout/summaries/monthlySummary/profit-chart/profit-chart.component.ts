@@ -25,7 +25,7 @@ export class ProfitChartComponent {
       data: {
         labels: labelData,
         datasets: [{
-          label: 'Profit',
+          label: 'Profit (€)',
           data: this.chartData,
           yAxisID: 'y1',
           backgroundColor: 'rgba(236,105,193, 0.2)',
@@ -41,7 +41,7 @@ export class ProfitChartComponent {
             beginAtZero: true,
             title: {
               display: true,
-              text: 'Profit'
+              text: 'Profit (€)'
             },
             ticks: {
               stepSize: 1,
