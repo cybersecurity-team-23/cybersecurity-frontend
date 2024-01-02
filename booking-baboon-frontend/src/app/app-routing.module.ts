@@ -41,6 +41,10 @@ import {
 import {
   SummaryGeneratorPageComponent
 } from "./layout/summaries/periodSummary/summary-generator-page/summary-generator-page.component";
+import{
+  FavoriteAccommodationsPageComponent
+} from "./layout/accommodations/favorites/favorite-accommodations-page/favorite-accommodations-page.component";
+
 
 
 const routes: Routes = [
@@ -129,10 +133,17 @@ const routes: Routes = [
     data: {role: ['GUEST']}
   },
   {
+
     component: SummaryGeneratorPageComponent,
     path: 'host/accommodations/summary-generator',
     canActivate: [AuthGuard],
     data: {role: ['HOST']}
+  },
+  {
+    component: FavoriteAccommodationsPageComponent,
+    path: 'guest/:guestId/favorites',
+    canActivate: [AuthGuard],
+    data: {role: ['GUEST']}
   },
 ];
 

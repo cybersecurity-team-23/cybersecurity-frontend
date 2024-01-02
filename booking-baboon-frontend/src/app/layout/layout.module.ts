@@ -71,6 +71,7 @@ import { ProfitChartComponent } from './summaries/monthlySummary/profit-chart/pr
 import { SummaryGeneratorPageComponent } from './summaries/periodSummary/summary-generator-page/summary-generator-page.component';
 import { SummaryGeneratorComponent } from './summaries/periodSummary/summary-generator/summary-generator.component';
 import { PeriodSummaryDialogComponent } from './summaries/periodSummary/period-summary-dialog/period-summary-dialog.component';
+import { FavoriteAccommodationsPageComponent } from './accommodations/favorites/favorite-accommodations-page/favorite-accommodations-page.component';
 
 
 
@@ -123,7 +124,8 @@ import { PeriodSummaryDialogComponent } from './summaries/periodSummary/period-s
     ProfitChartComponent,
     SummaryGeneratorPageComponent,
     SummaryGeneratorComponent,
-    PeriodSummaryDialogComponent
+    PeriodSummaryDialogComponent,
+    FavoriteAccommodationsPageComponent
   ],
   exports: [
     NavbarComponent,
