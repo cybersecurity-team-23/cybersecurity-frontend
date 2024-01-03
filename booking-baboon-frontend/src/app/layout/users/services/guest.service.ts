@@ -4,6 +4,7 @@ import {environment} from "../../../env/env";
 import {HttpClient} from "@angular/common/http";
 import {Guest} from "../models/guest.model";
 import {Accommodation} from "../../accommodations/shared/models/accommodation.model";
+import {NotificationType} from "../models/NotificationType.module";
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,11 @@ export class GuestService {
 
     return this.httpClient.get<Accommodation[]>(url);
   }
+
+  toggleNotifications(guestId: number, notificationType: NotificationType): Observable<Guest> {
+    return this.httpClient.put<Guest>(environment.apiHost + 'guests/' + guestId + "/toggle-notifications/" + notificationType, {})
+  }
+
 
   // add(guest.model: Guest): Observable<Guest> {
 //     headers: {

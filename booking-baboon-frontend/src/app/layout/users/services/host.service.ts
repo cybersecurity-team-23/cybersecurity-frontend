@@ -3,6 +3,8 @@ import {Observable} from "rxjs";
 import {environment} from "../../../env/env";
 import {HttpClient} from "@angular/common/http";
 import {Host} from "../models/host.model";
+import {NotificationType} from "../models/NotificationType.module";
+import {Guest} from "../models/guest.model";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +35,10 @@ export class HostService {
 
   update(host: Host): Observable<Host> {
     return this.httpClient.put<Host>(environment.apiHost + 'hosts/', host)
+  }
+
+  toggleNotifications(hostId: number, notificationType: NotificationType): Observable<Host> {
+    return this.httpClient.put<Host>(environment.apiHost + 'hosts/' + hostId + "/toggle-notifications/" + notificationType, {})
   }
 
 
