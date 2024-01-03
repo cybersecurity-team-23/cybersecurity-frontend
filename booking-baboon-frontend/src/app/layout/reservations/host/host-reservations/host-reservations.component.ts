@@ -74,6 +74,8 @@ export class HostReservationsComponent {
         return { color: 'red' };
       case 'finished':
         return { 'font-weight': 'bold'};
+      case 'canceled':
+        return { color: 'red' };
       default:
         return {};
     }
@@ -86,11 +88,19 @@ export class HostReservationsComponent {
 
 
   onApproveReservationClick(reservationId: number) {
-
+    this.reservationService.approve(reservationId).subscribe({
+      next(data) {
+        window.location.reload();
+      }
+    })
   }
 
   onDenyReservationClick(reservationId: number) {
-
+    this.reservationService.deny(reservationId).subscribe({
+      next(data) {
+        window.location.reload();
+      }
+    })
   }
 
   onGuestReportClick(guestId: number) {
