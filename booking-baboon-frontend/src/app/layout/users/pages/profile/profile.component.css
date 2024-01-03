@@ -2,12 +2,13 @@
   background-image: url('../../../../../assets/white-background.png');
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
+  overflow: hidden;
   color: #fff;
   height: 100vh;
 }
 
 .content {
-  margin: 8vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,15 +20,14 @@
 }
 
 .white-box {
+  margin-top: 8vh;
   width: 750px;
-  height: 550px;
+  height: 75vh;
   padding-left: 50px;
   padding-right: 50px;
-
-  right: 50px;
   border-radius: 10px;
   background-color: white;
-
+  overflow: auto; /* Add this line for vertical scroll */
 }
 
 .data-label {
@@ -97,4 +97,19 @@
 .container-no-space {
   display:flex;
   justify-content: space-between;
+}
+
+.notification-toggles {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.notification-switch {
+  margin: 1em;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 22px;
+  color:rgba(0, 0, 0, 1);
 }

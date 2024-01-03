@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/user.model";
-import {Observable, tap} from "rxjs";
+import {tap} from "rxjs";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Guest} from "../../models/guest.model";
 import {Host} from "../../models/host.model";
@@ -10,6 +10,7 @@ import {HostService} from "../../services/host.service";
 import {GuestService} from "../../services/guest.service";
 import {DialogService} from "../../../../shared/dialogs/dialog.service";
 import {SharedService} from "../../../../shared/shared.service";
+import {NotificationType} from "../../models/NotificationType.module";
 
 
 @Component({
@@ -29,6 +30,8 @@ export class ProfileComponent {
     newPassword: true,
     confirmPassword: true,
   };
+  isRoleHost!: boolean;
+  isRoleGuest!: boolean;
 
   isReadOnly(key: string): boolean {
     return this.editModes[key];
@@ -76,6 +79,7 @@ export class ProfileComponent {
         .subscribe();
 
       if (decodedToken.role[0].authority === "HOST") {
+        this.isRoleHost = true;
         this.hostService.getProfileByEmail(userEmail)
           .pipe(
             tap((host: Host) => {
@@ -86,6 +90,7 @@ export class ProfileComponent {
       }
 
       if (decodedToken.role[0].authority === "GUEST") {
+        this.isRoleGuest = true;
         this.guestService.getProfile(userEmail)
           .pipe(
             tap((guest: Guest) => {
@@ -233,4 +238,54 @@ export class ProfileComponent {
 
     }
   }
+
+  isNotificationReservationCreation(): boolean {
+    if (this.host?.ignoredNotifications) {
+      return this.host.ignoredNotifications.includes(NotificationType.ReservationCreated);
+    }
+    return false;
+  }
+
+  isNotificationReservationCancelled(): boolean {
+    if (this.host?.ignoredNotifications) {
+      return this.host.ignoredNotifications.includes(NotificationType.ReservationCancelled);
+    }
+    return false;
+  }
+
+  isNotificationHostReview(): boolean {
+    if (this.host?.ignoredNotifications) {
+      return this.host.ignoredNotifications.includes(NotificationType.HostReview);
+    }
+    return false;
+  }
+
+  isNotificationAccommodationReview(): boolean {
+    if (this.host?.ignoredNotifications) {
+      return this.host.ignoredNotifications.includes(NotificationType.AccommodationReview);
+    }
+    return false;
+  }
+
+  isNotificationReservationRequestResponse(): boolean {
+    if (this.guest?.ignoredNotifications) {
+      return this.guest.ignoredNotifications.includes(NotificationType.ReservationRequestResponse);
+    }
+    return false;
+  }
+
+  toggleNotification(id: number | undefined, notificationType: NotificationType): void {
+    if (id) {
+      if (notificationType != NotificationType.ReservationRequestResponse) {
+        this.hostService.toggleNotifications(id, notificationType).subscribe({
+        })
+      } else {
+        this.guestService.toggleNotifications(id, notificationType).subscribe({
+        })
+      }
+    }
+  }
+
+
+  protected readonly NotificationType = NotificationType;
 }
