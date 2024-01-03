@@ -12,6 +12,9 @@ import {HostService} from "../../../../users/services/host.service";
 import {AccommodationReviewService} from "../../../../reviews/services/accommodation-review.service";
 import {Review} from "../../../../reviews/model/review.model";
 import {AccommodationReview} from "../../../../reviews/model/accommodation-review.model";
+import {AuthService} from "../../../../../infrastructure/auth/auth.service";
+import {GuestService} from "../../../../users/services/guest.service";
+import {Guest} from "../../../../users/models/guest.model";
 
 @Component({
   selector: 'app-accommodation-details',
@@ -29,7 +32,13 @@ export class AccommodationDetailsComponent {
   ratingDisplay!: string;
   reviews!: Review[];
 
-  constructor(private route: ActivatedRoute, private accommodationService: AccommodationService, private imageService: ImageService, private hostService: HostService, private accommodationReviewService: AccommodationReviewService) {
+  constructor(private route: ActivatedRoute,
+              private accommodationService: AccommodationService,
+              private imageService: ImageService,
+              private hostService: HostService,
+              private accommodationReviewService: AccommodationReviewService,
+              private authService: AuthService,
+              private guestService: GuestService) {
   }
 
   ngOnInit(): void {
@@ -43,6 +52,7 @@ export class AccommodationDetailsComponent {
           this.loadHost();
           this.loadReviews();
           this.loadAverageRating();
+          this.loadFavorite();
           },
         error: (_) => { console.log("Error!"); }
       });
@@ -93,6 +103,29 @@ export class AccommodationDetailsComponent {
 
   toggleFavorite() {
     this.isFavorite = !this.isFavorite;
+    if(this.isFavorite){
+      this.addFavorite();
+    } else {
+      this.removeFavorite()
+    }
+  }
+
+  addFavorite(){
+    let guestId = this.authService.getId();
+    this.guestService.addFavorite(guestId, this.accommodation.id).subscribe({
+      next:(data: Guest)=> {}
+    });
+  }
+
+  removeFavorite(){
+    let guestId = this.authService.getId();
+    this.guestService.removeFavorite(guestId, this.accommodation.id).subscribe({
+      next:(data: Guest)=> {}
+    });
+  }
+
+  isGuestLogged(): boolean{
+    return this.authService.getRole() === 'GUEST';
   }
 
   onShowLocationClick() {
@@ -123,4 +156,20 @@ export class AccommodationDetailsComponent {
 
   protected readonly NaN = NaN;
   protected readonly isNaN = isNaN;
+
+  private loadFavorite() {
+    if(this.isGuestLogged()){
+      this.guestService.getFavorites(this.authService.getId()).subscribe({
+        next:(data: Accommodation[]) => {
+          data.forEach((value, index, array) => {
+            if(this.accommodation.id == value.id){
+              this.isFavorite = true;
+              return;
+            }
+          });
+        },
+        error: () => {}
+      })
+    }
+  }
 }

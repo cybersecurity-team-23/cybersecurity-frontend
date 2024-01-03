@@ -6,7 +6,7 @@
       <div id="account-icon">
         <mat-icon (click)="openAccountPage()">account_circle</mat-icon>
       </div>
-      <div id="favorite-icon">
+      <div id="favorite-icon" [routerLink]="['/guest', loggedUserId, 'favorites']">
         <mat-icon>favorite</mat-icon>
       </div>
       <div id="notification-icon">
