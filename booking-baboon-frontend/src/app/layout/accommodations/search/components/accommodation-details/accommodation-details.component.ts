@@ -12,6 +12,7 @@ import {HostService} from "../../../../users/services/host.service";
 import {AccommodationReviewService} from "../../../../reviews/services/accommodation-review.service";
 import {Review} from "../../../../reviews/model/review.model";
 import {AccommodationReview} from "../../../../reviews/model/accommodation-review.model";
+import {HostReview} from "../../../../reviews/model/host-review.model";
 import {AuthService} from "../../../../../infrastructure/auth/auth.service";
 import {GuestService} from "../../../../users/services/guest.service";
 import {Guest} from "../../../../users/models/guest.model";
@@ -30,7 +31,7 @@ export class AccommodationDetailsComponent {
   loadedImages: string[] = [];
   averageRating!: number;
   ratingDisplay!: string;
-  reviews!: Review[];
+  reviews!: AccommodationReview[];
 
   constructor(private route: ActivatedRoute,
               private accommodationService: AccommodationService,

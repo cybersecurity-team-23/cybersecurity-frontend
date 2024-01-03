@@ -38,6 +38,14 @@ export class ReservationService {
     return this.httpClient.get<Reservation[]>(environment.apiHost + 'reservations/guest/' + id)
   }
 
+  getAllForHost(id: number | undefined): Observable<Reservation[]> {
+    return this.httpClient.get<Reservation[]>(environment.apiHost + 'reservations/host/' + id)
+  }
+
+  getCancellationCount(id: number | undefined): Observable<number>{
+    return this.httpClient.get<number>(environment.apiHost + 'reservations/cancellation-count/' + id)
+  }
+
   approve(id: number): Observable<Reservation> {
     return this.httpClient.put<Reservation>(environment.apiHost + 'reservations/' + id + "/approve", {})
   }

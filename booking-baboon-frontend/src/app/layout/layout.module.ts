@@ -169,10 +169,17 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
+import { AccommodationReviewFormComponent } from './reviews/accommodation-review-form/accommodation-review-form.component';
+import { HostReportFormComponent } from './reports/host-report-form/host-report-form.component';
+import { HostReservationsComponent } from './reservations/host/host-reservations/host-reservations.component';
+import { HostReservationsPageComponent } from './reservations/host/host-reservations-page/host-reservations-page.component';
+import { GuestReportFormComponent } from './reports/guest-report-form/guest-report-form.component';
+import { ReviewReportFormComponent } from './reports/review-report-form/review-report-form.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {
   EditAccommodationComponent
 } from "./accommodations/host/components/edit-accommodation/edit-accommodation.component";
+
 
 
 
@@ -221,6 +228,10 @@ import {
     GuestReservationsComponent,
     AccommodationReviewFormComponent,
     HostReportFormComponent,
+    HostReservationsComponent,
+    HostReservationsPageComponent,
+    GuestReportFormComponent,
+    ReviewReportFormComponent,
     GuestReviewsPageComponent,
     HostReviewCardComponent,
     AccommodationReviewCardComponent,

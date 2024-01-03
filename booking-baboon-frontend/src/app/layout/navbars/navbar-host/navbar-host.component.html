@@ -10,8 +10,8 @@
         <mat-icon matBadge="15" matBadgeColor="warn" >notifications</mat-icon>
       </div>
     </div>
-    <button mat-raised-button color="primary">
-      Requests
+    <button mat-raised-button color="primary" [routerLink]="['/host', loggedUserId, 'reservations']">
+      Reservations
     </button>
     <button mat-raised-button color="primary" [routerLink]="['/host/accommodations']">
       My accommodations
