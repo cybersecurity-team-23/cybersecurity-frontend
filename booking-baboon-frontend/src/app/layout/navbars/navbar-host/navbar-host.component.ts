@@ -5,6 +5,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import {UserService} from "../../users/services/user.service";
 import {User} from "../../users/models/user.model";
 import {Observable} from "rxjs";
+import {NotificationsService} from "../../../shared/notifications/notifications.service";
 @Component({
   selector: 'app-navbar-host',
   templateUrl: './navbar-host.component.html',
@@ -13,12 +14,20 @@ import {Observable} from "rxjs";
 export class NavbarHostComponent implements OnInit{
   loggedUserId!: number | undefined;
   user: User | undefined;
+  badge: string = "";
 
-  constructor(private authService: AuthService, private router: Router, private userService: UserService) {
+  constructor(private authService: AuthService, private router: Router, private userService: UserService, private notificationService: NotificationsService) {
   }
 
   public ngOnInit() {
     this.loggedUserId = this.authService.getId();
+    if(this.loggedUserId!==undefined)
+    this.notificationService.getUnreadCountByUser(this.loggedUserId).subscribe({
+      next: value => {
+        if (value>0)
+        this.badge = value.toString()
+      }
+    })
   }
 
   openAccountPage(): void {

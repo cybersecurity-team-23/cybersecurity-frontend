@@ -134,6 +134,9 @@ import {HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {MatTabsModule} from "@angular/material/tabs";
+import { NotificationPageComponent } from './notifications/notification-page/notification-page.component';
+import { NotificationCardComponent } from './notifications/notification-card/notification-card.component';
+import { NotificationCardsComponent } from './notifications/notification-cards/notification-cards.component';
 
 
 @NgModule({
@@ -197,7 +200,10 @@ import {MatTabsModule} from "@angular/material/tabs";
     SummaryGeneratorPageComponent,
     SummaryGeneratorComponent,
     PeriodSummaryDialogComponent,
-    FavoriteAccommodationsPageComponent
+    FavoriteAccommodationsPageComponent,
+    NotificationPageComponent,
+    NotificationCardComponent,
+    NotificationCardsComponent
   ],
   exports: [
     NavbarComponent,

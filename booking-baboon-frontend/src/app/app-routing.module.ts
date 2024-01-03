@@ -48,6 +48,7 @@ import {
 import{
   FavoriteAccommodationsPageComponent
 } from "./layout/accommodations/favorites/favorite-accommodations-page/favorite-accommodations-page.component";
+import {NotificationPageComponent} from "./layout/notifications/notification-page/notification-page.component";
 
 const routes: Routes = [
   {
@@ -157,6 +158,12 @@ const routes: Routes = [
     path: 'guest/:guestId/favorites',
     canActivate: [AuthGuard],
     data: {role: ['GUEST']}
+  },
+  {
+    component: NotificationPageComponent,
+    path: 'notifications/:userId',
+    canActivate: [AuthGuard],
+    data: {role: ['GUEST','HOST']}
   },
 ];
 

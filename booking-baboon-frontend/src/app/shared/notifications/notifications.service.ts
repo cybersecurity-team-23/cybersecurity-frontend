@@ -3,8 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Accommodation} from "../../layout/accommodations/shared/models/accommodation.model";
 import {environment} from "../../env/env";
-import {AccommodationFilter} from "../../layout/accommodations/search/models/accommodationFilter.model";
-import {AvailablePeriod} from "../../layout/accommodations/shared/models/available-period.model";
+import {Notification} from "./models/notification.model";
 
 @Injectable({
   providedIn: 'root'

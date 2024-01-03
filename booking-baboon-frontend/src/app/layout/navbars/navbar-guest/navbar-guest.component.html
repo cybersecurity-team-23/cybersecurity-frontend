@@ -9,8 +9,8 @@
       <div id="favorite-icon" [routerLink]="['/guest', loggedUserId, 'favorites']">
         <mat-icon>favorite</mat-icon>
       </div>
-      <div id="notification-icon">
-        <mat-icon matBadge="15" matBadgeColor="warn" >notifications</mat-icon>
+      <div id="notification-icon" [routerLink]="['/notifications/', loggedUserId]">
+        <mat-icon matBadge="{{badge}}" matBadgeColor="warn" >notifications</mat-icon>
       </div>
     </div>
     <button mat-raised-button color="primary" [routerLink]="['/guest', loggedUserId, 'reviews']">
