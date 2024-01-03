@@ -9,6 +9,7 @@ import {MatSort} from "@angular/material/sort";
 import {ReservationService} from "../../../reservations/reservation.service";
 import {AuthService} from "../../../../infrastructure/auth/auth.service";
 import {AccommodationPeriodData} from "../../models/AccommodationPeriodData";
+import * as html2pdf from "html2pdf.js";
 
 @Component({
   selector: 'app-period-summary-dialog',
@@ -39,6 +40,46 @@ export class PeriodSummaryDialogComponent implements OnInit{
   }
 
   onDownloadPdfClick() {
+    const pdfContent = this.generatePdfContent();
+    const options = {
+      margin: 10,
+      filename: 'period_summary.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    };
 
+    html2pdf().from(pdfContent).set(options).save();
+  }
+
+  private generatePdfContent(): string {
+    let content = `
+      <h2>SUMMARY</h2>
+      <p>Period: ${this.periodSummary?.period.startDate} - ${this.periodSummary?.period.endDate}</p>
+      <table style="width: 100%; text-align: center;">
+      <thead>
+        <tr>
+          <th style="text-align: left; padding: 8px;">Accommodation</th>
+          <th style="padding: 8px;">Reservations</th>
+          <th style="padding: 8px;">Profit</th>
+        </tr>
+      </thead>
+      <tbody>`;
+
+    this.periodSummary?.accommodationsData.forEach((accommodationData) => {
+      content += `
+        <tr style="border-top: 0.5px solid #bababa;">
+          <td style="text-align: left; padding: 8px;">${accommodationData.accommodationName}</td>
+          <td style="padding: 8px;">${accommodationData.reservationsCount}</td>
+          <td style="padding: 8px;">${accommodationData.totalProfit}€</td>
+        </tr>`;
+    });
+
+    content += `
+        </tbody>
+      </table>`;
+
+    return content;
   }
 }
+
