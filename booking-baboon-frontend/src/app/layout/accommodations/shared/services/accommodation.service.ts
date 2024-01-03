@@ -5,6 +5,7 @@ import {environment} from "../../../../env/env";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {AccommodationFilter} from "../../search/models/accommodationFilter.model";
 import {AvailablePeriod} from "../models/available-period.model";
+import {Guest} from "../../../users/models/guest.model";
 
 @Injectable({
   providedIn: 'root'
@@ -84,8 +85,6 @@ export class AccommodationService {
     return this.httpClient.get<number>(`${environment.apiHost}accommodations/${accommodationId}/total-price`, { params });
   }
 
-
-
   createPeriod(period: AvailablePeriod): Observable<AvailablePeriod>{
     if (!period.timeSlot?.startDate || !period.timeSlot?.endDate) throw new Error()
       const body= {
@@ -127,9 +126,8 @@ export class AccommodationService {
     }*/
     return this.httpClient.put<Accommodation>(environment.apiHost + 'accommodations/' + accommodationId + '/updateEditingStatus/' + isBeingEdited, {});
   }
-
-
   setAutoAccepts(id: number | undefined, autoAccept: boolean) {
     return this.httpClient.put<Accommodation>(environment.apiHost + 'accommodations/' + id + '/update-auto-accept/' + autoAccept, {});
   }
+
 }

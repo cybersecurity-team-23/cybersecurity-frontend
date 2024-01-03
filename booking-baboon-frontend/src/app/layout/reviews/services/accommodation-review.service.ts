@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../../env/env";
 import {HttpClient} from "@angular/common/http";
 import {AccommodationReview} from "../model/accommodation-review.model";
+import {HostReview} from "../model/host-review.model";
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,13 @@ export class AccommodationReviewService {
 
   create(review: AccommodationReview): Observable<AccommodationReview> {
     return this.httpClient.post<AccommodationReview>(environment.apiHost + 'accommodation-reviews/' , review)
+  }
+
+  getReviewsByGuest(guestId: number | undefined): Observable<AccommodationReview[]>{
+    return this.httpClient.get<AccommodationReview[]>(environment.apiHost + 'accommodation-reviews/guest/' + guestId)
+  }
+
+  remove(id: number | undefined): Observable<AccommodationReview> {
+    return this.httpClient.delete<AccommodationReview>(environment.apiHost + 'accommodation-reviews/' + id)
   }
 }

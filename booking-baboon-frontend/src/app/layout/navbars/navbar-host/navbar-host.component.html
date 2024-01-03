@@ -6,9 +6,6 @@
       <div id="account-icon">
         <mat-icon (click)="openAccountPage()">account_circle</mat-icon>
       </div>
-      <div id="favorite-icon">
-        <mat-icon>favorite</mat-icon>
-      </div>
       <div id="notification-icon">
         <mat-icon matBadge="15" matBadgeColor="warn" >notifications</mat-icon>
       </div>
@@ -21,6 +18,9 @@
     </button>
     <button mat-raised-button color="primary" [routerLink]="['/accommodations']">
       Accommodations
+    </button>
+    <button mat-raised-button color="primary" [routerLink]="['/host/accommodations/summary-generator']">
+      Summary generator
     </button>
     <button mat-raised-button color="warn" (click)="logout()">
       Log Out

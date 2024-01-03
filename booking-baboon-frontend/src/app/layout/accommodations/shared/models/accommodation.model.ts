@@ -21,5 +21,5 @@ export interface Accommodation {
   isAutomaticallyAccepted?: boolean;
   images?: ImageResponse[];
   isBeingEdited?: Boolean;
-
+  cancellationDeadline?: number;
 }

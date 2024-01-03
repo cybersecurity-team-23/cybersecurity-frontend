@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, ViewChild} from '@angular/core';
 import {Reservation} from "../../models/reservation.model";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
@@ -6,6 +6,7 @@ import {MatSort} from "@angular/material/sort";
 import {ReservationService} from "../../reservation.service";
 import {AuthService} from "../../../../infrastructure/auth/auth.service";
 import {ReservationStatus} from "../../models/reservation-status.enum";
+import {AccommodationService} from "../../../accommodations/shared/services/accommodation.service";
 
 @Component({
   selector: 'app-guest-reservations',
@@ -21,13 +22,16 @@ export class GuestReservationsComponent {
   isAccommodationReviewShowing: boolean = false;
   current_host_id!: number;
   current_accommodation_id!: number;
+  tooltipMessage: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   isHostReportShowing: boolean = false;
 
 
-  constructor(private reservationService: ReservationService, private authService: AuthService) {
+  constructor(private reservationService: ReservationService,
+              private authService: AuthService,
+              private cdRef: ChangeDetectorRef) {
 
   }
 
@@ -70,8 +74,53 @@ export class GuestReservationsComponent {
     return status.toLowerCase() !== 'finished';
   }
 
-  isCancellable(status: string): boolean {
-    return (status.toLowerCase() == 'pending' || status.toLowerCase() == 'approved') ;
+  isCancellable(reservation: Reservation): boolean {
+    let result = true;
+    let status = reservation.status;
+    let isStatusCancellable = (status.toString() == "Pending" || status.toString() == "Approved");
+    if (isStatusCancellable && reservation.accommodation?.cancellationDeadline) {
+      const deadlineDays: number = reservation.accommodation.cancellationDeadline;
+      if (reservation.timeSlot.startDate) {
+        const startDateEpochDay: number = new Date(reservation.timeSlot.startDate).getTime() / 86400000;
+        if (startDateEpochDay - new Date().getTime() / 86400000 <= deadlineDays && status.toString() == "Approved") {
+          //if deadline date has passed the guest cannot cancel
+          result = false;
+          this.tooltipMessage = 'Cancellation deadline has passed.';
+        } else {
+          this.tooltipMessage = 'test';
+          result = true;
+        }
+      }
+    } else{
+      this.tooltipMessage = 'This reservation has already been denied/cancelled or has finished.';
+      return false;
+    }
+
+    return result;
+  }
+  getTooltipMessage(reservation: Reservation): string {
+    if (!this.isCancellable(reservation)) {
+      return this.tooltipMessage; // Use the previously calculated message
+    }
+
+    // Calculate the message based on the current reservation
+    let status = reservation.status;
+    let isStatusCancellable = (status.toString() == "Pending" || status.toString() == "Approved");
+
+    if (isStatusCancellable && reservation.accommodation?.cancellationDeadline) {
+      const deadlineDays: number = reservation.accommodation.cancellationDeadline;
+      if (reservation.timeSlot.startDate) {
+        const startDateEpochDay: number = new Date(reservation.timeSlot.startDate).getTime() / 86400000;
+        if (startDateEpochDay - new Date().getTime() / 86400000 <= deadlineDays && status.toString() == "Approved") {
+          return 'Cancellation deadline has passed.';
+        } else {
+          return '';
+        }
+      }
+    } else {
+      return 'This reservation has already been denied/cancelled or has finished.';
+    }
+    return ""
   }
 
   onHostReviewClick(hostId: number) {
@@ -95,9 +144,16 @@ export class GuestReservationsComponent {
   onCancelReservationClick(reservationId: number) {
     this.reservationService.cancel(reservationId).subscribe({
       next: (canceledReservation) => {
+        // Optionally, you can perform other actions or show notifications.
+        console.log('Reservation has been cancelled:', canceledReservation);
+
+        // Refresh the entire page
+        window.location.reload();
       },
-      error: (_) => {console.log("Greska!")}
-    })
+      error: (err) => {
+        console.error('Error cancelling reservation:', err);
+      }
+    });
   }
 
   onCloseHostReport() {

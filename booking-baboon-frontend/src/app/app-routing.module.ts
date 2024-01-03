@@ -3,9 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from "./layout/authentication/login/login.component";
 import {RegisterComponent} from "./layout/authentication/register/register.component";
 import {
-  AccommodationDetailsComponent
-} from "./layout/accommodations/search/components/accommodation-details/accommodation-details.component";
-import {
   AccommodationDetailsPageComponent
 } from "./layout/accommodations/search/pages/accommodation-details-page/accommodation-details-page.component";
 import {AccommodationsPageComponent} from "./layout/accommodations/search/pages/accommodations-page/accommodations-page.component";
@@ -29,9 +26,6 @@ import {
   AccommodationCreationPageComponent
 } from "./layout/accommodations/host/pages/accommodation-creation-page/accommodation-creation-page.component";
 import {
-  AccommodationAvailablePeriodComponent
-} from "./layout/accommodations/host/components/accommodation-available-period/accommodation-available-period.component";
-import {
   AccommodationAvailablePeriodPageComponent
 } from "./layout/accommodations/host/pages/accommodation-available-period-page/accommodation-available-period-page.component";
 import {
@@ -44,7 +38,16 @@ import {
 import {
   HostReservationsPageComponent
 } from "./layout/reservations/host/host-reservations-page/host-reservations-page.component";
-
+import {GuestReviewsPageComponent} from "./layout/reviews/guest-reviews-page/guest-reviews-page.component";
+import {
+  MonthlySummaryDialogComponent
+} from "./layout/summaries/monthlySummary/monthly-summary-dialog/monthly-summary-dialog.component";
+import {
+  SummaryGeneratorPageComponent
+} from "./layout/summaries/periodSummary/summary-generator-page/summary-generator-page.component";
+import{
+  FavoriteAccommodationsPageComponent
+} from "./layout/accommodations/favorites/favorite-accommodations-page/favorite-accommodations-page.component";
 
 const routes: Routes = [
   {
@@ -136,6 +139,24 @@ const routes: Routes = [
     path: 'host/:guestId/reservations',
     canActivate: [AuthGuard],
     data: {role: ['HOST']}
+  },
+  {
+    component: GuestReviewsPageComponent,
+    path: 'guest/:guestId/reviews',
+    canActivate: [AuthGuard],
+    data: {role: ['GUEST']}
+  },
+  {
+    component: SummaryGeneratorPageComponent,
+    path: 'host/accommodations/summary-generator',
+    canActivate: [AuthGuard],
+    data: {role: ['HOST']}
+  },
+  {
+    component: FavoriteAccommodationsPageComponent,
+    path: 'guest/:guestId/favorites',
+    canActivate: [AuthGuard],
+    data: {role: ['GUEST']}
   },
 ];
 

@@ -37,8 +37,8 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef > Action </th>
       <td mat-cell *matCellDef="let reservation">
-        <div class="data-buttons">
-          <button mat-raised-button color="warn" id="cancel-reservation-button" [disabled]="!isCancellable(reservation.status)"
+        <div class="data-buttons" [matTooltip]="getTooltipMessage(reservation)">
+          <button mat-raised-button color="warn" id="cancel-reservation-button" [disabled]="!isCancellable(reservation)"
                   (click)="onCancelReservationClick(reservation.id)">Cancel</button>
         </div>
       </td>

@@ -6,13 +6,16 @@
       <div id="account-icon">
         <mat-icon (click)="openAccountPage()">account_circle</mat-icon>
       </div>
-      <div id="favorite-icon">
+      <div id="favorite-icon" [routerLink]="['/guest', loggedUserId, 'favorites']">
         <mat-icon>favorite</mat-icon>
       </div>
       <div id="notification-icon">
         <mat-icon matBadge="15" matBadgeColor="warn" >notifications</mat-icon>
       </div>
     </div>
+    <button mat-raised-button color="primary" [routerLink]="['/guest', loggedUserId, 'reviews']">
+      Reviews
+    </button>
     <button mat-raised-button color="primary" [routerLink]="['/guest', loggedUserId, 'reservations']">
       Reservations
     </button>
