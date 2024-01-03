@@ -35,6 +35,7 @@ import {LoginGuard} from "./infrastructure/auth/guard/login.guard";
 import {
   GuestReservationsPageComponent
 } from "./layout/reservations/guest/guest-reservations-page/guest-reservations-page.component";
+import {GuestReviewsPageComponent} from "./layout/reviews/guest-reviews-page/guest-reviews-page.component";
 import {
   MonthlySummaryDialogComponent
 } from "./layout/summaries/monthlySummary/monthly-summary-dialog/monthly-summary-dialog.component";
@@ -133,7 +134,12 @@ const routes: Routes = [
     data: {role: ['GUEST']}
   },
   {
-
+    component: GuestReviewsPageComponent,
+    path: 'guest/:guestId/reviews',
+    canActivate: [AuthGuard],
+    data: {role: ['GUEST']}
+  },
+  {
     component: SummaryGeneratorPageComponent,
     path: 'host/accommodations/summary-generator',
     canActivate: [AuthGuard],
