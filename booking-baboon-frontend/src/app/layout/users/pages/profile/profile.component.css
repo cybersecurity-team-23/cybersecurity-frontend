@@ -113,3 +113,11 @@
   line-height: 22px;
   color:rgba(0, 0, 0, 1);
 }
+
+#notification-description {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+  font-style: italic;
+  color:rgba(0, 0, 0, 70%);
+}
