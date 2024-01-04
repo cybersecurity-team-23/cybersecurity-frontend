@@ -29,8 +29,8 @@ export class HostReviewService {
     return this.httpClient.get<HostReview[]>(environment.apiHost + 'host-reviews/host/' + hostId)
   }
 
-  create(review: HostReview): Observable<HostReview[]>{
-    return this.httpClient.post<HostReview[]>(environment.apiHost + 'host-reviews/', review)
+  create(review: HostReview): Observable<HostReview>{
+    return this.httpClient.post<HostReview>(environment.apiHost + 'host-reviews/', review)
   }
 
   getReviewsByGuest(guestId: number | undefined): Observable<HostReview[]>{
