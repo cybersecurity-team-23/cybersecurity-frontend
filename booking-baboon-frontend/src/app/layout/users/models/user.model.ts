@@ -1,3 +1,5 @@
+import {NotificationType} from "./NotificationType.module";
+
 enum UserStatus{
   Inactive,
   Active,
@@ -20,4 +22,5 @@ export interface User{
   phoneNumber?: string;
   status?: UserStatus;
   role?: Role;
+  ignoredNotifications?: NotificationType[]
 }
