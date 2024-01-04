@@ -37,10 +37,6 @@ export class HostService {
     return this.httpClient.put<Host>(environment.apiHost + 'hosts/', host)
   }
 
-  toggleNotifications(hostId: number, notificationType: NotificationType): Observable<Host> {
-    return this.httpClient.put<Host>(environment.apiHost + 'hosts/' + hostId + "/toggle-notifications/" + notificationType, {})
-  }
-
 
   // add(host.model: Host): Observable<Host> {
 //     headers: {

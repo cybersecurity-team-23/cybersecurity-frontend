@@ -56,11 +56,6 @@ export class GuestService {
     return this.httpClient.get<Accommodation[]>(url);
   }
 
-  toggleNotifications(guestId: number, notificationType: NotificationType): Observable<Guest> {
-    return this.httpClient.put<Guest>(environment.apiHost + 'guests/' + guestId + "/toggle-notifications/" + notificationType, {})
-  }
-
-
   // add(guest.model: Guest): Observable<Guest> {
 //     headers: {
 //       'Content-Type': 'application/json',

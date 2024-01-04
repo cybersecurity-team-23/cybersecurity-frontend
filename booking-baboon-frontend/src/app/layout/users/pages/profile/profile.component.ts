@@ -240,52 +240,45 @@ export class ProfileComponent {
   }
 
   isNotificationReservationCreation(): boolean {
-    if (this.host?.ignoredNotifications) {
-      return this.host.ignoredNotifications.includes(NotificationType.ReservationCreated);
+    if (this.user?.ignoredNotifications) {
+      return !this.user.ignoredNotifications.includes(NotificationType.ReservationCreated);
     }
-    return false;
+    return true;
   }
 
   isNotificationReservationCancelled(): boolean {
-    if (this.host?.ignoredNotifications) {
-      return this.host.ignoredNotifications.includes(NotificationType.ReservationCancelled);
+    if (this.user?.ignoredNotifications) {
+      return !this.user.ignoredNotifications.includes(NotificationType.ReservationCancelled);
     }
-    return false;
+    return true;
   }
 
   isNotificationHostReview(): boolean {
-    if (this.host?.ignoredNotifications) {
-      return this.host.ignoredNotifications.includes(NotificationType.HostReview);
+    if (this.user?.ignoredNotifications) {
+      return !this.user.ignoredNotifications.includes(NotificationType.HostReview);
     }
-    return false;
+    return true;
   }
 
   isNotificationAccommodationReview(): boolean {
-    if (this.host?.ignoredNotifications) {
-      return this.host.ignoredNotifications.includes(NotificationType.AccommodationReview);
+    if (this.user?.ignoredNotifications) {
+      return !this.user.ignoredNotifications.includes(NotificationType.AccommodationReview);
     }
-    return false;
+    return true;
   }
 
   isNotificationReservationRequestResponse(): boolean {
-    if (this.guest?.ignoredNotifications) {
-      return this.guest.ignoredNotifications.includes(NotificationType.ReservationRequestResponse);
+    if (this.user?.ignoredNotifications) {
+      return !this.user.ignoredNotifications.includes(NotificationType.ReservationRequestResponse);
     }
-    return false;
+    return true;
   }
 
   toggleNotification(id: number | undefined, notificationType: NotificationType): void {
     if (id) {
-      if (notificationType != NotificationType.ReservationRequestResponse) {
-        this.hostService.toggleNotifications(id, notificationType).subscribe({
-        })
-      } else {
-        this.guestService.toggleNotifications(id, notificationType).subscribe({
-        })
-      }
+      this.userService.toggleNotifications(id, notificationType).subscribe({})
     }
   }
-
 
   protected readonly NotificationType = NotificationType;
 }
