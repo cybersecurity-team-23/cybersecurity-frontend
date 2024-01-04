@@ -55,7 +55,7 @@ export class AccommodationReviewFormComponent {
       }
     }
     this.reviewService.create(review).subscribe({
-      next: (data: HostReview )=> {
+      next: (data: AccommodationReview )=> {
         console.log(data);
         this.closeReview.emit();
       },
