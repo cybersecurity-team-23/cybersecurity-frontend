@@ -5,6 +5,8 @@ import {HostReview} from "../model/host-review.model";
 import {User} from "../../users/models/user.model";
 import {AuthService} from "../../../infrastructure/auth/auth.service";
 import {HostReviewService} from "../services/host-review.service";
+import {SnackBarComponent} from "../../../shared/snack-bar/snack-bar.component";
+import {SharedService} from "../../../shared/shared.service";
 
 @Component({
   selector: 'app-host-review-form',
@@ -28,7 +30,7 @@ export class HostReviewFormComponent implements OnInit{
 
 
 
-  constructor(private authService: AuthService, private reviewService: HostReviewService) { }
+  constructor(private authService: AuthService, private reviewService: HostReviewService, private sharedService: SharedService) { }
 
   ngOnInit() {
   }
@@ -55,11 +57,15 @@ export class HostReviewFormComponent implements OnInit{
       }
     }
     this.reviewService.create(review).subscribe({
-      next: data => {
+      next: (data: HostReview )=> {
         console.log(data);
         this.closeReview.emit();
+      },
+      error: (_) => {
+        this.sharedService.openSnack("Review already exists!")
       }
     })
+
   }
 
 }
