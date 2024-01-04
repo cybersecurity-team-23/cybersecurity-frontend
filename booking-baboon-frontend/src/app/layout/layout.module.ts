@@ -5,13 +5,10 @@ import {RegisterComponent} from "./authentication/register/register.component";
 import {NavbarGuestComponent} from "./navbars/navbar-guest/navbar-guest.component";
 import {NavbarHostComponent} from "./navbars/navbar-host/navbar-host.component";
 import {NavbarAdminComponent} from "./navbars/navbar-admin/navbar-admin.component";
-import {NavbarUnauthorizedComponent} from "./navbars/navbar-unauthorized/navbar-unauthorized.component";
-import {
-  AccommodationCardsComponent
-} from "./accommodations/search/components/accommodation-cards/accommodation-cards.component";
 import {
   AccommodationsSearchBarComponent
 } from "./accommodations/search/components/accommodations-search-bar/accommodations-search-bar.component";
+import {NavbarUnauthorizedComponent} from "./navbars/navbar-unauthorized/navbar-unauthorized.component";
 import {
   AccommodationCardsComponent
 } from "./accommodations/search/components/accommodation-cards/accommodation-cards.component";
@@ -21,72 +18,51 @@ import {
 import {
   AccommodationDetailsComponent
 } from "./accommodations/search/components/accommodation-details/accommodation-details.component";
+import {
+  AccommodationDetailsPageComponent
+} from "./accommodations/search/pages/accommodation-details-page/accommodation-details-page.component";
+import {ProfileComponent} from "./users/pages/profile/profile.component";
+import {ReviewCardComponent} from "./reviews/review-card/review-card.component";
+import {
+  HostAccommodationCardsComponent
+} from "./accommodations/host/components/host-accommodation-cards/host-accommodation-cards.component";
+import {
+  ReservationRequestPageComponent
+} from "./reservations/reservation-request-page/reservation-request-page.component";
+import {ReservationRequestComponent} from "./reservations/reservation-request/reservation-request.component";
+import {
+  AccommodationModificationCardsComponent
+} from "./accommodations/modification/components/accommodation-modification-cards/accommodation-modification-cards.component";
+import {
+  AccommodationModificationCardComponent
+} from "./accommodations/modification/components/accommodation-modification-card/accommodation-modification-card.component";
+import {ReviewCardsComponent} from "./reviews/review-cards/review-cards.component";
 import {ImageCarouselComponent} from "./accommodations/search/components/image-carousel/image-carousel.component";
 import {
   AccommodationsPageComponent
 } from "./accommodations/search/pages/accommodations-page/accommodations-page.component";
 import {
-  AccommodationDetailsPageComponent
-} from "./accommodations/search/pages/accommodation-details-page/accommodation-details-page.component";
-import {
-  AccommodationsPageComponent
-} from "./accommodations/search/pages/accommodations-page/accommodations-page.component";
-import {ProfileComponent} from "./users/pages/profile/profile.component";
-import {HostProfilePageComponent} from "./users/pages/host-profile-page/host-profile-page.component";
-import {ReviewCardsComponent} from "./reviews/review-cards/review-cards.component";
-import {
   AccommodationFilterComponent
 } from "./accommodations/search/components/accommodation-filter/accommodation-filter.component";
 import {ActivationComponent} from "./authentication/activation/activation.component";
 import {HostProfileComponent} from "./users/components/host-profile/host-profile.component";
-import {ReviewCardComponent} from "./reviews/review-card/review-card.component";
+import {HostProfilePageComponent} from "./users/pages/host-profile-page/host-profile-page.component";
+import {
+  HostAccommodationsListComponent
+} from "./accommodations/host/pages/host-accommodations-list/host-accommodations-list.component";
 import {ReviewsDialogComponent} from "./reviews/reviews-dialog/reviews-dialog.component";
 import {
-  HostAccommodationsListComponent
-} from "./accommodations/host/pages/host-accommodations-list/host-accommodations-list.component";
-import {
   HostAccommodationCardComponent
 } from "./accommodations/host/components/host-accommodation-card/host-accommodation-card.component";
-import {
-  HostAccommodationCardComponent
-} from "./accommodations/host/components/host-accommodation-card/host-accommodation-card.component";
-import {
-  HostAccommodationsListComponent
-} from "./accommodations/host/pages/host-accommodations-list/host-accommodations-list.component";
-import {
-  HostAccommodationCardsComponent
-} from "./accommodations/host/components/host-accommodation-cards/host-accommodation-cards.component";
 import {
   AccommodationModificationPageComponent
 } from "./accommodations/modification/pages/accommodation-modification-page/accommodation-modification-page.component";
 import {
-  AccommodationModificationCardComponent
-} from "./accommodations/modification/components/accommodation-modification-card/accommodation-modification-card.component";
-import {
-  AccommodationModificationCardsComponent
-} from "./accommodations/modification/components/accommodation-modification-cards/accommodation-modification-cards.component";
-import {
   AccommodationModificationDetailsComponent
 } from "./accommodations/modification/components/accommodation-modification-details/accommodation-modification-details.component";
-import { AccommodationModificationCardsComponent
-} from "./accommodations/modification/components/accommodation-modification-cards/accommodation-modification-cards.component";
-import {ReservationRequestComponent} from "./reservations/reservation-request/reservation-request.component";
-import {
-  ReservationRequestPageComponent
-} from "./reservations/reservation-request-page/reservation-request-page.component";
 import {
   AccommodationModificationDetailsPageComponent
 } from "./accommodations/modification/pages/accommodation-modification-details-page/accommodation-modification-details-page.component";
-import {
-  ReservationRequestPageComponent
-} from "./reservations/reservation-request-page/reservation-request-page.component";
-import {ReservationRequestComponent} from "./reservations/reservation-request/reservation-request.component";
-import{
-  AccommodationModificationDetailsComponent
-} from "./accommodations/modification/components/accommodation-modification-details/accommodation-modification-details.component";
-import {
-  AccommodationModificationCardComponent
-} from "./accommodations/modification/components/accommodation-modification-card/accommodation-modification-card.component";
 import {
   AccommodationCreationPageComponent
 } from "./accommodations/host/pages/accommodation-creation-page/accommodation-creation-page.component";
@@ -99,19 +75,25 @@ import {
 import {
   AccommodationAvailablePeriodPageComponent
 } from "./accommodations/host/pages/accommodation-available-period-page/accommodation-available-period-page.component";
-import {HostReviewFormComponent} from "./reviews/host-review-form/host-review-form.component";
 import {
   EditAccommodationPageComponent
 } from "./accommodations/host/pages/edit-accommodation-page/edit-accommodation-page.component";
+import {HostReviewFormComponent} from "./reviews/host-review-form/host-review-form.component";
 import {StarRatingInputComponent} from "./reviews/star-rating-input/star-rating-input.component";
 import {
   GuestReservationsPageComponent
 } from "./reservations/guest/guest-reservations-page/guest-reservations-page.component";
-import {GuestReservationsComponent} from "./reservations/guest/guest-reservations/guest-reservations.component";
 import {
   AccommodationReviewFormComponent
 } from "./reviews/accommodation-review-form/accommodation-review-form.component";
+import {GuestReservationsComponent} from "./reservations/guest/guest-reservations/guest-reservations.component";
 import {HostReportFormComponent} from "./reports/host-report-form/host-report-form.component";
+import {HostReservationsComponent} from "./reservations/host/host-reservations/host-reservations.component";
+import {
+  HostReservationsPageComponent
+} from "./reservations/host/host-reservations-page/host-reservations-page.component";
+import {GuestReportFormComponent} from "./reports/guest-report-form/guest-report-form.component";
+import {ReviewReportFormComponent} from "./reports/review-report-form/review-report-form.component";
 import {GuestReviewsPageComponent} from "./reviews/guest-reviews-page/guest-reviews-page.component";
 import {HostReviewCardComponent} from "./reviews/host-review-card/host-review-card.component";
 import {
@@ -121,35 +103,17 @@ import {HostReviewCardsComponent} from "./reviews/host-review-cards/host-review-
 import {
   AccommodationReviewCardsComponent
 } from "./reviews/accommodation-review-cards/accommodation-review-cards.component";
-import{
-  AccommodationAvailablePeriodComponent
-} from "./accommodations/host/components/accommodation-available-period/accommodation-available-period.component";
-import {
-  AccommodationCreationComponent
-} from "./accommodations/host/components/accommodation-creation/accommodation-creation.component";
 import {
   EditAccommodationComponent
 } from "./accommodations/host/components/edit-accommodation/edit-accommodation.component";
 import {
-  AccommodationAvailablePeriodPageComponent
-} from "./accommodations/host/pages/accommodation-available-period-page/accommodation-available-period-page.component";
-import {
-  EditAccommodationPageComponent
-} from "./accommodations/host/pages/edit-accommodation-page/edit-accommodation-page.component";
-import {HostReviewFormComponent} from "./reviews/host-review-form/host-review-form.component";
-import {GuestReservationsComponent} from "./reservations/guest/guest-reservations/guest-reservations.component";
-import {
-  GuestReservationsPageComponent
-} from "./reservations/guest/guest-reservations-page/guest-reservations-page.component";
-import {ReservationsChartComponent} from "./summaries/monthlySummary/reservations-chart/reservations-chart.component";
-import {
   MonthlySummaryDialogComponent
 } from "./summaries/monthlySummary/monthly-summary-dialog/monthly-summary-dialog.component";
-import {StarRatingInputComponent} from "./reviews/star-rating-input/star-rating-input.component";
+import {ReservationsChartComponent} from "./summaries/monthlySummary/reservations-chart/reservations-chart.component";
+import {ProfitChartComponent} from "./summaries/monthlySummary/profit-chart/profit-chart.component";
 import {
   SummaryGeneratorPageComponent
 } from "./summaries/periodSummary/summary-generator-page/summary-generator-page.component";
-import {ProfitChartComponent} from "./summaries/monthlySummary/profit-chart/profit-chart.component";
 import {SummaryGeneratorComponent} from "./summaries/periodSummary/summary-generator/summary-generator.component";
 import {
   PeriodSummaryDialogComponent
@@ -169,18 +133,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
-import { AccommodationReviewFormComponent } from './reviews/accommodation-review-form/accommodation-review-form.component';
-import { HostReportFormComponent } from './reports/host-report-form/host-report-form.component';
-import { HostReservationsComponent } from './reservations/host/host-reservations/host-reservations.component';
-import { HostReservationsPageComponent } from './reservations/host/host-reservations-page/host-reservations-page.component';
-import { GuestReportFormComponent } from './reports/guest-report-form/guest-report-form.component';
-import { ReviewReportFormComponent } from './reports/review-report-form/review-report-form.component';
 import {MatTabsModule} from "@angular/material/tabs";
-import {
-  EditAccommodationComponent
-} from "./accommodations/host/components/edit-accommodation/edit-accommodation.component";
-
-
 
 
 @NgModule({
