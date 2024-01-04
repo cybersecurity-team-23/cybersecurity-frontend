@@ -42,15 +42,12 @@ import {ImageCarouselComponent} from "./accommodations/search/components/image-c
 import {
   AccommodationsPageComponent
 } from "./accommodations/search/pages/accommodations-page/accommodations-page.component";
-import {ProfileComponent} from "./users/pages/profile/profile.component";
 import {HostProfilePageComponent} from "./users/pages/host-profile-page/host-profile-page.component";
-import {ReviewCardsComponent} from "./reviews/review-cards/review-cards.component";
 import {
   AccommodationFilterComponent
 } from "./accommodations/search/components/accommodation-filter/accommodation-filter.component";
 import {ActivationComponent} from "./authentication/activation/activation.component";
 import {HostProfileComponent} from "./users/components/host-profile/host-profile.component";
-import {HostProfilePageComponent} from "./users/pages/host-profile-page/host-profile-page.component";
 import {
   HostAccommodationsListComponent
 } from "./accommodations/host/pages/host-accommodations-list/host-accommodations-list.component";
@@ -58,25 +55,14 @@ import {ReviewsDialogComponent} from "./reviews/reviews-dialog/reviews-dialog.co
 import {
   HostAccommodationCardComponent
 } from "./accommodations/host/components/host-accommodation-card/host-accommodation-card.component";
-import{ HostAccommodationCardsComponent
-} from "./accommodations/host/components/host-accommodation-cards/host-accommodation-cards.component";
+
 import {
   AccommodationModificationPageComponent
 } from "./accommodations/modification/pages/accommodation-modification-page/accommodation-modification-page.component";
 import {
   AccommodationModificationDetailsComponent
 } from "./accommodations/modification/components/accommodation-modification-details/accommodation-modification-details.component";
-import {
-  AccommodationModificationDetailsPageComponent
-} from "./accommodations/modification/pages/accommodation-modification-details-page/accommodation-modification-details-page.component";
 
-import {ReservationRequestComponent} from "./reservations/reservation-request/reservation-request.component";
-import {
-  ReservationRequestPageComponent
-} from "./reservations/reservation-request-page/reservation-request-page.component";
-import {
-  AccommodationModificationDetailsPageComponent
-} from "./accommodations/modification/pages/accommodation-modification-details-page/accommodation-modification-details-page.component";
 
 import {
   AccommodationCreationPageComponent
@@ -127,15 +113,7 @@ import {
 import {ReservationsChartComponent} from "./summaries/monthlySummary/reservations-chart/reservations-chart.component";
 import {ProfitChartComponent} from "./summaries/monthlySummary/profit-chart/profit-chart.component";
 
-import {
-  EditAccommodationComponent
-} from "./accommodations/host/components/edit-accommodation/edit-accommodation.component";
 
-
-import {ReservationsChartComponent} from "./summaries/monthlySummary/reservations-chart/reservations-chart.component";
-import {
-  MonthlySummaryDialogComponent
-} from "./summaries/monthlySummary/monthly-summary-dialog/monthly-summary-dialog.component";
 import {
   SummaryGeneratorPageComponent
 } from "./summaries/periodSummary/summary-generator-page/summary-generator-page.component";
@@ -158,19 +136,10 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
-import {MatTabsModule} from "@angular/material/tabs";
-
-import { HostReservationsComponent } from './reservations/host/host-reservations/host-reservations.component';
-import { HostReservationsPageComponent } from './reservations/host/host-reservations-page/host-reservations-page.component';
-import { GuestReportFormComponent } from './reports/guest-report-form/guest-report-form.component';
-import { ReviewReportFormComponent } from './reports/review-report-form/review-report-form.component';
-import {MatTabsModule} from "@angular/material/tabs";
 import {
-  HostAccommodationsListComponent
-} from "./accommodations/host/pages/host-accommodations-list/host-accommodations-list.component";
-import {
-  HostAccommodationCardComponent
-} from "./accommodations/host/components/host-accommodation-card/host-accommodation-card.component";
+  AccommodationModificationDetailsPageComponent
+} from "./accommodations/modification/pages/accommodation-modification-details-page/accommodation-modification-details-page.component";
+import {MatTabsModule} from "@angular/material/tabs";
 
 
 @NgModule({
