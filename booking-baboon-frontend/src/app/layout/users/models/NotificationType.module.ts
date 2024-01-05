@@ -1,7 +1,7 @@
 export enum NotificationType {
-  ReservationCreated,
-  ReservationCancelled,
-  HostReview,
-  AccommodationReview,
-  ReservationRequestResponse
+  ReservationCreated = "ReservationCreated",
+  ReservationCancelled = "ReservationCancelled",
+  HostReview = "HostReview",
+  AccommodationReview = "AccommodationReview",
+  ReservationRequestResponse = "ReservationRequestResponse"
 }

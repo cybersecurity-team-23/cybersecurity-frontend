@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {Guest} from "../../users/models/guest.model";
 import {User} from "../../users/models/user.model";
+import {NotificationsService} from "../../../shared/notifications/notifications.service";
 
 @Component({
   selector: 'app-navbar-guest',
@@ -12,11 +13,19 @@ import {User} from "../../users/models/user.model";
 })
 export class NavbarGuestComponent implements OnInit{
   loggedUserId!: number | undefined;
-  constructor(private authService: AuthService, private router: Router) {
+  badge: string = "";
+  constructor(private authService: AuthService, private router: Router,private notificationService: NotificationsService) {
   }
 
   public ngOnInit() {
     this.loggedUserId = this.authService.getId();
+    if(this.loggedUserId!==undefined)
+      this.notificationService.getUnreadCountByUser(this.loggedUserId).subscribe({
+        next: value => {
+          if (value>0)
+            this.badge = value.toString()
+        }
+      })
   }
 
   openAccountPage(): void {

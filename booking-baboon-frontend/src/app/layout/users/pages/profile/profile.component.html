@@ -3,6 +3,9 @@
   <div class="wrapper">
     <app-navbar> </app-navbar>
   </div>
+  <div id="empty-space">
+
+  </div>
   <div class="content">
     <div class="white-box">
       <!-- Add content inside the white box as needed -->
@@ -106,6 +109,22 @@
         <button (click)="saveChanges()" id="saveChanges" mat-raised-button color="primary">Save changes</button>
         <button (click)="deleteProfile()" mat-raised-button color="warn">Delete profile</button>
       </div>
+
+      <div class="notifications">
+        <div class="center-title">
+          <h2>Notifications</h2>
+        </div>
+        <hr>
+        <div class="notification-toggles">
+          <mat-slide-toggle color="primary" *ngIf="isRoleHost && host" class="notification-switch" [checked]="isNotificationReservationCreation()" (change)="toggleNotification(host.id, NotificationType.ReservationCreated)">Reservation creations</mat-slide-toggle>
+          <mat-slide-toggle color="primary" *ngIf="isRoleHost && host" class="notification-switch" [checked]="isNotificationReservationCancelled()" (change)="toggleNotification(host.id, NotificationType.ReservationCancelled)">Reservation cancellations</mat-slide-toggle>
+          <mat-slide-toggle color="primary" *ngIf="isRoleHost && host" class="notification-switch" [checked]="isNotificationHostReview()" (change)="toggleNotification(host.id, NotificationType.HostReview)">Your reviews</mat-slide-toggle>
+          <mat-slide-toggle color="primary" *ngIf="isRoleHost && host" class="notification-switch" [checked]="isNotificationAccommodationReview()" (change)="toggleNotification(host.id, NotificationType.AccommodationReview)">Accommodation reviews</mat-slide-toggle>
+          <mat-slide-toggle color="primary" *ngIf="isRoleGuest && guest" class="notification-switch" [checked]="isNotificationReservationRequestResponse()" (change)="toggleNotification(guest.id, NotificationType.ReservationRequestResponse)">Reservation responses</mat-slide-toggle>
+        </div>
+        <p id="notification-description">Choose what kind of notifications would you like to receive</p>
+      </div>
+
     </div>
   </div>
 </div>

@@ -4,6 +4,8 @@ import {environment} from "../../../env/env";
 import {HttpClient} from "@angular/common/http";
 import {User} from "../models/user.model";
 import {UserEditRequest} from "../models/userEditRequest";
+import {NotificationType} from "../models/NotificationType.module";
+import {Host} from "../models/host.model";
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +42,10 @@ export class UserService {
       newPassword: newPassword
     };
     return this.httpClient.put<User>(environment.apiHost + 'users/' + id + '/change-password',requestBody)
+  }
+
+  toggleNotifications(userId: number, notificationType: NotificationType): Observable<Host> {
+    return this.httpClient.put<Host>(environment.apiHost + 'users/' + userId + "/toggle-notifications/" + notificationType, {})
   }
 
 

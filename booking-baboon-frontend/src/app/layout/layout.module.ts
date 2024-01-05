@@ -42,12 +42,12 @@ import {ImageCarouselComponent} from "./accommodations/search/components/image-c
 import {
   AccommodationsPageComponent
 } from "./accommodations/search/pages/accommodations-page/accommodations-page.component";
-import {HostProfilePageComponent} from "./users/pages/host-profile-page/host-profile-page.component";
 import {
   AccommodationFilterComponent
 } from "./accommodations/search/components/accommodation-filter/accommodation-filter.component";
 import {ActivationComponent} from "./authentication/activation/activation.component";
 import {HostProfileComponent} from "./users/components/host-profile/host-profile.component";
+import {HostProfilePageComponent} from "./users/pages/host-profile-page/host-profile-page.component";
 import {
   HostAccommodationsListComponent
 } from "./accommodations/host/pages/host-accommodations-list/host-accommodations-list.component";
@@ -55,15 +55,15 @@ import {ReviewsDialogComponent} from "./reviews/reviews-dialog/reviews-dialog.co
 import {
   HostAccommodationCardComponent
 } from "./accommodations/host/components/host-accommodation-card/host-accommodation-card.component";
-
 import {
   AccommodationModificationPageComponent
 } from "./accommodations/modification/pages/accommodation-modification-page/accommodation-modification-page.component";
 import {
   AccommodationModificationDetailsComponent
 } from "./accommodations/modification/components/accommodation-modification-details/accommodation-modification-details.component";
-
-
+import {
+  AccommodationModificationDetailsPageComponent
+} from "./accommodations/modification/pages/accommodation-modification-details-page/accommodation-modification-details-page.component";
 import {
   AccommodationCreationPageComponent
 } from "./accommodations/host/pages/accommodation-creation-page/accommodation-creation-page.component";
@@ -112,8 +112,6 @@ import {
 } from "./summaries/monthlySummary/monthly-summary-dialog/monthly-summary-dialog.component";
 import {ReservationsChartComponent} from "./summaries/monthlySummary/reservations-chart/reservations-chart.component";
 import {ProfitChartComponent} from "./summaries/monthlySummary/profit-chart/profit-chart.component";
-
-
 import {
   SummaryGeneratorPageComponent
 } from "./summaries/periodSummary/summary-generator-page/summary-generator-page.component";
@@ -136,6 +134,10 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {HttpClientModule} from "@angular/common/http";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
+import {MatTabsModule} from "@angular/material/tabs";
+import { NotificationPageComponent } from './notifications/notification-page/notification-page.component';
+import { NotificationCardComponent } from './notifications/notification-card/notification-card.component';
+import { NotificationCardsComponent } from './notifications/notification-cards/notification-cards.component';
 import {
   AccommodationModificationDetailsPageComponent
 } from "./accommodations/modification/pages/accommodation-modification-details-page/accommodation-modification-details-page.component";
@@ -203,7 +205,10 @@ import {MatTabsModule} from "@angular/material/tabs";
     SummaryGeneratorPageComponent,
     SummaryGeneratorComponent,
     PeriodSummaryDialogComponent,
-    FavoriteAccommodationsPageComponent
+    FavoriteAccommodationsPageComponent,
+    NotificationPageComponent,
+    NotificationCardComponent,
+    NotificationCardsComponent
   ],
   exports: [
     NavbarComponent,

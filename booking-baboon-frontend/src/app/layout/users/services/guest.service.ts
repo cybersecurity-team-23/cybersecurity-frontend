@@ -4,6 +4,7 @@ import {environment} from "../../../env/env";
 import {HttpClient} from "@angular/common/http";
 import {Guest} from "../models/guest.model";
 import {Accommodation} from "../../accommodations/shared/models/accommodation.model";
+import {NotificationType} from "../models/NotificationType.module";
 
 @Injectable({
   providedIn: 'root'
