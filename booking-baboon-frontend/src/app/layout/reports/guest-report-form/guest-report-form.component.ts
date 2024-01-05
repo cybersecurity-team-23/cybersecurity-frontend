@@ -6,6 +6,8 @@ import {HostReport} from "../models/host-report.model";
 import {ReportStatus} from "../models/report.model";
 import {GuestReport} from "../models/guest-report.model";
 import {GuestReportService} from "../services/guest-report.service";
+import {ReviewReport} from "../models/review-report.model";
+import {SharedService} from "../../../shared/shared.service";
 
 @Component({
   selector: 'app-guest-report-form',
@@ -28,7 +30,7 @@ export class GuestReportFormComponent implements OnInit{
 
 
 
-  constructor(private authService: AuthService, private reportService: GuestReportService) { }
+  constructor(private authService: AuthService, private reportService: GuestReportService, private sharedService: SharedService) { }
 
   ngOnInit() {
   }
@@ -51,9 +53,12 @@ export class GuestReportFormComponent implements OnInit{
       }
     }
     this.reportService.create(report).subscribe({
-      next: data => {
+      next: (data: GuestReport )=> {
         console.log(data);
         this.closeReport.emit();
+      },
+      error: (_) => {
+        this.sharedService.openSnack("Report already exists!")
       }
     })
   }

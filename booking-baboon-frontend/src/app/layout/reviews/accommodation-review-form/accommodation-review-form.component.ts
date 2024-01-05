@@ -5,6 +5,7 @@ import {HostReviewService} from "../services/host-review.service";
 import {HostReview} from "../model/host-review.model";
 import {AccommodationReviewService} from "../services/accommodation-review.service";
 import {AccommodationReview} from "../model/accommodation-review.model";
+import {SharedService} from "../../../shared/shared.service";
 
 @Component({
   selector: 'app-accommodation-review-form',
@@ -27,7 +28,7 @@ export class AccommodationReviewFormComponent {
 
 
 
-  constructor(private authService: AuthService, private reviewService: AccommodationReviewService) { }
+  constructor(private authService: AuthService, private reviewService: AccommodationReviewService,private sharedService: SharedService) { }
 
   ngOnInit() {
   }
@@ -54,9 +55,12 @@ export class AccommodationReviewFormComponent {
       }
     }
     this.reviewService.create(review).subscribe({
-      next: data => {
+      next: (data: AccommodationReview )=> {
         console.log(data);
         this.closeReview.emit();
+      },
+      error: (_) => {
+        this.sharedService.openSnack("Review already exists!")
       }
     })
   }

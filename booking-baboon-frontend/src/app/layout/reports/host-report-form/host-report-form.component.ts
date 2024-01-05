@@ -4,6 +4,9 @@ import {AuthService} from "../../../infrastructure/auth/auth.service";
 import {HostReport} from "../models/host-report.model";
 import {HostReportService} from "../services/host-report.service";
 import {ReportStatus} from "../models/report.model";
+import {ReviewReport} from "../models/review-report.model";
+import {HostReview} from "../../reviews/model/host-review.model";
+import {SharedService} from "../../../shared/shared.service";
 
 @Component({
   selector: 'app-host-report-form',
@@ -26,7 +29,7 @@ export class HostReportFormComponent implements OnInit{
 
 
 
-  constructor(private authService: AuthService, private reportService: HostReportService) { }
+  constructor(private authService: AuthService, private reportService: HostReportService, private sharedService: SharedService) { }
 
   ngOnInit() {
   }
@@ -49,9 +52,12 @@ export class HostReportFormComponent implements OnInit{
       }
     }
     this.reportService.create(report).subscribe({
-      next: data => {
+      next: (data: HostReport )=> {
         console.log(data);
         this.closeReport.emit();
+      },
+      error: (_) => {
+        this.sharedService.openSnack("Report already exists!")
       }
     })
   }

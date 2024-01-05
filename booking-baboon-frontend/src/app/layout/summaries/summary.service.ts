@@ -29,4 +29,22 @@ export class SummaryService {
     return this.httpClient.get<PeriodSummary>(environment.apiHost + 'summary/period', { params });
   }
 
+  getPeriodSummaryPdf(hostId: number, startDate: string, endDate: string): Observable<Blob> {
+    const params = new HttpParams()
+      .set('host-id', hostId)
+      .set('start-date', startDate)
+      .set('end-date', endDate);
+
+    return this.httpClient.get(environment.apiHost + 'summary/period/pdf', {
+      params,
+      responseType: 'blob'
+    });
+  }
+
+  getMonthlySummaryPdf(id: number | undefined): Observable<Blob>{
+    return this.httpClient.get(`${environment.apiHost}summary/monthly/${id}/pdf`, {responseType: 'blob'});
+
+  }
+
+
 }

@@ -1,7 +1,8 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AccommodationMonthlySummary} from "../../models/AccommodationMonthlySummary";
 import {SummaryService} from "../../summary.service";
-import * as html2pdf from "html2pdf.js";
+import {AccommodationService} from "../../../accommodations/shared/services/accommodation.service";
+import {Accommodation} from "../../../accommodations/shared/models/accommodation.model";
 
 @Component({
   selector: 'app-monthly-summary-dialog',
@@ -12,12 +13,19 @@ export class MonthlySummaryDialogComponent implements OnInit{
 
   @Input() accommodationId?: number;
   summaryData!: AccommodationMonthlySummary;
-  constructor(private summaryService: SummaryService) {
+  accommodation!: Accommodation;
+  constructor(private summaryService: SummaryService, private accomodationService: AccommodationService) {
   }
   ngOnInit(): void {
     this.summaryService.getMonthlySummary(this.accommodationId).subscribe({
       next:(data: AccommodationMonthlySummary) => {
         this.summaryData = data;
+
+        this.accomodationService.getAccommodation(this.summaryData.accommodationId).subscribe({
+          next:(accommodation: Accommodation) => {
+            this.accommodation = accommodation;
+          }
+        });
       }
     })
   }
@@ -28,7 +36,29 @@ export class MonthlySummaryDialogComponent implements OnInit{
     this.closeMonthlySummary.emit();
   }
 
-  onDownloadPdfClick() {
 
+  onDownloadPdfClick(){
+    if(this.accommodationId)
+      this.summaryService
+        .getMonthlySummaryPdf(this.accommodationId)
+        .subscribe({
+          next:(blob: Blob) => {
+
+            const blobUrl = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = blobUrl;
+            a.download = 'monthly_summary.pdf';
+
+            document.body.appendChild(a);
+
+            a.click();
+
+            document.body.removeChild(a);
+
+            URL.revokeObjectURL(blobUrl);
+          }});
   }
+
 }
+

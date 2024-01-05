@@ -12,6 +12,7 @@ import {NavbarUnauthorizedComponent} from "./navbars/navbar-unauthorized/navbar-
 import {
   AccommodationCardsComponent
 } from "./accommodations/search/components/accommodation-cards/accommodation-cards.component";
+
 import {
   AccommodationCardComponent
 } from "./accommodations/search/components/accommodation-card/accommodation-card.component";
@@ -137,6 +138,10 @@ import {MatTabsModule} from "@angular/material/tabs";
 import { NotificationPageComponent } from './notifications/notification-page/notification-page.component';
 import { NotificationCardComponent } from './notifications/notification-card/notification-card.component';
 import { NotificationCardsComponent } from './notifications/notification-cards/notification-cards.component';
+import {
+  AccommodationModificationDetailsPageComponent
+} from "./accommodations/modification/pages/accommodation-modification-details-page/accommodation-modification-details-page.component";
+import {MatTabsModule} from "@angular/material/tabs";
 
 
 @NgModule({

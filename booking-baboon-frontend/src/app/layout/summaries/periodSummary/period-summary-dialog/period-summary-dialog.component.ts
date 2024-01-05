@@ -1,12 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {AccommodationMonthlySummary} from "../../models/AccommodationMonthlySummary";
 import {SummaryService} from "../../summary.service";
 import {PeriodSummary} from "../../models/PeriodSummary";
-import {Reservation} from "../../../reservations/models/reservation.model";
 import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatSort} from "@angular/material/sort";
-import {ReservationService} from "../../../reservations/reservation.service";
 import {AuthService} from "../../../../infrastructure/auth/auth.service";
 import {AccommodationPeriodData} from "../../models/AccommodationPeriodData";
 
@@ -25,7 +22,7 @@ export class PeriodSummaryDialogComponent implements OnInit{
 
   @Output() closePeriodSummary: EventEmitter<void> = new EventEmitter<void>();
 
-  constructor(private summaryService: SummaryService) {
+  constructor(private summaryService: SummaryService,private authService:AuthService) {
   }
 
   ngOnInit(): void {
@@ -38,7 +35,32 @@ export class PeriodSummaryDialogComponent implements OnInit{
     this.closePeriodSummary.emit();
   }
 
-  onDownloadPdfClick() {
+  onDownloadPdfClick(){
+    const hostId = this.authService.getId();
+    const startDate = this.periodSummary?.period.startDate;
+    const endDate = this.periodSummary?.period.endDate;
 
+    if(hostId && startDate && endDate)
+    this.summaryService
+      .getPeriodSummaryPdf(hostId, startDate, endDate)
+      .subscribe({
+      next:(blob: Blob) => {
+
+        const blobUrl = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = blobUrl;
+        a.download = 'period_summary.pdf';
+
+        document.body.appendChild(a);
+
+        a.click();
+
+        document.body.removeChild(a);
+
+        URL.revokeObjectURL(blobUrl);
+     }});
   }
+
 }
+
