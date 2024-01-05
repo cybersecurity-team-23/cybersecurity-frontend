@@ -62,9 +62,6 @@ import {
   AccommodationModificationDetailsComponent
 } from "./accommodations/modification/components/accommodation-modification-details/accommodation-modification-details.component";
 import {
-  AccommodationModificationDetailsPageComponent
-} from "./accommodations/modification/pages/accommodation-modification-details-page/accommodation-modification-details-page.component";
-import {
   AccommodationCreationPageComponent
 } from "./accommodations/host/pages/accommodation-creation-page/accommodation-creation-page.component";
 import {
@@ -141,7 +138,7 @@ import { NotificationCardsComponent } from './notifications/notification-cards/n
 import {
   AccommodationModificationDetailsPageComponent
 } from "./accommodations/modification/pages/accommodation-modification-details-page/accommodation-modification-details-page.component";
-import {MatTabsModule} from "@angular/material/tabs";
+
 
 
 @NgModule({
