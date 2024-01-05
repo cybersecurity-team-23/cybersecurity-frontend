@@ -49,7 +49,7 @@ export class AccommodationCreationComponent implements OnInit {
     minGuests: new FormControl(1,[Validators.min(1),Validators.required]),
     maxGuests: new FormControl(1,[Validators.min(1),Validators.required]),
     type: new FormControl(AccommodationType.Hotel,Validators.required),
-
+    cancelDeadline: new FormControl(1,[Validators.min(1),Validators.required]),
   });
 
   constructor(private amenityService: AmenityService, private authService:AuthService, private accommodationService:AccommodationService, private imageService:ImageService, private router: Router, private validators: DateValidators) {
@@ -201,7 +201,8 @@ export class AccommodationCreationComponent implements OnInit {
       maxGuests: this.accommodationForm.value.maxGuests,
       isPricingPerPerson: this.periodForm.value.isPricingPerPerson,
       type: this.accommodationForm.value.type,
-      isAutomaticallyAccepted: false
+      isAutomaticallyAccepted: false,
+      cancellationDeadline: this.accommodationForm.value.cancelDeadline
       }
     const images = this.imageList;
     const accommodationService :AccommodationService = this.accommodationService;
