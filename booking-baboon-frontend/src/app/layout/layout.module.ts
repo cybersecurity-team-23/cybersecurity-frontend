@@ -138,6 +138,8 @@ import { NotificationCardsComponent } from './notifications/notification-cards/n
 import {
   AccommodationModificationDetailsPageComponent
 } from "./accommodations/modification/pages/accommodation-modification-details-page/accommodation-modification-details-page.component";
+import { AdminReviewReportsPageComponent } from './reports/admin-review-reports-page/admin-review-reports-page.component';
+import { AdminReviewReportsComponent } from './reports/admin-review-reports/admin-review-reports.component';
 
 
 
@@ -205,7 +207,9 @@ import {
     FavoriteAccommodationsPageComponent,
     NotificationPageComponent,
     NotificationCardComponent,
-    NotificationCardsComponent
+    NotificationCardsComponent,
+    AdminReviewReportsPageComponent,
+    AdminReviewReportsComponent
   ],
   exports: [
     NavbarComponent,
