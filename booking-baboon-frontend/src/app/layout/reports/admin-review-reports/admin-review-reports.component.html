@@ -11,6 +11,12 @@
       </td>
     </ng-container>
 
+    <ng-container matColumnDef="accommodation">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header >Reported host/accommodation</th>
+      <td mat-cell *matCellDef="let reviewReport">
+        {{ reviewReport.reportedReview.reviewedAccommodation?.name || reviewReport.reportedReview.reviewedHost?.email || 'N/A' }}
+      </td>    </ng-container>
+
     <ng-container matColumnDef="created on">
       <th mat-header-cell *matHeaderCellDef mat-sort-header > Reported on </th>
       <td mat-cell *matCellDef="let reviewReport"> {{reviewReport.createdOn}} </td>
