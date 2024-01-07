@@ -1,6 +1,7 @@
 import {User} from "../../users/models/user.model";
 
 export interface Report{
+  id?: number
   message?: string;
   reportee?: User;
   status?: ReportStatus;

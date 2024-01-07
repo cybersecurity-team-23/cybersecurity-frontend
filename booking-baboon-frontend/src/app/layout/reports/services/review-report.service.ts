@@ -8,11 +8,19 @@ import {ReviewReport} from "../models/review-report.model";
 @Injectable({
   providedIn: 'root'
 })
-export class ReviewReportService {
+export class  ReviewReportService {
 
   constructor(private httpClient: HttpClient) { }
 
   create(report: ReviewReport): Observable<ReviewReport> {
     return this.httpClient.post<ReviewReport>(environment.apiHost + 'review-reports/', report);
+  }
+
+  getAll(): Observable<ReviewReport[]> {
+    return this.httpClient.get<ReviewReport[]>(environment.apiHost + 'review-reports');
+  }
+
+  remove(reviewReportId: number): Observable<ReviewReport> {
+    return this.httpClient.delete<ReviewReport>(environment.apiHost + 'review-reports/' + reviewReportId);
   }
 }

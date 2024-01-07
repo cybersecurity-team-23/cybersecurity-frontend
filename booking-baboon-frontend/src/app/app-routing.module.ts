@@ -49,6 +49,9 @@ import{
   FavoriteAccommodationsPageComponent
 } from "./layout/accommodations/favorites/favorite-accommodations-page/favorite-accommodations-page.component";
 import {NotificationPageComponent} from "./layout/notifications/notification-page/notification-page.component";
+import {
+  AdminReviewReportsPageComponent
+} from "./layout/reports/admin-review-reports-page/admin-review-reports-page.component";
 
 const routes: Routes = [
   {
@@ -164,6 +167,12 @@ const routes: Routes = [
     path: 'notifications/:userId',
     canActivate: [AuthGuard],
     data: {role: ['GUEST','HOST']}
+  },
+  {
+    component: AdminReviewReportsPageComponent,
+    path: 'review-reports',
+    canActivate: [AuthGuard],
+    data: {role: ['ADMIN']}
   },
 ];
 
