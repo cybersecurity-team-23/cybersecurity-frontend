@@ -19,21 +19,13 @@ export class AdminReviewReportsComponent {
   reviewReports!: ReviewReport[]
   dataSource!: MatTableDataSource<ReviewReport>;
   displayedColumns: string[] = ['reportee', 'created on', 'message', 'reviewer', 'comment', 'rating', 'action'];
-  isHostReviewShowing: boolean = false;
-  isAccommodationReviewShowing: boolean = false;
-  current_host_id!: number;
-  current_accommodation_id!: number;
-  tooltipMessage: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  isHostReportShowing: boolean = false;
-
 
   constructor(private reviewReportService: ReviewReportService,
               private authService: AuthService,
               private reviewService: ReviewService) {
-
   }
 
   ngOnInit(): void {
@@ -53,9 +45,7 @@ export class AdminReviewReportsComponent {
     if (reviewReport.id) {
       this.reviewReportService.remove(reviewReport.id).subscribe({
         next(data) {
-          console.log("mrs");
         }, error() {
-          console.log("error");
         }
       });
     }
