@@ -9,6 +9,8 @@ import {ReviewReport} from "../models/review-report.model";
 import {ReviewReportService} from "../services/review-report.service";
 import {Review} from "../../reviews/model/review.model";
 import {ReviewService} from "../../reviews/services/review.service";
+import {HostReviewService} from "../../reviews/services/host-review.service";
+import {AccommodationReviewService} from "../../reviews/services/accommodation-review.service";
 
 @Component({
   selector: 'app-admin-review-reports',
@@ -18,14 +20,16 @@ import {ReviewService} from "../../reviews/services/review.service";
 export class AdminReviewReportsComponent {
   reviewReports!: ReviewReport[]
   dataSource!: MatTableDataSource<ReviewReport>;
-  displayedColumns: string[] = ['reportee', 'created on', 'message', 'reviewer', 'comment', 'rating', 'action'];
+  displayedColumns: string[] = ['reportee', 'accommodation', 'created on', 'message', 'reviewer', 'comment', 'rating', 'action'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private reviewReportService: ReviewReportService,
               private authService: AuthService,
-              private reviewService: ReviewService) {
+              private reviewService: ReviewService,
+              private hostReviewService: HostReviewService,
+              private accommodationReviewService: AccommodationReviewService) {
   }
 
   ngOnInit(): void {
@@ -44,15 +48,23 @@ export class AdminReviewReportsComponent {
   onDeleteReviewReportClick(reviewReport: ReviewReport): void {
     if (reviewReport.id) {
       this.reviewReportService.remove(reviewReport.id).subscribe({
-        next(data) {
+        next: (data: ReviewReport) => {
+
+          if (reviewReport.reportedReview?.id) {
+
+            if (reviewReport.reportedReview?.reviewedAccommodation?.id) {
+              this.accommodationReviewService.remove(reviewReport.reportedReview.id).subscribe();
+            }
+
+            else if (reviewReport.reportedReview?.reviewedHost?.id) {
+              this.hostReviewService.remove(reviewReport.reportedReview.id).subscribe();
+            }
+            window.location.reload();
+          }
         }, error() {
         }
       });
     }
-    if (reviewReport.reportedReview?.id) {
-      this.reviewService.remove(reviewReport.reportedReview.id).subscribe();
-    }
-    window.location.reload();
 
   }
 }
