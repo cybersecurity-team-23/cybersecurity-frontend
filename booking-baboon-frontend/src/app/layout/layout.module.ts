@@ -140,6 +140,7 @@ import {
 } from "./accommodations/modification/pages/accommodation-modification-details-page/accommodation-modification-details-page.component";
 import { AdminReviewReportsPageComponent } from './reports/admin-review-reports-page/admin-review-reports-page.component';
 import { AdminReviewReportsComponent } from './reports/admin-review-reports/admin-review-reports.component';
+import { UserReportsComponent } from './reports/user-reports/user-reports.component';
 
 
 
@@ -209,7 +210,8 @@ import { AdminReviewReportsComponent } from './reports/admin-review-reports/admi
     NotificationCardComponent,
     NotificationCardsComponent,
     AdminReviewReportsPageComponent,
-    AdminReviewReportsComponent
+    AdminReviewReportsComponent,
+    UserReportsComponent
   ],
   exports: [
     NavbarComponent,
