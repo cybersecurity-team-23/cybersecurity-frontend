@@ -1,9 +1,9 @@
 import {NotificationType} from "./NotificationType.module";
 
 enum UserStatus{
-  Inactive,
-  Active,
-  Blocked
+  Inactive= "Inactive",
+  Active="Active",
+  Blocked="Blocked"
 }
 
 enum Role{

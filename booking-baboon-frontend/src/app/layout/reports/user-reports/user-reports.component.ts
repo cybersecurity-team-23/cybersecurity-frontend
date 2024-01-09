@@ -8,6 +8,8 @@ import {HostReviewService} from "../../reviews/services/host-review.service";
 import {AccommodationReviewService} from "../../reviews/services/accommodation-review.service";
 import {UserReport} from "../models/user-report.model";
 import {UserReportService} from "../services/user-report.service";
+import {UserService} from "../../users/services/user.service";
+import {ReservationService} from "../../reservations/reservation.service";
 
 @Component({
   selector: 'app-user-reports',
@@ -23,6 +25,8 @@ export class UserReportsComponent {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private userReportService: UserReportService,
+              private userService: UserService,
+              private reservationService: ReservationService,
               private authService: AuthService,
               private reviewService: ReviewService,
               private hostReviewService: HostReviewService,
@@ -42,6 +46,21 @@ export class UserReportsComponent {
   }
 
 
-  onBlockUserReport(userReport: UserReport): void {
+  onBlockUserClick(userReport: UserReport): void {
+
+    if(userReport.reportedGuest?.id) {
+      this.userService.blockUser(userReport.reportedGuest.id).subscribe();
+      this.reservationService.cancelAllForGuest(userReport.reportedGuest.id).subscribe();
+    }
+
+    else if(userReport.reportedHost?.id) {
+      this.userService.blockUser(userReport.reportedHost.id).subscribe();
+    }
+
+    window.location.reload();
+
+  }
+  onUnblockUserClick(userReport: UserReport): void {
+
   }
 }
