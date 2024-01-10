@@ -55,4 +55,7 @@ export class ReservationService {
 
   cancel(id: number): Observable<Reservation> {
     return this.httpClient.put<Reservation>(environment.apiHost + 'reservations/' + id + "/cancel", {})  }
+
+  cancelAllForGuest(guestId: number): Observable<Reservation[]> {
+    return this.httpClient.put<Reservation[]>(environment.apiHost + 'reservations/cancelAllForGuest/' + guestId, {})  }
 }
