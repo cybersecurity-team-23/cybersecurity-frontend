@@ -62,5 +62,14 @@ export class UserReportsComponent {
   }
   onUnblockUserClick(userReport: UserReport): void {
 
+    if(userReport.reportedGuest?.id) {
+      this.userService.unblockUser(userReport.reportedGuest.id).subscribe();
+    }
+
+    else if(userReport.reportedHost?.id) {
+      this.userService.unblockUser(userReport.reportedHost.id).subscribe();
+    }
+
+    window.location.reload();
   }
 }

@@ -62,4 +62,7 @@ export class UserService {
   // }
 
 
+  unblockUser(userId: number): Observable<User> {
+    return this.httpClient.put<User>(environment.apiHost + 'users/' + userId + '/unblock', {})
+  }
 }
