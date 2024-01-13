@@ -32,6 +32,10 @@ export class AccommodationAvailablePeriodComponent implements OnInit{
       next:(data: Accommodation) =>{
         if(data.availablePeriods)
         this.availablePeriods = data.availablePeriods;
+        if (data.cancellationDeadline){
+          this.cancelForm.get("cancelDeadline")?.setValue(data.cancellationDeadline)
+        }
+
       }
     });
   }
@@ -48,7 +52,9 @@ export class AccommodationAvailablePeriodComponent implements OnInit{
     endDate: new FormControl(),
     price: new FormControl('',[Validators.min(1),Validators.required]),
   },{validators: [this.validators.validateDateRange('startDate', 'endDate'), this.validators.futureDateValidator('startDate'), this.overlappingDatesValidator('startDate','endDate')]})
-
+  public cancelForm: FormGroup = new FormGroup({
+    cancelDeadline: new FormControl()
+  })
 
   public overlappingDatesValidator(startControlName: string, endControlName: string): ValidatorFn {
     return (abstractControl: AbstractControl): ValidationErrors | null => {
@@ -110,6 +116,7 @@ export class AccommodationAvailablePeriodComponent implements OnInit{
 
       }
     }
+    this.accommodationService.updateCancellationDeadline(this.accommodationId ,this.cancelForm.get("cancelDeadline")?.value).subscribe();
     this.router.navigate(['/host/accommodations'])
   }
 

@@ -130,4 +130,7 @@ export class AccommodationService {
     return this.httpClient.put<Accommodation>(environment.apiHost + 'accommodations/' + id + '/update-auto-accept/' + autoAccept, {});
   }
 
+  updateCancellationDeadline(accommodationId: number, value: number): Observable<Accommodation> {
+    return this.httpClient.put<Accommodation>(environment.apiHost + 'accommodations/'+ accommodationId + '/cancellation-deadline/' + value, {});
+  }
 }
