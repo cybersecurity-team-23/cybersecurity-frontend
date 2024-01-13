@@ -53,7 +53,7 @@ export class AccommodationAvailablePeriodComponent implements OnInit{
     price: new FormControl('',[Validators.min(1),Validators.required]),
   },{validators: [this.validators.validateDateRange('startDate', 'endDate'), this.validators.futureDateValidator('startDate'), this.overlappingDatesValidator('startDate','endDate')]})
   public cancelForm: FormGroup = new FormGroup({
-    cancelDeadline: new FormControl()
+    cancelDeadline: new FormControl('',[Validators.min(1),Validators.required])
   })
 
   public overlappingDatesValidator(startControlName: string, endControlName: string): ValidatorFn {
@@ -100,6 +100,7 @@ export class AccommodationAvailablePeriodComponent implements OnInit{
 
 
   updatePeriods() {
+    if (!this.cancelForm.valid) return;
     for (const removedPeriod of this.removedPeriods) {
       this.accommodationService.removePeriod(this.accommodationId,removedPeriod).subscribe();
     }
