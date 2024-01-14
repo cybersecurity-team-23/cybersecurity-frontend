@@ -90,12 +90,10 @@ export class AccommodationAvailablePeriodComponent implements OnInit{
   }
 
   removeAvailablePeriod(index: number): void {
-    console.log(index)
     if(this.availablePeriods[index].id!=undefined) {
-      console.log(this.availablePeriods[index])
       this.removedPeriods.push(<number>this.availablePeriods[index].id)
-    this.availablePeriods.splice(index, 1);
     }
+    this.availablePeriods.splice(index, 1);
   }
 
 
