@@ -9,6 +9,7 @@ import {ReservationStatus} from "../models/reservation-status.enum";
 import {AuthService} from "../../../infrastructure/auth/auth.service";
 import {ReservationService} from "../reservation.service";
 import {SharedService} from "../../../shared/shared.service";
+import {ReservationRequest} from "../models/reservation-request.model";
 
 @Component({
   selector: 'app-reservation-request',
@@ -29,8 +30,7 @@ export class ReservationRequestComponent implements OnInit {
       const checkin = this.getDateISOString(this.requestForm.get('checkin')?.value);
       const checkout = this.getDateISOString(this.requestForm.get('checkout')?.value);
 
-      const reservation: Reservation = {
-        id: 0,
+      const reservationRequest: ReservationRequest = {
         accommodation: this.accommodation,
         timeSlot: {
           startDate: checkin,
@@ -39,11 +39,10 @@ export class ReservationRequestComponent implements OnInit {
         guest: {
           id: this.authService.getId()
         },
-        price: +this.price,
-        status: ReservationStatus.Pending
+        price: +this.price
       };
 
-      this.reservationService.create(reservation).subscribe({
+      this.reservationService.create(reservationRequest).subscribe({
         next: (reservation: Reservation) => {
           if(reservation != null){
             this.sharedService.openSnack("Reservation request has been created successfully");

@@ -6,6 +6,7 @@ import {Reservation} from "./models/reservation.model";
 import {Accommodation} from "../accommodations/shared/models/accommodation.model";
 import {TimeSlot} from "../accommodations/shared/models/timeslot.model";
 import {Guest} from "../users/models/guest.model";
+import {ReservationRequest} from "./models/reservation-request.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,15 +24,8 @@ export class ReservationService {
     return this.httpClient.get<Reservation>(environment.apiHost + 'reservations/' + id)
   }
 
-  create(reservation: Reservation): Observable<Reservation>{
-    const requestBody = {
-      accommodation: reservation.accommodation,
-      timeSlot: reservation.timeSlot,
-      guest: reservation.guest,
-      price: reservation.price
-    }
-
-    return this.httpClient.post<Reservation>(environment.apiHost + 'reservations', requestBody);
+  create(reservationRequest: ReservationRequest): Observable<Reservation>{
+    return this.httpClient.post<Reservation>(environment.apiHost + 'reservations', reservationRequest);
   }
 
   getAllForGuest(id: number | undefined): Observable<Reservation[]> {
