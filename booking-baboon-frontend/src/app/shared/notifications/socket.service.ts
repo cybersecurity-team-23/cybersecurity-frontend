@@ -15,7 +15,7 @@ import {BehaviorSubject} from "rxjs";
 })
 export class SocketService {
 
-  private serverUrl = environment.apiHost + 'notifications-socket'
+  private serverUrl ='/notifications-socket'
   private stompClient: any;
 
   isLoaded: boolean = false;
