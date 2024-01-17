@@ -15,7 +15,7 @@ import {SocketService} from "../../../shared/notifications/socket.service";
 export class NavbarGuestComponent implements OnInit{
   loggedUserId!: number | undefined;
   badge: string = "";
-  constructor(private authService: AuthService, private router: Router, private socketService: SocketService) {
+  constructor(private authService: AuthService, private router: Router, private socketService: SocketService, private notificationsService: NotificationsService) {
   }
 
   public ngOnInit() {
@@ -25,7 +25,12 @@ export class NavbarGuestComponent implements OnInit{
         next: (data: number) => {
           this.badge = data.toString()
         }
-      })
+      });
+      this.notificationsService.getUnreadCountByUser(this.loggedUserId).subscribe({
+        next: (data: number) => {
+          this.badge = data.toString()
+        }
+      });
     }
   }
 

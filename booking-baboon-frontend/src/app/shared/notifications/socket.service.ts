@@ -9,13 +9,14 @@ import {AuthService} from "../../infrastructure/auth/auth.service";
 import {NotificationsService} from "./notifications.service";
 import {Notification} from "./models/notification.model";
 import {BehaviorSubject} from "rxjs";
+import {SharedService} from "../shared.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketService {
 
-  private serverUrl ='/notifications-socket'
+  private serverUrl = environment.socketHost + 'notifications-socket';
   private stompClient: any;
 
   isLoaded: boolean = false;
@@ -24,7 +25,7 @@ export class SocketService {
   unreadCount$ = new BehaviorSubject(0);
   unreadCountState = this.unreadCount$.asObservable();
 
-  constructor(private authService: AuthService, private notificationsService: NotificationsService) { }
+  constructor(private authService: AuthService, private notificationsService: NotificationsService, private sharedService: SharedService) { }
 
   // Funkcija za otvaranje konekcije sa serverom
   initializeWebSocketConnection() {
@@ -59,6 +60,7 @@ export class SocketService {
     if (this.isLoaded) {
       this.isCustomSocketOpened = true;
       this.stompClient.subscribe("/notification-publisher/" + this.authService.getId(), (notification: Notification) => {
+        this.sharedService.openSnack("New notification!");
         this.handleResult();
       });
     }
