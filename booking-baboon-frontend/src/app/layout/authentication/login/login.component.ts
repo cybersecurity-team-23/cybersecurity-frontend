@@ -6,6 +6,7 @@ import {User} from "../../users/models/user.model";
 import {Login} from "../../../infrastructure/auth/model/login.model";
 import {AuthResponse} from "../../../infrastructure/auth/model/auth-response.model";
 import {AuthService} from "../../../infrastructure/auth/auth.service";
+import {SocketService} from "../../../shared/notifications/socket.service";
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ import {AuthService} from "../../../infrastructure/auth/auth.service";
 })
 export class LoginComponent {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private socketService: SocketService) {}
 
   loginForm: FormGroup = new FormGroup({
     username: new FormControl('',[Validators.required]),
@@ -34,12 +35,18 @@ export class LoginComponent {
         next: (response: AuthResponse) => {
           localStorage.setItem('user', response.jwt);
           this.authService.setUser()
+          this.initializeWebSocket();
           this.router.navigate(['accommodations'])
         },error:() => {
           this.loginFailed = true;
         }
       })
     }
+  }
+
+  initializeWebSocket(){
+    this.socketService.initializeWebSocketConnection();
+    // this.socketService.openSocket()
   }
 
 }
