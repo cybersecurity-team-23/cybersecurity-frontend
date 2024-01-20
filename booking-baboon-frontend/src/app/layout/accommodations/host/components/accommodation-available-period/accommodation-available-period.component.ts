@@ -76,17 +76,20 @@ export class AccommodationAvailablePeriodComponent implements OnInit{
   }
   addAvailablePeriod(): void {
     if (this.periodForm.valid) {
+
       const newPeriod = {
         timeSlot: {
-          startDate: this.periodForm.value.startDate.toString(),
-          endDate: this.periodForm.value.endDate.toString()
+          startDate: new Date(this.periodForm.value.startDate.setMilliseconds(this.periodForm.value.startDate.getMilliseconds()+82800000 )) .toString(),
+          endDate: new Date(this.periodForm.value.startDate.setMilliseconds(this.periodForm.value.endDate.getMilliseconds()+82800000 )) .toString()
         },
         pricePerNight: this.periodForm.value.price
       };
       this.availablePeriods.push({...newPeriod});
       this.periodForm.get('startDate')?.reset()
       this.periodForm.get('endDate')?.reset()
+      console.log(newPeriod);
     }
+
   }
 
   removeAvailablePeriod(index: number): void {
@@ -129,10 +132,14 @@ export class AccommodationAvailablePeriodComponent implements OnInit{
 
   editAvailablePeriod() {
     if(this.editPeriodForm.valid) {
+      let startDate:Date = new Date(this.editPeriodForm.get('startDate')?.value)
+      let endDate:Date = new Date(this.editPeriodForm.get('endDate')?.value)
+      startDate.setMilliseconds(startDate.getMilliseconds() + 82800000)
+      endDate.setMilliseconds(endDate.getMilliseconds() + 82800000)
       const period = this.availablePeriods.find(obj => obj.id === this.selectedPeriod.id);
       if(period && period.timeSlot && period.timeSlot.startDate && period.timeSlot.endDate){
-        period.timeSlot.startDate = this.editPeriodForm.get('startDate')?.value
-        period.timeSlot.endDate = this.editPeriodForm.get('endDate')?.value
+        period.timeSlot.startDate = new Date (startDate).toISOString()
+        period.timeSlot.endDate = new Date (endDate).toISOString()
         period.pricePerNight = this.editPeriodForm.get('price')?.value
       }
     }
