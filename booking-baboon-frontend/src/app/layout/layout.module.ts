@@ -54,9 +54,6 @@ import {
   AccommodationModificationCardsComponent
 } from "./accommodations/modification/components/accommodation-modification-cards/accommodation-modification-cards.component";
 import {
-  AccommodationModificationDetailsPageComponent
-} from "./accommodations/modification/pages/accommodation-modification-details-page/accommodation-modification-details-page.component";
-import {
   AccommodationModificationDetailsComponent
 } from "./accommodations/modification/components/accommodation-modification-details/accommodation-modification-details.component";
 import {
@@ -121,11 +118,6 @@ import {
 import {
   FavoriteAccommodationsPageComponent
 } from "./accommodations/favorites/favorite-accommodations-page/favorite-accommodations-page.component";
-import {NotificationPageComponent} from "./notifications/notification-page/notification-page.component";
-import {NotificationCardComponent} from "./notifications/notification-card/notification-card.component";
-import {NotificationCardsComponent} from "./notifications/notification-cards/notification-cards.component";
-import {AdminReviewReportsPageComponent} from "./reports/admin-review-reports-page/admin-review-reports-page.component";
-import {AdminReviewReportsComponent} from "./reports/admin-review-reports/admin-review-reports.component";
 import {CommonModule} from "@angular/common";
 import {MaterialModule} from "../infrastructure/material/material.module";
 import {RouterLink, RouterModule} from "@angular/router";
