@@ -80,7 +80,7 @@ export class ReservationRequestComponent implements OnInit {
       accommodation: [{ value: this.accommodation.name, disabled: true }, Validators.required],
       checkin: ['', [Validators.required, this.dateWithinAvailablePeriodValidator.bind(this)]],
       checkout: ['', [Validators.required, this.dateWithinAvailablePeriodValidator.bind(this)]],
-      guestNum: ['', Validators.required],
+      guestNum: ['', Validators.required, this.minGuestNumberValidator.bind(this)],
     });
 
     this.requestForm.valueChanges.subscribe(() => {
@@ -92,6 +92,12 @@ export class ReservationRequestComponent implements OnInit {
 
   private getDateISOString(date: Date | null | undefined): string | undefined {
     return date ? date.toISOString().split('T')[0] : undefined;
+  }
+
+  minGuestNumberValidator(control: AbstractControl): Promise<ValidationErrors | null> {
+    const value = control.value;
+
+    return Promise.resolve(value >= 1 ? null : { 'minGuestNumber': true, 'message': 'Guest number must be greater than or equal to 1' });
   }
 
   dateWithinAvailablePeriodValidator(control: AbstractControl): ValidationErrors | null {

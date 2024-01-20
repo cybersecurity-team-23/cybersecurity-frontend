@@ -1,4 +1,4 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {ComponentFixture, fakeAsync, TestBed, tick, waitForAsync} from '@angular/core/testing';
 
 import { ReservationRequestComponent } from './reservation-request.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -84,7 +84,7 @@ describe('ReservationRequestComponent', () => {
     expect(component.price).toEqual("0");
   });
 
-  it('should update the form controls and price when user inputs are provided', () => {
+  it('should update the form controls and price when user inputs are provided', fakeAsync(() => {
     const accommodationName = mockAccommodation.name;
     const checkinDate = new Date('2024-02-17');
     const checkoutDate = new Date('2024-02-19');
@@ -98,6 +98,7 @@ describe('ReservationRequestComponent', () => {
     });
 
     fixture.detectChanges();
+    tick();
 
     expect(component.requestForm.valid).toBeTruthy();
     expect(component.requestForm.get('accommodation')?.value).toEqual(accommodationName);
@@ -105,10 +106,10 @@ describe('ReservationRequestComponent', () => {
     expect(component.requestForm.get('checkout')?.value).toEqual(checkoutDate);
     expect(component.requestForm.get('guestNum')?.value).toEqual(guestNum);
     expect(component.price).toEqual((guestNum * mockedPrice).toString());
-  });
+  }));
 
 
-  it('should disable submit button when form is invalid', () => {
+  it('should disable submit button when form is invalid', fakeAsync(() => {
     const submitButton = fixture.nativeElement.querySelector('#send-request-button');
 
     expect(submitButton.disabled).toBeTruthy();
@@ -116,7 +117,7 @@ describe('ReservationRequestComponent', () => {
     const accommodationName = mockAccommodation.name;
     const checkinDate = new Date('2024-02-17');
     const checkoutDate = new Date('2024-02-19');
-    const guestNum = 2;
+    const guestNum = 0;
 
     component.requestForm.patchValue({
       accommodation: accommodationName,
@@ -126,9 +127,11 @@ describe('ReservationRequestComponent', () => {
     });
 
     fixture.detectChanges();
+    tick();
 
-    expect(submitButton.disabled).toBeFalsy();
-  });
+    expect(component.requestForm.valid).toBeFalsy();
+    expect(submitButton.disabled).toBeTruthy();
+  }));
 
   it('should mark checkin control as invalid when checkin date is earlier than current date', () => {
     const checkinControl = component.requestForm.get('checkin');
@@ -173,5 +176,17 @@ describe('ReservationRequestComponent', () => {
     expect(checkoutControl?.hasError('invalidDate')).toBeTruthy();
     expect(checkoutControl?.getError('message')).toEqual('Date should be within available period');
   });
+
+  it('should mark guestNum control as invalid when guestNum is less than 1', fakeAsync(() => {
+    const guestNumControl = component.requestForm.get('guestNum');
+
+    guestNumControl?.setValue(0);
+
+    fixture.detectChanges();
+    tick();
+
+    expect(guestNumControl?.hasError('minGuestNumber')).toBeTruthy();
+    expect(guestNumControl?.getError('message')).toEqual('Guest number must be greater than or equal to 1');
+  }));
 
 });
