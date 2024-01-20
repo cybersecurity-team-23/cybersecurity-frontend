@@ -97,3 +97,7 @@ button{
   color: #FFFFFF;
   background-color: #F7A12E;
 }
+
+#cancelDeadline{
+  width: 50%;
+}

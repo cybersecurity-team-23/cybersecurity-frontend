@@ -35,7 +35,12 @@
       </mat-chip-row>
     </mat-chip-grid>
   </div>
-
+  <mat-form-field id="cancelDeadline" [formGroup]="cancelForm">
+    <mat-label>
+      Reservation Cancellation Deadline
+    </mat-label>
+    <input matInput type="number" formControlName="cancelDeadline">
+  </mat-form-field>
   <button mat-raised-button id="submit" type="submit" (click)="updatePeriods()">Submit request</button>
 </form>
 <form id="right-form" *ngIf="selectedPeriod" [formGroup]="editPeriodForm">

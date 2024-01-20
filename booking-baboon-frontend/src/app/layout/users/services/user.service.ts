@@ -48,6 +48,10 @@ export class UserService {
     return this.httpClient.put<Host>(environment.apiHost + 'users/' + userId + "/toggle-notifications/" + notificationType, {})
   }
 
+  blockUser(userId: number): Observable<User> {
+    return this.httpClient.put<User>(environment.apiHost + 'users/' + userId + '/block', {})
+  }
+
 
   // add(user: User): Observable<User> {
 //     headers: {
@@ -58,4 +62,7 @@ export class UserService {
   // }
 
 
+  unblockUser(userId: number): Observable<User> {
+    return this.httpClient.put<User>(environment.apiHost + 'users/' + userId + '/unblock', {})
+  }
 }
