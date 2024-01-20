@@ -36,7 +36,7 @@
     </div>
 
 
-    <button mat-raised-button type="submit" color="primary" id="send-request-button">Send a request</button>
+    <button mat-raised-button type="submit" color="primary" id="send-request-button" [disabled]="!requestForm.valid">Send a request</button>
   </form>
 </div>
 <app-snack-bar></app-snack-bar>

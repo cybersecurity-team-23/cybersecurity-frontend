@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators} from "@angular/forms";
 import {AccommodationService} from "../../accommodations/shared/services/accommodation.service";
 import {Accommodation} from "../../accommodations/shared/models/accommodation.model";
 import {AvailablePeriod} from "../../accommodations/shared/models/available-period.model";
@@ -9,6 +9,7 @@ import {ReservationStatus} from "../models/reservation-status.enum";
 import {AuthService} from "../../../infrastructure/auth/auth.service";
 import {ReservationService} from "../reservation.service";
 import {SharedService} from "../../../shared/shared.service";
+import {ReservationRequest} from "../models/reservation-request.model";
 
 @Component({
   selector: 'app-reservation-request',
@@ -29,8 +30,7 @@ export class ReservationRequestComponent implements OnInit {
       const checkin = this.getDateISOString(this.requestForm.get('checkin')?.value);
       const checkout = this.getDateISOString(this.requestForm.get('checkout')?.value);
 
-      const reservation: Reservation = {
-        id: 0,
+      const reservationRequest: ReservationRequest = {
         accommodation: this.accommodation,
         timeSlot: {
           startDate: checkin,
@@ -39,11 +39,10 @@ export class ReservationRequestComponent implements OnInit {
         guest: {
           id: this.authService.getId()
         },
-        price: +this.price,
-        status: ReservationStatus.Pending
+        price: +this.price
       };
 
-      this.reservationService.create(reservation).subscribe({
+      this.reservationService.create(reservationRequest).subscribe({
         next: (reservation: Reservation) => {
           if(reservation != null){
             this.sharedService.openSnack("Reservation request has been created successfully");
@@ -79,11 +78,10 @@ export class ReservationRequestComponent implements OnInit {
   ngOnInit(): void {
     this.requestForm = this.fb.group({
       accommodation: [{ value: this.accommodation.name, disabled: true }, Validators.required],
-      checkin: ['', Validators.required],
-      checkout: ['', Validators.required],
-      guestNum: ['', Validators.required]
-    }
-    );
+      checkin: ['', [Validators.required, this.dateWithinAvailablePeriodValidator.bind(this)]],
+      checkout: ['', [Validators.required, this.dateWithinAvailablePeriodValidator.bind(this)]],
+      guestNum: ['', Validators.required, this.minGuestNumberValidator.bind(this)],
+    });
 
     this.requestForm.valueChanges.subscribe(() => {
       this.calculatePrice();
@@ -96,23 +94,55 @@ export class ReservationRequestComponent implements OnInit {
     return date ? date.toISOString().split('T')[0] : undefined;
   }
 
+  minGuestNumberValidator(control: AbstractControl): Promise<ValidationErrors | null> {
+    const value = control.value;
+
+    return Promise.resolve(value >= 1 ? null : { 'minGuestNumber': true, 'message': 'Guest number must be greater than or equal to 1' });
+  }
+
+  dateWithinAvailablePeriodValidator(control: AbstractControl): ValidationErrors | null {
+    const cellDate = control.value;
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+
+    if (cellDate < currentDate) {
+      return { 'invalidDate': true, 'message': 'Date should be in the future' };
+    }
+
+    const isDateInAvailablePeriod = this.availablePeriods.some((period: AvailablePeriod) => {
+      const startTime = period.timeSlot?.startDate ? new Date(period.timeSlot.startDate) : null;
+      const endTime = period.timeSlot?.endDate ? new Date(period.timeSlot.endDate) : null;
+
+      if (startTime && endTime) {
+        startTime.setHours(0, 0, 0, 0);
+        endTime.setHours(0, 0, 0, 0);
+      }
+
+      return startTime && endTime && cellDate >= startTime && cellDate <= endTime;
+    });
+
+    return isDateInAvailablePeriod ? null : { 'invalidDate': true, 'message': 'Date should be within available period' };
+  }
 
   dateClass: MatCalendarCellClassFunction<Date> = (cellDate, view) => {
     if (view === 'month') {
-      const currentDate = cellDate;
+      const currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0);
 
+      if (cellDate < currentDate) {
+        return 'disabled-date-class';
+      }
 
       const isDateInAvailablePeriod = this.availablePeriods.some((period: AvailablePeriod) => {
         const startTime = period.timeSlot?.startDate ? new Date(period.timeSlot.startDate) : null;
         const endTime = period.timeSlot?.endDate ? new Date(period.timeSlot.endDate) : null;
 
-        if(startTime && endTime){
+        if (startTime && endTime) {
           startTime.setHours(0, 0, 0, 0);
           endTime.setHours(0, 0, 0, 0);
         }
 
-
-        return startTime && endTime && currentDate >= startTime && currentDate <= endTime;
+        return startTime && endTime && cellDate >= startTime && cellDate <= endTime;
       });
 
       return isDateInAvailablePeriod ? '' : 'disabled-date-class';
