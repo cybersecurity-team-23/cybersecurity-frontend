@@ -78,7 +78,7 @@ const routes: Routes = [
     path:"accommodations/:accommodationId"},
   {
     component: ProfileComponent,
-    path:"profile/:userEmail",
+    path:"profile/:userId",
     canActivate: [AuthGuard],
     data: {role: ['ADMIN', 'GUEST', 'HOST']}
   },

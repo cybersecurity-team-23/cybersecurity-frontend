@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {Guest} from "../models/guest.model";
 import {Accommodation} from "../../accommodations/shared/models/accommodation.model";
 import {NotificationType} from "../models/NotificationType.module";
+import {User} from "../models/user.model";
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,12 @@ export class GuestService {
     return this.httpClient.get<Guest>(environment.apiHost + 'guests/email/' + email)
   }
 
-  getProfile(email: string): Observable<Guest> {
+/*  getProfile(email: string): Observable<Guest> {
     return this.httpClient.get<Guest>(environment.apiHost + 'guests/profile/' + email)
+  }*/
+
+  getProfile(userId: number): Observable<Guest> {
+    return this.httpClient.get<Guest>(environment.apiHost + 'guests/profile/' + userId)
   }
 
 
