@@ -11,6 +11,9 @@ import {GuestService} from "../../services/guest.service";
 import {DialogService} from "../../../../shared/dialogs/dialog.service";
 import {SharedService} from "../../../../shared/shared.service";
 import {NotificationType} from "../../models/NotificationType.module";
+import {AuthService} from "../../../../infrastructure/auth/auth.service";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {ReviewReport} from "../../../reports/models/review-report.model";
 
 
 @Component({
@@ -20,6 +23,10 @@ import {NotificationType} from "../../models/NotificationType.module";
 })
 export class ProfileComponent {
   userType: string = 'guest';
+  profileForm!: FormGroup;
+  passwordForm!: FormGroup;
+  isFormValid!: boolean;
+  isPasswordFormValid!: boolean;
   editModes: { [key: string]: boolean } = {
     email: true,
     firstName: true,
@@ -45,11 +52,10 @@ export class ProfileComponent {
   guest?: Guest;
   host?: Host;
 
-  currentPassword?: string;
   newPassword?: string;
   confirmPassword?: string;
+  currentPassword?: string;
 
-  wrongPassword?: boolean = false;
   errorLabel?: string = ""
 
   constructor(private route: ActivatedRoute,
@@ -58,29 +64,29 @@ export class ProfileComponent {
               private guestService: GuestService,
               private dialogService: DialogService,
               private sharedService: SharedService,
+              private authService: AuthService,
+              private formBuilder: FormBuilder,
               private router: Router) {
   }
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const userEmail = params['userEmail'];
-      const accessToken: any = localStorage.getItem('user');
-      const helper = new JwtHelperService();
-      const decodedToken = helper.decodeToken(accessToken);
-      this.currentPassword = "";
-      this.newPassword = "";
+      const userId: number = params['userId'];
+      /*this.newPassword = "";
       this.confirmPassword = "";
+      this.currentPassword = "";*/
 
-      this.userService.getProfile(userEmail)
+      this.userService.getProfile(userId)
         .pipe(
           tap((user: User) => {
             this.user = user;
+            this.initializeForm();
           })
         )
-        .subscribe();
+        .subscribe()
 
-      if (decodedToken.role[0].authority === "HOST") {
+      if (this.authService.getRole() === "HOST") {
         this.isRoleHost = true;
-        this.hostService.getProfileByEmail(userEmail)
+        this.hostService.getProfile(userId)
           .pipe(
             tap((host: Host) => {
               this.host = host;
@@ -89,9 +95,9 @@ export class ProfileComponent {
           .subscribe();
       }
 
-      if (decodedToken.role[0].authority === "GUEST") {
+      if (this.authService.getRole() === "GUEST") {
         this.isRoleGuest = true;
-        this.guestService.getProfile(userEmail)
+        this.userService.getProfile(userId)
           .pipe(
             tap((guest: Guest) => {
               this.guest = guest;
@@ -102,17 +108,36 @@ export class ProfileComponent {
 
     });
   }
+  initializeForm(): void {
+    this.profileForm = this.formBuilder.group({
+      email: [this.user?.email || '', [Validators.required, Validators.email]],
+      firstName: [this.user?.firstName || '', Validators.required],
+      lastName: [this.user?.lastName || '', Validators.required],
+      phone: [this.user?.phoneNumber || '', [Validators.pattern("^\\+(?:[0-9]●?){6,14}[0-9]$"), Validators.required]],
+      address: [this.user?.address || '', Validators.required],
+    });
+
+    this.passwordForm = this.formBuilder.group({
+      currentPassword: new FormControl('',[Validators.required]),
+      newPassword: new FormControl('',[Validators.required]),
+      confirmPassword: new FormControl('',[Validators.required]),
+    });
+
+    this.profileForm.valueChanges.subscribe(() => {
+      this.isFormValid = this.profileForm.valid;
+    });
+
+    this.passwordForm.valueChanges.subscribe(() => {
+      this.isPasswordFormValid = this.passwordForm.valid;
+    });
+  }
 
   deleteProfile(): void {
 
     this.dialogService.confirmDialog().subscribe(result => {
       if (result) {
 
-        const accessToken: any = localStorage.getItem('user');
-        const helper = new JwtHelperService();
-        const decodedToken = helper.decodeToken(accessToken);
-
-        if (decodedToken.role[0].authority === "HOST") {
+        if (this.authService.getRole() === "HOST") {
           this.hostService.delete(this.user?.id).subscribe(
             (response) => {
               this.logoutUser("Profile succesfully deleted!")
@@ -123,7 +148,7 @@ export class ProfileComponent {
           );
         }
 
-        else if (decodedToken.role[0].authority === "GUEST") {
+        else if (this.authService.getRole() === "GUEST") {
           this.guestService.delete(this.user?.id).subscribe(
             (response) => {
               this.logoutUser("Profile succesfully deleted!")
@@ -144,7 +169,7 @@ export class ProfileComponent {
     window.location.reload();
   }
 
-  isFormValid() {
+/*  isFormValid() {
     if (this.host?.firstName == "") {
       return false;
     }
@@ -158,7 +183,7 @@ export class ProfileComponent {
       return false;
     }
     return true;
-  }
+  }*/
 
   saveChanges(): void {
     if (this.user != undefined) {
@@ -166,7 +191,7 @@ export class ProfileComponent {
       const accessToken: any = localStorage.getItem('user');
       const helper = new JwtHelperService();
       const decodedToken = helper.decodeToken(accessToken);
-      if (decodedToken.role[0].authority === "HOST" && this.host != undefined) {
+      if (this.authService.getRole() === "HOST" && this.host != undefined) {
 
         this.host.id = this.user.id;
         this.host.firstName = this.user.firstName;
@@ -176,11 +201,11 @@ export class ProfileComponent {
         const oldEmail = this.host.email;
         this.host.email = this.user.email;
 
-          if (this.isFormValid()) {
+          if (this.isFormValid) {
             this.hostService.update(this.host).subscribe(
               (response) => {
                 // Handle success case here
-                if (this.user?.email != oldEmail) {
+                if (this.user?.email != this.authService.getEmail()) {
                   this.logoutUser("Profile updated! Please log in again to confirm your email")
                 } else this.sharedService.openSnack("Profile updated!");
               },
@@ -194,7 +219,7 @@ export class ProfileComponent {
           }
 
       }
-      else if (decodedToken.role[0].authority === "GUEST" && this.guest != undefined) {
+      else if (this.authService.getRole() === "GUEST" && this.guest != undefined) {
 
           this.guest.id = this.user.id;
           this.guest.firstName = this.user.firstName;
@@ -203,11 +228,14 @@ export class ProfileComponent {
           this.guest.address = this.user.address;
           this.guest.email = this.user.email;
 
-          if (this.isFormValid()) {
+          if (this.isFormValid) {
             this.guestService.update(this.guest).subscribe(
               (response) => {
                 // Handle success case here
-                this.sharedService.openSnack("Profile updated!");
+                if (this.user?.email != this.authService.getEmail()) {
+                  this.logoutUser("Profile updated! Please log in again to confirm your email")
+                } else this.sharedService.openSnack("Profile updated!");
+
               },
               (error) => {
                 this.sharedService.openSnack("Email already in use!");
@@ -216,26 +244,24 @@ export class ProfileComponent {
           }
           else this.sharedService.openSnack("Fields cannot be empty!");
       }
+    }
+  }
 
-      if (this.currentPassword !== "") {
-        if (this.newPassword === this.confirmPassword && this.user !== undefined) {
-          this.errorLabel = "";
-          this.userService.changePassword(this.user.id, this.currentPassword, this.newPassword)
-            .subscribe(
-              (response) => {
-                // Handle success case here
-                this.errorLabel = "";
-              },
-              (error) => {
-                // Handle error case here
-                this.errorLabel = "Wrong current password";
-              }
-            );
-        } else {
-          this.errorLabel = "Passwords don't match!";
-        }
+  changePassword(): void {
+    if (this.passwordForm.get("currentPassword")?.value !== "") {
+      if (this.passwordForm.get("newPassword")?.value === this.passwordForm.get("confirmPassword")?.value && this.user !== undefined) {
+        this.errorLabel = "";
+        this.userService.changePassword(this.user.id, this.passwordForm.get("currentPassword")?.value, this.passwordForm.get("newPassword")?.value)
+          .subscribe({
+            next: (data: User) => {
+              this.errorLabel = "";
+              this.logoutUser("Password changed succesfully");
+            },
+            error: (_) => {this.errorLabel = "Wrong current password"}
+          })
+      } else {
+        this.errorLabel = "Passwords don't match!";
       }
-
     }
   }
 

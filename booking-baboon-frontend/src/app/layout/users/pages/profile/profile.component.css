@@ -93,7 +93,9 @@
 #saveChanges {
   color: white;
 }
-
+#changePassword {
+  color: white;
+}
 .container-no-space {
   display:flex;
   justify-content: space-between;
