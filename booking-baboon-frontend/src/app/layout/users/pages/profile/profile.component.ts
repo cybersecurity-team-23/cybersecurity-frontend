@@ -15,6 +15,7 @@ import {AuthService} from "../../../../infrastructure/auth/auth.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ReviewReport} from "../../../reports/models/review-report.model";
 import {Admin} from "../../models/admin.model";
+import {AdminService} from "../../services/admin.service";
 
 
 @Component({
@@ -64,6 +65,7 @@ export class ProfileComponent {
               private userService: UserService,
               private hostService: HostService,
               private guestService: GuestService,
+              private adminService: AdminService,
               private dialogService: DialogService,
               private sharedService: SharedService,
               private authService: AuthService,
@@ -106,7 +108,16 @@ export class ProfileComponent {
             })
           )
           .subscribe();
-      } else {
+      }
+
+      if (this.authService.getRole() === "ADMIN") {
+        this.userService.getProfile(userId)
+          .pipe(
+            tap((admin: Admin) => {
+              this.admin = admin;
+            })
+          )
+          .subscribe();
       }
 
     });
@@ -190,10 +201,6 @@ export class ProfileComponent {
 
   saveChanges(): void {
     if (this.user != undefined) {
-
-      const accessToken: any = localStorage.getItem('user');
-      const helper = new JwtHelperService();
-      const decodedToken = helper.decodeToken(accessToken);
       if (this.authService.getRole() === "HOST" && this.host != undefined) {
 
         this.host.id = this.user.id;
@@ -201,7 +208,6 @@ export class ProfileComponent {
         this.host.lastName = this.user.lastName;
         this.host.phoneNumber = this.user.phoneNumber;
         this.host.address = this.user.address;
-        const oldEmail = this.host.email;
         this.host.email = this.user.email;
 
           if (this.isFormValid) {
@@ -246,6 +252,31 @@ export class ProfileComponent {
             );
           }
           else this.sharedService.openSnack("Fields cannot be empty!");
+      }
+
+      else if (this.authService.getRole() === "ADMIN" && this.admin != undefined) {
+
+        this.admin.id = this.user.id;
+        this.admin.firstName = this.user.firstName;
+        this.admin.lastName = this.user.lastName;
+        this.admin.phoneNumber = this.user.phoneNumber;
+        this.admin.address = this.user.address;
+        this.admin.email = this.user.email;
+
+        if (this.isFormValid) {
+          this.adminService.update(this.admin).subscribe(
+            (response) => {
+              if (this.user?.email != this.authService.getEmail()) {
+                this.logoutUser("Profile updated! Please log in again to confirm your email")
+              } else this.sharedService.openSnack("Profile updated!");
+
+            },
+            (error) => {
+              this.sharedService.openSnack("Email already in use!");
+            }
+          );
+        }
+        else this.sharedService.openSnack("Fields cannot be empty!");
       }
     }
   }
