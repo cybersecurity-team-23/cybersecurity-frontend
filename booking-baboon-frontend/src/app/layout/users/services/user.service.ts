@@ -27,8 +27,8 @@ export class UserService {
     return this.httpClient.get<User>(environment.apiHost + 'users/email/' + email)
   }
 
-  getProfile(email: string): Observable<User> {
-    return this.httpClient.get<User>(environment.apiHost + 'users/profile/' + email)
+  getProfile(userId: number): Observable<User> {
+    return this.httpClient.get<User>(environment.apiHost + 'users/profile/' + userId)
   }
 
   update(user: UserEditRequest) {

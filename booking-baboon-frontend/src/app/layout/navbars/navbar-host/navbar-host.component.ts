@@ -41,7 +41,7 @@ export class NavbarHostComponent implements OnInit{
       //   next: (user: User) => {this.user = user;
       //     this.router.navigate(['profile/' + user.email])}
       // })
-      this.router.navigate(['profile/' + decodedToken.sub])
+      this.router.navigate(['profile/' + this.authService.getId()])
     }
   }
 

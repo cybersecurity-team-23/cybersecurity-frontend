@@ -86,4 +86,14 @@ export class AuthService {
     }
     return undefined;
   }
+
+  getEmail() : string | undefined{
+    if(this.isLoggedIn()){
+      const accessToken: any = localStorage.getItem('user');
+      const helper = new JwtHelperService();
+      const decodedToken = helper.decodeToken(accessToken);
+      return decodedToken.sub;
+    }
+    return undefined;
+  }
 }
