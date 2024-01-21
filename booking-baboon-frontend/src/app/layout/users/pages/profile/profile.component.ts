@@ -14,6 +14,7 @@ import {NotificationType} from "../../models/NotificationType.module";
 import {AuthService} from "../../../../infrastructure/auth/auth.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ReviewReport} from "../../../reports/models/review-report.model";
+import {Admin} from "../../models/admin.model";
 
 
 @Component({
@@ -51,6 +52,7 @@ export class ProfileComponent {
   user?: User;
   guest?: Guest;
   host?: Host;
+  admin?: Admin;
 
   newPassword?: string;
   confirmPassword?: string;
@@ -104,6 +106,7 @@ export class ProfileComponent {
             })
           )
           .subscribe();
+      } else {
       }
 
     });
