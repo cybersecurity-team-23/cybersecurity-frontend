@@ -118,9 +118,9 @@ export class ProfileComponent {
     });
 
     this.passwordForm = this.formBuilder.group({
-      currentPassword: new FormControl('',[Validators.required]),
-      newPassword: new FormControl('',[Validators.required]),
-      confirmPassword: new FormControl('',[Validators.required]),
+      currentPassword: new FormControl('',[Validators.required, Validators.minLength(6)]),
+      newPassword: new FormControl('',[Validators.required, Validators.minLength(6)]),
+      confirmPassword: new FormControl('',[Validators.required, Validators.minLength(6)]),
     });
 
     this.profileForm.valueChanges.subscribe(() => {
