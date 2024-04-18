@@ -341,4 +341,6 @@ export class ProfileComponent {
   }
 
   protected readonly NotificationType = NotificationType;
+
+  requestCertificate(): void { }
 }
