@@ -1,0 +1,27 @@
+.background-img{
+  background-image: url('../../../../../assets/jungle-background.png');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper{
+  width: 90%;
+  margin: 0 auto;
+  flex-grow: 1;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 2em;
+}
+
+#main-content-holder {
+  background-color: rgba(243, 243, 243, 0.6);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-grow: 1;
+}

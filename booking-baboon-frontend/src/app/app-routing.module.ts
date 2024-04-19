@@ -52,6 +52,9 @@ import {NotificationPageComponent} from "./layout/notifications/notification-pag
 import {
   AdminReviewReportsPageComponent
 } from "./layout/reports/admin-review-reports-page/admin-review-reports-page.component";
+import {
+  SuperAdminMainPageComponent
+} from "./layout/certificates/pages/super-admin-main-page/super-admin-main-page.component";
 
 const routes: Routes = [
   {
@@ -174,6 +177,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {role: ['ADMIN']}
   },
+  {
+    component: SuperAdminMainPageComponent,
+    path: 'super-admin',
+    canActivate: [AuthGuard],
+    data: {role: ['SUPERADMIN']}
+  }
 ];
 
 @NgModule({
