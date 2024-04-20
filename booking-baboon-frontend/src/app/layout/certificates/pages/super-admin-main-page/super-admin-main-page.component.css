@@ -1,11 +1,22 @@
+h2 {
+  margin: 10px 0;
+}
+
+.flex-column {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.flex-row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
 .background-img{
   background-image: url('../../../../../assets/jungle-background.png');
   background-size: cover;
   background-position: center;
-  color: #fff;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 .wrapper{
@@ -14,14 +25,48 @@
   flex-grow: 1;
   padding-top: 2em;
   padding-bottom: 2em;
-  display: flex;
-  flex-flow: column nowrap;
   gap: 2em;
 }
 
 #main-content-holder {
-  background-color: rgba(243, 243, 243, 0.6);
+  background-color: rgba(243, 243, 243, .6);
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
   flex-grow: 1;
+  padding: 10px 16px;
+  gap: 10px;
+}
+
+#requests-wrapper {
+  width: 30%;
+}
+
+#tree-wrapper {
+  width: 70%;
+}
+
+#company-certificate-addition-holder {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.scrollable-holder {
+  flex-grow: 1;
+  background-color: rgba(243, 243, 243, .7);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
+  position: relative;
+}
+
+.scrollable-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+  overflow: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
 }

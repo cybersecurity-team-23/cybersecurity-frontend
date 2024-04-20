@@ -1,0 +1,27 @@
+#dialog-holder {
+  width: 25vw;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(243, 243, 243, 1);
+  color: black;
+  font-size: 1.6em;
+}
+
+#button-holder {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+button[mat-raised-button],
+button[mat-stroked-button] {
+  font-size: 1.2em;
+  border-radius: 10px;
+  height: 40px;
+  flex-grow: 1;
+}
