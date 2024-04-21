@@ -9,7 +9,7 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrls: ['./certificate-tree.component.css']
 })
 export class CertificateTreeComponent {
-  @Input() certificateNodes: CertificateNode[] | undefined;
+  @Input() certificateTree: CertificateNode[] | undefined;
   protected isPressed: boolean[] = [];
 
   constructor(private dialog: MatDialog) { }

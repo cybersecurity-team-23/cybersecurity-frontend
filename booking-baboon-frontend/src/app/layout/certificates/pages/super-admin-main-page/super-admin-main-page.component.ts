@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CertificateRequest} from "../../models/certificate-request.model";
-import {CertificateNode} from "../../models/certificate-node.model";
+import {CertificateNode, ICertificateNode} from "../../models/certificate-node.model";
+import {CertificateService} from "../../services/certificate.service";
+import {SharedService} from "../../../../shared/shared.service";
 
 @Component({
   selector: 'app-super-admin-main-page',
   templateUrl: './super-admin-main-page.component.html',
   styleUrls: ['./super-admin-main-page.component.css']
 })
-export class SuperAdminMainPageComponent {
+export class SuperAdminMainPageComponent implements OnInit {
   protected certificateRequests: CertificateRequest[] | undefined = [
     {'someProperty': 'balls'},
     {'someProperty': 'egg'},
@@ -34,35 +36,28 @@ export class SuperAdminMainPageComponent {
     {'someProperty': 'egg'},
     {'someProperty': 'egg'}
   ];
-  protected certificateNodes: CertificateNode[] | undefined = [
-    new CertificateNode('asd', false, []),
-    new CertificateNode('asd', false, [
-      new CertificateNode('bsd', false, [
-        new CertificateNode('csd', false, [])
-      ]),
-      new CertificateNode('dsd', true, [])
-    ]),
-    new CertificateNode('asd', false, [
-      new CertificateNode('bsd', true, [])
-    ]),
-    new CertificateNode('asd', false, [
-      new CertificateNode('bsd', false, []),
-      new CertificateNode('csd', false, [])
-    ]),
-    new CertificateNode('asd', false, [
-      new CertificateNode('bsd', false, [
-        new CertificateNode('csd', false, [])
-      ]),
-      new CertificateNode('dsd', false, []),
-      new CertificateNode('asd', false, [
-        new CertificateNode('bsd', false, [
-          new CertificateNode('csd', false, [])
-        ]),
-        new CertificateNode('dsd', false, [])
-      ])
-    ]),
-    new CertificateNode('asiodhasdhoi', true, [])
-  ];
+  protected certificateTree: CertificateNode[] = [];
+
+  constructor(private certificateService: CertificateService, private sharedService: SharedService) { }
+
+  formCertificateTree(iCertificateNode: ICertificateNode): CertificateNode {
+    let certificateTree: CertificateNode = new CertificateNode(iCertificateNode.someData, iCertificateNode.isEndEntity);
+    if (certificateTree.isTerminal())
+      return certificateTree;
+
+    for (let childNode of iCertificateNode.children) {
+      certificateTree.children?.push(new CertificateNode(childNode.someData, childNode.isEndEntity));
+    }
+
+    return certificateTree;
+  }
+
+  ngOnInit(): void {
+    this.certificateService.getCertificateTree().subscribe({
+      next: (certificateTree: ICertificateNode) => this.certificateTree.push(this.formCertificateTree(certificateTree)),
+      error: () => this.sharedService.openSnack('Error reaching the server.')
+    });
+  }
 
   protected add(): void { }
 }

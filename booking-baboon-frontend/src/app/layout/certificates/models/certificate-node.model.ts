@@ -1,12 +1,18 @@
+export interface ICertificateNode {
+  someData: string,
+  isEndEntity: boolean,
+  children: ICertificateNode[]
+}
+
 export class CertificateNode {
   private readonly _someData: string;
   private readonly _isEndEntity: boolean;
   private readonly _children: CertificateNode[];
 
-  constructor(someData: string, isEndEntity: boolean, children: CertificateNode[]) {
+  constructor(someData: string, isEndEntity: boolean) {
     this._someData = someData;
     this._isEndEntity = isEndEntity;
-    this._children = children;
+    this._children = [];
   }
 
   get someData(): string {

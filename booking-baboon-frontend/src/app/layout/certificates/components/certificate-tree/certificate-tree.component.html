@@ -1,5 +1,5 @@
 <div class="flex-column">
-  <div class="flex-column" *ngFor="let certificateNode of certificateNodes; let i = index">
+  <div class="flex-column" *ngFor="let certificateNode of certificateTree; let i = index">
     <div id="certificate-data" class="flex-row">
       <ng-container *ngIf="!certificateNode.isTerminal(); else empty">
         <ng-container *ngIf="!isPressed[i]; else down">
@@ -38,7 +38,7 @@
       </div>
     </div>
     <div *ngIf="!certificateNode.isTerminal() && isPressed[i]" id="children">
-      <app-certificate-tree [certificateNodes]="certificateNode.children" />
+      <app-certificate-tree [certificateTree]="certificateNode.children" />
     </div>
   </div>
 </div>
