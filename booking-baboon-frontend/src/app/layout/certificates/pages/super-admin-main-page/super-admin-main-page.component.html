@@ -1,0 +1,27 @@
+<div class="background-img flex-column">
+  <div class="wrapper flex-column">
+    <app-navbar />
+    <div id="main-content-holder" class="flex-row">
+      <div id="requests-wrapper" class="flex-column">
+        <h2>Certificate requests</h2>
+        <div class="scrollable-holder">
+          <div class="scrollable-content">
+            <app-certificate-request *ngFor="let certificateRequest of certificateRequests"
+                                     [certificateRequest]="certificateRequest" />
+          </div>
+        </div>
+      </div>
+      <div id="tree-wrapper" class="flex-column">
+        <div id="company-certificate-addition-holder" class="flex-row">
+          <h2>Certificate hierarchy</h2>
+          <button mat-raised-button color="primary" (click)="add()">Add new company certificate</button>
+        </div>
+        <div class="scrollable-holder">
+          <div class="scrollable-content">
+            <app-certificate-tree [certificateNodes]="certificateNodes" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

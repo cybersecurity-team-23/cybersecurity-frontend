@@ -10,8 +10,10 @@ enum Role{
   UNAUTHORIZED,
   GUEST,
   HOST,
-  ADMIN
+  ADMIN,
+  SUPERADMIN
 }
+
 export interface User{
   id?: number;
   email?: string;

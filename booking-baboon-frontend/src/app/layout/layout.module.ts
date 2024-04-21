@@ -140,6 +140,11 @@ import {
 import { AdminReviewReportsPageComponent } from './reports/admin-review-reports-page/admin-review-reports-page.component';
 import { AdminReviewReportsComponent } from './reports/admin-review-reports/admin-review-reports.component';
 import { UserReportsComponent } from './reports/user-reports/user-reports.component';
+import { NavbarSuperadminComponent } from './navbars/navbar-superadmin/navbar-superadmin.component';
+import { SuperAdminMainPageComponent } from './certificates/pages/super-admin-main-page/super-admin-main-page.component';
+import { CertificateRequestComponent } from './certificates/components/certificate-request/certificate-request.component';
+import { CertificateTreeComponent } from './certificates/components/certificate-tree/certificate-tree.component';
+import { GenericYesNoDialogComponent } from './certificates/dialogs/generic-yes-no-dialog/generic-yes-no-dialog.component';
 
 
 @NgModule({
@@ -209,7 +214,12 @@ import { UserReportsComponent } from './reports/user-reports/user-reports.compon
     NotificationCardsComponent,
     AdminReviewReportsPageComponent,
     AdminReviewReportsComponent,
-    UserReportsComponent
+    UserReportsComponent,
+    NavbarSuperadminComponent,
+    SuperAdminMainPageComponent,
+    CertificateRequestComponent,
+    CertificateTreeComponent,
+    GenericYesNoDialogComponent
   ],
   exports: [
     NavbarComponent,

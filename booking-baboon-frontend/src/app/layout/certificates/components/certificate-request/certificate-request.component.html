@@ -1,0 +1,12 @@
+<div id="content-holder" class="flex-row">
+  <div>
+    {{certificateRequest?.someProperty}}
+  </div>
+  <div id="buttons" class="flex-row">
+    <button mat-raised-button color="primary" (click)="accept()">Accept</button>
+    <button mat-raised-button color="warn"
+            (click)="openDeclineRequestDialog('250ms', '250ms')">
+      Decline
+    </button>
+  </div>
+</div>

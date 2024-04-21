@@ -1,0 +1,13 @@
+.flex-row {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 5px;
+}
+
+#content-holder {
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: rgba(243, 243, 243, 1);
+  border-radius: 10px;
+}
