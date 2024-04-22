@@ -2,9 +2,9 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CertificateRequest} from "../../models/certificate-request.model";
 import {MatDialog} from "@angular/material/dialog";
 import {GenericYesNoDialogComponent} from "../../dialogs/generic-yes-no-dialog/generic-yes-no-dialog.component";
-import {RequestService} from "../../services/request.service";
 import {SharedService} from "../../../../shared/shared.service";
 import {HttpErrorResponse} from "@angular/common/http";
+import {RequestService} from "../../../../shared/request.service";
 
 @Component({
   selector: 'app-certificate-request',
