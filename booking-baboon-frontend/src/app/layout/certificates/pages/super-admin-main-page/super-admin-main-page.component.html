@@ -7,7 +7,8 @@
         <div class="scrollable-holder">
           <div class="scrollable-content">
             <app-certificate-request *ngFor="let certificateRequest of certificateRequests"
-                                     [certificateRequest]="certificateRequest" />
+                                     [certificateRequest]="certificateRequest"
+                                     (requestStatusChanged)="getCertificateRequests()" />
           </div>
         </div>
       </div>
