@@ -1,0 +1,30 @@
+.flex-column {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+#content-holder {
+  width: 25vw;
+  padding: 10px;
+  background-color: rgba(243, 243, 243, 1);
+  color: black;
+}
+
+#form-holder {
+  gap: 10px;
+}
+
+#button-holder {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+button[mat-raised-button],
+button[mat-stroked-button] {
+  font-size: 1.5em;
+  border-radius: 10px;
+  height: 50px;
+  flex-grow: 1;
+}

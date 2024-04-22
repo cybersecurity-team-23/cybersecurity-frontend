@@ -7,6 +7,7 @@ import {Login} from "../../../infrastructure/auth/model/login.model";
 import {AuthResponse} from "../../../infrastructure/auth/model/auth-response.model";
 import {AuthService} from "../../../infrastructure/auth/auth.service";
 import {SocketService} from "../../../shared/notifications/socket.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -35,8 +36,13 @@ export class LoginComponent {
         next: (response: AuthResponse) => {
           localStorage.setItem('user', response.jwt);
           this.authService.setUser()
-          this.initializeWebSocket();
-          this.router.navigate(['accommodations'])
+          if (this.authService.getRole() !== 'SUPERADMIN') {
+            this.initializeWebSocket();
+            this.router.navigate(['accommodations'])
+          }
+          else {
+            this.router.navigate(['super-admin']).then();
+          }
         },error:() => {
           this.loginFailed = true;
         }

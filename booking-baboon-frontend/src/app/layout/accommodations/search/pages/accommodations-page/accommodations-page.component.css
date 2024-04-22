@@ -1,10 +1,10 @@
-.wrapper{
+.wrapper {
   width: 90%;
   margin: 0 auto;
   padding-top: 2em;
 }
 
-.background-img{
+.background-img {
   background-image: url('../../../../../../assets/jungle-background.png');
   background-size: cover;
   background-position: center;
