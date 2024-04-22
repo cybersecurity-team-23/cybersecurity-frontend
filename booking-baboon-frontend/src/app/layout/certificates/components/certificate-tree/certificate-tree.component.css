@@ -11,7 +11,13 @@
   align-items: center;
 }
 
+#certificate-data-wrapper {
+  flex-grow: 1;
+  gap: 10px
+}
+
 #certificate-data {
+  flex-grow: 1;
   background-color: rgba(243, 243, 243, 1);
   border-radius: 10px;
   padding: 5px;

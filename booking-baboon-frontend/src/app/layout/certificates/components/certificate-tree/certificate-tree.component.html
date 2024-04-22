@@ -1,40 +1,43 @@
 <div class="flex-column">
   <div class="flex-column" *ngFor="let certificateNode of certificateTree; let i = index">
-    <div id="certificate-data" class="flex-row">
-      <ng-container *ngIf="!certificateNode.isTerminal(); else empty">
-        <ng-container *ngIf="!isPressed[i]; else down">
-          <mat-icon class="shown-arrow" (click)="isPressed[i] = true">keyboard_arrow_right</mat-icon>
+    <div id="certificate-data-wrapper" class="flex-row">
+      <mat-icon *ngIf="!certificateNode.isRoot">subdirectory_arrow_right</mat-icon>
+      <div id="certificate-data" class="flex-row">
+        <ng-container *ngIf="!certificateNode.isTerminal(); else empty">
+          <ng-container *ngIf="!isPressed[i]; else down">
+            <mat-icon class="shown-arrow" (click)="isPressed[i] = true">keyboard_arrow_right</mat-icon>
+          </ng-container>
+          <ng-template #down>
+            <mat-icon class="shown-arrow" (click)="isPressed[i] = false">keyboard_arrow_down</mat-icon>
+          </ng-template>
         </ng-container>
-        <ng-template #down>
-          <mat-icon class="shown-arrow" (click)="isPressed[i] = false">keyboard_arrow_down</mat-icon>
+        <ng-template #empty>
+          <mat-icon id="hidden_arrow">keyboard_arrow_down</mat-icon>
         </ng-template>
-      </ng-container>
-      <ng-template #empty>
-        <mat-icon id="hidden_arrow">keyboard_arrow_down</mat-icon>
-      </ng-template>
-      {{certificateNode.someData}}
-      <div class="flex-row">
-        <button mat-icon-button id="validate_button" (click)="validate(i)" matTooltip="Validate certificate"
-                [matTooltipPosition]="'above'" matTooltipHideDelay="100" matTooltipClass="centered-tooltip">
-          <mat-icon>
-            check-circle-outline
-          </mat-icon>
-        </button>
-        <button mat-icon-button *ngIf="!certificateNode.isEndEntity" color="primary" (click)="add(i)"
-                matTooltip="Add certificate signed by this one" [matTooltipPosition]="'above'"
-                matTooltipHideDelay="100" matTooltipClass="centered-tooltip">
-          <mat-icon>
-            add
-          </mat-icon>
-        </button>
-        <button mat-icon-button color="warn"
-                (click)="openDeleteCertificateDialog(i, '250ms', '250ms')"
-                matTooltip="Delete certificate" [matTooltipPosition]="'above'" matTooltipHideDelay="100"
-                matTooltipClass="centered-tooltip">
-          <mat-icon>
-            delete-forever
-          </mat-icon>
-        </button>
+        {{certificateNode.someData}}
+        <div class="flex-row">
+          <button mat-icon-button id="validate_button" (click)="validate(i)" matTooltip="Validate certificate"
+                  [matTooltipPosition]="'above'" matTooltipHideDelay="100" matTooltipClass="centered-tooltip">
+            <mat-icon>
+              check-circle-outline
+            </mat-icon>
+          </button>
+          <button mat-icon-button *ngIf="!certificateNode.isEndEntity" color="primary" (click)="add(i)"
+                  matTooltip="Add certificate signed by this one" [matTooltipPosition]="'above'"
+                  matTooltipHideDelay="100" matTooltipClass="centered-tooltip">
+            <mat-icon>
+              add
+            </mat-icon>
+          </button>
+          <button mat-icon-button color="warn"
+                  (click)="openDeleteCertificateDialog(i, '250ms', '250ms')"
+                  matTooltip="Delete certificate" [matTooltipPosition]="'above'" matTooltipHideDelay="100"
+                  matTooltipClass="centered-tooltip">
+            <mat-icon>
+              delete-forever
+            </mat-icon>
+          </button>
+        </div>
       </div>
     </div>
     <div *ngIf="!certificateNode.isTerminal() && isPressed[i]" id="children">

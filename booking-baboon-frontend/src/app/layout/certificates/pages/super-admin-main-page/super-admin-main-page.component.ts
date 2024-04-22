@@ -41,12 +41,13 @@ export class SuperAdminMainPageComponent implements OnInit {
   constructor(private certificateService: CertificateService, private sharedService: SharedService) { }
 
   formCertificateTree(iCertificateNode: ICertificateNode): CertificateNode {
-    let certificateTree: CertificateNode = new CertificateNode(iCertificateNode.someData, iCertificateNode.isEndEntity);
+    let certificateTree: CertificateNode =
+      new CertificateNode(iCertificateNode.someData, iCertificateNode.isEndEntity, true);
     if (certificateTree.isTerminal())
       return certificateTree;
 
     for (let childNode of iCertificateNode.children) {
-      certificateTree.children?.push(new CertificateNode(childNode.someData, childNode.isEndEntity));
+      certificateTree.children?.push(this.formCertificateTree(childNode));
     }
 
     return certificateTree;
@@ -54,8 +55,9 @@ export class SuperAdminMainPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.certificateService.getCertificateTree().subscribe({
-      next: (certificateTree: ICertificateNode) => this.certificateTree.push(this.formCertificateTree(certificateTree)),
-      error: () => this.sharedService.openSnack('Error reaching the server.')
+      next: (certificateTree: ICertificateNode): number =>
+        this.certificateTree.push(this.formCertificateTree(certificateTree)),
+      error: (): void => this.sharedService.openSnack('Error reaching the server.')
     });
   }
 
