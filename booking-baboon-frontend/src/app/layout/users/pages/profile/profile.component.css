@@ -25,6 +25,7 @@
   height: 75vh;
   padding-left: 50px;
   padding-right: 50px;
+  padding-bottom: 20px;
   border-radius: 10px;
   background-color: white;
   overflow: auto; /* Add this line for vertical scroll */
@@ -96,6 +97,17 @@
 #changePassword {
   color: white;
 }
+
+#certificateHolder {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
+#requestCertificate {
+  color: white;
+}
+
 .container-no-space {
   display:flex;
   justify-content: space-between;
