@@ -3,6 +3,7 @@ import {CertificateRequest} from "../../models/certificate-request.model";
 import {CertificateNode, ICertificateNode} from "../../models/certificate-node.model";
 import {CertificateService} from "../../services/certificate.service";
 import {SharedService} from "../../../../shared/shared.service";
+import {RequestService} from "../../services/request.service";
 
 @Component({
   selector: 'app-super-admin-main-page',
@@ -10,35 +11,11 @@ import {SharedService} from "../../../../shared/shared.service";
   styleUrls: ['./super-admin-main-page.component.css']
 })
 export class SuperAdminMainPageComponent implements OnInit {
-  protected certificateRequests: CertificateRequest[] | undefined = [
-    {'someProperty': 'balls'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'},
-    {'someProperty': 'egg'}
-  ];
+  protected certificateRequests: CertificateRequest[] = [];
   protected certificateTree: CertificateNode[] = [];
 
-  constructor(private certificateService: CertificateService, private sharedService: SharedService) { }
+  constructor(private certificateService: CertificateService, private sharedService: SharedService,
+              private requestService: RequestService) { }
 
   formCertificateTree(iCertificateNode: ICertificateNode): CertificateNode {
     let certificateTree: CertificateNode =
@@ -54,6 +31,11 @@ export class SuperAdminMainPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.requestService.getCertificateRequests().subscribe({
+      next: (certificateRequests: CertificateRequest[]) => this.certificateRequests.push(...certificateRequests),
+      error: (): void => this.sharedService.openSnack('Error reaching the server.'),
+    })
+
     this.certificateService.getCertificateTree().subscribe({
       next: (certificateTree: ICertificateNode): number =>
         this.certificateTree.push(this.formCertificateTree(certificateTree)),
