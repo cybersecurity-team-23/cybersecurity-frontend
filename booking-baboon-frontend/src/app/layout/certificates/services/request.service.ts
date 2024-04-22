@@ -15,4 +15,8 @@ export class RequestService {
   getCertificateRequests(): Observable<CertificateRequest[]> {
     return this.httpClient.get<CertificateRequest[]>(this.requestControllerRoute);
   }
+
+  rejectCertificateRequest(id: number): Observable<CertificateRequest> {
+    return this.httpClient.put<CertificateRequest>(`${this.requestControllerRoute}/reject/${id}`, null);
+  }
 }

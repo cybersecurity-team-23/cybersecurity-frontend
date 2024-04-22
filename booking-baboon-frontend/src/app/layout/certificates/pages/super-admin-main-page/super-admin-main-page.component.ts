@@ -11,11 +11,19 @@ import {RequestService} from "../../services/request.service";
   styleUrls: ['./super-admin-main-page.component.css']
 })
 export class SuperAdminMainPageComponent implements OnInit {
-  protected certificateRequests: CertificateRequest[] = [];
-  protected certificateTree: CertificateNode[] = [];
+  protected certificateRequests: CertificateRequest[] | undefined;
+  protected certificateTree: CertificateNode[] | undefined;
 
   constructor(private certificateService: CertificateService, private sharedService: SharedService,
               private requestService: RequestService) { }
+
+  getCertificateRequests(): void {
+    this.requestService.getCertificateRequests().subscribe({
+      next: (certificateRequests: CertificateRequest[]): CertificateRequest[] =>
+        this.certificateRequests = [...certificateRequests],
+      error: (): void => this.sharedService.openSnack('Error reaching the server.'),
+    })
+  }
 
   formCertificateTree(iCertificateNode: ICertificateNode): CertificateNode {
     let certificateTree: CertificateNode =
@@ -31,14 +39,11 @@ export class SuperAdminMainPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.requestService.getCertificateRequests().subscribe({
-      next: (certificateRequests: CertificateRequest[]) => this.certificateRequests.push(...certificateRequests),
-      error: (): void => this.sharedService.openSnack('Error reaching the server.'),
-    })
+    this.getCertificateRequests();
 
     this.certificateService.getCertificateTree().subscribe({
-      next: (certificateTree: ICertificateNode): number =>
-        this.certificateTree.push(this.formCertificateTree(certificateTree)),
+      next: (certificateTree: ICertificateNode): CertificateNode[] =>
+        this.certificateTree = [this.formCertificateTree(certificateTree)],
       error: (): void => this.sharedService.openSnack('Error reaching the server.')
     });
   }
