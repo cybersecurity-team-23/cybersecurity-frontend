@@ -145,6 +145,7 @@ import { SuperAdminMainPageComponent } from './certificates/pages/super-admin-ma
 import { CertificateRequestComponent } from './certificates/components/certificate-request/certificate-request.component';
 import { CertificateTreeComponent } from './certificates/components/certificate-tree/certificate-tree.component';
 import { GenericYesNoDialogComponent } from './certificates/dialogs/generic-yes-no-dialog/generic-yes-no-dialog.component';
+import { CertificateRequestDialogComponent } from './users/dialogs/certificate-request-dialog/certificate-request-dialog.component';
 
 
 @NgModule({
@@ -219,7 +220,8 @@ import { GenericYesNoDialogComponent } from './certificates/dialogs/generic-yes-
     SuperAdminMainPageComponent,
     CertificateRequestComponent,
     CertificateTreeComponent,
-    GenericYesNoDialogComponent
+    GenericYesNoDialogComponent,
+    CertificateRequestDialogComponent
   ],
   exports: [
     NavbarComponent,

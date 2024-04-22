@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/user.model";
@@ -16,6 +16,10 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ReviewReport} from "../../../reports/models/review-report.model";
 import {Admin} from "../../models/admin.model";
 import {AdminService} from "../../services/admin.service";
+import {MatDialog} from "@angular/material/dialog";
+import {
+  CertificateRequestDialogComponent
+} from "../../dialogs/certificate-request-dialog/certificate-request-dialog.component";
 
 
 @Component({
@@ -23,7 +27,7 @@ import {AdminService} from "../../services/admin.service";
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   userType: string = 'guest';
   profileForm!: FormGroup;
   passwordForm!: FormGroup;
@@ -70,7 +74,8 @@ export class ProfileComponent {
               private sharedService: SharedService,
               private authService: AuthService,
               private formBuilder: FormBuilder,
-              private router: Router) {
+              private router: Router,
+              public dialog: MatDialog) {
   }
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -342,5 +347,16 @@ export class ProfileComponent {
 
   protected readonly NotificationType = NotificationType;
 
-  requestCertificate(): void { }
+  openRequestCertificateDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(CertificateRequestDialogComponent, {
+      data: {user: this.user},
+      enterAnimationDuration,
+      exitAnimationDuration,
+    }).afterClosed().subscribe({
+      next: dialogResult => {
+        if (dialogResult)
+          this.sharedService.openSnack('Certificate request created.');
+      }
+    })
+  }
 }
