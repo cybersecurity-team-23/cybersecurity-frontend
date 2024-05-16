@@ -40,7 +40,8 @@ export class LoginComponent {
       }
       const login: Login = {
         email: this.loginForm.value.username || "",
-        password: this.loginForm.value.password || ""
+        password: this.loginForm.value.password || "",
+        recaptchaToken: this.recaptchaResponse
       }
       this.authService.login(login).subscribe({
         next: (response: AuthResponse) => {
