@@ -87,7 +87,7 @@ export class RegisterComponent {
     if (lowerCaseCount > 0) categoryCount += 1;
     if (numberCount > 0) categoryCount += 1;
     if (nonAlphaCount > 0) categoryCount += 1;
-    
+
     return categoryCount >= 3 && password.length >= 8 && password.length <= 64;
   }
 
@@ -113,7 +113,18 @@ export class RegisterComponent {
     }
   }
 
+  recaptchaResponse: string | null = null;
+
+  resolved(captchaResponse: string | null) {
+    this.recaptchaResponse = captchaResponse;
+  }
+
   register() {
+      if (!this.recaptchaResponse) {
+        alert('Please resolve the captcha bro');
+        return;
+      }
+
     this.isEditable = false;
     if(this.registerPersonalForm.value.toggleHost){
       let user: Host = {
@@ -123,7 +134,9 @@ export class RegisterComponent {
         lastName: this.registerPersonalForm.value.lastName,
         password: this.registerPasswordForm.value.password,
         phoneNumber: this.registerContactForm.value.phone,
-        role: 2
+        role: 2,
+
+        recaptchaToken: this.recaptchaResponse
       };
 
       this.authService.registerHost(user).subscribe();
@@ -135,7 +148,9 @@ export class RegisterComponent {
         lastName: this.registerPersonalForm.value.lastName,
         password: this.registerPasswordForm.value.password,
         phoneNumber: this.registerContactForm.value.phone,
-        role: 1
+        role: 1,
+
+        recaptchaToken: this.recaptchaResponse
       };
 
       console.log(user)
