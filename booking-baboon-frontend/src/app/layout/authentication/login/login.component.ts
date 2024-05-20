@@ -25,23 +25,23 @@ export class LoginComponent {
   hide: boolean = true;
   loginFailed: boolean = false;
 
-  recaptchaResponse: string | null = null;
-
-  resolved(captchaResponse: string | null) {
-    this.recaptchaResponse = captchaResponse;
-  }
+  // recaptchaResponse: string | null = null;
+  //
+  // resolved(captchaResponse: string | null) {
+  //   this.recaptchaResponse = captchaResponse;
+  // }
 
   login(): void {
 
     if(this.loginForm.valid) {
-      if (!this.recaptchaResponse) {
-        alert('Please resolve the captcha bro');
-        return;
-      }
+      // if (!this.recaptchaResponse) {
+      //   alert('Please resolve the captcha bro');
+      //   return;
+      // }
       const login: Login = {
         email: this.loginForm.value.username || "",
         password: this.loginForm.value.password || "",
-        recaptchaToken: this.recaptchaResponse
+        // recaptchaToken: this.recaptchaResponse
       }
       this.authService.login(login).subscribe({
         next: (response: AuthResponse) => {
