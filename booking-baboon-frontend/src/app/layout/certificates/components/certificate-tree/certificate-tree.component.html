@@ -1,7 +1,7 @@
 <div class="flex-column">
   <div class="flex-column" *ngFor="let certificateNode of certificateTree; let i = index">
     <div id="certificate-data-wrapper" class="flex-row">
-      <mat-icon *ngIf="!certificateNode.isRoot">subdirectory_arrow_right</mat-icon>
+      <mat-icon *ngIf="!certificateNode.root">subdirectory_arrow_right</mat-icon>
       <div id="certificate-data" class="flex-row">
         <ng-container *ngIf="!certificateNode.isTerminal(); else empty">
           <ng-container *ngIf="!isPressed[i]; else down">
@@ -14,7 +14,38 @@
         <ng-template #empty>
           <mat-icon id="hidden_arrow">keyboard_arrow_down</mat-icon>
         </ng-template>
-        {{certificateNode.someData}}
+        <div id="certificate-details">
+          Serial Number: {{certificateNode.serialNumber}},<br>
+          Signature Algorithm: {{certificateNode.signatureAlgorithm}},<br>
+          Issuer: {{ "{" }}<br>
+          <div>
+            Email: {{certificateNode.issuer.email}},<br>
+            Common Name: {{certificateNode.issuer.commonName}},<br>
+            Organisational Unit: {{certificateNode.issuer.organisationalUnit}},<br>
+            Organisation: {{certificateNode.issuer.organisation}},<br>
+            Location: {{certificateNode.issuer.location}},<br>
+            State: {{certificateNode.issuer.state}},<br>
+            Country: {{certificateNode.issuer.country}}<br>
+          </div>
+          } ,<br>
+          Valid From: {{certificateNode.validFrom}},<br>
+          Valid To: {{certificateNode.validTo}},<br>
+          Subject: {{ "{" }}<br>
+          <div>
+            Email: {{certificateNode.subject.email}},<br>
+            Common Name: {{certificateNode.subject.commonName}},<br>
+            Organisational Unit: {{certificateNode.subject.organisationalUnit}},<br>
+            Organisation: {{certificateNode.subject.organisation}},<br>
+            Location: {{certificateNode.subject.location}},<br>
+            State: {{certificateNode.subject.state}},<br>
+            Country: {{certificateNode.subject.country}}<br>
+          </div>
+          }
+          <ng-container *ngIf="certificateNode.extensions.length != 0">
+            ,<br>
+            Extensions: {{certificateNode.extensions}}<br>
+          </ng-container>
+        </div>
         <div class="flex-row">
           <button mat-icon-button id="validate_button" (click)="validate(i)" matTooltip="Validate certificate"
                   [matTooltipPosition]="'above'" matTooltipHideDelay="100" matTooltipClass="centered-tooltip">
@@ -22,7 +53,7 @@
               check-circle-outline
             </mat-icon>
           </button>
-          <button mat-icon-button *ngIf="!certificateNode.isEndEntity" color="primary" (click)="add(i)"
+          <button mat-icon-button *ngIf="!certificateNode.endEntity" color="primary" (click)="add(i)"
                   matTooltip="Add certificate signed by this one" [matTooltipPosition]="'above'"
                   matTooltipHideDelay="100" matTooltipClass="centered-tooltip">
             <mat-icon>

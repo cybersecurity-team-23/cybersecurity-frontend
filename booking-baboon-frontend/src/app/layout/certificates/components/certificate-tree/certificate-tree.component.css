@@ -34,6 +34,15 @@
   color: transparent;
 }
 
+#certificate-details {
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+#certificate-details div {
+  padding-left: 1em;
+}
+
 #validate_button {
   color: #7DDF64;
 }
