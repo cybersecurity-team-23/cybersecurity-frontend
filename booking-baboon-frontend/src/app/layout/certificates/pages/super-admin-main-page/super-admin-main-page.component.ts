@@ -26,8 +26,7 @@ export class SuperAdminMainPageComponent implements OnInit {
   }
 
   formCertificateTree(iCertificateNode: ICertificateNode): CertificateNode {
-    let certificateTree: CertificateNode =
-      new CertificateNode(iCertificateNode.someData, iCertificateNode.isEndEntity, true);
+    let certificateTree: CertificateNode = new CertificateNode(iCertificateNode);
     if (certificateTree.isTerminal())
       return certificateTree;
 
