@@ -60,7 +60,7 @@
               add
             </mat-icon>
           </button>
-          <button mat-icon-button color="warn"
+          <button mat-icon-button *ngIf="!certificateNode.root" color="warn"
                   (click)="openDeleteCertificateDialog(i, '250ms', '250ms')"
                   matTooltip="Delete certificate" [matTooltipPosition]="'above'" matTooltipHideDelay="100"
                   matTooltipClass="centered-tooltip">
