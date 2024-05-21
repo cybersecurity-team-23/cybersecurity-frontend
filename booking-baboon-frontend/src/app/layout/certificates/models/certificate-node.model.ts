@@ -78,6 +78,10 @@ export class CertificateNode {
     return this._children;
   }
 
+  alias(): string {
+    return `${this.issuer.email}|${this.serialNumber}`
+  }
+
   isTerminal(): boolean {
     return this.children?.length === 0;
   }
