@@ -5,6 +5,9 @@
       <mat-stepper [linear]="true" orientation="vertical" #stepper>
         <mat-step [stepControl]="registerPersonalForm" errorMessage="Personal information is required." [editable]="isEditable">
           <form [formGroup]="registerPersonalForm">
+
+          <re-captcha (resolved)="resolved($event)" siteKey="6LfYht4pAAAAAG97aOc774MPOj7tMLt8UB1xQmoz"></re-captcha>
+
             <mat-slide-toggle formControlName="toggleHost" color="warn">Host</mat-slide-toggle>
             <ng-template matStepLabel>Name</ng-template>
             <mat-form-field>

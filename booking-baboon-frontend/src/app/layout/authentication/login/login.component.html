@@ -5,7 +5,7 @@
       <div>
         <h1>Log In</h1>
       </div>
-    <form [formGroup]="loginForm">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div>
         <mat-form-field>
           <mat-label>Username</mat-label>
@@ -22,7 +22,10 @@
         </mat-form-field>
       </div>
       <div>
-        <button mat-raised-button type="submit" id="login" color="primary" (click) = "login()">
+          <!--
+          <re-captcha (resolved)="resolved($event)" siteKey="6LfYht4pAAAAAG97aOc774MPOj7tMLt8UB1xQmoz"></re-captcha>
+          -->
+        <button mat-raised-button type="submit" id="login" color="primary">
           Log In
         </button>
       </div>

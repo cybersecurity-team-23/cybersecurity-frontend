@@ -147,6 +147,8 @@ import { CertificateTreeComponent } from './certificates/components/certificate-
 import { GenericYesNoDialogComponent } from './certificates/dialogs/generic-yes-no-dialog/generic-yes-no-dialog.component';
 import { CertificateRequestDialogComponent } from './users/dialogs/certificate-request-dialog/certificate-request-dialog.component';
 
+import { RecaptchaModule } from "ng-recaptcha";
+
 
 @NgModule({
   declarations: [
@@ -229,6 +231,7 @@ import { CertificateRequestDialogComponent } from './users/dialogs/certificate-r
     ActivationComponent
   ],
   imports: [
+    RecaptchaModule,
     CommonModule,
     MaterialModule,
     RouterLink,
