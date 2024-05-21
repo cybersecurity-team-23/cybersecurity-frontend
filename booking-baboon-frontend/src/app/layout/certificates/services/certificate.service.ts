@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../env/env";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {ICertificateNode} from "../models/certificate-node.model";
 import {Observable} from "rxjs";
+import {CertificateValidity} from "../models/certificate-validity.model";
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +15,13 @@ export class CertificateService {
 
   getCertificateTree(): Observable<ICertificateNode> {
     return this.httpClient.get<ICertificateNode>(this.certificateControllerRoute);
+  }
+
+  isValid(alias: string): Observable<CertificateValidity> {
+    let params = new HttpParams().set('alias', alias)
+    return this.httpClient.get<CertificateValidity>(
+      `${this.certificateControllerRoute}/valid`,
+      { params: params}
+    );
   }
 }
