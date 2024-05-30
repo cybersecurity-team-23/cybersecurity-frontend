@@ -53,7 +53,8 @@
               check-circle-outline
             </mat-icon>
           </button>
-          <button mat-icon-button *ngIf="!certificateNode.endEntity" color="primary" (click)="add(i)"
+          <button mat-icon-button *ngIf="!certificateNode.endEntity" color="primary"
+                  (click)="openCreateCertificateDialog(i, '250ms', '250ms')"
                   matTooltip="Add certificate signed by this one" [matTooltipPosition]="'above'"
                   matTooltipHideDelay="100" matTooltipClass="centered-tooltip">
             <mat-icon>
@@ -72,7 +73,7 @@
       </div>
     </div>
     <div *ngIf="!certificateNode.isTerminal() && isPressed[i]" id="children">
-      <app-certificate-tree [certificateTree]="certificateNode.children" />
+      <app-certificate-tree [certificateTree]="certificateNode.children" (certificateCreated)="propagateEmit()" />
     </div>
   </div>
 </div>

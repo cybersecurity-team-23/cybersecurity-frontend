@@ -1,10 +1,13 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CertificateNode} from "../../models/certificate-node.model";
 import {GenericYesNoDialogComponent} from "../../dialogs/generic-yes-no-dialog/generic-yes-no-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {CertificateService} from "../../services/certificate.service";
 import {CertificateValidity} from "../../models/certificate-validity.model";
 import {SharedService} from "../../../../shared/shared.service";
+import {
+  CreateCertificateDialogComponent
+} from "../../dialogs/create-certificate-dialog/create-certificate-dialog.component";
 
 @Component({
   selector: 'app-certificate-tree',
@@ -14,6 +17,8 @@ import {SharedService} from "../../../../shared/shared.service";
 export class CertificateTreeComponent {
   @Input() certificateTree: CertificateNode[] | undefined;
   protected isPressed: boolean[] = [];
+
+  @Output() certificateCreated: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private dialog: MatDialog, private certificateService: CertificateService,
               private sharedService: SharedService) { }
@@ -43,7 +48,24 @@ export class CertificateTreeComponent {
     });
   }
 
-  protected add(index: number): void { }
+  protected openCreateCertificateDialog(index: number, enterAnimationDuration: string,
+                                                 exitAnimationDuration: string): void {
+    this.dialog.open(CreateCertificateDialogComponent, {
+      data: {
+        caAlias: this.certificateTree?.at(index)?.alias()
+      },
+      enterAnimationDuration,
+      exitAnimationDuration,
+    })
+      .afterClosed()
+      .subscribe({
+        next: dialogResult => {
+          if (dialogResult)
+            this.certificateCreated.emit();
+        }
+      });
+  }
+
   protected delete(index: number): void { }
 
   protected openDeleteCertificateDialog(index: number, enterAnimationDuration: string,
@@ -65,5 +87,9 @@ export class CertificateTreeComponent {
         // TODO: Add reaction to delete confirmation
 
       })
+  }
+
+  protected propagateEmit() {
+    this.certificateCreated.emit();
   }
 }
