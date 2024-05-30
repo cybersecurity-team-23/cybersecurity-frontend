@@ -73,7 +73,9 @@
       </div>
     </div>
     <div *ngIf="!certificateNode.isTerminal() && isPressed[i]" id="children">
-      <app-certificate-tree [certificateTree]="certificateNode.children" (certificateCreated)="propagateEmit()" />
+      <app-certificate-tree [certificateTree]="certificateNode.children"
+                            (certificateCreated)="propagateCreatedEmit()"
+                            (certificateDeleted)="propagateDeletedEmit()" />
     </div>
   </div>
 </div>
