@@ -8,6 +8,7 @@ import {SharedService} from "../../../../shared/shared.service";
 import {
   CreateCertificateDialogComponent
 } from "../../dialogs/create-certificate-dialog/create-certificate-dialog.component";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-certificate-tree',
@@ -19,6 +20,7 @@ export class CertificateTreeComponent {
   protected isPressed: boolean[] = [];
 
   @Output() certificateCreated: EventEmitter<any> = new EventEmitter<any>();
+  @Output() certificateDeleted: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private dialog: MatDialog, private certificateService: CertificateService,
               private sharedService: SharedService) { }
@@ -49,7 +51,7 @@ export class CertificateTreeComponent {
   }
 
   protected openCreateCertificateDialog(index: number, enterAnimationDuration: string,
-                                                 exitAnimationDuration: string): void {
+                                        exitAnimationDuration: string): void {
     this.dialog.open(CreateCertificateDialogComponent, {
       data: {
         caAlias: this.certificateTree?.at(index)?.alias()
@@ -66,7 +68,15 @@ export class CertificateTreeComponent {
       });
   }
 
-  protected delete(index: number): void { }
+  protected delete(index: number): void {
+    this.certificateService.delete(this.certificateTree?.at(index)?.alias() ?? '').subscribe({
+      next: () => this.certificateDeleted.emit(),
+
+      // TODO: Handle error
+
+      error: (error: HttpErrorResponse): void => { },
+    });
+  }
 
   protected openDeleteCertificateDialog(index: number, enterAnimationDuration: string,
                                         exitAnimationDuration: string): void {
@@ -82,14 +92,17 @@ export class CertificateTreeComponent {
         next: dialogResult => {
           if (!dialogResult)
             return
+
+          this.delete(index);
         }
-
-        // TODO: Add reaction to delete confirmation
-
       })
   }
 
-  protected propagateEmit() {
+  protected propagateCreatedEmit(): void {
     this.certificateCreated.emit();
+  }
+
+  protected propagateDeletedEmit(): void {
+    this.certificateDeleted.emit();
   }
 }
