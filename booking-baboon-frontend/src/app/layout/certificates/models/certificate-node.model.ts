@@ -35,7 +35,7 @@ export class CertificateNode {
     this._extensions = iCertificateNode.extensions;
     this._endEntity = iCertificateNode.endEntity;
     this._root = iCertificateNode.root;
-    this._children = iCertificateNode.children.map(child => new CertificateNode(child));
+    this._children = iCertificateNode.children.map((child: ICertificateNode) => new CertificateNode(child));
   }
 
   get serialNumber(): string {

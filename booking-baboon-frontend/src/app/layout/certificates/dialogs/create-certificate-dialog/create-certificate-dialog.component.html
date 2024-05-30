@@ -1,0 +1,70 @@
+<div id="dialog-holder">
+  <form [formGroup]="certificateTypeForm">
+    <div class="form-holder">
+      <mat-form-field>
+        <mat-label>Certificate purpose</mat-label>
+        <mat-select formControlName="certificateType" [(value)]="certificateType">
+          <mat-option value="HTTPS">HTTPS</mat-option>
+          <mat-option value="DigitalSigning">Digital signing</mat-option>
+          <mat-option value="Intermediate">Intermediate</mat-option>
+        </mat-select>
+        <mat-error>{{getRequiredErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+  <form [formGroup]="subjectInfoForm">
+    Subject information
+    <div id="subject-form-holder" class="form-holder">
+      <mat-form-field appearance="outline" color="primary">
+        <mat-label>Email</mat-label>
+        <input matInput type="text" name="email" formControlName="email" spellcheck="false" />
+        <mat-error>{{getRequiredErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="primary">
+        <mat-label>Common name (Full name)</mat-label>
+        <input matInput type="text" name="commonName" formControlName="commonName" spellcheck="false">
+        <mat-error>{{getRequiredErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="primary">
+        <mat-label>Organisational unit</mat-label>
+        <input matInput type="text" name="organisationalUnit" formControlName="organisationalUnit" spellcheck="false">
+        <mat-error>{{getRequiredErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="primary">
+        <mat-label>Organisation</mat-label>
+        <input matInput type="text" name="organisation" formControlName="organisation" spellcheck="false">
+        <mat-error>{{getRequiredErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="primary">
+        <mat-label>Location</mat-label>
+        <input matInput type="text" name="location" formControlName="location" spellcheck="false">
+        <mat-error>{{getRequiredErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="primary">
+        <mat-label>State</mat-label>
+        <input matInput type="text" name="state" formControlName="state" spellcheck="false">
+        <mat-error>{{getRequiredErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" color="primary">
+        <mat-label>Country</mat-label>
+        <input matInput type="text" name="country" formControlName="country" spellcheck="false">
+        <mat-error>{{getRequiredErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+  <form [formGroup]="domainForm" *ngIf="certificateType == 'HTTPS'">
+    <div class="form-holder">
+      <mat-form-field appearance="outline" color="primary">
+        <mat-label>Domain</mat-label>
+        <input matInput type="text" name="domain" formControlName="domain" spellcheck="false" />
+        <mat-error>{{getRequiredErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+  <div id="button-holder">
+    <button mat-raised-button color="warn" [disabled]="!areFormsValid()" (click)="createCertificate()">
+      Create certificate
+    </button>
+    <button mat-stroked-button color="primary" mat-dialog-close>Cancel</button>
+  </div>
+</div>

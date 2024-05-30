@@ -148,6 +148,7 @@ import { GenericYesNoDialogComponent } from './certificates/dialogs/generic-yes-
 import { CertificateRequestDialogComponent } from './users/dialogs/certificate-request-dialog/certificate-request-dialog.component';
 
 import { RecaptchaModule } from "ng-recaptcha";
+import { CreateCertificateDialogComponent } from './certificates/dialogs/create-certificate-dialog/create-certificate-dialog.component';
 
 
 @NgModule({
@@ -223,7 +224,8 @@ import { RecaptchaModule } from "ng-recaptcha";
     CertificateRequestComponent,
     CertificateTreeComponent,
     GenericYesNoDialogComponent,
-    CertificateRequestDialogComponent
+    CertificateRequestDialogComponent,
+    CreateCertificateDialogComponent
   ],
   exports: [
     NavbarComponent,

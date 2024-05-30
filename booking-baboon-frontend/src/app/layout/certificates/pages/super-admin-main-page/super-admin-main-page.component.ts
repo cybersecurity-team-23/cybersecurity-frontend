@@ -25,26 +25,18 @@ export class SuperAdminMainPageComponent implements OnInit {
     })
   }
 
-  formCertificateTree(iCertificateNode: ICertificateNode): CertificateNode {
-    let certificateTree: CertificateNode = new CertificateNode(iCertificateNode);
-    if (certificateTree.isTerminal())
-      return certificateTree;
-
-    for (let childNode of iCertificateNode.children) {
-      certificateTree.children?.push(this.formCertificateTree(childNode));
-    }
-
-    return certificateTree;
+  getCertificateTree(): void {
+    this.certificateService.getCertificateTree().subscribe({
+      next: (certificateTree: ICertificateNode): CertificateNode[] =>
+        this.certificateTree = [new CertificateNode(certificateTree)],
+      error: (): void => this.sharedService.openSnack('Error reaching the server.')
+    });
   }
 
   ngOnInit(): void {
     this.getCertificateRequests();
 
-    this.certificateService.getCertificateTree().subscribe({
-      next: (certificateTree: ICertificateNode): CertificateNode[] =>
-        this.certificateTree = [this.formCertificateTree(certificateTree)],
-      error: (): void => this.sharedService.openSnack('Error reaching the server.')
-    });
+    this.getCertificateTree();
   }
 
   protected add(): void { }
