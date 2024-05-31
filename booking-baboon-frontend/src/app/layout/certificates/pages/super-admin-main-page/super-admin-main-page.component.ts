@@ -14,6 +14,8 @@ export class SuperAdminMainPageComponent implements OnInit {
   protected certificateRequests: CertificateRequest[] | undefined;
   protected certificateTree: CertificateNode[] | undefined;
 
+  protected caAliases: string[] | undefined;
+
   constructor(private certificateService: CertificateService, private sharedService: SharedService,
               private requestService: RequestService) { }
 
@@ -25,10 +27,22 @@ export class SuperAdminMainPageComponent implements OnInit {
     })
   }
 
+  private getCaAliases(certificateTree: CertificateNode[] | undefined): void {
+    certificateTree?.forEach((certificateNode: CertificateNode) => {
+      if (certificateNode.isTerminal())
+        this.caAliases?.push(certificateNode.alias());
+
+      this.getCaAliases(certificateNode.children);
+    });
+  }
+
   getCertificateTree(): void {
     this.certificateService.getCertificateTree().subscribe({
-      next: (certificateTree: ICertificateNode): CertificateNode[] =>
-        this.certificateTree = [new CertificateNode(certificateTree)],
+      next: (certificateTree: ICertificateNode): void => {
+        this.certificateTree = [new CertificateNode(certificateTree)];
+        this.caAliases = [];
+        this.getCaAliases(this.certificateTree);
+      },
       error: (): void => this.sharedService.openSnack('Error reaching the server.')
     });
   }

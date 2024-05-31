@@ -4,7 +4,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {ICertificateNode} from "../models/certificate-node.model";
 import {Observable} from "rxjs";
 import {CertificateValidity} from "../models/certificate-validity.model";
-import {CreateCertificate} from "../models/create-certificate.model";
+import {CreateCertificate} from "../../../shared/models/create-certificate.model";
 
 @Injectable({
   providedIn: 'root'

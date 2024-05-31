@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CertificateService} from "../../services/certificate.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {CreateCertificate} from "../../models/create-certificate.model";
+import {CreateCertificate} from "../../../../shared/models/create-certificate.model";
 import {SharedService} from "../../../../shared/shared.service";
 import {HttpErrorResponse} from "@angular/common/http";
 
@@ -70,7 +70,7 @@ export class CreateCertificateDialogComponent {
       ((this.certificateType == 'HTTPS' && this.domainForm.valid) || this.certificateType != 'HTTPS');
   }
 
-  protected createCertificate() {
+  protected createCertificate(): void {
     if (!this.areFormsValid())
       return;
 

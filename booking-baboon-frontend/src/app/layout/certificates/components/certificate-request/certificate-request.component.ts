@@ -5,6 +5,7 @@ import {GenericYesNoDialogComponent} from "../../dialogs/generic-yes-no-dialog/g
 import {SharedService} from "../../../../shared/shared.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {RequestService} from "../../../../shared/request.service";
+import {AcceptRequestDialogComponent} from "../../dialogs/accept-request-dialog/accept-request-dialog.component";
 
 @Component({
   selector: 'app-certificate-request',
@@ -13,12 +14,38 @@ import {RequestService} from "../../../../shared/request.service";
 })
 export class CertificateRequestComponent {
   @Input() certificateRequest: CertificateRequest | undefined;
-  @Output() requestStatusChanged: EventEmitter<any> = new EventEmitter<any>();
+  @Output() requestDeclined: EventEmitter<any> = new EventEmitter<any>();
+  @Output() requestAccepted: EventEmitter<any> = new EventEmitter<any>();
+
+  @Input() caAliases: string[] | undefined;
 
   constructor(private dialog: MatDialog, private requestService: RequestService,
               private sharedService: SharedService) { }
 
-  protected accept(): void { }
+  protected openAcceptRequestDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(AcceptRequestDialogComponent, {
+      data: {
+        id: this.certificateRequest?.id,
+        subject: {
+          email: this.certificateRequest?.email,
+          commonName: this.certificateRequest?.commonName,
+          organisationalUnit: this.certificateRequest?.organisationalUnit,
+          organisation: this.certificateRequest?.organisation,
+          location: this.certificateRequest?.location,
+          state: this.certificateRequest?.state,
+          country: this.certificateRequest?.country,
+        },
+        caAliases: this.caAliases,
+      },
+      enterAnimationDuration,
+      exitAnimationDuration,
+    }).afterClosed().subscribe({
+      next: dialogResult => {
+        if (dialogResult)
+          this.requestAccepted.emit();
+      }
+    });
+  }
 
   protected openDeclineRequestDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(GenericYesNoDialogComponent, {
@@ -37,7 +64,7 @@ export class CertificateRequestComponent {
           this.requestService.rejectCertificateRequest(this.certificateRequest?.id ?? 0).subscribe({
             next: (): void => {
               this.sharedService.openSnack('Certificate request successfully declined.');
-              this.requestStatusChanged.emit();
+              this.requestDeclined.emit();
             },
             error: (error: HttpErrorResponse): void => {
               if (error.status === 404)

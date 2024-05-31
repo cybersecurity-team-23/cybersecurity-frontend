@@ -1,10 +1,9 @@
 export interface CreateRequest {
-  commonName: string,
-  surname: string,
-  givenName: string,
-  organisation: string,
-  organisationalUnit: string,
-  country: string,
   email: string,
-  uid: number,
+  commonName: string,
+  organisationalUnit: string,
+  organisation: string,
+  location: string,
+  state: string,
+  country: string,
 }

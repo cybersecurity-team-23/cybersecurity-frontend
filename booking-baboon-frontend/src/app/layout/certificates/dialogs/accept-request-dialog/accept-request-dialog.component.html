@@ -1,0 +1,21 @@
+<div id="dialog-holder">
+  <form [formGroup]="caAliasForm">
+    <div class="form-holder">
+      <mat-form-field>
+        <mat-label>
+          Signing certificate identifier ({{ '<' }}issuer_email>|{{ '<' }}certificate_serial_number>)
+        </mat-label>
+        <mat-select formControlName="caAlias" [(value)]="caAlias">
+          <mat-option *ngFor="let caAlias of caAliases" value="{{caAlias}}">{{caAlias}}</mat-option>
+        </mat-select>
+        <mat-error>{{getRequiredErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+  <div id="button-holder">
+    <button mat-raised-button color="warn" [disabled]="!caAliasForm.valid" (click)="acceptRequest()">
+      Confirm
+    </button>
+    <button mat-stroked-button color="primary" mat-dialog-close>Cancel</button>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import {X500Name} from "./x-500-name.model";
+import {X500Name} from "../../layout/certificates/models/x-500-name.model";
 
 export interface CreateCertificate {
   certificateType: string,
