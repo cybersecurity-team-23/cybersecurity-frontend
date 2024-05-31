@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {CertificateRequest} from "../layout/certificates/models/certificate-request.model";
 import {CreateRequest} from "../layout/users/models/create-request.model";
+import {CreateCertificate} from "./models/create-certificate.model";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class RequestService {
 
   createRequest(createRequest: CreateRequest): Observable<CreateRequest> {
     return this.httpClient.post<CreateRequest>(this.requestControllerRoute, createRequest);
+  }
+
+  acceptCertificateRequest(id: number, certificate: CreateCertificate): Observable<CertificateRequest> {
+    return this.httpClient.put<CertificateRequest>(`${this.requestControllerRoute}/approve/${id}`, certificate);
   }
 
   rejectCertificateRequest(id: number): Observable<CertificateRequest> {

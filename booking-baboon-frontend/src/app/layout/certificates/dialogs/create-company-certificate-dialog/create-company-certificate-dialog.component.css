@@ -1,0 +1,51 @@
+#dialog-holder {
+  width: 30vw;
+  max-height: 75vh;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+  padding: 10px;
+  text-align: center;
+  background-color: rgba(243, 243, 243, 1);
+  color: black;
+  overflow-y: scroll;
+  font-size: 1.6em;
+}
+
+.form-holder {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+}
+
+#company-form-holder {
+  padding: 10px;
+  border: 1px black solid;
+  border-radius: 10px;
+}
+
+mat-error {
+  font-size: .8em;
+}
+
+#button-holder {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 10px;
+}
+
+button[mat-raised-button],
+button[mat-stroked-button] {
+  font-size: 1.2em;
+  border-radius: 10px;
+  flex: 1 1 0;
+}
+
+button[mat-raised-button] {
+  height: fit-content;
+}
+
+button[mat-stroked-button] {
+  height: inherit;
+}

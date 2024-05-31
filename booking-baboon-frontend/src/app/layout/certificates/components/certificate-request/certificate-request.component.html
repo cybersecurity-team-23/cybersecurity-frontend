@@ -1,9 +1,25 @@
 <div id="content-holder" class="flex-row">
-  <div>
-    {{certificateRequest?.id}}
+  <div class="flex-row">
+    <div id="id-holder">{{certificateRequest?.id}}</div>
+    <mat-divider vertical />
+    <div id="subject-details-holder" class="flex-column">
+      Subject information:
+      <div id="subject-details" class="flex-column">
+        Email: {{certificateRequest?.email}}<br />
+        Common name: {{certificateRequest?.commonName}}<br />
+        Organisational unit: {{certificateRequest?.organisationalUnit}}<br />
+        Organisation: {{certificateRequest?.organisation}}<br />
+        Location: {{certificateRequest?.location}}<br />
+        State: {{certificateRequest?.state}}<br />
+        Country: {{certificateRequest?.country}}<br />
+      </div>
+    </div>
   </div>
   <div id="buttons" class="flex-row">
-    <button mat-raised-button color="primary" (click)="accept()">Accept</button>
+    <button mat-raised-button color="primary"
+            (click)="openAcceptRequestDialog('250ms', '250ms')">
+      Accept
+    </button>
     <button mat-raised-button color="warn"
             (click)="openDeclineRequestDialog('250ms', '250ms')">
       Decline
