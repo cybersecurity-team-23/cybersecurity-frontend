@@ -19,14 +19,19 @@ export class CertificateService {
   }
 
   isValid(alias: string): Observable<CertificateValidity> {
-    let params = new HttpParams().set('alias', alias)
+    let params: HttpParams = new HttpParams().set('alias', alias)
     return this.httpClient.get<CertificateValidity>(
       `${this.certificateControllerRoute}/valid`,
-      { params: params}
+      { params: params }
     );
   }
 
   create(certificate: CreateCertificate): Observable<CreateCertificate> {
     return this.httpClient.post<CreateCertificate>(this.certificateControllerRoute, certificate);
+  }
+
+  delete(alias: string): Observable<void> {
+    let params: HttpParams = new HttpParams().set('alias', alias)
+    return this.httpClient.delete<void>(this.certificateControllerRoute, { params: params });
   }
 }

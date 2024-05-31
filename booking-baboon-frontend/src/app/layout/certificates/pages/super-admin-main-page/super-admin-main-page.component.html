@@ -24,7 +24,8 @@
         </div>
         <div class="scrollable-holder">
           <div class="scrollable-content">
-            <app-certificate-tree [certificateTree]="certificateTree" (certificateCreated)="getCertificateTree()" />
+            <app-certificate-tree [certificateTree]="certificateTree" (certificateCreated)="getCertificateTree()"
+                                  (certificateDeleted)="getCertificateTree()" />
           </div>
         </div>
       </div>
