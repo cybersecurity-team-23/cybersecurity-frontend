@@ -4,6 +4,10 @@ import {CertificateNode, ICertificateNode} from "../../models/certificate-node.m
 import {CertificateService} from "../../services/certificate.service";
 import {SharedService} from "../../../../shared/shared.service";
 import {RequestService} from "../../../../shared/request.service";
+import {MatDialog} from "@angular/material/dialog";
+import {
+  CreateCompanyCertificateDialogComponent
+} from "../../dialogs/create-company-certificate-dialog/create-company-certificate-dialog.component";
 
 @Component({
   selector: 'app-super-admin-main-page',
@@ -17,7 +21,7 @@ export class SuperAdminMainPageComponent implements OnInit {
   protected caAliases: string[] | undefined;
 
   constructor(private certificateService: CertificateService, private sharedService: SharedService,
-              private requestService: RequestService) { }
+              private requestService: RequestService, private dialog: MatDialog) { }
 
   getCertificateRequests(): void {
     this.requestService.getCertificateRequests().subscribe({
@@ -28,7 +32,7 @@ export class SuperAdminMainPageComponent implements OnInit {
   }
 
   private getCaAliases(certificateTree: CertificateNode[] | undefined): void {
-    certificateTree?.forEach((certificateNode: CertificateNode) => {
+    certificateTree?.forEach((certificateNode: CertificateNode): void => {
       if (certificateNode.isTerminal())
         this.caAliases?.push(certificateNode.alias());
 
@@ -53,5 +57,33 @@ export class SuperAdminMainPageComponent implements OnInit {
     this.getCertificateTree();
   }
 
-  protected add(): void { }
+  private getRootCaAlias(certificateTree: CertificateNode[] | undefined): string {
+    if (certificateTree === undefined) {
+      return '';
+    }
+
+    for (let certificateNode of certificateTree) {
+      if (certificateNode.root)
+        return certificateNode.alias();
+    }
+
+    return '';
+  }
+
+  protected openCreateCompanyCertificateDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(CreateCompanyCertificateDialogComponent, {
+      data: {
+        rootCaAlias: this.getRootCaAlias(this.certificateTree),
+      },
+      enterAnimationDuration,
+      exitAnimationDuration,
+    })
+      .afterClosed()
+      .subscribe({
+        next: dialogResult => {
+          if (dialogResult)
+            this.getCertificateTree();
+        }
+      });
+  }
 }
