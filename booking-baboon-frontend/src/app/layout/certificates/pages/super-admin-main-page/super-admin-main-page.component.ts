@@ -8,6 +8,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {
   CreateCompanyCertificateDialogComponent
 } from "../../dialogs/create-company-certificate-dialog/create-company-certificate-dialog.component";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-super-admin-main-page',
@@ -47,7 +48,12 @@ export class SuperAdminMainPageComponent implements OnInit {
         this.caAliases = [];
         this.getCaAliases(this.certificateTree);
       },
-      error: (): void => this.sharedService.openSnack('Error reaching the server.')
+      error: (error: HttpErrorResponse): void => {
+        if (error)
+          this.sharedService.openSnack(error.error.message);
+        else
+          this.sharedService.openSnack('Error reaching the server.')
+      },
     });
   }
 

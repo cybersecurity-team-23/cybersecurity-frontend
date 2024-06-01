@@ -46,7 +46,12 @@ export class CertificateTreeComponent {
               under serial number ${certificateSerialNumber} is valid.`
             )
       },
-      error: (): void => this.sharedService.openSnack('Error reaching the server.'),
+      error: (error: HttpErrorResponse): void => {
+        if (error)
+          this.sharedService.openSnack(error.error.message);
+        else
+          this.sharedService.openSnack('Error reaching the server.')
+      },
     });
   }
 
@@ -62,19 +67,26 @@ export class CertificateTreeComponent {
       .afterClosed()
       .subscribe({
         next: dialogResult => {
-          if (dialogResult)
+          if (dialogResult) {
+            this.sharedService.openSnack('Certificate created successfully.');
             this.certificateCreated.emit();
+          }
         }
       });
   }
 
   protected delete(index: number): void {
     this.certificateService.delete(this.certificateTree?.at(index)?.alias() ?? '').subscribe({
-      next: () => this.certificateDeleted.emit(),
-
-      // TODO: Handle error
-
-      error: (error: HttpErrorResponse): void => { },
+      next: (): void => {
+        this.sharedService.openSnack('Certificate successfully deleted.');
+        this.certificateDeleted.emit()
+      },
+      error: (error: HttpErrorResponse): void => {
+        if (error)
+          this.sharedService.openSnack(error.error.message);
+        else
+          this.sharedService.openSnack('Error reaching the server.');
+      },
     });
   }
 

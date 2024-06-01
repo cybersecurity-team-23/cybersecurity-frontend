@@ -41,8 +41,10 @@ export class CertificateRequestComponent {
       exitAnimationDuration,
     }).afterClosed().subscribe({
       next: dialogResult => {
-        if (dialogResult)
+        if (dialogResult) {
+          this.sharedService.openSnack('Certificate request successfully accepted.');
           this.requestAccepted.emit();
+        }
       }
     });
   }
@@ -50,7 +52,7 @@ export class CertificateRequestComponent {
   protected openDeclineRequestDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(GenericYesNoDialogComponent, {
       data: {
-        message: "Are you sure you want to decline this certificate request?"
+        message: "Are you sure you want to decline this certificate request?",
       },
       enterAnimationDuration,
       exitAnimationDuration,
@@ -59,7 +61,7 @@ export class CertificateRequestComponent {
       .subscribe({
         next: dialogResult => {
           if (!dialogResult)
-            return
+            return;
 
           this.requestService.rejectCertificateRequest(this.certificateRequest?.id ?? 0).subscribe({
             next: (): void => {
@@ -67,13 +69,13 @@ export class CertificateRequestComponent {
               this.requestDeclined.emit();
             },
             error: (error: HttpErrorResponse): void => {
-              if (error.status === 404)
-                this.sharedService.openSnack('Certificate request not found.');
+              if (error)
+                this.sharedService.openSnack(error.error.message);
               else
                 this.sharedService.openSnack('Error reaching the server.');
-            }
-          })
-        }
-      })
+            },
+          });
+        },
+      });
   }
 }
