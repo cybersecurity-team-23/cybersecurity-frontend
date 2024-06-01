@@ -52,10 +52,7 @@ export class AcceptRequestDialogComponent {
       },
       error: (error: HttpErrorResponse): void => {
         if (error)
-
-          // TODO: Print error message
-
-          this.sharedService.openSnack('');
+          this.sharedService.openSnack(error.error.message);
         else
           this.sharedService.openSnack('Error reaching the server.');
       },

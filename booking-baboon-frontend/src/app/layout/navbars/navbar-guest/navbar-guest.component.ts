@@ -51,11 +51,14 @@ export class NavbarGuestComponent implements OnInit{
 
   logout(): void {
     this.authService.logout().subscribe({
-      next: (_) => {
+      next: (_: string): void => {
         localStorage.removeItem('user');
         this.authService.setUser();
         this.router.navigate(['login']);
-      }
+      },
+      error: (): void => {
+        this.router.navigate(['login']);
+      },
     })
   }
 }

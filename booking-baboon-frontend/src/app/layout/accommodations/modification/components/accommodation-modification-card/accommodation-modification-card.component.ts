@@ -138,7 +138,6 @@ export class AccommodationModificationCardComponent {
     newAccommodation.id = this.accommodation.id;
     this.accommodationService.update(newAccommodation).subscribe({
       next: (accommodationResponse : Accommodation) => {
-        //TODO: UPDATE IMAGES AND AVAILABLE PERIODS
         this.approveRequest();
       },
       error: (_) => {this.sharedService.openSnack("An error occured!")}
