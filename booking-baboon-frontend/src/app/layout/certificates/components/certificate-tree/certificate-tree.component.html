@@ -43,7 +43,7 @@
           }
           <ng-container *ngIf="certificateNode.extensions.length != 0">
             ,<br>
-            Extensions: {{certificateNode.extensions}}<br>
+            Extensions: [<ng-container *ngFor="let extension of certificateNode.extensions; let last = last">{{extension}}<ng-container *ngIf="!last">, </ng-container></ng-container>]<br>
           </ng-container>
         </div>
         <div class="flex-row">
