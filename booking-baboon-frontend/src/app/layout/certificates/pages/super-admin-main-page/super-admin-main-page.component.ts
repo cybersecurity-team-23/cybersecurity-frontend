@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CertificateRequest} from "../../models/certificate-request.model";
 import {CertificateNode, ICertificateNode} from "../../models/certificate-node.model";
-import {CertificateService} from "../../services/certificate.service";
+import {CertificateService} from "../../../../shared/certificate.service";
 import {SharedService} from "../../../../shared/shared.service";
 import {RequestService} from "../../../../shared/request.service";
 import {MatDialog} from "@angular/material/dialog";

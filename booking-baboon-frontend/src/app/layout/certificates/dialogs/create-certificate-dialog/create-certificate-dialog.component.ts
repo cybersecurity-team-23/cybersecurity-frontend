@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {CertificateService} from "../../services/certificate.service";
+import {CertificateService} from "../../../../shared/certificate.service";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {CreateCertificate} from "../../../../shared/models/create-certificate.model";
 import {SharedService} from "../../../../shared/shared.service";

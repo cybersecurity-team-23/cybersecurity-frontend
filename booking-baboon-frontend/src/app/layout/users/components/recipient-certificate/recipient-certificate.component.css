@@ -1,0 +1,29 @@
+.flex-row {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 10px;
+  border: 1px solid black;
+  color: black;
+}
+
+#button-holder {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px
+}
+
+.cell {
+  align-self: center;
+  flex-grow: 1;
+  padding: 10px;
+}
+
+.flex-column {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+}
+
+button {
+  height: 50px !important;
+}

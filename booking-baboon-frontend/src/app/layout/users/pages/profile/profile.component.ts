@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {User} from "../../models/user.model";
@@ -20,6 +20,9 @@ import {MatDialog} from "@angular/material/dialog";
 import {
   CertificateRequestDialogComponent
 } from "../../dialogs/certificate-request-dialog/certificate-request-dialog.component";
+import {CertificateService} from "../../../../shared/certificate.service";
+import {CertificateDistribution} from "../../../../shared/models/certificate-distribution.model";
+import {HttpErrorResponse} from "@angular/common/http";
 
 
 @Component({
@@ -65,6 +68,8 @@ export class ProfileComponent implements OnInit {
 
   errorLabel?: string = ""
 
+  recipientCertificates: CertificateDistribution[] | undefined;
+
   constructor(private route: ActivatedRoute,
               private userService: UserService,
               private hostService: HostService,
@@ -75,8 +80,9 @@ export class ProfileComponent implements OnInit {
               private authService: AuthService,
               private formBuilder: FormBuilder,
               private router: Router,
-              public dialog: MatDialog) {
+              public dialog: MatDialog, private certificateService: CertificateService) {
   }
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       const userId: number = params['userId'];
@@ -89,6 +95,7 @@ export class ProfileComponent implements OnInit {
           tap((user: User) => {
             this.user = user;
             this.initializeForm();
+            this.getCertificatesForRecipient();
           })
         )
         .subscribe()
@@ -127,6 +134,7 @@ export class ProfileComponent implements OnInit {
 
     });
   }
+
   initializeForm(): void {
     this.profileForm = this.formBuilder.group({
       email: [this.user?.email || '', [Validators.required, Validators.email]],
@@ -356,6 +364,19 @@ export class ProfileComponent implements OnInit {
       next: dialogResult => {
         if (dialogResult)
           this.sharedService.openSnack('Certificate request created.');
+      }
+    })
+  }
+
+  getCertificatesForRecipient(): void {
+    this.certificateService.getCertificatesForRecipient(this.user?.email ?? '').subscribe({
+      next: (certificateDistributions: CertificateDistribution[]) =>
+        this.recipientCertificates = certificateDistributions,
+      error: (error: HttpErrorResponse): void => {
+        if (error)
+          this.sharedService.openSnack(error.error.message);
+        else
+          this.sharedService.openSnack('Error reaching the server.');
       }
     })
   }

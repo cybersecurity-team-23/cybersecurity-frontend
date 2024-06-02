@@ -151,6 +151,7 @@ import { RecaptchaModule } from "ng-recaptcha";
 import { CreateCertificateDialogComponent } from './certificates/dialogs/create-certificate-dialog/create-certificate-dialog.component';
 import { AcceptRequestDialogComponent } from './certificates/dialogs/accept-request-dialog/accept-request-dialog.component';
 import { CreateCompanyCertificateDialogComponent } from './certificates/dialogs/create-company-certificate-dialog/create-company-certificate-dialog.component';
+import { RecipientCertificateComponent } from './users/components/recipient-certificate/recipient-certificate.component';
 
 
 @NgModule({
@@ -229,7 +230,8 @@ import { CreateCompanyCertificateDialogComponent } from './certificates/dialogs/
     CertificateRequestDialogComponent,
     CreateCertificateDialogComponent,
     AcceptRequestDialogComponent,
-    CreateCompanyCertificateDialogComponent
+    CreateCompanyCertificateDialogComponent,
+    RecipientCertificateComponent
   ],
   exports: [
     NavbarComponent,

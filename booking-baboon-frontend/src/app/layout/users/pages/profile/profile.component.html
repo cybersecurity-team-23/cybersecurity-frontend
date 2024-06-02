@@ -132,11 +132,15 @@
           <h2>Certificates</h2>
         </div>
         <hr>
-        <div id="certificateHolder">
+        <div id="certificate-holder">
           <button (click)="openRequestCertificateDialog('250ms', '250ms')"
-                  id="requestCertificate" mat-raised-button color="primary">
+                  id="request-certificate" mat-raised-button color="primary">
             Request certificate
           </button>
+          <h2>Your certificates:</h2>
+          <ng-container *ngFor="let certificateDistribution of recipientCertificates; index as i">
+            <app-recipient-certificate [certificateDistribution]="certificateDistribution" [index]="i" />
+          </ng-container>
         </div>
       </div>
     </div>
