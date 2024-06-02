@@ -98,13 +98,19 @@
   color: white;
 }
 
-#certificateHolder {
+#certificate-holder {
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 10px;
+  color: black;
 }
 
-#requestCertificate {
+app-recipient-certificate {
+  width: 100%;
+}
+
+#request-certificate {
   color: white;
 }
 

@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CertificateNode} from "../../models/certificate-node.model";
 import {GenericYesNoDialogComponent} from "../../dialogs/generic-yes-no-dialog/generic-yes-no-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
-import {CertificateService} from "../../services/certificate.service";
+import {CertificateService} from "../../../../shared/certificate.service";
 import {CertificateValidity} from "../../models/certificate-validity.model";
 import {SharedService} from "../../../../shared/shared.service";
 import {

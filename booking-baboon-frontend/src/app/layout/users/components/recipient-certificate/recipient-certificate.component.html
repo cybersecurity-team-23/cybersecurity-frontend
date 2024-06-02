@@ -1,0 +1,15 @@
+<div class="flex-row">
+  <div class="cell">Issuer email: {{certificateDistribution?.issuerEmail}}</div>
+  <mat-divider vertical />
+  <div class="cell">Certificate serial number: {{certificateDistribution?.certificateSerialNumber}}</div>
+  <mat-divider vertical />
+  <div class="cell">Signature algorithm: {{certificateDistribution?.signatureAlgorithm}}</div>
+  <mat-divider vertical />
+  <div id="button-holder" class="cell">
+    <button mat-raised-button color="primary" (click)="downloadSignerPublicKey()">Download signer public key</button>
+    <button mat-raised-button color="primary" (click)="downloadCertificateSignature()">
+      Download certificate signature
+    </button>
+    <button mat-raised-button color="primary" (click)="downloadCertificate()">Download certificate</button>
+  </div>
+</div>

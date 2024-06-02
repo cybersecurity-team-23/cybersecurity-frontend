@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import {environment} from "../../../env/env";
+import {environment} from "../env/env";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {ICertificateNode} from "../models/certificate-node.model";
+import {ICertificateNode} from "../layout/certificates/models/certificate-node.model";
 import {Observable} from "rxjs";
-import {CertificateValidity} from "../models/certificate-validity.model";
-import {CreateCertificate} from "../../../shared/models/create-certificate.model";
+import {CertificateValidity} from "../layout/certificates/models/certificate-validity.model";
+import {CreateCertificate} from "./models/create-certificate.model";
+import {CertificateDistribution} from "./models/certificate-distribution.model";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,14 @@ export class CertificateService {
 
   getCertificateTree(): Observable<ICertificateNode> {
     return this.httpClient.get<ICertificateNode>(this.certificateControllerRoute);
+  }
+
+  getCertificatesForRecipient(recipientEmail: string): Observable<CertificateDistribution[]> {
+    let params: HttpParams = new HttpParams().set('recipient_email', recipientEmail);
+    return this.httpClient.get<CertificateDistribution[]>(
+      `${this.certificateControllerRoute}/distribute`,
+      { params: params }
+    );
   }
 
   isValid(alias: string): Observable<CertificateValidity> {
