@@ -4,6 +4,25 @@
   gap: 5px;
 }
 
+#id-holder {
+  align-self: center;
+}
+
+#subject-details-holder div {
+  padding-left: 1em;
+}
+
+#subject-details {
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.flex-column {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 5px;
+}
+
 #content-holder {
   align-items: center;
   justify-content: space-between;

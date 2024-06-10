@@ -15,14 +15,20 @@ export class CertificateRequestDialogComponent {
   certificateRequestForm: FormGroup<{
     organisation: FormControl<string | null>,
     organisationalUnit: FormControl<string | null>,
+    location: FormControl<string | null>,
+    state: FormControl<string | null>,
     country: FormControl<string | null>,
   }> = new FormGroup<{
     organisation: FormControl<string | null>,
     organisationalUnit: FormControl<string | null>,
+    location: FormControl<string | null>,
+    state: FormControl<string | null>,
     country: FormControl<string | null>,
   }>({
     organisation: new FormControl<string | null>(''),
     organisationalUnit: new FormControl<string | null>(''),
+    location: new FormControl<string | null>(''),
+    state: new FormControl<string | null>(''),
     country: new FormControl<string | null>(''),
   });
 
@@ -33,14 +39,13 @@ export class CertificateRequestDialogComponent {
 
   createCertificateRequest(): void {
     const createRequest: CreateRequest = {
-      commonName: this.data.user.firstName + ' ' + this.data.user.lastName,
-      surname: this.data.user.lastName ?? '',
-      givenName: this.data.user.firstName ?? '',
-      organisation: this.certificateRequestForm.value.organisation ?? '',
-      organisationalUnit: this.certificateRequestForm.value.organisationalUnit ?? '',
-      country: this.certificateRequestForm.value.country ?? '',
       email: this.data.user.email ?? '',
-      uid: this.data.user.id ?? 0
+      commonName: this.data.user.firstName + ' ' + this.data.user.lastName,
+      organisationalUnit: this.certificateRequestForm.value.organisationalUnit ?? '',
+      organisation: this.certificateRequestForm.value.organisation ?? '',
+      location: this.certificateRequestForm.value.location ?? '',
+      state: this.certificateRequestForm.value.state ?? '',
+      country: this.certificateRequestForm.value.country ?? '',
     }
 
     this.requestService.createRequest(createRequest).subscribe({

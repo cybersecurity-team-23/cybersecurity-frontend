@@ -40,9 +40,6 @@ import {
 } from "./layout/reservations/host/host-reservations-page/host-reservations-page.component";
 import {GuestReviewsPageComponent} from "./layout/reviews/guest-reviews-page/guest-reviews-page.component";
 import {
-  MonthlySummaryDialogComponent
-} from "./layout/summaries/monthlySummary/monthly-summary-dialog/monthly-summary-dialog.component";
-import {
   SummaryGeneratorPageComponent
 } from "./layout/summaries/periodSummary/summary-generator-page/summary-generator-page.component";
 import{

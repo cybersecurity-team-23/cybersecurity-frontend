@@ -8,18 +8,24 @@
           <div class="scrollable-content">
             <app-certificate-request *ngFor="let certificateRequest of certificateRequests"
                                      [certificateRequest]="certificateRequest"
-                                     (requestStatusChanged)="getCertificateRequests()" />
+                                     [caAliases]="caAliases"
+                                     (requestDeclined)="getCertificateRequests()"
+                                     (requestAccepted)="getCertificateRequests(); getCertificateTree();" />
           </div>
         </div>
       </div>
       <div id="tree-wrapper" class="flex-column">
         <div id="company-certificate-addition-holder" class="flex-row">
           <h2>Certificate hierarchy</h2>
-          <button mat-raised-button color="primary" (click)="add()">Add new company certificate</button>
+          <button mat-raised-button color="primary"
+                  (click)="openCreateCompanyCertificateDialog('250ms', '250ms')">
+            Add new company certificate
+          </button>
         </div>
         <div class="scrollable-holder">
           <div class="scrollable-content">
-            <app-certificate-tree [certificateTree]="certificateTree" />
+            <app-certificate-tree [certificateTree]="certificateTree" (certificateCreated)="getCertificateTree()"
+                                  (certificateDeleted)="getCertificateTree()" />
           </div>
         </div>
       </div>

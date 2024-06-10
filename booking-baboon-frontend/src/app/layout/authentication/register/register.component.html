@@ -5,6 +5,9 @@
       <mat-stepper [linear]="true" orientation="vertical" #stepper>
         <mat-step [stepControl]="registerPersonalForm" errorMessage="Personal information is required." [editable]="isEditable">
           <form [formGroup]="registerPersonalForm">
+
+          <re-captcha (resolved)="resolved($event)" siteKey="6LfYht4pAAAAAG97aOc774MPOj7tMLt8UB1xQmoz"></re-captcha>
+
             <mat-slide-toggle formControlName="toggleHost" color="warn">Host</mat-slide-toggle>
             <ng-template matStepLabel>Name</ng-template>
             <mat-form-field>
@@ -47,6 +50,14 @@
         <mat-step [stepControl]="registerPasswordForm" errorMessage="Passwords must match." [editable]="isEditable">
           <form [formGroup]="registerPasswordForm">
             <ng-template matStepLabel>Password</ng-template>
+            <p *ngIf="!passwordValid">
+              Pasword must be at least 8 and at most 64 charachters long. <br>
+              It must contain characters from three of the following four categories:<br>
+              English uppercase characters (A through Z) <br>
+              English lowercase characters (a through z) <br>
+              Base 10 digits (0 through 9) <br>
+              Non-alphabetic characters (for example, !, $, #, %) 
+            </p>
             <mat-form-field>
               <mat-label>Password</mat-label>
               <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
@@ -65,7 +76,7 @@
               <p id="error">Passwords must match.</p>
             </div>
             <div>
-              <button mat-raised-button matStepperNext *ngIf="passwordMatch" (click)="register()" color="primary" type="submit" id="register">Register</button>
+              <button mat-raised-button matStepperNext *ngIf="passwordMatch && passwordValid" (click)="register()" color="primary" type="submit" id="register">Register</button>
               <button mat-button matStepperPrevious>Back</button>
             </div>
           </form>

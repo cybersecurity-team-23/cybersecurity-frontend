@@ -1,4 +1,4 @@
-export interface CreateRequest {
+export interface X500Name {
   email: string,
   commonName: string,
   organisationalUnit: string,

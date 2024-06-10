@@ -40,9 +40,10 @@ export class RegisterComponent {
   registerPasswordForm: FormGroup = this.formBuilder.group({
     password: new FormControl('',[Validators.required]),
     passwordConfirmation: new FormControl('',[Validators.required])
-  },{validators: this.matchValidator('password','passwordConfirmation')})
+  },{validators: [this.matchValidator('password','passwordConfirmation'), this.passwordValidator('password', 'passwordConfirmation')]})
   hide: boolean = true;
   passwordMatch: boolean = false;
+  passwordValid: boolean = false;
   isEditable: boolean = true;
 
   constructor(private authService: AuthService, private formBuilder: FormBuilder) {}
@@ -69,7 +70,61 @@ export class RegisterComponent {
     }
   }
 
+  isPasswordValid(password: string) : boolean {
+    let upperCaseCount: number = 0;
+    let lowerCaseCount: number = 0;
+    let numberCount: number = 0;
+    let nonAlphaCount: number = 0;
+    for (let ch of password) {
+      if (ch >= 'a' && ch <= 'z') lowerCaseCount += 1;
+      else if (ch >= 'A' && ch <= 'Z') upperCaseCount += 1;
+      else if (ch >= '0' && ch <= '9') numberCount += 1;
+      else nonAlphaCount += 1;
+    }
+
+    let categoryCount: number = 0;
+    if (upperCaseCount > 0) categoryCount += 1;
+    if (lowerCaseCount > 0) categoryCount += 1;
+    if (numberCount > 0) categoryCount += 1;
+    if (nonAlphaCount > 0) categoryCount += 1;
+
+    return categoryCount >= 3 && password.length >= 8 && password.length <= 64;
+  }
+
+  passwordValidator(controlName: string, matchingControlName: string): ValidatorFn {
+    return (abstractControl: AbstractControl) => {
+      const control = abstractControl.get(controlName);
+      const matchingControl = abstractControl.get(matchingControlName);
+
+      if (matchingControl!.errors && !matchingControl!.errors?.['confirmedPassword']) {
+        return null;
+      }
+
+      if (!this.isPasswordValid(control!.value || "")) {
+        const error = {confirmedPassword: 'Password is not valid'};
+        this.passwordValid=false;
+        matchingControl!.setErrors(error);
+        return error;
+      } else {
+        matchingControl!.setErrors(null);
+        this.passwordValid = true;
+        return null;
+      }
+    }
+  }
+
+  recaptchaResponse: string | null = null;
+
+  resolved(captchaResponse: string | null) {
+    this.recaptchaResponse = captchaResponse;
+  }
+
   register() {
+      if (!this.recaptchaResponse) {
+        alert('Please resolve the captcha bro');
+        return;
+      }
+
     this.isEditable = false;
     if(this.registerPersonalForm.value.toggleHost){
       let user: Host = {
@@ -79,7 +134,9 @@ export class RegisterComponent {
         lastName: this.registerPersonalForm.value.lastName,
         password: this.registerPasswordForm.value.password,
         phoneNumber: this.registerContactForm.value.phone,
-        role: 2
+        role: 2,
+
+        recaptchaToken: this.recaptchaResponse
       };
 
       this.authService.registerHost(user).subscribe();
@@ -91,7 +148,9 @@ export class RegisterComponent {
         lastName: this.registerPersonalForm.value.lastName,
         password: this.registerPasswordForm.value.password,
         phoneNumber: this.registerContactForm.value.phone,
-        role: 1
+        role: 1,
+
+        recaptchaToken: this.recaptchaResponse
       };
 
       console.log(user)

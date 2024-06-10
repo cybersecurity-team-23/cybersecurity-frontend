@@ -4,4 +4,6 @@ import {Accommodation} from "../../accommodations/shared/models/accommodation.mo
 
 export interface Guest extends User{
   favorites?: Accommodation[]
+
+  recaptchaToken?: string;
 }

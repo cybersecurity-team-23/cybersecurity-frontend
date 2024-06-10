@@ -19,7 +19,7 @@ export class NavbarSuperadminComponent {
       },
       error: (): void => {
         this.router.navigate(['login']);
-      }
+      },
     })
   }
 }

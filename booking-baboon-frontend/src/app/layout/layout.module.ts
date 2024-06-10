@@ -147,6 +147,12 @@ import { CertificateTreeComponent } from './certificates/components/certificate-
 import { GenericYesNoDialogComponent } from './certificates/dialogs/generic-yes-no-dialog/generic-yes-no-dialog.component';
 import { CertificateRequestDialogComponent } from './users/dialogs/certificate-request-dialog/certificate-request-dialog.component';
 
+import { RecaptchaModule } from "ng-recaptcha";
+import { CreateCertificateDialogComponent } from './certificates/dialogs/create-certificate-dialog/create-certificate-dialog.component';
+import { AcceptRequestDialogComponent } from './certificates/dialogs/accept-request-dialog/accept-request-dialog.component';
+import { CreateCompanyCertificateDialogComponent } from './certificates/dialogs/create-company-certificate-dialog/create-company-certificate-dialog.component';
+import { RecipientCertificateComponent } from './users/components/recipient-certificate/recipient-certificate.component';
+
 
 @NgModule({
   declarations: [
@@ -221,7 +227,11 @@ import { CertificateRequestDialogComponent } from './users/dialogs/certificate-r
     CertificateRequestComponent,
     CertificateTreeComponent,
     GenericYesNoDialogComponent,
-    CertificateRequestDialogComponent
+    CertificateRequestDialogComponent,
+    CreateCertificateDialogComponent,
+    AcceptRequestDialogComponent,
+    CreateCompanyCertificateDialogComponent,
+    RecipientCertificateComponent
   ],
   exports: [
     NavbarComponent,
@@ -229,6 +239,7 @@ import { CertificateRequestDialogComponent } from './users/dialogs/certificate-r
     ActivationComponent
   ],
   imports: [
+    RecaptchaModule,
     CommonModule,
     MaterialModule,
     RouterLink,
